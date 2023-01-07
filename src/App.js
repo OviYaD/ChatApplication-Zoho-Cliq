@@ -1,16 +1,20 @@
-import logo from './logo.svg';
-import './App.scss';
-import { SignUp } from './pages/SignUp/SignUp';
-import SignIn from './pages/SignIn/SignIn';
+import logo from "./logo.svg";
+import { BrowserRouter } from "react-router-dom";
+import "./App.scss";
+import { SignUp } from "./pages/SignUp/SignUp";
+import SignIn from "./pages/SignIn/SignIn";
 import AppContainer from "./pages/AppContainer/AppContainer";
+import Router from "./Routes/Router";
 
 function App() {
   return (
     <div className="App">
-      {/* <SignUp></SignUp> */}
+      <BrowserRouter>
+        <Router />
+      </BrowserRouter>
       {/* <SignIn></SignIn> */}
       {/* <MenuBar></MenuBar> */}
-      <AppContainer></AppContainer>
+      {/* <AppContainer></AppContainer> */}
     </div>
   );
 }

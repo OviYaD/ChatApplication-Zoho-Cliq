@@ -4,7 +4,9 @@ import MainContainer from '../../components/MainContainer.jsx/MainContainer';
 
 export default function AppContainer(){
     return <>
-        <MenuBar></MenuBar>
-        <MainContainer></MainContainer>
+        <div style={{backgroundColor:"black"}}>
+            <MenuBar></MenuBar>
+            <MainContainer></MainContainer>
+        </div>
     </>;
 }
