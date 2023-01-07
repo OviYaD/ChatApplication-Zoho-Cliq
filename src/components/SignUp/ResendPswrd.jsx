@@ -45,6 +45,7 @@ const ResendPswrd = ({setValidity,isValid}) => {
 	}
 	useEffect(() => {
         clearTimer(getDeadTime());
+        setTimeout(()=>setEnable(true),61000)
         if(!isValid)
         {
             setEnable(true)
@@ -59,7 +60,7 @@ const ResendPswrd = ({setValidity,isValid}) => {
         setValidity(true);
 		clearTimer(getDeadTime());
         setEnable((enable)=>!enable)
-        setTimeout(()=>setEnable(true),60000)
+        setTimeout(()=>setEnable(true),61000)
 	}
 
 	return (

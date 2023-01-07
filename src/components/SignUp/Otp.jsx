@@ -3,7 +3,7 @@ import ResendPswrd from './ResendPswrd';
 import { useNavigate } from "react-router-dom";
 import { createUser } from '../../api/authentication/user';
 
-export default function Otp({userInfo}) {
+export default function Otp({userInfo,changeValidity}) {
     const [isValid,setValidity] = useState(true);
     const [otp,setOtp] = useState();
     const [btnText,setBtnText] = useState("VERIFY");
@@ -32,7 +32,7 @@ export default function Otp({userInfo}) {
             <div className="verifyheader">Enter the one-time password sent to your Email Id.</div>
             <div className="otpemail">
                 <span id="emailotp">{userInfo.email.slice(0,2)}***{userInfo.email.slice(userInfo.email.indexOf('@')-2,userInfo.email.indexOf('@')+1)}***{userInfo.email.slice(userInfo.email.lastIndexOf('.'))}</span>
-                <span className="change" >Change</span>
+                <span className="change" onClick={()=>changeValidity()} >Change</span>
             </div>
             <span className="za-otp-container field-error">
                 <input type="text" className="form-input" tabindex="1" name="otp" id="otpfield" placeholder="Enter OTP" value={otp} onChange={(e)=>{setOtp(e.target.value)}} />
