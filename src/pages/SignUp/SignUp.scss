@@ -1,439 +1,481 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: 0;
+  z-index: 99;
+  margin-bottom: 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+  font-family: "zoho-puvi-regular";
 
-.header{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background: 0;
-    z-index: 99;
-    margin-bottom: 20px;
-    border-bottom: 1px solid rgba(0,0,0,0.04);
-    font-family: "zoho-puvi-regular";
+  .logo {
+    margin: 15px;
+    background: var(--zoho-logo) no-repeat;
+    background-position: left top;
+    height: 23px;
+    width: 66px;
+    display: inline-block;
+    background-size: 69px auto;
+    width: 70px;
+    height: 25px;
+    text-indent: -99999px;
+    font-size: 0;
+    vertical-align: top;
+  }
 
-    .logo {
-        margin:15px;
-        background: var(--zoho-logo) no-repeat;
-        background-position: left top;
-        height: 23px;
-        width: 66px;
-        display: inline-block;
-        background-size: 69px auto;
-        width: 70px;
-        height: 25px;
-        text-indent: -99999px;
-        font-size: 0;
-        vertical-align: top;
+  .login-text {
+    background: #fff;
+    margin: 15px;
+    font-size: 13px;
+
+    a {
+      font-family: "zoho-puvi-semi-bold";
+      margin: 0 20px 0 5px;
+      display: inline-block;
+      color: #f0483e;
+      text-transform: uppercase;
+      font-size: 11px;
     }
-
-    .login-text{
-        background: #fff;
-        margin: 15px;
-        font-size: 13px;
-
-        a{
-            font-family: "zoho-puvi-semi-bold";
-            margin: 0 20px 0 5px;
-            display: inline-block;
-            color: #f0483e;
-            text-transform: uppercase;
-            font-size: 11px;
-        }
-    }
+  }
 }
 
-.testimonial-wrapper { 
-    position: fixed;
+.testimonial-wrapper {
+  position: fixed;
+  top: 0;
+  width: 500px;
+  background: url(https://www.zohowebstatic.com/sites/zweb/images/zp-signup-bg.jpg)
+    left top no-repeat;
+  content: "";
+  height: 100%;
+  left: 0;
+
+  &::after {
+    width: 100%;
+    position: absolute;
     top: 0;
-    width: 500px;
-    background: url(https://www.zohowebstatic.com/sites/zweb/images/zp-signup-bg.jpg) left top no-repeat;
-    content: '';
+    background: rgba(0, 0, 0, 0.35);
+    content: "";
     height: 100%;
     left: 0;
+  }
 
-    &::after {
-            width: 100%;
-            position: absolute;
-            top: 0;
-            background: rgba(0,0,0,.35);
-            content: '';
-            height: 100%;
-            left: 0;
+  .testimonial-content {
+    max-width: 70%;
+    color: #fff;
+    margin: 200px auto 0;
+    text-align: center;
+    font-family: "Droid Serif", serif, Arial, Helvetica, sans-serif;
+    transition: margin 0.7s ease 0;
+    position: relative;
+    z-index: 1;
+
+    p {
+      color: #f2f2f2;
+      line-height: 28px;
+      margin: 0 0 15px;
+      font-weight: 100;
+      font-size: 19px;
     }
-
-    .testimonial-content{
-        
-        max-width: 70%;
-        color: #fff;
-        margin: 200px auto 0;
-        text-align: center;
-        font-family: 'Droid Serif',serif,Arial,Helvetica,sans-serif;
-        transition: margin .7s ease 0;
-        position: relative;
-        z-index: 1;
-
-        p{
-            color: #f2f2f2;
-            line-height: 28px;
-            margin: 0 0 15px;
-            font-weight: 100;
-            font-size: 19px;
-        }
-    }
+  }
 }
 
-.signup-form{
-    margin-left: 500px;
-    padding: 150px 120px 80px;
-    max-width: 750px;
+.signup-form {
+  margin-left: 500px;
+  padding: 150px 120px 80px;
+  max-width: 750px;
 
-    .product {
-        margin: 0 0 20px;
+  .product {
+    margin: 0 0 20px;
 
-        a{
-            display: inline-flex;
-            align-items: center;
-            text-decoration: none;
-            outline: 0;
-            color: var(--primary-anchor-clr);
+    a {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+      outline: 0;
+      color: var(--primary-anchor-clr);
 
-            img{
-                max-width: 44px;
-            }
-        }
-        span {
-            color: #333;
-            font-size: 23px;
-            line-height: 48px;
-            margin: 0 0 0 12px;
-            vertical-align: top;
-            font-family: "zoho-puvi-semi-bold";
-        }
+      img {
+        max-width: 44px;
+      }
     }
-    h3{
-        font: 27px/1.3 "zoho-puvi-semi-bold";
-        margin-bottom: 15px;
+    span {
+      color: #333;
+      font-size: 23px;
+      line-height: 48px;
+      margin: 0 0 0 12px;
+      vertical-align: top;
+      font-family: "zoho-puvi-semi-bold";
     }
-    .signup-box{
-        max-width: 100%;
-        display: flex;
-        flex-direction: column;
-        margin: 0 0 0 auto;
-        .signup-frm {
-            max-width: 500px;
-            margin: 0;
-            position: relative;
-            .sgfrm {
-                margin: 20px 0 30px;
-                position: relative;
-                width: 100%;
-            }
-            // .placeholder {
-            //     color: #666;
-            //     font-size: 15px;
-            //     left: 10px;
-            //     position: absolute;
-            //     top: 15px;
-            //     transition: all .5s ease .1s;
-            //     z-index: 7;
-            // }
-            
-        }
-        .za-country_code-container, .signup-box .za-ccountry_code-container {
-            position: relative;
-        }
-        .za-country_code-container input {
-            border: 1px solid #000;
-        }
-        .za-country_code-container input {
-            border: 1px solid #000;
-        }
-        #countryCodeDiv,#countryconfirmCodeDiv {
-            height: 50px;
-            border-color: #333;
-        }
-        #countryCodeDiv,#countryconfirmCodeDiv {
-            background-color: #fff;
-            width: 78px;
-            position: absolute;
-            left: 1px;
-            top: 1px;
-            line-height: 25px;
-            padding: 10px 0 10px 10px;
-            font-size: 13px;
-            color: #666;
-            pointer-events: none;
-            height: 43px;
-            z-index: 1;
-            border-right: 1px solid #d5d5d5;
-        }
-        #countryCodeDiv {
-            height: 48px;
-            box-sizing: border-box;
-            left: 1px;
-            top: 1px;
-            border-right: 1px solid #000;
-        }
-        input{
-            background: transparent;
-            border: 1px solid rgba(0,0,0,.8);
-            padding: 5px 10px;
-            outline: 0;
-            box-shadow: none;
-            z-index: 9;
-            font-size: 15px;
-            height: 40px;
-            width: 100%;
-            margin: 0;
-        }
-        .zcountry-info {
-            margin: 0 0 5px;
-            color: #000;
-            font-size: 12px;
-            font-family: "zoho-puvi-regular";
+  }
+  h3 {
+    font: 27px/1.3 "zoho-puvi-semi-bold";
+    margin-bottom: 15px;
+  }
+  .signup-box {
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 0 auto;
+    .signup-frm {
+      max-width: 500px;
+      margin: 0;
+      position: relative;
+      .sgfrm {
+        margin: 20px 0 30px;
+        position: relative;
+        width: 100%;
+
+        .field-msg {
+          display: block;
+          text-align: left;
+          font-family: "zoho-puvi-regular";
+
+          .error {
             text-align: left;
-            #zip-countryname {
-                font-weight: 700;
-                text-transform: uppercase;
-            }
-            #zip-countryname-change {
-                color: #000;
-                cursor: pointer;
-                text-decoration: underline;
-                margin-left: 3px;
-            }
-        }
-        .czone-dc .za-newsletter-container {
-            display: none !important;
-        }
-        .za-newsletter-container {
-            margin: 10px 0 0;
+            font-family: var(--zf-primary-regular), Arial, Helvetica, sans-serif;
             position: relative;
-            font-size: 11px;
-        }
-        .za-newsletter-container label,.za-tos-container label {
-            position: relative;
-            padding-left: 15px;
-        }
-        .sign_agree, label {
-            font-size: 11px;
-            display: inline-block;
-            line-height: 1.3;
-            color: #333;
-            cursor: pointer;
+            color: red;
+            font-size: 13px;
+            line-height: 1.5;
             margin-top: 5px;
-            width: 100%;
-            text-align: left;
-            font-family: "zoho-puvi-semi-bold",sans-serif;
+          }
         }
-        .za-tos-container #signup-termservice {
-            position: absolute;
-            top: 2px;
-            left: 0;
-        }
-        #signup-newsletter,  #signup-termservice {
-            border: 1px solid #333;
-            display: inline-block;
-            height: 10px;
-            margin-right: 4px;
-            width: 10px;
-            position: relative;
-            vertical-align: middle;
-        }
-        a{
-            color:black;
-        }
-        .za-tos-container {
-            margin-top:20px;
-            a{
-                margin-left:3px;
-                margin-right:3px;
-            }
-        }
-        .sgnbtn input[type='submit'], .sgnbtn input[type='button'] {
-            margin-top:25px;
-            font-family: "zoho-puvi-semi-bold";
-            font-size: 15px;
-            height: 50px;
-            padding: 0 60px;
-            background: #f0483e;
-            text-align: center;
-            text-transform: uppercase;
-            border: 0;
-            color: #fff;
-            width: 100%;
-            cursor: pointer;
-            font-weight: 600;
-            appearance: none;
-            -webkit-appearance: none;
-            -moz-appearance: none;
-        }
-        .socl-signup b {
-            display: inline-block;
-            font-weight: 500;
-            line-height: 20px;
-        }
-        .socl-signup {
-            font-family: "zoho-puvi-regular";
-            margin: 0;
-            overflow: hidden;
-            padding: 25px 0 0;
-            text-align: left;
-            color: #000;
-            font-size: 13px;
-            line-height: 24px;
-            padding: 0;
-            margin-top: 10px;
-                
-        }
-        .socl-signup span.vi-google, .socl-signup span.vi-linkedin,.socl-signup span.vi-office365,.zmobile-menu-searchbtn span {
-            background: var(--common-elements) no-repeat;
-        }
-        .socl-signup span.vi-google {
-            background-size: 813px auto;
-            background-position: -92px 0;
-            width: 91px;
-            height: 35px;
-        }
-        .socl-signup {
-            margin-top:30px;
-            span{
-                margin:0px;
-                padding:0px;
-            }
-            span.vi-google {
-                background-size: 813px auto;
-                background-position: -92px 0;
-                width: 91px;
-                height: 35px;
-                font-size: 0;
-                text-indent: -9999px;
-            }
-            span.vi-facebook {
-                margin:0px;
-                background-position: -243px 0;
-                background-size: 1078px auto;
-                width: 36px;
-                height: 36px;
-            }
-            span.vi-linkedin {
-                margin:-20px;
-                background-size: 1078px auto;
-                background-position: -324px 0;
-                width: 36px;
-                height: 36px;
-            } 
-            span.vi-office365 {
-                margin-left:-15px;
-                background-size: 1078px auto;
-                background-position: -361px 0;
-                width: 29px;
-                height: 36px;
-            }
-
-        }
-        .socl-signup span {
-            background-size: 950px auto;
-            font-size: 0;
-            text-indent: -9999px;
-            display: inline-block;
-            color: #aaa;
-            cursor: pointer;
-            margin: 0 0 0 10px;
-            overflow: hidden;
-            width: 36px;
-            height: 36px;
-            line-height: 24px;
-            vertical-align: middle;
-        }
+      }
+      // .placeholder {
+      //     color: #666;
+      //     font-size: 15px;
+      //     left: 10px;
+      //     position: absolute;
+      //     top: 15px;
+      //     transition: all .5s ease .1s;
+      //     z-index: 7;
+      // }
     }
+    .za-country_code-container,
+    .signup-box .za-ccountry_code-container {
+      position: relative;
+    }
+    .za-country_code-container input {
+      border: 1px solid #000;
+    }
+    .za-country_code-container input {
+      border: 1px solid #000;
+    }
+    #countryCodeDiv,
+    #countryconfirmCodeDiv {
+      height: 50px;
+      border-color: #333;
+    }
+    #countryCodeDiv,
+    #countryconfirmCodeDiv {
+      background-color: #fff;
+      width: 78px;
+      position: absolute;
+      left: 1px;
+      top: 1px;
+      line-height: 25px;
+      padding: 10px 0 10px 10px;
+      font-size: 13px;
+      color: #666;
+      pointer-events: none;
+      height: 43px;
+      z-index: 1;
+      border-right: 1px solid #d5d5d5;
+    }
+    #countryCodeDiv {
+      height: 48px;
+      box-sizing: border-box;
+      left: 1px;
+      top: 1px;
+      border-right: 1px solid #000;
+    }
+    input {
+      background: transparent;
+      border: 1px solid rgba(0, 0, 0, 0.8);
+      padding: 5px 10px;
+      outline: 0;
+      box-shadow: none;
+      z-index: 9;
+      font-size: 15px;
+      height: 40px;
+      width: 100%;
+      margin: 0;
+    }
+    .zcountry-info {
+      margin: 0 0 5px;
+      color: #000;
+      font-size: 12px;
+      font-family: "zoho-puvi-regular";
+      text-align: left;
+      #zip-countryname {
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+      #zip-countryname-change {
+        color: #000;
+        cursor: pointer;
+        text-decoration: underline;
+        margin-left: 3px;
+      }
+    }
+    .czone-dc .za-newsletter-container {
+      display: none !important;
+    }
+    .za-newsletter-container {
+      margin: 10px 0 0;
+      position: relative;
+      font-size: 11px;
+    }
+    .za-newsletter-container label,
+    .za-tos-container label {
+      position: relative;
+      //   padding-left: 15px;
+    }
+    .sign_agree,
+    label {
+      font-size: 11px;
+      display: inline-block;
+      line-height: 1.3;
+      color: #333;
+      cursor: pointer;
+      width: 100%;
+      text-align: left;
+      font-family: "zoho-puvi-semi-bold", sans-serif;
+    }
+    .za-tos-container #signup-termservice {
+      position: absolute;
+      top: 2px;
+      left: 0;
+    }
+    #signup-newsletter,
+    #signup-termservice {
+      border: 1px solid #333;
+      display: inline-block;
+      height: 10px;
+      margin-right: 4px;
+      width: 10px;
+      position: relative;
+      vertical-align: middle;
+    }
+    a {
+      color: black;
+    }
+    .za-tos-container {
+      margin-top: 20px;
+      margin-left: -12px;
 
+      a {
+        margin-left: 3px;
+        margin-right: 3px;
+      }
+    }
+    .sgnbtn input[type="submit"],
+    .sgnbtn input[type="button"] {
+      margin-top: 25px;
+      font-family: "zoho-puvi-semi-bold";
+      font-size: 15px;
+      height: 50px;
+      padding: 0 60px;
+      background: #f0483e;
+      text-align: center;
+      text-transform: uppercase;
+      border: 0;
+      color: #fff;
+      width: 100%;
+      cursor: pointer;
+      font-weight: 600;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+    }
+    .socl-signup b {
+      display: inline-block;
+      font-weight: 500;
+      line-height: 20px;
+    }
+    .socl-signup {
+      font-family: "zoho-puvi-regular";
+      margin: 0;
+      overflow: hidden;
+      padding: 25px 0 0;
+      text-align: left;
+      color: #000;
+      font-size: 13px;
+      line-height: 24px;
+      padding: 0;
+      margin-top: 10px;
+    }
+    .socl-signup span.vi-google,
+    .socl-signup span.vi-linkedin,
+    .socl-signup span.vi-office365,
+    .zmobile-menu-searchbtn span {
+      background: var(--common-elements) no-repeat;
+    }
+    .socl-signup span.vi-google {
+      background-size: 813px auto;
+      background-position: -92px 0;
+      width: 91px;
+      height: 35px;
+    }
+    .socl-signup {
+      margin-top: 30px;
+      span {
+        margin: 0px;
+        padding: 0px;
+      }
+      span.vi-google {
+        background-size: 813px auto;
+        background-position: -92px 0;
+        width: 91px;
+        height: 35px;
+        font-size: 0;
+        text-indent: -9999px;
+      }
+      span.vi-facebook {
+        margin: 0px;
+        background-position: -243px 0;
+        background-size: 1078px auto;
+        width: 36px;
+        height: 36px;
+      }
+      span.vi-linkedin {
+        margin: -20px;
+        background-size: 1078px auto;
+        background-position: -324px 0;
+        width: 36px;
+        height: 36px;
+      }
+      span.vi-office365 {
+        margin-left: -15px;
+        background-size: 1078px auto;
+        background-position: -361px 0;
+        width: 29px;
+        height: 36px;
+      }
+    }
+    .socl-signup span {
+      background-size: 950px auto;
+      font-size: 0;
+      text-indent: -9999px;
+      display: inline-block;
+      color: #aaa;
+      cursor: pointer;
+      margin: 0 0 0 10px;
+      overflow: hidden;
+      width: 36px;
+      height: 36px;
+      line-height: 24px;
+      vertical-align: middle;
+    }
+  }
 }
 
 .signupotpcontainer {
-    font-family:"zoho-puvi-regular";
-    .verifytitle {
-        font-family: "zoho-puvi-semi-bold";
-        margin-bottom: 10px;
-    }
-    .verifyheader{
-        margin-top:10px;
-    }
-    .otpmobile {
-        margin-bottom: 15px;
-        margin-top: 5px;
-    }
-    .change {
-        font-family: "zoho-puvi-semi-bold";
-        text-decoration: underline;
-        cursor: pointer;
-        margin-left: 5px;
-        font-size: .9em;
-    }
-    .za-otp-container {
-        
-        input{
-                background: transparent;
-                border: 1px solid rgba(0,0,0,.8);
-                padding: 5px 10px;
-                outline: 0;
-                box-shadow: none;
-                z-index: 9;
-                font-size: 15px;
-                height: 38px;
-                margin: 0;
-                color: #000;
-                display: block;
-                width: 85%;
-                -webkit-appearance: none;
-                position: relative;
-                transition: .5s ease;.field-error .field-msg {
-                    display: block;
-                    text-align: left;
-                }
-                border-radius: 0;
-                font-family: "zoho-puvi-regular";
-                line-height: 1;
-        }
-        .field-msg {
-            display: block;
-            text-align: left;
-        }
-        .field-msg {
-            font-family: "zoho-puvi-regular";
-        }
-    }
-    .resendotp {
-        font-family: "zoho-puvi-semi-bold";
-        cursor: pointer;
-        text-decoration: underline;
-        font-size: .9em;
-        margin-top: 8px;
-        display: inline-block;
-    }
-    .za-submitbtn-otp .signupbtn {
-        background: #f0483e;
-        border-color: #f0483e;
-        font-size: 15px;
-        color: #fff;
-        font-family: var(--primaryfont-semibold);
-        cursor: pointer;
-        padding: 14px 12px;
+  font-family: "zoho-puvi-regular";
+  .verifytitle {
+    font-family: "zoho-puvi-semi-bold";
+    margin-bottom: 10px;
+  }
+  .verifyheader {
+    margin-top: 10px;
+  }
+  .otpmobile {
+    margin-bottom: 15px;
+    margin-top: 5px;
+  }
+  .change {
+    font-family: "zoho-puvi-semi-bold";
+    text-decoration: underline;
+    cursor: pointer;
+    margin-left: 5px;
+    font-size: 0.9em;
+  }
+  .za-otp-container {
+    input {
+      margin-top: 15px;
+      margin-bottom: 10px;
+      background: transparent;
+      border: 1px solid rgba(0, 0, 0, 0.8);
+      padding: 5px 10px;
+      outline: 0;
+      box-shadow: none;
+      z-index: 9;
+      font-size: 15px;
+      height: 38px;
+      color: #000;
+      display: block;
+      width: 85%;
+      -webkit-appearance: none;
+      position: relative;
+      transition: 0.5s ease;
+      .field-error .field-msg {
         display: block;
-        width: 89%;
-        margin: 15px 0 0;
-        appearance: none;
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        position: relative;
-        z-index: 1;
-        transition: .5s ease;
-        border-radius: 0;
-        border: 0;
+        text-align: left;
+      }
+      border-radius: 0;
+      font-family: "zoho-puvi-regular";
+      line-height: 1;
     }
-    
+    .field-msg {
+      display: block;
+      text-align: left;
+    }
+    .field-msg {
+      font-family: "zoho-puvi-regular";
+    }
+  }
+  .resendotp {
+    font-family: "zoho-puvi-semi-bold";
+    cursor: pointer;
+    text-decoration: underline;
+    font-size: 0.9em;
+    margin-top: 8px;
+    display: inline-block;
+  }
+  .za-submitbtn-otp .signupbtn {
+    background: #f0483e;
+    border-color: #f0483e;
+    font-size: 15px;
+    color: #fff;
+    font-family: var(--primaryfont-semibold);
+    cursor: pointer;
+    padding: 14px 12px;
+    display: block;
+    width: 89%;
+    margin: 15px 0 0;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    position: relative;
+    z-index: 1;
+    transition: 0.5s ease;
+    border-radius: 0;
+    border: 0;
+  }
 }
-
+.error {
+  text-align: left;
+  font-family: var(--zf-primary-regular), Arial, Helvetica, sans-serif;
+  position: relative;
+  color: red;
+  font-size: 13px;
+  line-height: 1.5;
+  margin-top: 5px;
+}
+.resendotp.nonclickelem {
+  opacity: 0.4;
+  pointer-events: none;
+}
+.resendotp {
+  font-family: "zoho-puvi-regular";
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: 0.9em;
+  margin-top: 8px;
+  display: inline-block;
+}

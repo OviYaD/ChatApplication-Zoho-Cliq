@@ -12,9 +12,6 @@ function App() {
       <BrowserRouter>
         <Router />
       </BrowserRouter>
-      {/* <SignIn></SignIn> */}
-      {/* <MenuBar></MenuBar> */}
-      {/* <AppContainer></AppContainer> */}
     </div>
   );
 }

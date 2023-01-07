@@ -3,7 +3,13 @@ import SignUpBox from "./SignUpBox.jsx";
 import Otp from "./Otp.jsx";
 
 export default function SignUpForm(){
+    const [userInfo,setUserInfo] = useState({});
+    const [isValid, setValidity] = useState(false); 
     
+    const changeValidity = (data) => {
+        setValidity((isValid)=>!isValid);
+        setUserInfo(data);
+    }
     return <>
         <div className="signup-form">
             <div className="product"> 
@@ -13,8 +19,10 @@ export default function SignUpForm(){
                 </a>
             </div>
             <h3>Get your team started.</h3>
-            {/* <SignUpBox></SignUpBox> */}
-            <Otp></Otp>
+            {isValid ? <Otp changeValidity={changeValidity} userInfo={userInfo}></Otp>:<SignUpBox changeValidity={changeValidity}></SignUpBox>}
+
+            {/* <SignUpBox setValidity={setValidity}></SignUpBox>
+            <Otp></Otp> */}
                 
         </div>
     </>;
