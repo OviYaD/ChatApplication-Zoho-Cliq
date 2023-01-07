@@ -1,0 +1,111 @@
+@import "./assets/fonts.scss";
+
+body {
+  background-color: black;
+}
+
+:root {
+  --zoho-logo: url(//www.zohowebstatic.com/sites/zweb/images/commonroot/zoho-logo.svg);
+  --primary-anchor-clr: #03a9f5;
+  --common-elements: url(https://www.zohowebstatic.com/sites/zweb/images/commonroot/common-elements.svg);
+
+  --body-bg: #202020;
+  --lhs-nav-bg: #222;
+  --lhs-nav-color: #b3b3b3;
+  --topbar-bg: #2b2b2b;
+  --lhs-sub-item-hovr: rgb(73 73 73 / 50%);
+  --lhs-sub-item-selcted: #494949;
+  --lhs-btn-bg: #3d3d3d;
+  --remote-checkout-color: #464646;
+  --lhs-bg-color: #2b2b2b;
+  --lhs-bg: #2B2B2B;
+  --lhs-list-hover-bg: #494949;
+  --color-icon-lhs: #979797;
+  --color-divider-lhs: #393939;
+  --color-icon-lhs-rgb: 151, 151, 151;
+  --color-secondary-lhs: #b3b3b3;
+  --box-shadow-color: rgba(0, 0, 0, 0.1);
+  --lhs-width: 250px;
+  --lhs-modules-wid: 64px;
+
+  --color-hover1: #f1f4f7;
+  --color-hover1-rgb: 241, 244, 247;
+  --color-hover2: #f1f4f7;
+  --color-hover3: #f7f8f9;
+  --color-icon-lhs: #979797;
+  --color-theme: var(--zcl-color-theme1);
+  --color-theme-rgb: var(--zcl-color-theme1-rgb);
+  --videoplayer-theme-color: var(--color-theme);
+  --zcl-color-theme1-rgb: 61, 194, 172;
+  --default-bg-color: #fff;
+  --lhs-nav-bg: #222;
+  --body-bg: #202020;
+  --lhs-width: 294px;
+  --color-lp1: #888;
+  --color-lp2: #ababab;
+  --color-lp3: #c4c4c4;
+  --clr-white: #fff;
+  --lhs-sub-item-hovr: rgb(73 73 73 / 50%);
+  --color-theme: var(--zcl-color-theme1);
+  --zcl-color-theme1-rgb: 61, 194, 172;
+  --lhs-modules-wid: 64px;
+  --main-clr: #fff;
+}
+
+.flexC,
+.dflxcent {
+  display: flex;
+  align-items: center;
+}
+.justifySB,
+.fjustifySB {
+  justify-content: space-between;
+}
+.mT2 {
+  margin-top: 2px;
+}
+.flexG,
+.flxG {
+  flex-grow: 1;
+}
+.flex,
+.dflx {
+  display: flex;
+}
+
+.fshrink {
+  flex-shrink: 0;
+}
+
+.h100 {
+  height: 100%;
+}
+.justifySB,
+.fjustifySB {
+  justify-content: space-between;
+}
+.fdirC,
+.flx-dirC {
+  flex-direction: column;
+}
+.flex,
+.dflx {
+  display: flex;
+}
+.fdirC {
+  flex-direction: column;
+}
+.mB20 {
+  margin-bottom: 20px;
+}
+.ellips {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.fontb {
+  font-weight: bold;
+}
+.font17 {
+  font-size: 17px;
+}
