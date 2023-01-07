@@ -1,0 +1,115 @@
+.zccontent {
+  padding-top: 0px;
+  overflow: hidden;
+  background-color: var(--default-bg-color);
+  height: 100%;
+}
+.zccontent .rw-lhs-tab.LHS-RW.chatsel, .zccontent .rw-lhs-tab.LHS-RW.chatsel:hover {
+  border-left: 2px solid var(--color-theme);
+}
+.zccontent .LHS-RW:hover, .zccontent .LHS-RW.chatsel {
+  background-color: var(--lhs-sub-item-hovr);
+  color: var(--clr-white);
+}
+.zccontent .zcleftsidebar {
+  display: flex;
+  flex-direction: column;
+  z-index: 12;
+  background: var(--body-bg);
+  position: relative;
+  flex-shrink: 0;
+  max-width: var(--lhs-width);
+  width: var(--lhs-width);
+  height: 100%;
+  float: none;
+  color: var(--color-lp1);
+  overflow: hidden;
+}
+.zccontent .zcleftsidebar .rw-lhs-tab {
+  border-left: 2px solid rgb(61, 194, 172) !important;
+  font-family: "zoho-puvi-semi-bold";
+  margin-top: 2px;
+  background-color: var(--lhs-sub-item-hovr);
+  height: 43px;
+  margin: 0px -20px 0px 0px;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 0px 14px;
+}
+.zccontent .zcleftsidebar .rw-lhs-tab .mR8 {
+  margin-right: 8px;
+}
+.zccontent .zcleftsidebar .rw-lhs-tab .font11 {
+  font-size: 11px;
+}
+.zccontent .zcleftsidebar .rw-lhs-tab .clr-lp1 {
+  color: var(--color-lp1);
+}
+.zccontent .zcleftsidebar .justifySB {
+  justify-content: space-between;
+}
+
+.flexG,
+.flxG {
+  flex-grow: 1;
+}
+
+.zccontent article {
+  display: flex;
+  width: 100%;
+}
+
+article {
+  clear: both;
+  height: 100%;
+  overflow: hidden;
+}
+
+.ps-container {
+  touch-action: none;
+  overflow: hidden !important;
+  -ms-overflow-style: none;
+}
+
+.left-wrapper {
+  width: var(--lhs-width);
+  display: flex;
+  background: var(--lhs-nav-bg);
+  overflow: hidden;
+  height: 100%;
+}
+.left-wrapper .left-nav {
+  width: var(--lhs-modules-wid);
+  flex-shrink: 0;
+  background: var(--lhs-nav-bg);
+  height: 100%;
+  overflow: hidden;
+}
+.left-wrapper .left-nav .posrel {
+  position: relative;
+}
+.left-wrapper .left-nav .posrel .lhs-nav-item:first-child {
+  margin: 0;
+}
+.left-wrapper .left-nav .posrel .lhs-nav-item {
+  position: relative;
+  cursor: pointer;
+  border-left: 2px solid var(--lhs-nav-bg) !important;
+  padding: 4px 0px;
+  height: 54px;
+  margin: 2px 0px;
+  width: var(--lhs-modules-wid);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.left-wrapper .left-nav .posrel .lhs-nav-item .mod-icn {
+  color: var(--lhs-nav-color);
+  width: 14px;
+  height: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}/*# sourceMappingURL=MainContainer.css.map */

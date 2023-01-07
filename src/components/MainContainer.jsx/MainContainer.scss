@@ -1,0 +1,205 @@
+.zccontent {
+  padding-top: 0px;
+  overflow: hidden;
+  background-color: var(--default-bg-color);
+  height: 100%;
+
+  article {
+    display: flex;
+    width: 100%;
+    clear: both;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .rw-lhs-tab.LHS-RW.chatsel,
+  .rw-lhs-tab.LHS-RW.chatsel:hover {
+    border-left: 2px solid var(--color-theme);
+  }
+  .LHS-RW:hover,
+  .LHS-RW.chatsel {
+    background-color: var(--lhs-sub-item-hovr);
+    color: var(--clr-white);
+  }
+
+  .zcleftsidebar {
+    display: flex;
+    flex-direction: column;
+    z-index: 12;
+    background: var(--body-bg);
+    position: relative;
+    flex-shrink: 0;
+    max-width: var(--lhs-width);
+    width: var(--lhs-width);
+    height: 100%;
+    float: none;
+    // color: #e9e9ea;
+    color: var(--color-lp1);
+    overflow: hidden;
+
+    .rw-lhs-tab {
+      border-left: 2px solid rgb(61, 194, 172) !important;
+      font-family: "zoho-puvi-semi-bold";
+      margin-top: 2px;
+      background-color: var(--lhs-sub-item-hovr);
+      // background-color: var(--lhs-bg);
+      height: 43px;
+      // color: var(--clr-white);
+      // border-left: 2px solid var(--body-bg);
+      margin: 0px -20px 0px 0px;
+      cursor: pointer;
+      font-size: 16px;
+      padding: 0px 14px;
+
+      .mR8 {
+        margin-right: 8px;
+      }
+      .font11 {
+        font-size: 11px;
+      }
+      .clr-lp1 {
+        color: var(--color-lp1);
+      }
+    }
+    .justifySB {
+      justify-content: space-between;
+    }
+  }
+}
+.flexG,
+.flxG {
+  flex-grow: 1;
+}
+
+.ps-container {
+  -ms-touch-action: none;
+  touch-action: none;
+  overflow: hidden !important;
+  -ms-overflow-style: none;
+}
+.left-wrapper {
+  width: var(--lhs-width);
+  display: flex;
+  background: var(--lhs-nav-bg);
+  overflow: hidden;
+  height: 100%;
+
+  .left-nav {
+    width: var(--lhs-modules-wid);
+    flex-shrink: 0;
+    background: var(--lhs-nav-bg);
+    height: 100%;
+    overflow: hidden;
+
+    .overflow-controls {
+      height: calc(100vh - 95px);
+      overflow: auto;
+    }
+    .overflow-controls::-webkit-scrollbar {
+      display: none;
+    }
+
+    .posrel {
+      position: relative;
+      // height: calc(100% - 500vh);
+
+      .lhs-nav-item:first-child {
+        margin: 0;
+      }
+
+      .lhs-nav-item {
+        position: relative;
+        cursor: pointer;
+        border-left: 2px solid var(--lhs-nav-bg);
+        padding: 0px 0px;
+        height: 54px;
+        margin: 2px 0px;
+        width: var(--lhs-modules-wid);
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
+        .mod-icn {
+          color: var(--lhs-nav-color);
+          width: 14px;
+          height: 14px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .mod-name {
+          margin-top: 5px;
+          font-size: 8.5px;
+          text-transform: uppercase;
+          color: var(--lhs-nav-color);
+          text-align: center;
+          width: 100%;
+          padding: 0px 4px;
+        }
+      }
+    }
+  }
+}
+
+.ps-container > .ps-scrollbar-x-rail {
+  height: 6px;
+}
+.ps-container > .ps-scrollbar-x-rail {
+  width: 6px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  padding: 0;
+}
+.ps-container > .ps-scrollbar-x-rail {
+  display: none;
+  position: absolute;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  opacity: 0;
+  -webkit-transition: background-color 0.2s linear, opacity 0.2s linear;
+  -moz-transition: background-color 0.2s linear, opacity 0.2s linear;
+  -o-transition: background-color 0.2s linear, opacity 0.2s linear;
+  transition: background-color 0.2s linear, opacity 0.2s linear;
+  bottom: 3px;
+  height: 8px;
+}
+.ps-container > .ps-scrollbar-x-rail > .ps-scrollbar-x {
+  position: absolute;
+  background-color: #aaa;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-transition: background-color 0.2s linear;
+  -moz-transition: background-color 0.2s linear;
+  -o-transition: background-color 0.2s linear;
+  transition: background-color 0.2s linear;
+  bottom: 0;
+  height: 8px;
+}
+.active {
+  // border-left: 2px solid rgb(61, 194, 172) !important;
+  border-color: rgb(61, 194, 172) !important;
+  background-color: var(--lhs-bg);
+}
+.contact-list{
+  font-family: inherit;
+  font-family:"zoho-puvi-regular";
+  width: 230px;
+    color: var(--lhs-color);
+    background: var(--lhs-bg);
+    border-right: 1px solid rgba(0,0,0,0.2);
+    // overflow:hidden;
+    height:100%;
+    flex-grow:1;
+    display:flex;
+    flex-direction:column;
+    overflow-x: hidden;
+    overflow-y: auto;
+    // padding-bottom: 5px;
+    padding: 20px;
+    // padding: 0px 14px;
+    color: var(--main-clr);
+}
