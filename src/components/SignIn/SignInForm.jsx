@@ -1,103 +1,173 @@
 import React , { useState } from 'react';
 import LoadingButton from '@mui/lab/LoadingButton';
+import { checkEmail, loginUser } from '../../api/authentication/user';
+import { useNavigate } from 'react-router-dom';
 
-export default function SignInForm(){
+
+export default function SignInForm({forgetPassword}){
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [isError,setError] = useState('');
     const [loading,setLoading] = useState(false);
-    const [isValid,setValid] = useState(false);
+    const [showEmailField, setEmailField] = useState(true);
+    const [showPswdField, setPswdField] = useState(false);
+    const [showOtpField, setOtpField] = useState(false);
+    const [emailExists,setEmailExists] = useState();
+    const [error,setError] = useState(false);
+    const navigate = useNavigate();
 
-
-    function ValidateEmail(mail) 
-    {
-        if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail))
-        {
-            return (true)
-        }
-        alert("You have entered an invalid email address!")
-        return (false)
-    }
-
-    const emailIsExists = () => {
-
-    }
-    const checkEmail = (e) =>{
-        e.preventDefault();
-        ValidateEmail(email)?emailIsExists():setError(()=>!isError);
-        
-    }
-
+   
     const handleChange = (e) => {
         e.preventDefault();
-        const handleChange = (e) => {
-            e.preventDefault();
-            console.log(e.target)
-            if(e.target.name == "email"){
-                setEmail(e.target.value);
-            }
-            else if(e.target.name == "password"){
-                setPassword(e.target.value);
-            }
+        console.log(e.target)
+        if(e.target.name === "email"){
+            setEmail(e.target.value);
+        }
+        else if(e.target.name === "password"){
+            setPassword(e.target.value);
         }
     }
 
     
-    const handleClick = (e) => {
+    const handleClick = async() => {
         setLoading(()=>!loading);
-        checkEmail();
+       
+        const emailExists = await checkEmail({email});
+        if(emailExists){
+            setEmailExists(true);
+            setEmailField(false);
+            setOtpField(false);
+            setPswdField(true);
+            setError(false);
+            setPassword('');
+        }
+        else{
+            setError(true);
+        }
+        setLoading(false);
     }
 
+    const handleChangeEmail = () => {
+        setError(false);
+        setEmailField(true);
+        setOtpField(false);
+        setPswdField(false);
+        setEmailExists(false);
+    }
 
+    const handleOtpSignin = () =>{
+        setError(false);
+        setEmailField(false);
+        setOtpField(true);
+        setPswdField(false);
+    }
+
+    const handlePswrdSignin = () =>{
+        setError(false);
+        setEmailField(false);
+        setOtpField(false);
+        setPswdField(true);
+    }
+
+    const handleSignin = async() => {
+        setError(false)
+        setLoading(true)
+        const status = await loginUser({email,password});
+        if(status){
+            navigate('/main');
+        }
+        else{
+            setError(true);
+        }
+        setLoading(false);
+        }
+
+    const passwordReset = () => {
+        setTimeout(() =>forgetPassword({email}),3000);
+    }
+
+    
     return <>
         <div className="signin_box" id="signin_flow">
 			<div className="zoho_logo ZohoChat"></div>
             <div className='signin_div'>
                 <form method="post">
-                    <div className="emailcheck_head">
+                    {/* <div className="emailcheck_head">
 						<span id="backup_title"><span className="icon-backarrow backoption" onclick="hideEmailOTPInitiate()">&#8592;</span>Sign-in via email OTP</span>
 						<div className="backup_desc extramargin" id="emailverify_desc">Please enter your registered email address <b>jo*******57@gm***.c**</b> to receive the OTP.</div>
-					</div>
-                    {/* <div className="signin_head">
+					</div> */}
+                    <div className="signin_head">
                         <span id="headtitle">Sign in</span>
                         <span id="trytitle"></span>
                         <div className="service_name">to access <span>Cliq</span></div>
                         <div className="fielderror"></div>
-                    </div> */}
+                    </div>
                     <div className="fieldcontainer">
                         <div className="searchparent">
+                        {showEmailField && <>
                             <div className="textbox_div">
                                 <span>
-                                    <input id="login_id" placeholder="Email address or mobile number" value={email} onChange={handleChange} type="email" name="LOGIN_ID" className="textbox" required=""  autoCapitalize="off" autoComplete="webauthn username email" autoCorrect="off" tabIndex="1"/>
+                                    <input id="login_id" placeholder="Email address or mobile number" value={email} onChange={handleChange} type="email" name="email" className="textbox" required  tabIndex="1"/>
+                                    {error && <div className="fielderror errorlabel" >This account cannot be found. Please use a different account or <a href="" onClick={()=>navigate("/")}>sign up</a> for a new account.</div>}
                                 </span>
                             </div>
-
-                            {/* <div className="textbox_div">
-                                <span>
-                                    <input id="password" placeholder="Enter password" name="PASSWORD" type="password" className="textbox" required="" onfocus="this.value = this.value;" onkeypress="clearCommonError('password')" autocapitalize="off" autocomplete="password" autocorrect="off" maxlength="250"/>
-                                    <span className="icon-hide show_hide_password" onclick="showHidePassword();"></span>
-                                </span>
-                            </div> */}
-                            {/* <button className="btn blue" id="nextbtn" tabIndex="2" >
-                                <span>Next</span>
-                            </button> */}
                             <LoadingButton className="btn"
                                 size="small"
                                 onClick={handleClick}
-                                // endIcon={<SendIcon />}
                                 loading={loading}
-                                // loadingPosition="end"
                                 variant="contained"
                                 >
                                 Next
-                            </LoadingButton>
+                            </LoadingButton></>}
+                            {emailExists && <div className="hellouser">
+								<div className="username">{email}</div>
+								<span className="Notyou bluetext" onClick={handleChangeEmail}>Change</span>
+							</div>}
+
+                            {showPswdField && <div className="textbox_div">
+                                <span>
+                                    <input id="password" placeholder="Enter password" name="password" type="password" className="textbox" value={password} onChange={handleChange} required />
+                                    {error && <div className="fielderror errorlabel" >Incorrect password. Please try again.</div>}
+                                </span>
+                                <div className="textbox_actions" id="enableotpoption" style={{display: "block"}}>
+										<span className="bluetext_action" id="signinwithotp" onClick={handleOtpSignin}>Sign in using OTP</span>
+										<span className="bluetext_action bluetext_action_right" id="blueforgotpassword" onClick={passwordReset}>Forgot Password?</span>
+								</div>
+                                <LoadingButton className="btn"
+                                    size="small"
+                                    onClick={handleSignin}
+                                    loading={loading}
+                                    variant="contained"
+                                >
+                                    Sign In
+                                </LoadingButton>
+                            </div>}
+
+
+                            {showOtpField && <div className="textbox_div">
+                                <span>
+                                    <input id="otp" placeholder="Enter Otp" name="OTP" type="number" className="textbox" required=""  autocapitalize="off"  autocorrect="off" maxlength="250"/>
+                                </span>
+                                <div className="textbox_actions" id="enableotpoption" style={{display: "block"}}>
+										<span className="bluetext_action" id="signinwithotp" onClick={handlePswrdSignin}>Sign in using password</span>
+										<span className="bluetext_action bluetext_action_right  nonclickelem" id="blueforgotpassword" onclick="goToForgotPassword();" style={{color:"#626262"}}>Resend in 32s</span>
+								</div>
+                                
+                                <LoadingButton className="btn"
+                                    size="small"
+                                    onClick={handleClick}
+                                    loading={loading}
+                                    variant="contained"
+                                >
+                                    Verify
+                                </LoadingButton>
+                            </div>}
                         </div>
                     </div>
-                    <div className="text16 pointer" id="forgotpassword">
-                        <a className="text16" onClick="goToForgotPassword();">Forgot Password?</a>
-                    </div>
+                    {showEmailField && <div className="text16 pointer" id="forgotpassword">
+                        <a className="text16" onClick={passwordReset}>Forgot Password?</a>
+                    </div>}
                 </form>
-                <div className="line">
+                {showEmailField && <><div className="line">
                     <span className="line_con">
                         <span>Or</span>
                     </span>
@@ -146,7 +216,7 @@ export default function SignInForm(){
                         <span className="morecircle"></span> 
                         <span className="morecircle"></span>
                     </span>
-                </div>
+                </div></>}
             </div>
         </div>
     </>;

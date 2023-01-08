@@ -1,19 +1,34 @@
 import React , { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Description from '../../components/SignIn/Description';
 import SignInForm from '../../components/SignIn/SignInForm';
+import PasswordReset from './PasswordReset';
 import "./SignIn.scss";
 
 
+
 export default function SignIn(){
+    const [isResetPswrd,setResetPswrd] = useState(false);
+    const[userData,setUserData] = useState();
+    const navigate = useNavigate();
+
+    const forgetPassword = (userData) => {
+        setUserData(userData);
+        setResetPswrd(true);
+    }
     return <>
         <div className="bg_one"></div>
-            <div className="container">
+        
+            {isResetPswrd ? <div className='recovery_container'>
+                <PasswordReset userData={userData} setResetPswrd={setResetPswrd}></PasswordReset>
+            </div>:<div className="container">
                 <div className="signin_container">
-                    <SignInForm></SignInForm>
+                    <SignInForm forgetPassword={forgetPassword}></SignInForm>
                     <Description></Description>
+                   
                 </div>
-                <div id="signuplink">Don't have a Zoho account? <a href="javascript:register()">Sign Up Now</a></div>
-            </div>
+                <div id="signuplink">Don't have a Zoho account? <a href="" style={{textDecoration: "none",color: "#159AFF"}} onClick={()=>navigate("/")}>Sign Up Now</a></div>
+            </div>}
     </>;
 
 }

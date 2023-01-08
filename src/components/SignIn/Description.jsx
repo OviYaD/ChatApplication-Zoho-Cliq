@@ -6,6 +6,7 @@ export default function Description(){
             <div className="overlapBanner" style={{width:"300px",display:"block"}}>
                 <div id="banner_0" className="rightbanner rightbannerTransition slideright">    
                     <div className="container">
+                    
                         <img src="https://accounts.zoho.in/v2/components/images/passwordless_illustration2x.png" style={{display:"block", width: "300px" ,height: "240px", margin: "auto"}}/>
                         <div style={{display: "block",lineHeight: "20px", fontSize: "16px",fontWeight: "600", marginTop: "20px" ,textAlign: "center"}}>Passwordless sign-in</div>
                         <div style={{display: "block",lineHeight: "20px", fontSize: "14px",fontWeight: "400",marginTop: "10px", textAlign: "center"}}>

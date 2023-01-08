@@ -11,7 +11,7 @@ export default function SignUpNav(){
             <a href="#" className="logo">zoho</a>
             <span className="login-text">
                 Have a Zoho Account? 
-                <a href="#" className="login-link" onClick={()=>navigate('/signin')}>SIGN IN</a>
+                <a href="" className="login-link" onClick={()=>navigate('/signin')}>SIGN IN</a>
             </span>
         </div>
     </>;

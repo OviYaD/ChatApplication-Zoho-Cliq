@@ -19,9 +19,25 @@ export const emailOtp = async (data) => {
   console.log(msg);
 };
 
-export const loginUser = () => {};
+export const loginUser = async (data) => {
+  const msg = await axios.post(`${config.END_POINT}/auth/login`, data);
+  console.log(msg);
+  if (msg.status === 200) {
+    localStorage.setItem("token", msg.data.token);
+    return true;
+  } else {
+    return false;
+  }
+};
 
-export const ResetPassword = () => {};
+export const verifyOtp = async () => {
+  await axios.get(`${config.END_POINT}/auth/profile`);
+  return true;
+};
+export const ResetPassword = async () => {
+  await axios.get(`${config.END_POINT}/auth/profile`);
+  return true;
+};
 
 export const getProfile = () => {};
 
@@ -31,7 +47,7 @@ export const checkEmail = async (data) => {
   const msg = await axios.post(`${config.END_POINT}/auth/check-email`, data);
   console.log(msg);
   if (!msg.data.exists) {
-    return false;
+    return true;
   } else {
     return false;
   }

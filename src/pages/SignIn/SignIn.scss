@@ -1,389 +1,645 @@
-.bg_one{
-    font-family: "zoho-puvi-regular";
-    display: block;
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    height: 100%;
-    width: 100%;
-    background: url(https://static.zohocdn.com/iam/v2/components/images/bg.49756b7c711696d95133fa95451f8e13.svg) transparent;
-    background-size: auto 100%;
-    z-index: -1;
+.zoho_logo {
+  display: block;
+  height: 30px;
+  width: auto;
+  margin-bottom: 20px;
+  background: url(https://static.zohocdn.com/iam/v2/components/images/Zoho_logo.96cca1501160526a316e0216f7c2fb05.png)
+    no-repeat transparent;
+  background-size: auto 100%;
+}
 
 
+.bg_one {
+  font-family: "zoho-puvi-regular";
+  display: block;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+  background: url(https://static.zohocdn.com/iam/v2/components/images/bg.49756b7c711696d95133fa95451f8e13.svg)
+    transparent;
+  background-size: auto 100%;
+  z-index: -1;
 }
 #signuplink {
-    width: 100%;
-    display: inline-block;
-    margin: 30px auto;
-    text-align: center;
-    line-height: 20px;
-    font-weight: 400;
-    font-size: 14px;
-    color: #555;
-    z-index: 2;
+  width: 100%;
+  display: inline-block;
+  margin: 30px auto;
+  text-align: center;
+  line-height: 20px;
+  font-weight: 400;
+  font-size: 14px;
+  color: #555;
+  z-index: 2;
 }
 .signin_container {
-    display: block;
-    width: 890px;
+  display: block;
+  width: 890px;
+  min-height: 520px;
+  background-color: #fff;
+  box-shadow: 0px 2px 30px #ccc6;
+  margin: auto;
+  position: relative;
+  z-index: 1;
+  margin-top: 7%;
+  margin-bottom: 2%;
+  overflow: hidden;
+
+  .signin_box {
+    width: 500px;
     min-height: 520px;
-    background-color: #fff;
-    box-shadow: 0px 2px 30px #ccc6;
-    margin: auto;
-    position: relative;
-    z-index: 1;
-    margin-top: 7%;
-    margin-bottom: 7%;
-    overflow: hidden;
-    
+    height: auto;
+    background: #fff;
+    box-sizing: border-box;
+    padding: 50px 50px;
+    border-radius: 2px;
+    transition: all 0.1s ease-in-out;
+    float: left;
+    overflow-y: auto;
+    display: table-cell;
+    border-right: 2px solid #f1f1f1;
 
-    .signin_box {
-        width: 500px;
-        min-height: 520px;
-        height: auto;
-        background: #fff;
-        box-sizing: border-box;
-        padding: 50px 50px;
-        border-radius: 2px;
-        transition: all .1s ease-in-out;
-        float: left;
-        overflow-y: auto;
-        display: table-cell;
-        border-right: 2px solid #f1f1f1;
-
-        .zoho_logo {
-            display: block;
-            height: 30px;
-            width: auto;
-            margin-bottom: 20px;
-            background: url(https://static.zohocdn.com/iam/v2/components/images/Zoho_logo.96cca1501160526a316e0216f7c2fb05.png) no-repeat transparent;
-            background-size: auto 100%;
+    .signin_div {
+      font-family: "zoho-puvi-regular";
+      .backup_desc {
+        display: block;
+        font-size: 16px;
+        color: #000;
+        font-weight: 400;
+        line-height: 2;
+        margin-bottom: 1.5rem;
+      }
+      #backup_title {
+        font-family: "zoho-puvi-semi-bold";
+        display: block;
+        font-size: 24px;
+        margin-bottom: 30px;
+        line-height: 30px;
+        transition: all 0.1s ease-in-out;
+        .icon-hide {
+          margin-right: 5px;
         }
+      }
+      .backoption {
+        display: table-cell;
+        width: 30px;
+        height: 30px;
+        font-size: 24px;
+        display: inline-block;
+        float: left;
+        color: #666666;
+        padding: 3px;
+        box-sizing: border-box;
+        margin-right: 5px;
+        border-radius: 15px;
+        cursor: pointer;
+      }
+      .icon-backarrow:before {
+        content: "\e900";
+      }
 
-        .signin_div{
+      .show_hide_password {
+        font-size: 34px;
+        color: #a7a7a7;
+        position: absolute;
+        top: 7px;
+        right: 13px;
+        float: right;
+        cursor: pointer;
+      }
 
-            font-family:"zoho-puvi-regular";
-            .backup_desc {
-                display: block;
-                font-size: 16px;
-                color: #000;
-                font-weight: 400;
-                line-height: 2;
-                margin-bottom:1.5rem;
+      .signin_head {
+        display: block;
+        font-size: 24px;
+        margin-bottom: 30px;
+        line-height: 30px;
+        transition: all 0.1s ease-in-out;
+
+        #headtitle {
+          font-size: 23px;
+          font-family: "zoho-puvi-medium" !important;
+        }
+        .service_name {
+          line-height: 28px;
+          display: block;
+          font-size: 16px;
+          color: #000;
+          font-weight: 400;
+        }
+      }
+
+      .fieldcontainer {
+        .searchparent {
+          height: auto;
+
+          .hellouser {
+            display: inline-flex;
+            justify-content: space-between;
+            border: 1px solid #eeeeee;
+            margin-bottom: 20px;
+            border-radius: 7px;
+            cursor: pointer;
+            box-sizing: border-box;
+            max-width: 100%;
+            flex-wrap: nowrap;
+
+            .username {
+              display: inline-block;
+              font-size: 16px;
+              padding: 12px 14px;
+              line-height: 20px;
+              width: auto;
+              word-break: break-all;
             }
-            #backup_title{
-                font-family:"zoho-puvi-semi-bold";
-                display: block;
-                font-size: 24px;
-                margin-bottom: 30px;
-                line-height: 30px;
-                transition: all .1s ease-in-out;
-                .icon-hide {
-                    margin-right:5px;
-                }
+            .Notyou {
+              position: relative;
+              float: right;
+              font-size: 14px;
+              padding: 0px 14px 0px 0px;
+              display: inline-block;
+              color: #0091ff;
+              line-height: 38px;
+              font-weight: 500;
+              display: flex;
+              align-items: center;
+              justify-content: center;
             }
-            .backoption {
-                display: table-cell;
-                width: 30px;
-                height: 30px;
-                font-size: 24px;
+          }
+
+          .textbox_div {
+            display: block;
+            margin-bottom: 30px;
+            position: relative;
+
+            .textbox_actions {
+              display: block;
+              margin-top: 20px;
+              height: 20px;
+              margin-bottom: 20px;
+
+              .bluetext_action {
                 display: inline-block;
                 float: left;
-                color: #666666;
-                padding: 3px;
-                box-sizing: border-box;
-                margin-right: 5px;
-                border-radius: 15px;
-                cursor: pointer;
-            }
-            .icon-backarrow:before {
-                content: "\e900";
-            }
-
-            .show_hide_password {
-                font-size: 34px;
-                color: #a7a7a7;
-                position: absolute;
-                top: 7px;
-                right: 13px;
-                float: right;
-                cursor: pointer;
-            }
-            
-        
-            .signin_head {
-                display: block;
-                font-size: 24px;
-                margin-bottom: 30px;
-                line-height: 30px;
-                transition: all .1s ease-in-out;
-
-                #headtitle{
-                    font-size:23px;
-                    font-family:"zoho-puvi-medium" !important;
-                }
-                .service_name{
-                    line-height: 28px;
-                    display: block;
-                    font-size: 16px;
-                    color: #000;
-                    font-weight: 400;
-                }
-            }
-
-            .fieldcontainer{
-                .searchparent {
-                    height: auto;
-
-                    .textbox_div {
-                        display: block;
-                        margin-bottom: 30px;
-                        position: relative;
-
-                        span{
-                            position: relative;
-                            display: block;
-
-                            .textbox {
-                                display: block;
-                                width: 100%;
-                                height: 44px;
-                                box-sizing: border-box;
-                                border-radius: 2px;
-                                text-indent: 12px;
-                                font-size: 16px;
-                                outline: none;
-                                border: none;
-                                padding-right: 12px;
-                                transition: all .2s ease-in-out;
-                                background: #f8f8f8;
-                                border: 1px solid #E4E4E4;
-                            }
-                            
-                        }
-
-                    }
-                    .blue {
-                        box-shadow: 0px 2px 2px #fff;
-                        background-color: #159AFF;
-                        color: #fff;
-                    }
-                    .btn {
-                        cursor: pointer;
-                        display: block;
-                        width: 100%;
-                        height: 44px;
-                        border-radius: 4px;
-                        letter-spacing: .5;
-                        font-size: 14px;
-                        font-weight: 600;
-                        outline: none;
-                        border: none;
-                        margin: auto;
-                        margin-bottom: 30px;
-                        transition: all .2s ease-in-out;
-                    }
-                }
-            }
-
-            .pointer {
-                cursor: pointer;
-            }
-            .text16 {
-                display: block;
-                text-align: center;
-                margin-bottom: 30px;
-                color: #626262;
-                font-size: 16px;
+                font-size: 14px;
+                color: #159aff;
                 font-weight: 500;
-                text-decoration: none;
+                line-height: 16px;
+                cursor: pointer;
+              }
+              .bluetext_action_right {
+                float: right;
+              }
+              .nonclickelem {
+                color: #626262;
+                pointer-events: none;
+              }
             }
-            #forgotpassword .text16 {
-                color: #0091FF;
-            }
-            .line {
-                background-color: #f1f1f1;
+
+            span {
+              position: relative;
+              display: block;
+
+              .textbox {
+                display: block;
                 width: 100%;
-                height: 2px;
-                border-radius: 1px;
-                margin-bottom: 30px;
-                position: relative;
-                .line_con {
-                    position: absolute;
-                    top: -8px;
-                    text-align: center;
-                    width: 100%;
-                    margin: auto;
-                    span {
-                        background: #fff;
-                        color: #707070;
-                    }
-                }
+                height: 44px;
+                box-sizing: border-box;
+                border-radius: 2px;
+                text-indent: 12px;
+                font-size: 16px;
+                outline: none;
+                border: none;
+                padding-right: 12px;
+                transition: all 0.2s ease-in-out;
+                background: #f8f8f8;
+                border: 1px solid #e4e4e4;
+              }
             }
-
-            .other_options{
-                .options_caption{
-                    display: block;
-                    font-size: 15px;
-                    font-weight: 500;
-                    color: #444;
-                    margin-bottom: 10px;
-                }
-                .google_icon {
-                    background-color: #fff;
-                    width: auto !important;
-                    box-shadow: 0px 0px 2px #00000012, 0px 2px 2px #00000024;
-                    .fed_icon {
-                        background: url(https://static.zohocdn.com/iam/v2/components/images/signin_icons.aba347ca95a2572c76092c7732cf0139.png) no-repeat transparent;
-                        background-size: 205px auto;
-                        background-position: -10px -204px;
-                        width: 80px;
-                        margin: 11px 8px;
-                    }
-                }
-                .fed_center_google .fed_icon {
-                    display: inline-block;
-                    float: left;
-                }
-                .small_box {
-                    width: 40px;
-                    border-radius: 5px;
-                    margin-right: 10px;
-                    margin-bottom: 10px;
-                    .fed_center_google {
-                        display: block;
-                        margin: auto;
-                        width: max-content;
-                        .fed_icon {
-                            display: inline-block;
-                            float: left;
-                        }
-                    }
-                }
-                .fed_div {
-                    display: none;
-                    height: 40px;
-                    cursor: pointer;
-                    overflow: hidden;
-                    float: left;
-                }
-                .MS_icon {
-                    background-color: #2F2F2F;
-                    .fed_icon {
-                        background: url(https://static.zohocdn.com/iam/v2/components/images/signin_icons.aba347ca95a2572c76092c7732cf0139.png) no-repeat transparent;
-                        background-size: 205px auto;
-                        background-position: -34px -10px;
-                        width: 100px;
-                        margin: 11px 8px;
-                    }
-                }
-                .fed_center, .fed_center_google, .fed_center_apple {
-                    display: block;
-                    margin: auto;
-                    width: max-content;
-                }
-                .fed_icon {
-                    display: block;
-                    height: 18px;
-                    width: 18px;
-                    margin: 11px;
-                    overflow: hidden;
-                }
-                .fed_text, .fed_text_avoid {
-                    display: inline-block;
-                    margin: 10px;
-                    margin-right: 0px;
-                    font-size: 14px;
-                    line-height: 20px;
-                    font-weight: 500;
-                    letter-spacing: 0px;
-                    float: left;
-                }
-                .linkedin_fed_box {
-                    background-color: #0966C2;
-                    .fed_icon {
-                        background: url(https://static.zohocdn.com/iam/v2/components/images/signin_icons.aba347ca95a2572c76092c7732cf0139.png) no-repeat transparent;
-                        background-size: 205px auto;
-                        background-position: -62px -10px;
-                        width: 100px;
-                        margin: 11px 8px;
-                    }
-                }
-                .fb_fed_box {
-                    background-color: #1877F2;
-                    .fed_icon {
-                        background: url(https://static.zohocdn.com/iam/v2/components/images/signin_icons.aba347ca95a2572c76092c7732cf0139.png) no-repeat transparent;
-                        background-size: 205px auto;
-                        background-position: -90px -10px;
-                        width: 100px;
-                        margin: 11px 8px;
-                    }
-                }
-                .twitter_fed_box {
-                    background-color: #00A2F6;
-                    .fed_icon {
-                        background: url(https://static.zohocdn.com/iam/v2/components/images/signin_icons.aba347ca95a2572c76092c7732cf0139.png) no-repeat transparent;
-                        background-size: 205px auto;
-                        background-position: -118px -10px;
-                        width: 100px;
-                        margin: 11px 8px;
-                    }
-                }
-                .apple_normal_icon {
-                    background-color: #000;
-                    overflow: hidden;
-                    color: #ffffff;
-                    .fed_icon {
-                        background: url(https://static.zohocdn.com/iam/v2/components/images/signin_icons.aba347ca95a2572c76092c7732cf0139.png) no-repeat transparent;
-                        background-size: 205px auto;
-                        background-position: -8px -75px;
-                        width: 100px;
-                        margin: 11px 8px;
-                    }
-                }
-                #showIDPs {
-                    background-color: #f1f1f1;
-                    box-shadow: none;
-                    margin-right: 0px;
-                }
-                .morecircle {
-                    display: inline-block;
-                    height: 4px;
-                    width: 4px;
-                    border-radius: 3px;
-                    background-color: #D6D6D6;
-                    position: relative;
-                    top: -4px;
-                }
-                .more {
-                    width: 40px;
-                    padding: 10px;
-                    box-shadow: 0px 0px 2px 0px rgb(0 0 0 / 12%), 0px 2px 2px 0px rgb(0 0 0 / 24%);
-                    text-align: center;
-                    box-sizing: border-box;
-                }
-            }
-            
+          }
+          .blue {
+            box-shadow: 0px 2px 2px #fff;
+            background-color: #159aff;
+            color: #fff;
+          }
+          .btn {
+            cursor: pointer;
+            display: block;
+            width: 100%;
+            height: 44px;
+            border-radius: 4px;
+            letter-spacing: 0.5;
+            font-size: 14px;
+            font-weight: 600;
+            outline: none;
+            border: none;
+            margin: auto;
+            margin-bottom: 30px;
+            transition: all 0.2s ease-in-out;
+          }
         }
-    }
+      }
 
-}
-
-.rightside_box {
-    width: 390px;
-    height: auto;
-    float: right;
-    box-sizing: border-box;
-    padding: 40px;
-    background-color: #fff;
-    display: table-cell;
-    overflow: hidden;
-    .overlapBanner {
+      .pointer {
+        cursor: pointer;
+      }
+      .text16 {
+        display: block;
+        text-align: center;
+        margin-bottom: 30px;
+        color: #626262;
+        font-size: 16px;
+        font-weight: 500;
+        text-decoration: none;
+      }
+      #forgotpassword .text16 {
+        color: #0091ff;
+      }
+      .line {
+        background-color: #f1f1f1;
+        width: 100%;
+        height: 2px;
+        border-radius: 1px;
+        margin-bottom: 30px;
         position: relative;
-        height: 418px;
+        .line_con {
+          position: absolute;
+          top: -8px;
+          text-align: center;
+          width: 100%;
+          margin: auto;
+          span {
+            background: #fff;
+            color: #707070;
+          }
+        }
+      }
+
+      .other_options {
+        .options_caption {
+          display: block;
+          font-size: 15px;
+          font-weight: 500;
+          color: #444;
+          margin-bottom: 10px;
+        }
+        .google_icon {
+          background-color: #fff;
+          width: auto !important;
+          box-shadow: 0px 0px 2px #00000012, 0px 2px 2px #00000024;
+          .fed_icon {
+            background: url(https://static.zohocdn.com/iam/v2/components/images/signin_icons.aba347ca95a2572c76092c7732cf0139.png)
+              no-repeat transparent;
+            background-size: 205px auto;
+            background-position: -10px -204px;
+            width: 80px;
+            margin: 11px 8px;
+          }
+        }
+        .fed_center_google .fed_icon {
+          display: inline-block;
+          float: left;
+        }
+        .small_box {
+          width: 40px;
+          border-radius: 5px;
+          margin-right: 10px;
+          margin-bottom: 10px;
+          .fed_center_google {
+            display: block;
+            margin: auto;
+            width: max-content;
+            .fed_icon {
+              display: inline-block;
+              float: left;
+            }
+          }
+        }
+        .fed_div {
+          display: none;
+          height: 40px;
+          cursor: pointer;
+          overflow: hidden;
+          float: left;
+        }
+        .MS_icon {
+          background-color: #2f2f2f;
+          .fed_icon {
+            background: url(https://static.zohocdn.com/iam/v2/components/images/signin_icons.aba347ca95a2572c76092c7732cf0139.png)
+              no-repeat transparent;
+            background-size: 205px auto;
+            background-position: -34px -10px;
+            width: 100px;
+            margin: 11px 8px;
+          }
+        }
+        .fed_center,
+        .fed_center_google,
+        .fed_center_apple {
+          display: block;
+          margin: auto;
+          width: max-content;
+        }
+        .fed_icon {
+          display: block;
+          height: 18px;
+          width: 18px;
+          margin: 11px;
+          overflow: hidden;
+        }
+        .fed_text,
+        .fed_text_avoid {
+          display: inline-block;
+          margin: 10px;
+          margin-right: 0px;
+          font-size: 14px;
+          line-height: 20px;
+          font-weight: 500;
+          letter-spacing: 0px;
+          float: left;
+        }
+        .linkedin_fed_box {
+          background-color: #0966c2;
+          .fed_icon {
+            background: url(https://static.zohocdn.com/iam/v2/components/images/signin_icons.aba347ca95a2572c76092c7732cf0139.png)
+              no-repeat transparent;
+            background-size: 205px auto;
+            background-position: -62px -10px;
+            width: 100px;
+            margin: 11px 8px;
+          }
+        }
+        .fb_fed_box {
+          background-color: #1877f2;
+          .fed_icon {
+            background: url(https://static.zohocdn.com/iam/v2/components/images/signin_icons.aba347ca95a2572c76092c7732cf0139.png)
+              no-repeat transparent;
+            background-size: 205px auto;
+            background-position: -90px -10px;
+            width: 100px;
+            margin: 11px 8px;
+          }
+        }
+        .twitter_fed_box {
+          background-color: #00a2f6;
+          .fed_icon {
+            background: url(https://static.zohocdn.com/iam/v2/components/images/signin_icons.aba347ca95a2572c76092c7732cf0139.png)
+              no-repeat transparent;
+            background-size: 205px auto;
+            background-position: -118px -10px;
+            width: 100px;
+            margin: 11px 8px;
+          }
+        }
+        .apple_normal_icon {
+          background-color: #000;
+          overflow: hidden;
+          color: #ffffff;
+          .fed_icon {
+            background: url(https://static.zohocdn.com/iam/v2/components/images/signin_icons.aba347ca95a2572c76092c7732cf0139.png)
+              no-repeat transparent;
+            background-size: 205px auto;
+            background-position: -8px -75px;
+            width: 100px;
+            margin: 11px 8px;
+          }
+        }
+        #showIDPs {
+          background-color: #f1f1f1;
+          box-shadow: none;
+          margin-right: 0px;
+        }
+        .morecircle {
+          display: inline-block;
+          height: 4px;
+          width: 4px;
+          border-radius: 3px;
+          background-color: #d6d6d6;
+          position: relative;
+          top: -4px;
+        }
+        .more {
+          width: 40px;
+          padding: 10px;
+          box-shadow: 0px 0px 2px 0px rgb(0 0 0 / 12%),
+            0px 2px 2px 0px rgb(0 0 0 / 24%);
+          text-align: center;
+          box-sizing: border-box;
+        }
+      }
     }
+  }
+}
+.errorborder {
+  border: 2px solid #ff8484 !important;
+}
+.fielderror {
+  font-size: 14px;
+  margin-top: 10px;
+  color: #e92b2b;
+  a {
+    text-decoration: none;
+    color: #309ff4;
+  }
+}
+.rightside_box {
+  width: 390px;
+  height: auto;
+  float: right;
+  box-sizing: border-box;
+  padding: 40px;
+  background-color: #fff;
+  display: table-cell;
+  overflow: hidden;
+  .overlapBanner {
+    position: relative;
+    height: 418px;
+  }
 }
 
 .extramargin {
-    margin-top: 10px;
+  margin-top: 10px;
+}
+
+.recovery_container {
+  display: block;
+  width: 480px;
+  min-height: 500px;
+  background-color: #fff;
+  box-shadow: 0px 2px 30px 0px #2b2b2b17;
+  margin: auto;
+  position: relative;
+  z-index: 1;
+  margin-top: 7%;
+  overflow: hidden;
+
+  .recovery_box {
+    width: 480px;
+    min-height: 500px;
+    height: auto;
+    background: #fff;
+    box-sizing: border-box;
+    padding: 40px 40px;
+    border-radius: 2px;
+    transition: all 0.1s ease-in-out;
+    float: left;
+    overflow-y: auto;
+    display: table-cell;
+    border-right: 2px solid #f1f1f1;
+  }
+
+  .bottom_line_opt {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    left: 0px;
+    bottom: 40px;
+  }
+  .bottom_option {
+    cursor: pointer;
+    width: max-content;
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+    color: #0091ff;
+  }
+  .textbox_div {
+    display: block;
+    margin-bottom: 30px;
+    position: relative;
+
+    .fielderror {
+      font-size: 14px;
+      margin-top: 10px;
+      color: #e92b2b;
+      a {
+        text-decoration: none;
+        color: #309ff4;
+      }
+    }
+
+    .textbox_actions {
+      display: block;
+      margin-top: 20px;
+      height: 20px;
+      margin-bottom: 20px;
+
+      .bluetext_action {
+        display: inline-block;
+        float: left;
+        font-size: 14px;
+        color: #159aff;
+        font-weight: 500;
+        line-height: 16px;
+        cursor: pointer;
+      }
+      .bluetext_action_right {
+        float: right;
+      }
+      .nonclickelem {
+        color: #626262;
+        pointer-events: none;
+      }
+    }
+
+    span {
+      position: relative;
+      display: block;
+
+      .textbox {
+        display: block;
+        width: 100%;
+        height: 44px;
+        box-sizing: border-box;
+        border-radius: 2px;
+        text-indent: 12px;
+        font-size: 16px;
+        outline: none;
+        border: none;
+        padding-right: 12px;
+        transition: all 0.2s ease-in-out;
+        background: #f8f8f8;
+        border: 1px solid #e4e4e4;
+      }
+    }
+  }
+
+  .fieldcontainer {
+    margin-bottom: 40px;
+
+    .blue {
+      background-color: #159aff;
+      color: #fff;
+    }
+  }
+  .btn {
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    height: 44px;
+    border-radius: 4px;
+    letter-spacing: 0.5;
+    font-size: 14px;
+    font-weight: 600;
+    outline: none;
+    border: none;
+    margin: auto;
+    margin-bottom: 30px;
+    transition: width 0.2s ease-in-out;
+  }
+  .info_head {
+    display: block;
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    line-height: 30px;
+    overflow: auto;
+    transition: all 0.1s ease-in-out;
+
+    #headtitle {
+      display: block;
+    }
+    .head_info {
+      font-size: 16px;
+      margin: 10px 0px 0px 0px;
+      line-height: 24px;
+      font-weight: 400;
+      color: #000000e6;
+    }
+    .user_info_space {
+      margin-top: 0px;
+      display: inline-flex;
+      justify-content: space-between;
+      border: 1px solid #eeeeee;
+      margin-bottom: 20px;
+      border-radius: 7px;
+      cursor: pointer;
+      box-sizing: border-box;
+      max-width: 100%;
+      flex-wrap: nowrap;
+
+      .menutext {
+        display: inline-block;
+        font-size: 16px;
+        padding: 12px 14px;
+        line-height: 20px;
+        width: auto;
+        word-break: break-all;
+      }
+      .change_user {
+        position: relative;
+        float: right;
+        font-size: 14px;
+        padding: 0px 14px 0px 0px;
+        display: inline-block;
+        color: #0091ff;
+        line-height: 38px;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
 }
