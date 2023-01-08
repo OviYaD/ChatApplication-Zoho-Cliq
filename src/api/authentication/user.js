@@ -39,7 +39,11 @@ export const ResetPassword = async () => {
   return true;
 };
 
-export const getProfile = () => {};
+export const getProfile = async () => {
+  const userData = await axios.get(`${config.END_POINT}/auth/profile`);
+  // alert(JSON.stringify(userData));
+  return userData.data.profile;
+};
 
 export const updateProfile = () => {};
 

@@ -145,11 +145,12 @@ export default function SignInForm({forgetPassword}){
 
                             {showOtpField && <div className="textbox_div">
                                 <span>
-                                    <input id="otp" placeholder="Enter Otp" name="OTP" type="number" className="textbox" required=""  autocapitalize="off"  autocorrect="off" maxlength="250"/>
+                                    <input id="otp" placeholder="Enter Otp" name="OTP" type="number" className="textbox" required=""  />
                                 </span>
                                 <div className="textbox_actions" id="enableotpoption" style={{display: "block"}}>
 										<span className="bluetext_action" id="signinwithotp" onClick={handlePswrdSignin}>Sign in using password</span>
-										<span className="bluetext_action bluetext_action_right  nonclickelem" id="blueforgotpassword" onclick="goToForgotPassword();" style={{color:"#626262"}}>Resend in 32s</span>
+										
+                                        <span className="bluetext_action bluetext_action_right  nonclickelem" id="blueforgotpassword" onclick="goToForgotPassword();" style={{color:"#626262"}}>Resend in 32s</span>
 								</div>
                                 
                                 <LoadingButton className="btn"
@@ -176,42 +177,42 @@ export default function SignInForm({forgetPassword}){
                     <div className="options_caption">
                         Sign in using
                     </div>
-                    <span className="fed_div google_icon google_fed small_box show_fed" onClick="createandSubmitOpenIDForm('google');" title="Sign in using Google" style={{display: "inline-block"}}>
+                    <span className="fed_div google_icon google_fed small_box show_fed"  style={{display: "inline-block"}}>
                         <div className="fed_center_google">
                             <span className="fed_icon googleIcon"></span>
                         </div>
                     </span>
-                    <span className="fed_div MS_icon azure_fed small_box show_fed" onClick="createandSubmitOpenIDForm('azure');" title="Sign in using Microsoft" style={{display: "inline-block"}}>
+                    <span className="fed_div MS_icon azure_fed small_box show_fed" title="Sign in using Microsoft" style={{display: "inline-block"}}>
                         <div className="fed_center">
                             <span className="fed_icon"></span>
                             <span className="fed_text" style={{display: "none"}}>Microsoft</span>
 						</div>
                     </span>
-                    <span className="fed_div linkedin_fed_box linkedin_fed small_box show_fed" onClick="createandSubmitOpenIDForm('linkedin');" title="Sign in using Linkedin" style={{display: "inline-block"}}>
+                    <span className="fed_div linkedin_fed_box linkedin_fed small_box show_fed"  title="Sign in using Linkedin" style={{display: "inline-block"}}>
                         <div className="fed_center">
                             <span className="fed_icon linked_fed_icon"></span>
                         </div>
                     </span>
-                    <span className="fed_div fb_fed_box facebook_fed small_box show_fed" onClick="createandSubmitOpenIDForm('facebook');" title="Sign in using Facebook" style={{display: "inline-block"}}>
+                    <span className="fed_div fb_fed_box facebook_fed small_box show_fed"  title="Sign in using Facebook" style={{display: "inline-block"}}>
                         <div className="fed_center">
                             <div className="fed_icon fb_fedicon"></div>
                                 <span className="fed_text" style={{display: "none"}}>Facebook
                                 </span>
                         </div>
                     </span>
-                    <span className="fed_div twitter_fed_box twitter_fed small_box show_fed" onClick="createandSubmitOpenIDForm('twitter');" title="Sign in using Twitter" style={{display: "inline-block"}}>
+                    <span className="fed_div twitter_fed_box twitter_fed small_box show_fed"  title="Sign in using Twitter" style={{display: "inline-block"}}>
                         <div className="fed_center">
                             <span className="fed_icon"></span>
                             <span className="fed_text" style={{display: "none"}}>Twitter</span>
                         </div>
                     </span>
-                    <span className="fed_div apple_normal_icon apple_fed small_box" id="appleNormalIcon" onClick="createandSubmitOpenIDForm('apple');" title="Sign in using Apple" style={{display: "inline"}}>
+                    <span className="fed_div apple_normal_icon apple_fed small_box" id="appleNormalIcon"  title="Sign in using Apple" style={{display: "inline"}}>
                         <div className="fed_center">
                             <span className="fed_icon"></span>
                             <span className="fed_text" style={{display: "none"}}>Sign in with Apple</span>
                         </div>
                     </span>
-                    <span className="fed_div more small_box" id="showIDPs" title="More" onClick="showMoreIdps();" style={{display: "inline"}}> 
+                    <span className="fed_div more small_box" id="showIDPs" title="More"  style={{display: "inline"}}> 
                         <span className="morecircle"></span> 
                         <span className="morecircle"></span> 
                         <span className="morecircle"></span>

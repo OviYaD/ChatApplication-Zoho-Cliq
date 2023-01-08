@@ -9,9 +9,19 @@ import CampaignOutlinedIcon from '@mui/icons-material/CampaignOutlined';
 import Avatar from '@mui/material/Avatar';
 import WidgetsIcon from '@mui/icons-material/Widgets';
 import ViewModuleIcon from '@mui/icons-material/ViewModule';
-
+import { Logout } from '@mui/icons-material';
+import { useDispatch } from 'react-redux';
+import { removeUser } from '../../redux/slices/userSlice';
+import { useNavigate} from 'react-router-dom';
 export default function MenuIntems(){
 
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const Logout = () => {
+        localStorage.removeItem('token');
+        dispatch(removeUser());
+        navigate('/signin',{replace:true});
+    }
     return <>
         <div className="ztb-item-bx" id="ztb-menu-container" data-action-wrap="">
             <div type="button" className="ztb-button-type tpbricon dN" id="ztb-topBarScheduleMsgIcon" data-purpose="zctopBarScheduleMsgIcon" title="Scheduled Messages"><span className="zcf-schedule dN font20 pT1 ztb-icons"></span></div>
@@ -27,7 +37,7 @@ export default function MenuIntems(){
                 <span className="zcf-announcement font18 announcementIcon ztb-icons"><span className="alert_icon" id="stackedNumber" ><CampaignOutlinedIcon></CampaignOutlinedIcon></span></span>
             </div>
 
-            <Avatar alt="Remy Sharp" src="https://contacts.zoho.in/file?fs=thumb&amp;nocache=1672909825507" style={{marginLeft:"10px",width:"30px",height:"30px"}}/>
+            <Avatar onClick={Logout} alt="Remy Sharp" src="https://contacts.zoho.in/file?fs=thumb&amp;nocache=1672909825507" style={{marginLeft:"10px",width:"30px",height:"30px"}}/>
         </div>
             <WidgetsIcon style={{color:"#979797"}}></WidgetsIcon>
     </>;

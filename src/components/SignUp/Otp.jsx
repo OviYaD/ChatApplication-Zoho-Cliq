@@ -1,12 +1,15 @@
 import React,{useState} from 'react'
 import ResendPswrd from './ResendPswrd';
 import { useNavigate } from "react-router-dom";
-import { createUser } from '../../api/authentication/user';
+import { createUser, getProfile } from '../../api/authentication/user';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../../redux/slices/userSlice';
 
 export default function Otp({userInfo,changeValidity}) {
     const [isValid,setValidity] = useState(true);
     const [otp,setOtp] = useState();
     const [btnText,setBtnText] = useState("VERIFY");
+    const dispatch = useDispatch();
     
     const navigate = useNavigate()
 
@@ -19,9 +22,9 @@ export default function Otp({userInfo,changeValidity}) {
             setValidity(false);
         }
         else{
-            // history.push('/main')
-            console.log("shdshdh")
-            navigate('/main');
+            const userInfo = await getProfile();
+            dispatch(setUser(userInfo));
+            setTimeout(()=>navigate('/main'),3000);
         }
 
     }
