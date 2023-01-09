@@ -19,9 +19,14 @@ export default function SignInForm({forgetPassword}){
     const navigate = useNavigate();
 
    
+    const handleKeyDown=(event) => {
+        if (event.keyCode === 13 ) {
+            event.preventDefault();
+        }
+    }
+
     const handleChange = (e) => {
         e.preventDefault();
-        console.log(e.target)
         if(e.target.name === "email"){
             setEmail(e.target.value);
         }
@@ -129,7 +134,7 @@ export default function SignInForm({forgetPassword}){
                         {showEmailField && <>
                             <div className="textbox_div">
                                 <span>
-                                    <input id="login_id" placeholder="Email address or mobile number" value={email} onChange={handleChange} type="email" name="email" className="textbox" required  tabIndex="1"/>
+                                    <input id="login_id" placeholder="Email address or mobile number" value={email} onChange={handleChange} onKeyDown={handleKeyDown} type="email" name="email" className="textbox" required  tabIndex="1" autoFocus={true}/>
                                     {error && <div className="fielderror errorlabel" >This account cannot be found. Please use a different account or <a href="" onClick={()=>navigate("/")}>sign up</a> for a new account.</div>}
                                 </span>
                             </div>
@@ -148,7 +153,7 @@ export default function SignInForm({forgetPassword}){
 
                             {showPswdField && <div className="textbox_div">
                                 <span>
-                                    <input id="password" placeholder="Enter password" name="password" type="password" className="textbox" value={password} onChange={handleChange} required />
+                                    <input id="password" placeholder="Enter password" name="password" type="password" className="textbox" value={password} onKeyDown={handleKeyDown} onChange={handleChange} required autoFocus={true}/>
                                     {error && <div className="fielderror errorlabel" >Incorrect password. Please try again.</div>}
                                 </span>
                                 <div className="textbox_actions" id="enableotpoption" style={{display: "block"}}>
@@ -168,7 +173,7 @@ export default function SignInForm({forgetPassword}){
 
                             {showOtpField && <div className="textbox_div">
                                 <span>
-                                    <input id="otp" placeholder="Enter Otp" name="otp" type="number" className="textbox" required="" value={otp} onChange={handleChange} />
+                                    <input id="otp" placeholder="Enter Otp" name="otp" type="number" className="textbox" required="" value={otp} onKeyDown={handleKeyDown} onChange={handleChange} autoFocus={true}/>
                                     {error && <div className="fielderror errorlabel" >Invalid otp. Please try again.</div>}
                                 </span>
                                 <div className="textbox_actions" id="enableotpoption" style={{display: "block"}}>

@@ -31,6 +31,12 @@ export default function PasswordReset({userData,setResetPswrd}) {
             setEmail(userData.email);
         }
     },[email])
+
+    const handleKeyDown=(event) => {
+        if (event.keyCode === 13 ) {
+            event.preventDefault();
+        }
+    }
     
     const handleChange = (e) => {
         e.preventDefault();
@@ -117,7 +123,7 @@ export default function PasswordReset({userData,setResetPswrd}) {
                             </div>
                             <div className="textbox_div">
                                 <span style={{marginBottom:"25px"}}>
-                                    <input id="email" placeholder="Enter Email" name="email" type="email" className={`textbox ${invalidEmail && "errorborder"}`} required  value={email} onChange={handleChange}/>
+                                    <input id="email" placeholder="Enter Email" name="email" type="email" className={`textbox ${invalidEmail && "errorborder"}`} required  value={email} onChange={handleChange} onKeyDown={handleKeyDown}/>
                                     {invalidEmail && <div className="fielderror errorlabel">Invalid Email address. Please try again. <a href="#" onClick={()=>navigate("/")}>Sign up</a></div>}
 
                                 </span>
@@ -155,7 +161,7 @@ export default function PasswordReset({userData,setResetPswrd}) {
                         </div>}
                         {showOtpField && <div className="textbox_div">
                                 <span>
-                                    <input id="otp" placeholder="Enter Otp" name="otp" type="number" className="textbox" required=""  value={otp} onChange={handleChange}/>
+                                    <input id="otp" placeholder="Enter Otp" name="otp" type="number" className="textbox" required=""  value={otp} onChange={handleChange} onKeyDown={handleKeyDown}/>
                                     {invalidOtp && <div className="fielderror errorlabel">Incorrect OTP. Please try again.</div>}
 
                                 </span>
@@ -183,8 +189,8 @@ export default function PasswordReset({userData,setResetPswrd}) {
                                     <div className="head_info">Enter a unique and strong password that is easy to remember so that you won't forget it the next time.</div>
                                 </div>
                                 <span>
-                                    <input id="pswrd" placeholder="New Password" name="newpass" type="text" className="textbox" required="" value={pswrd} onChange={handleChange}/>
-                                    <input id="confirm_pswrd" placeholder="Confirm New Password" name="confirmpass" type="text" className={`textbox ${pswrdMisMatch && "errorborder"}`} style={{marginTop:"30px"}} required="" value={confirmPswrd} onChange={handleChange}/>
+                                    <input id="pswrd" placeholder="New Password" name="newpass" type="text" className="textbox" required="" value={pswrd} onChange={handleChange} onKeyDown={handleKeyDown}/>
+                                    <input id="confirm_pswrd" placeholder="Confirm New Password" name="confirmpass" type="text" className={`textbox ${pswrdMisMatch && "errorborder"}`} style={{marginTop:"30px"}} required="" value={confirmPswrd} onChange={handleChange} onKeyDown={handleKeyDown}/>
                                     {pswrdMisMatch && <div className="fielderror errorlabel">Passwords don't match</div>}
                                 </span>
                                 

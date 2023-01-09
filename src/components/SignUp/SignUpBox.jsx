@@ -20,6 +20,12 @@ export default function SignUpBox({changeValidity}){
     
     const navigate = useNavigate();
 
+    const handleKeyDown=(event) => {
+        if (event.keyCode === 13 ) {
+            event.preventDefault();
+        }
+    }
+    
     const checkValidity = () => {
         const error={}
         !validateEmail(email)? error.email = false:error.email = true;
@@ -73,7 +79,7 @@ export default function SignUpBox({changeValidity}){
                                 <div className="email sgfrm">
                                     <div className="wrap-elm">
                                         {/* <span className="placeholder">Email *</span> */}
-                                        <input className="placeholder" id="email" name="email" placeholder="Email" type="text" value={email} onChange={handleChange}/>
+                                        <input className="placeholder" id="email" name="email" placeholder="Email" type="text" value={email} onChange={handleChange} onKeyDown={handleKeyDown}/>
                                         {!errorMsg.email && <div className="field-msg">
                                             <span id="email-error" className="error jqval-error">Please enter a valid email address</span>
                                         </div>}
@@ -83,7 +89,7 @@ export default function SignUpBox({changeValidity}){
                                 <div className="password sgfrm">
                                     <div className="wrap-elm">
                                         {/* <span className="placeholder">Email *</span> */}
-                                        <input className="placeholder" id="password" name="password" placeholder="Password" type="password" value={password} onChange={handleChange}/>
+                                        <input className="placeholder" id="password" name="password" placeholder="Password" type="password" value={password} onChange={handleChange} onKeyDown={handleKeyDown}/>
                                         {!errorMsg.pswrd && <div className="field-msg"><span id="password-error" className="error jqval-error">Password cannot be less than 8 characters</span></div>}
                                     </div>
                                 </div>
@@ -94,7 +100,7 @@ export default function SignUpBox({changeValidity}){
                                             <div className="ccodediv" id="ccodediv" style={{paddingTop:"3px"}}>+91</div>
                                         </div>
                                         {/* <span className="dialphonenum placeholder">Phone Number *</span> */}
-                                        <input id="rmobile" className="dialphone" name="rmobile" placeholder="Mobile Number" style={{paddingLeft:"90px",width:"84%"}} spellCheck="false" type="text" value={mobileNumber} onChange={handleChange}/>
+                                        <input id="rmobile" className="dialphone" name="rmobile" placeholder="Mobile Number" style={{paddingLeft:"90px",width:"84%"}} spellCheck="false" type="text" value={mobileNumber} onKeyDown={handleKeyDown} onChange={handleChange} required={true}/>
                                         {!errorMsg.mobileNo && <div className="field-msg"><span id="rmobile-error" className="error jqval-error">Please enter a valid mobile number.</span></div>}
                                     </div>
                                 </div>
@@ -118,7 +124,7 @@ export default function SignUpBox({changeValidity}){
                                     </div>
                                             {!errorMsg.isChecked && <div className="field-msg"><span id="tos-error" className="error jqval-error">Please read and accept the Terms of Service and Privacy Policy</span></div>}
                                     <div className="sgnbtn">
-                                        <input className="signupbtn" onClick={handleSubmit} id="signupbtn" type="submit" value={btnText} style={{opacity: "1"}} placeholder=""/>
+                                        <input className="signupbtn" onClick={handleSubmit} id="signupbtn" type="submit" value={btnText} style={{opacity: "1"}} placeholder="" />
                                     </div>
                                 </div>
                                 <div className="socl-signup"> 
