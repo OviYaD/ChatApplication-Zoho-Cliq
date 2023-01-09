@@ -17,17 +17,6 @@ function App() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // const fetchUser = async () => {
-    //   const userInfo = await getProfile();
-    //   if (userInfo.status) {
-    //     console.log(userInfo);
-    //     dispatch(setUser(userInfo));
-    //     navigate("/main");
-    //   } else {
-    //     localStorage.removeItem("token");
-    //     navigate("/signin");
-    //   }
-    // };
     if (localStorage.getItem("token") !== null) {
       navigate("/main");
     }

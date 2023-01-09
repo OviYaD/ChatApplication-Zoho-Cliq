@@ -96,7 +96,6 @@ export const loginOtp = async (data) => {
         return { status: error.response.data };
       }
     });
-  console.log(msg);
   if (msg.status === 200) {
     localStorage.setItem("token", msg.data.token);
     return true;

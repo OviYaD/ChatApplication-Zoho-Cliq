@@ -1,6 +1,6 @@
 import React,{useEffect} from 'react';
 import MenuBar from "../../components/MenuBar/MenuBar";
-import MainContainer from '../../components/MainContainer.jsx/MainContainer';
+import MainContainer from '../../components/MainContainer/MainContainer';
 import { useSelector,useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { setUser } from '../../redux/slices/userSlice';
