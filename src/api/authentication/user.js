@@ -2,15 +2,25 @@ import axios from "axios";
 import config from "../../config";
 
 export const createUser = async (data) => {
-  const msg = await axios.post(`${config.END_POINT}/auth/register`, data);
-  console.log(msg);
-  if (msg.status === 200) {
-    localStorage.setItem("token", msg.data.token);
-    return true;
-  } else if (msg.status === 400) {
+  try {
+    const msg = await axios
+      .post(`${config.END_POINT}/auth/register`, data)
+      .catch((error) => {
+        if (error.response) {
+          return { status: error.response.data };
+        }
+      });
+    console.log(msg);
+    if (msg.status === 200) {
+      localStorage.setItem("token", msg.data.token);
+      return true;
+    } else if (msg.status === 400) {
+      return false;
+    }
+  } catch (e) {
+    console.log(e);
     return false;
   }
-  return false;
 };
 
 export const emailOtp = async (data) => {
@@ -20,7 +30,14 @@ export const emailOtp = async (data) => {
 };
 
 export const loginUser = async (data) => {
-  const msg = await axios.post(`${config.END_POINT}/auth/login`, data);
+  console.log(data);
+  const msg = await axios
+    .post(`${config.END_POINT}/auth/login`, data)
+    .catch((error) => {
+      if (error.response) {
+        return { status: error.response.data };
+      }
+    });
   console.log(msg);
   if (msg.status === 200) {
     localStorage.setItem("token", msg.data.token);
@@ -30,29 +47,51 @@ export const loginUser = async (data) => {
   }
 };
 
-export const verifyOtp = async () => {
-  await axios.get(`${config.END_POINT}/auth/profile`);
-  return true;
+export const verifyOtp = async (data) => {
+  // console.log()
+  const msg = await axios.post(`${config.END_POINT}/auth/check-otp`, data);
+  console.log(msg);
+  return msg.data.isValid;
 };
-export const ResetPassword = async () => {
-  await axios.get(`${config.END_POINT}/auth/profile`);
+export const ResetPassword = async (data) => {
+  await axios.post(`${config.END_POINT}/auth/reset-password`, data);
   return true;
 };
 
 export const getProfile = async () => {
-  const userData = await axios.get(`${config.END_POINT}/auth/profile`);
+  const token = localStorage.getItem("token");
+  const options = {
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  };
+  const userData = await axios.get(`${config.END_POINT}/auth/profile`, options);
   // alert(JSON.stringify(userData));
-  return userData.data.profile;
+  // return userData.data.profile;
+  return false;
 };
 
 export const updateProfile = () => {};
 
 export const checkEmail = async (data) => {
+  console.log(config.END_POINT);
   const msg = await axios.post(`${config.END_POINT}/auth/check-email`, data);
   console.log(msg);
-  if (!msg.data.exists) {
+  return !msg.data.exists;
+};
+
+export const loginOtp = async (data) => {
+  const msg = await axios
+    .post(`${config.END_POINT}/auth/login-otp`, data)
+    .catch((error) => {
+      if (error.response) {
+        return { status: error.response.data };
+      }
+    });
+  console.log(msg);
+  if (msg.status === 200) {
+    localStorage.setItem("token", msg.data.token);
     return true;
-  } else {
-    return false;
   }
+  return false;
 };

@@ -23,6 +23,7 @@ function App() {
     };
     if (localStorage.getItem("token") !== null) {
       fetchUser();
+      navigate("/main");
     }
   }, []);
   return (

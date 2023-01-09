@@ -1,12 +1,15 @@
 import React , { useState } from 'react';
 import LoadingButton from '@mui/lab/LoadingButton';
-import { checkEmail, loginUser } from '../../api/authentication/user';
+import { checkEmail, emailOtp, loginOtp, loginUser, verifyOtp } from '../../api/authentication/user';
 import { useNavigate } from 'react-router-dom';
+import ResendOtp from './resendOtp';
 
 
 export default function SignInForm({forgetPassword}){
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [otp,setOtp] = useState('');
     const [loading,setLoading] = useState(false);
     const [showEmailField, setEmailField] = useState(true);
     const [showPswdField, setPswdField] = useState(false);
@@ -25,6 +28,10 @@ export default function SignInForm({forgetPassword}){
         else if(e.target.name === "password"){
             setPassword(e.target.value);
         }
+        else if(e.target.name === "otp"){
+            setOtp(e.target.value);
+        }
+
     }
 
     
@@ -32,7 +39,7 @@ export default function SignInForm({forgetPassword}){
         setLoading(()=>!loading);
        
         const emailExists = await checkEmail({email});
-        if(emailExists){
+        if(!emailExists){
             setEmailExists(true);
             setEmailField(false);
             setOtpField(false);
@@ -54,11 +61,12 @@ export default function SignInForm({forgetPassword}){
         setEmailExists(false);
     }
 
-    const handleOtpSignin = () =>{
+    const handleOtpSignin = async() =>{
         setError(false);
         setEmailField(false);
         setOtpField(true);
         setPswdField(false);
+        await emailOtp({email})
     }
 
     const handlePswrdSignin = () =>{
@@ -79,10 +87,25 @@ export default function SignInForm({forgetPassword}){
             setError(true);
         }
         setLoading(false);
-        }
+    }
 
+    const loginWithOtp = async() =>{
+        setLoading(()=>!loading);
+        setError(false);
+        const validity = await loginOtp({email,otp});
+        console.log(validity);
+        if(validity){
+            setTimeout(()=>navigate('/main'),3000);
+        }
+        else{
+            setError(true);
+        }
+        setLoading(false);
+    }
+
+    
     const passwordReset = () => {
-        setTimeout(() =>forgetPassword({email}),3000);
+        setTimeout(() =>forgetPassword({email}),2000);
     }
 
     
@@ -145,17 +168,18 @@ export default function SignInForm({forgetPassword}){
 
                             {showOtpField && <div className="textbox_div">
                                 <span>
-                                    <input id="otp" placeholder="Enter Otp" name="OTP" type="number" className="textbox" required=""  />
+                                    <input id="otp" placeholder="Enter Otp" name="otp" type="number" className="textbox" required="" value={otp} onChange={handleChange} />
+                                    {error && <div className="fielderror errorlabel" >Invalid otp. Please try again.</div>}
                                 </span>
                                 <div className="textbox_actions" id="enableotpoption" style={{display: "block"}}>
 										<span className="bluetext_action" id="signinwithotp" onClick={handlePswrdSignin}>Sign in using password</span>
-										
-                                        <span className="bluetext_action bluetext_action_right  nonclickelem" id="blueforgotpassword" onclick="goToForgotPassword();" style={{color:"#626262"}}>Resend in 32s</span>
+										<ResendOtp email={email}></ResendOtp>
+                                        {/* <span className="bluetext_action bluetext_action_right  nonclickelem" id="blueforgotpassword" onclick="goToForgotPassword();" style={{color:"#626262"}}>Resend in 32s</span> */}
 								</div>
                                 
                                 <LoadingButton className="btn"
                                     size="small"
-                                    onClick={handleClick}
+                                    onClick={loginWithOtp}
                                     loading={loading}
                                     variant="contained"
                                 >

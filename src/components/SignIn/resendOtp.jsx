@@ -1,8 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react'
+import { emailOtp } from '../../api/authentication/user';
 
-
-const ResendPswrd = ({setValidity,isValid}) => {
+const ResendOtp = ({email}) => {
 	const Ref = useRef(null);
+	const [isValid,setValidity] = useState(true);
 	const [timer, setTimer] = useState('00');
     const [enable,setEnable] = useState(false);
 
@@ -56,19 +57,21 @@ const ResendPswrd = ({setValidity,isValid}) => {
 
 	}, [isValid]);
 
-	const onClickReset = () => {
+	const onClickReset = async() => {
         setValidity(true);
 		clearTimer(getDeadTime());
         setEnable((enable)=>!enable)
+		await emailOtp({email});
         setTimeout(()=>setEnable(true),61000)
 	}
 
 	return (
 		<>
-        {enable?<span onClick={onClickReset} className="resendotp">Resend OTP</span>
-        :<span className="resendotp nonclickelem" >Resend in <span>{timer}</span>s</span>}
+        {enable?<span onClick={onClickReset} className="bluetext_action bluetext_action_right">Resend OTP</span>
+        :<span className="bluetext_action bluetext_action_right  nonclickelem" id="blueforgotpassword"  style={{color:"#626262"}}>Resend in {timer}s</span>}
 		</>
-	)
+	
+		)
 }
 
-export default ResendPswrd;
+export default ResendOtp;

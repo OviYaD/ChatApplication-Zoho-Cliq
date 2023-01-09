@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 export default function SignUpBox({changeValidity}){
-    const [email, setEmail] = useState('richardjoel835@gmail.com');
+    const [email, setEmail] = useState('oviyad.19cse@kongu.edu');
     const [password, setPassword] = useState('30-MaY-02');
     const [mobileNumber, setMobileNumber] = useState('9876543210');
     const [checked, setChecked] = useState(true);
@@ -53,7 +53,7 @@ export default function SignUpBox({changeValidity}){
         if(error.email && error.pswrd && error.mobileNo && error.isChecked){
             setBtnText("Creating Your Account...")
             let emailExists = await checkEmail({email})
-            if(!emailExists) 
+            if(emailExists) 
             {
                 console.log(emailExists);
                 emailOtp({email});

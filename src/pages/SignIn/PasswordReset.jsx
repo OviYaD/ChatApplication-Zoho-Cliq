@@ -2,6 +2,7 @@ import React,{useState,useEffect} from 'react'
 import LoadingButton from '@mui/lab/LoadingButton';
 import { useNavigate } from 'react-router-dom';
 import { emailOtp, ResetPassword, verifyOtp, checkEmail } from '../../api/authentication/user';
+import ResendOtp from '../../components/SignIn/resendOtp';
 
 export default function PasswordReset({userData,setResetPswrd}) {
     const [loading,setLoading] = useState(false);
@@ -49,13 +50,14 @@ export default function PasswordReset({userData,setResetPswrd}) {
     }
 
     const enableFields = () => {
+        setLoading(false);
         setEmailField(true);
         setSendOtpBtn(false);
         setOtpField(false)
     }
     const handleClick = async() => {
         setLoading(()=>!loading);
-        await emailOtp({email:"oviyad.19cse@kongu.edu"});
+        await emailOtp({email});
         setOtpField(true);
         setSendOtpBtn(false);
         setLoading(false);
@@ -63,7 +65,7 @@ export default function PasswordReset({userData,setResetPswrd}) {
 
     const handleVerification = async() => {
         setLoading(()=>!loading);
-        const verified = await verifyOtp();
+        const verified = await verifyOtp({email,otp});
         if(!otp.length<=0 && verified){
             setOtpField(false);
             setSendOtpBtn(false);
@@ -79,8 +81,8 @@ export default function PasswordReset({userData,setResetPswrd}) {
 
     const  verifyEmail = async() => {
         setLoading(()=>!loading);
-        const verified = await checkEmail();
-        if(email.length<=0 || !verified){
+        const verified = await checkEmail({email});
+        if(email.length<=0 || verified){
             setEmailStatus(true)
         }
         else{
@@ -94,9 +96,9 @@ export default function PasswordReset({userData,setResetPswrd}) {
     const updatePassword = async() => {
         setLoading(()=>!loading);
         setPswrdMisMatch(false);
-        setTimeout(()=>setLoading(false),2000);
+        setTimeout(()=>setLoading(false),1000);
         if(!pswrd.length <= 0 && pswrd===confirmPswrd){
-            await ResetPassword();
+            await ResetPassword({email,otp,password:pswrd});
             setResetPswrd(false);
         }
         else{
@@ -159,7 +161,8 @@ export default function PasswordReset({userData,setResetPswrd}) {
                                 </span>
                                 <div className="textbox_actions" id="enableotpoption" style={{display: "block"}}>
 										{/* <span className="bluetext_action" id="signinwithotp" >Sign in using password</span> */}
-										<span className="bluetext_action   nonclickelem" id="blueforgotpassword"  style={{color:"#626262"}}>Resend in 32s</span>
+                                        <ResendOtp email={email}></ResendOtp>
+										{/* <span className="bluetext_action   nonclickelem" id="blueforgotpassword"  style={{color:"#626262"}}>Resend in 32s</span> */}
 								</div>
                                 
                                 <LoadingButton className="btn"
