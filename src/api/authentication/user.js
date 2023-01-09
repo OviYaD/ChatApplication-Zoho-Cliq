@@ -30,9 +30,9 @@ export const emailOtp = async (data) => {
 };
 
 export const loginUser = async (data) => {
-  console.log(data);
+  const options = { credentials: "include" };
   const msg = await axios
-    .post(`${config.END_POINT}/auth/login`, data)
+    .post(`${config.END_POINT}/auth/login`, data, options)
     .catch((error) => {
       if (error.response) {
         return { status: error.response.data };
@@ -65,10 +65,18 @@ export const getProfile = async () => {
       authorization: `Bearer ${token}`,
     },
   };
-  const userData = await axios.get(`${config.END_POINT}/auth/profile`, options);
-  // alert(JSON.stringify(userData));
-  // return userData.data.profile;
-  return false;
+  const userData = await axios
+    .get(`${config.END_POINT}/auth/profile`)
+    .catch((error) => {
+      if (error.response) {
+        return { status: false };
+      }
+    });
+  if (!userData.status) {
+    return userData;
+  }
+  return { ...userData, status: true };
+  // return false;
 };
 
 export const updateProfile = () => {};
