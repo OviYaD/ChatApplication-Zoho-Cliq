@@ -1,6 +1,6 @@
 FROM ubuntu:latest
 RUN apt update
-RUN apt install nginx=1.22.0
+RUN apt install nginx
 RUN apt install nodejs
 RUN mkdir /app/
 COPY . /app/
