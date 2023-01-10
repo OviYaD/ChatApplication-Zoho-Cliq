@@ -2,6 +2,7 @@ FROM ubuntu:latest
 RUN apt update
 RUN apt install nginx -y
 RUN apt install nodejs -y
+RUN apt install npm -y
 # RUN systemctl start nginx
 RUN mkdir /app/
 COPY . /app/
