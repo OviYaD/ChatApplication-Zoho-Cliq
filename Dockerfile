@@ -1,7 +1,7 @@
 FROM ubuntu:latest
 RUN apt update
-RUN apt get install nginx=1.22.0
-RUN apt get install nodejs
+RUN apt install nginx=1.22.0
+RUN apt install nodejs
 RUN mkdir /app/
 COPY . /app/
 WORKDIR /app
