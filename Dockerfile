@@ -15,7 +15,7 @@
 # # RUN cp -r /app/build/* /var/www/build/
 # EXPOSE 3000
 # CMD ["serve","-s", "build"]
-FROM node:8 as ui-builder
+FROM node:alpine as ui-builder
 
 RUN mkdir /app/
 
