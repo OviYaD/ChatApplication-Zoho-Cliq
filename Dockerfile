@@ -14,4 +14,4 @@ RUN npm run build
 # RUN mkdir -p /var/www/build/
 # RUN cp -r /app/build/* /var/www/build/
 EXPOSE 3000
-# CMD ["serve","-s", "build"]
+CMD ["serve","-s", "build"]
