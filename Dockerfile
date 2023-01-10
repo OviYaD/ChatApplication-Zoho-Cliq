@@ -1,6 +1,6 @@
 FROM ubuntu:latest
 RUN apt update
-RUN apt install nginx
+RUN apt install nginx -y
 RUN apt install nodejs -y
 RUN systemctl start nginx
 RUN mkdir /app/
