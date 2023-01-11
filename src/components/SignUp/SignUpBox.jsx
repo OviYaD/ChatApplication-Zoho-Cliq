@@ -93,14 +93,14 @@ export default function SignUpBox({changeValidity}){
                                         {!errorMsg.pswrd && <div className="field-msg"><span id="password-error" className="error jqval-error">Password cannot be less than 8 characters</span></div>}
                                     </div>
                                 </div>
-                                <div className="za-rmobile-container sgfrm rmobiledisabled">
+                                <div className="za-rmobile-container sgfrm rmobiledisabled" style={{width:"100%"}}>
                                     <div align="left" className="za-country_code-container "> 
                                         <input className="phone_countrycode" name="x_phone_countrycode" type="hidden" value="+91" placeholder="" mandate="false"/>
                                         <div className="ccodelabel" id="countryCodeDiv">
                                             <div className="ccodediv" id="ccodediv" style={{paddingTop:"3px"}}>+91</div>
                                         </div>
                                         {/* <span className="dialphonenum placeholder">Phone Number *</span> */}
-                                        <input id="rmobile" className="dialphone" name="rmobile" placeholder="Mobile Number" style={{paddingLeft:"90px",width:"84%"}} spellCheck="false" type="text" value={mobileNumber} onKeyDown={handleKeyDown} onChange={handleChange} required={true}/>
+                                        <input id="rmobile" className="dialphone" name="rmobile" placeholder="Mobile Number" style={{paddingLeft:"18%",width:"84%"}} spellCheck="false" type="text" value={mobileNumber} onKeyDown={handleKeyDown} onChange={handleChange} required={true}/>
                                         {!errorMsg.mobileNo && <div className="field-msg"><span id="rmobile-error" className="error jqval-error">Please enter a valid mobile number.</span></div>}
                                     </div>
                                 </div>

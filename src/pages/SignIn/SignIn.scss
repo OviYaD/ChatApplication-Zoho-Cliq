@@ -8,7 +8,6 @@
   background-size: auto 100%;
 }
 
-
 .bg_one {
   font-family: "zoho-puvi-regular";
   display: block;
@@ -641,5 +640,15 @@
         justify-content: center;
       }
     }
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .rightside_box {
+    display: none;
+  }
+  .signin_container {
+    display: block;
+    width: 500px;
   }
 }

@@ -1,4 +1,5 @@
 .header {
+  background: #fff;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -45,9 +46,10 @@
 }
 
 .testimonial-wrapper {
+  // display: none;
   position: fixed;
   top: 0;
-  width: 500px;
+  width: 35%;
   background: url(https://www.zohowebstatic.com/sites/zweb/images/zp-signup-bg.jpg)
     left top no-repeat;
   content: "";
@@ -85,7 +87,7 @@
 }
 
 .signup-form {
-  margin-left: 500px;
+  margin-left: 35%;
   padding: 150px 120px 80px;
   max-width: 750px;
 
@@ -174,7 +176,7 @@
     #countryCodeDiv,
     #countryconfirmCodeDiv {
       background-color: #fff;
-      width: 78px;
+      width: 16%;
       position: absolute;
       left: 1px;
       top: 1px;
@@ -484,3 +486,61 @@
   text-decoration: underline;
   margin-left: 5px;
 }
+
+@media only screen and (max-width: 991px) {
+  .signup-form {
+    max-width: 500px;
+    text-align: left;
+    padding: 100px 20px 30px;
+  }
+  .signup-form,
+  .testimonial-content {
+    margin: 0 auto;
+  }
+  .testimonial-wrapper {
+    // display: inline;
+    padding: 1px 0px 143px;
+    width: 100%;
+    position: relative;
+    background-size: cover;
+  }
+  // .testimonial-wrap {
+  //   display: none !important;
+  //   padding: 80px 0;
+  //   position: relative;
+  //   width: 100% !important;
+  //   background-size: cover;
+  // }
+  .testimonial-wrapper:after {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    background: rgba(0, 0, 0, 0.35);
+  }
+  .testimonial-wrapper:after {
+    content: "";
+    height: 100%;
+    left: 0;
+  }
+  .header .login-text {
+    /* background: #fff; */
+    background: transparent;
+    margin: 15px;
+    color: white;
+    font-size: 13px;
+  }
+}
+
+// @media only screen and (max-width: 991px) {
+//   .testimonial-wrap {
+//     padding: 80px 0;
+//     position: relative;
+//     width: 100%;
+//     background-size: cover;
+//   }
+// }
+// @media only screen and (max-width: 1199px) {
+//   .testimonial-wrap {
+//     width: 400px;
+//   }
+// }
