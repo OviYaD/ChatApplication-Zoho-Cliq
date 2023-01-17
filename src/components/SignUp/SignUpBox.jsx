@@ -32,9 +32,10 @@ export default function SignUpBox({changeValidity}){
 
         !validatePassword(password)?error.pswrd=false:error.pswrd = true;
 
-        !validateMobileNumber(mobileNumber)?error.mobileNo=false:error.mobileNo=true;
-           
+        // !validateMobileNumber(mobileNumber)?error.mobileNo=false:error.mobileNo=true;
+        console.log(!validateMobileNumber(mobileNumber));
         !checked?error.isChecked=false:error.isChecked=true;
+        console.log(error)
         
         setErrorMsg(()=>{return {...error}})
         return error;
@@ -101,8 +102,8 @@ export default function SignUpBox({changeValidity}){
                                         </div>
                                         {/* <span className="dialphonenum placeholder">Phone Number *</span> */}
                                         <input id="rmobile" className="dialphone" name="rmobile" placeholder="Mobile Number" style={{paddingLeft:"18%",width:"84%"}} spellCheck="false" type="text" value={mobileNumber} onKeyDown={handleKeyDown} onChange={handleChange} required={true}/>
-                                        {!errorMsg.mobileNo && <div className="field-msg"><span id="rmobile-error" className="error jqval-error">Please enter a valid mobile number.</span></div>}
                                     </div>
+                                        {!errorMsg.mobileNo && <div className="field-msg"><span id="rmobile-error" className="error jqval-error">Please enter a valid mobile number.</span></div>}
                                 </div>
                                 <p className="zcountry-info zshow">It looks like you‘re in<span id="zip-countryname"> india </span><span>based on your IP</span>.<span id="zip-countryname-change">Change Country</span></p>
 
