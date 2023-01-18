@@ -1,0 +1,82 @@
+.app-submodule-nav {
+  width: 230px;
+  color: rgb(226, 226, 226);
+  background: var(--lhs-bg);
+  border-right: 1px solid rgba(0, 0, 0, 0.2);
+  font-family: "zoho-puvi-regular";
+
+  .overflow-controls {
+    height: calc(100vh - 95px);
+    overflow: auto;
+  }
+  .overflow-controls::-webkit-scrollbar {
+    display: none;
+  }
+  #pinnedChats {
+    .more {
+      color: grey;
+    }
+  }
+  .heading {
+    top: 0px;
+    position: sticky;
+    // background-color:var(--lhs-bg);
+    z-index: 100;
+    cursor: pointer;
+    font-family: Lato, sans-serif;
+    font-weight: 800;
+    padding-top: 1.2rem;
+    padding-bottom: 0.2rem;
+    padding-right: 1.2rem;
+    padding-left: 1.2rem;
+  }
+  .ellips {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .active {
+    border-color: rgb(61, 194, 172) !important;
+    background-color: rgb(53, 52, 52);
+  }
+  .list {
+    cursor: pointer;
+    border-left: 2px solid var(--lhs-nav-bg);
+    margin-top: 1px;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-right: 1.2rem;
+    padding-left: 1.5rem;
+    font-size: 12px;
+    // padding: 5px;
+
+    .bi-circle {
+    }
+    .options {
+      margin-left: auto;
+      display: none;
+      font-size: 10px;
+      color: grey;
+    }
+    .bi-x-lg {
+      padding-left: 0.5rem;
+    }
+    .options {
+      .bi:hover {
+        color: #fff;
+      }
+    }
+  }
+  .list:hover {
+    background-color: rgb(53, 52, 52);
+    color: #fff;
+    font-weight: 600;
+    .options {
+      display: flex;
+    }
+  }
+  .hashTag {
+    font-style: italic;
+    font-size: 14px;
+  }
+}
