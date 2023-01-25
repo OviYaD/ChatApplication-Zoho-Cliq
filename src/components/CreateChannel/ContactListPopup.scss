@@ -1,0 +1,48 @@
+.posfix {
+  position: fixed;
+}
+.zcl-multiselect-list-container {
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  position: absolute;
+  top: calc(100% + 3px);
+  margin-top: -10px;
+  background-color: var(--bg-color-3);
+  display: none;
+  z-index: 3;
+  width: 100%;
+  box-shadow: 0px 2px 6px var(--box-shadow-color);
+}
+
+.zcl-multiselect-list::-webkit-scrollbar {
+  display: none;
+}
+
+.zcl-multiselect-list {
+  max-height: 380px;
+  padding: 10px;
+  background-color: var(--bg-color-3);
+  overflow: auto;
+}
+.zcl-list-item:hover {
+  background-color: var(--list-item-hover-bg);
+}
+.zcl-list-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 10px;
+  font-size: 15px;
+  color: var(--color-main);
+  cursor: pointer;
+}
+img.zcl-list-item-img36 {
+  background: none;
+  margin-right: 10px;
+}
+.zcl-list-item-img36 {
+  width: 36px;
+  height: 36px;
+  border-radius: 100%;
+  background-color: var(--color-green);
+}
