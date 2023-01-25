@@ -1,11 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { emailOtp } from '../../api/authentication/user';
 
-const ResendOtp = ({email}) => {
+const ResendOtp = ({ email }) => {
 	const Ref = useRef(null);
-	const [isValid,setValidity] = useState(true);
+	const [isValid, setValidity] = useState(true);
 	const [timer, setTimer] = useState('00');
-    const [enable,setEnable] = useState(false);
+	const [enable, setEnable] = useState(false);
 
 
 	const getTimeRemaining = (e) => {
@@ -18,8 +18,8 @@ const ResendOtp = ({email}) => {
 
 
 	const startTimer = (e) => {
-		let { total,  seconds }
-					= getTimeRemaining(e);
+		let { total, seconds }
+			= getTimeRemaining(e);
 		if (total >= 0) {
 
 			setTimer(
@@ -45,33 +45,32 @@ const ResendOtp = ({email}) => {
 		return deadline;
 	}
 	useEffect(() => {
-        clearTimer(getDeadTime());
-        setTimeout(()=>setEnable(true),61000)
-        if(!isValid)
-        {
-            setEnable(true)
-        }
-        else{
-            setEnable(false)
-        }
+		clearTimer(getDeadTime());
+		setTimeout(() => setEnable(true), 61000)
+		if (!isValid) {
+			setEnable(true)
+		}
+		else {
+			setEnable(false)
+		}
 
 	}, [isValid]);
 
-	const onClickReset = async() => {
-        setValidity(true);
+	const onClickReset = async () => {
+		setValidity(true);
 		clearTimer(getDeadTime());
-        setEnable((enable)=>!enable)
-		await emailOtp({email});
-        setTimeout(()=>setEnable(true),61000)
+		setEnable((enable) => !enable)
+		await emailOtp({ email });
+		setTimeout(() => setEnable(true), 61000)
 	}
 
 	return (
 		<>
-        {enable?<span onClick={onClickReset} className="bluetext_action bluetext_action_right">Resend OTP</span>
-        :<span className="bluetext_action bluetext_action_right  nonclickelem" id="blueforgotpassword"  style={{color:"#626262"}}>Resend in {timer}s</span>}
+			{enable ? <span onClick={onClickReset} className="bluetext_action bluetext_action_right">Resend OTP</span>
+				: <span className="bluetext_action bluetext_action_right  nonclickelem" id="blueforgotpassword" style={{ color: "#626262" }}>Resend in {timer}s</span>}
 		</>
-	
-		)
+
+	)
 }
 
 export default ResendOtp;

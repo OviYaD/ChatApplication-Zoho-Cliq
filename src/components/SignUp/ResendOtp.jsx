@@ -1,10 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { emailOtp } from '../../api/authentication/user';
 
-const ResendOtp = ({setValidity,isValid, email}) => {
+const ResendOtp = ({ setValidity, isValid, email }) => {
 	const Ref = useRef(null);
 	const [timer, setTimer] = useState('00');
-    const [enable,setEnable] = useState(false);
+	const [enable, setEnable] = useState(false);
 
 
 	const getTimeRemaining = (e) => {
@@ -17,8 +17,8 @@ const ResendOtp = ({setValidity,isValid, email}) => {
 
 
 	const startTimer = (e) => {
-		let { total,  seconds }
-					= getTimeRemaining(e);
+		let { total, seconds }
+			= getTimeRemaining(e);
 		if (total >= 0) {
 
 			setTimer(
@@ -44,30 +44,29 @@ const ResendOtp = ({setValidity,isValid, email}) => {
 		return deadline;
 	}
 	useEffect(() => {
-        clearTimer(getDeadTime());
-        setTimeout(()=>setEnable(true),61000)
-        if(!isValid)
-        {
-            setEnable(true)
-        }
-        else{
-            setEnable(false)
-        }
+		clearTimer(getDeadTime());
+		setTimeout(() => setEnable(true), 61000)
+		if (!isValid) {
+			setEnable(true)
+		}
+		else {
+			setEnable(false)
+		}
 
 	}, [isValid]);
 
-	const onClickReset = async() => {
-        setValidity(true);
+	const onClickReset = async () => {
+		setValidity(true);
 		clearTimer(getDeadTime());
 		await emailOtp(email);
-        setEnable(false)
-        setTimeout(()=>setEnable(true),61000)
+		setEnable(false)
+		setTimeout(() => setEnable(true), 61000)
 	}
 
 	return (
 		<>
-        {enable?<span onClick={onClickReset} className="resendotp">Resend OTP</span>
-        :<span className="resendotp nonclickelem" >Resend in <span>{timer}</span>s</span>}
+			{enable ? <span onClick={onClickReset} className="resendotp">Resend OTP</span>
+				: <span className="resendotp nonclickelem" >Resend in <span>{timer}</span>s</span>}
 		</>
 	)
 }
