@@ -1,3 +1,6 @@
+*::-webkit-scrollbar{
+  display: none;
+}
 .organization {
   background-color: var(--default-bg);
   color: var(--color-main);
@@ -29,7 +32,99 @@
     }
   }
 }
+.container {
+  min-width: 780px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+}
 
+h2 {
+  font-size: 26px;
+  margin: 20px 0;
+  text-align: center;
+  small {
+    font-size: 0.5em;
+  }
+}
+
+.responsive-table {
+  li {
+    border-radius: 3px;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    align-items: center;
+  }
+  .table-header {
+    background-color: #95A5A6;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+  .table-row {
+    background-color: #ffffff;
+    box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.1);
+  }
+  .col-1 {
+    flex-basis: 25%;
+  }
+  .col-2 {
+    flex-basis: 40%;
+  }
+  .col-3 {
+    flex-basis: 25%;
+  }
+  .col-4 {
+    flex-basis: 10%;
+  }
+  
+  @media all and (max-width: 767px) {
+    .table-header {
+      display: none;
+    }
+    .table-row{
+      
+    }
+    li {
+      display: block;
+    }
+    .col {
+      
+      flex-basis: 100%;
+      
+    }
+    .col {
+      display: flex;
+      padding: 10px 0;
+      &:before {
+        color: #6C7A89;
+        padding-right: 10px;
+        content: attr(data-label);
+        flex-basis: 50%;
+        text-align: right;
+      }
+    }
+  }
+}
+
+ .invitetxtbox {
+  outline: none;
+  width: 500px;
+  height: 157px;
+  padding: 14px;
+  border-radius: 4px;
+  margin-top: 14px;
+  background-color: var(--input-bg-color);
+  border: solid 1px var(--color-divider);
+}                                   
+.btn-large.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: default;
+}
 .main-container {
   display: flex;
   height: 100%;
@@ -82,11 +177,55 @@
     vertical-align: middle;
     margin-left: 20px;
   }
-  .nav_sel + em,
   .nav_disable {
     opacity: 0.5;
   }
 }
+.invite_mem table {
+  margin: auto;
+  border-spacing: 5px;
+}
+tbody {
+  display: table-row-group;
+  vertical-align: middle;
+  border-color: inherit;
+}
+tr {
+  display: table-row;
+  vertical-align: inherit;
+  border-color: inherit;
+}
+td {
+  display: table-cell;
+  vertical-align: inherit;
+}
+.name input:focus,
+.emailInput input:focus {
+  background-color: #fff;
+  border: 1px solid #2088f7;
+  outline: none;
+}
+.name input {
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  background-color: #f6f9fc;
+  padding: 10px 14px;
+  color: grey;
+  width: 180px;
+  height: 26px;
+}
+.emailInput input {
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  background-color: #f6f9fc;
+  padding: 10px 14px;
+  color: grey;
+  width: 360px;
+  height: 26px;
+}
+
 .right-panel {
   text-align: center;
   min-width: 525px;
