@@ -16,11 +16,11 @@ function App() {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (localStorage.getItem("token") !== null) {
-      navigate("/main");
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (localStorage.getItem("token") !== null) {
+  //     navigate("/main");
+  //   }
+  // }, []);
   return (
     <div className="App">
       <Router />

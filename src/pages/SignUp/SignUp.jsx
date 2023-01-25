@@ -4,7 +4,7 @@ import TestimonialWrapper from '../../components/SignUp/TestimonialWrapper';
 import SignUpForm from '../../components/SignUp/SignUpForm';
 import "./SignUp.scss";
 
-export function SignUp(){
+export function SignUp() {
     return <>
         <SignUpNav></SignUpNav>
         <TestimonialWrapper></TestimonialWrapper>

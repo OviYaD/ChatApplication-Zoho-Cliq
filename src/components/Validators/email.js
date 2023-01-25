@@ -1,5 +1,4 @@
 export const validateEmail = (mail) => {
-  console.log("validateEmail");
   if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
     return true;
   }
