@@ -1,0 +1,96 @@
+$border-color: #e6e6e6;
+.chatarea {
+  bottom: 0px;
+  width: inherit;
+  position: absolute;
+  background-color: #fff;
+
+  .zcedtrinfo {
+    margin: 4px 10px 4px;
+    color: var(--color-lp1);
+    height: 34px;
+  }
+  .composrhelp {
+    padding: 0 16px 0 10px;
+    width: calc(100% - 50px);
+    margin-left: 40%;
+    margin-right: 40%;
+    align-items: center;
+  }
+  .posrel {
+    position: relative;
+    justify-content: center;
+  }
+  .actions {
+    font-size: 13px;
+    color: rgb(122, 121, 121);
+    padding: 10px;
+
+    .arrow {
+      margin-left: 5px;
+      color: rgb(83, 83, 83);
+      font-weight: 600;
+      padding-top: 2px;
+    }
+  }
+  .chateditrmn:hover {
+    border-color: #3dc2ac;
+  }
+  .chateditrmn {
+    background-color: #fff;
+    border: 1px solid $border-color;
+    border-radius: 6px;
+    width: calc(100% - 20px);
+    height: 100%;
+    display: flex;
+    position: relative;
+    margin: 0 10px;
+    margin: 10px;
+
+    .chatOption {
+      align-items: center;
+      margin: auto;
+      padding-right: 20px;
+      color: grey;
+    }
+
+    .textArea {
+      position: relative;
+      flex-grow: 1;
+      width: calc(100% - 38px);
+      .textarea {
+        width: 100%;
+        max-height: 200px;
+        min-height: 40px;
+        overflow: auto;
+        padding: 10px 90px 10px 10px;
+      }
+      .textarea:focus {
+        outline: none;
+      }
+      .textarea::-webkit-scrollbar {
+        display: none;
+      }
+    }
+    .linkTag {
+      background-color: #f1f4f7;
+      color: #627282;
+      border-right: 1px solid #e6e6e6;
+      width: 38px;
+      flex-shrink: 0;
+      position: relative;
+      border-radius: 5px 0 0 5px;
+      //   font-family: "zoho-puvi-regular";
+
+      .attachment {
+        cursor: pointer;
+        height: 100%;
+        font-size: 1.7em;
+        display: table;
+        vertical-align: middle;
+        text-align: center;
+        width: 100%;
+      }
+    }
+  }
+}
