@@ -1,0 +1,376 @@
+.modal {
+    display: block;
+    position: fixed;
+    z-index: 100;
+    width: 630px !important; 
+    padding-left: 61% !important;
+    padding-top: 3%;
+    bottom: 0;
+    top: 0;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+  .modal-content {
+    background-color: #fefefe;
+    padding: 0 0 0 0;
+    border: 1px solid #888;
+    width: 61%;
+    // font-family: "zoho-puvi-regular";
+  } 
+  .usermenuheader{
+    width: 100%;
+    background: linear-gradient(0deg, rgba(var(--color-icon-rgb),0.2), var(--default-bg-color));
+    text-align: center;
+    position: relative;
+    border-bottom: dashed 1px var(--color-divider);
+  }
+ .zc-usermenuheader {
+    background: linear-gradient(0deg, rgba(var(--color-icon-rgb),0.2), var(--default-bg-color));
+    padding: 0px 10px;
+    text-align: center;
+    position: relative;
+    border-bottom: dashed 1px var(--color-divider);
+}
+
+.msi-chtclose {
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  height: 12px;
+  line-height: 12px;
+}
+.usrimg > img {
+  width: 60px;
+  height: 60px;
+  line-height: 60px;
+  border-radius: 100%;
+  border: solid 1px var(--border-color);
+  object-fit: cover;
+}
+
+.sendfile {
+  top: 0px;
+  width: 60px;
+  height: 60px;
+  outline: none;
+  z-index: 101;
+  overflow: hidden;
+  border-radius: 100%;
+  left: 0px;
+}
+.cuserimg .sendfile {
+  margin-top: -90px;
+  width: 60px;
+  height: 60px;
+  outline: none;
+  z-index: 1;
+  overflow: hidden;
+  border-radius: 100%;
+  left: 0px;
+}
+.sendfile {
+  opacity: 0;
+  font-size: 22px;
+  right: 0;
+  top: -100;
+  cursor: pointer;
+}
+.cuserimg:hover {
+  .zuserimgchng {
+    display: block;
+    opacity: 15;
+  }
+  .usrimg > img{
+    // display: none;
+    opacity: 0.2;
+  }
+
+}
+
+
+.zuserimgchng {
+      margin-top: -80px;
+      margin-bottom: 20px;
+      z-index: 200;
+  cursor: pointer;
+  color: #fff;
+  text-transform: uppercase;
+  display: none;
+  background-color: rgba(0,0,0,0.5);
+  border-radius: 100%;
+  width: 20px;
+  height: 20px;
+  padding: 20px;
+  align-items: center;
+}
+.zc-usermenuheader .username {
+  font-size: 15px;
+  color: var(--color-main);
+}
+.usrdetails {
+  display: flex;
+  justify-content: center;
+  // padding-top: 15px;
+}
+.useremail {
+  color: var(--color-secondary);
+  font-size: 14px;
+  padding-top: 5px;
+}
+.hvrinfo, .thmehvrinfo {
+  display: inline-block;
+  position: relative;
+  padding-bottom: 1px;
+  cursor: pointer;
+  vertical-align: bottom;
+}
+.myaccntlink > a {
+  color: var(--color-lp1);
+  cursor: pointer;
+}
+
+
+.hvrinfo:after, .thmehvrinfo:after {
+    content: '';
+    display: block;
+    margin: auto;
+    height: 1px;
+    width: 0px;
+    margin-top: -2px;
+    background: transparent;
+    transition: width .5s ease, background-color .5s ease;
+}
+.zc-usermenuheader .dot {
+  margin-top: -2px;
+}
+.dot {
+  background-color: var(--color-lp1);
+  width: 4px;
+  height: 4px;
+  border-radius: 4px;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 7px;
+}
+.signout {
+  color: var(--color-red) !important;
+  font-size: 12px;
+  font-weight: bold;
+  top: 1px;
+}
+
+.userstatusui {
+  padding: 0 56px;
+  margin: 15px 0 10px;
+}
+.status-dropdown {
+  height: 30px;
+  border-radius: 3px;
+  background-color: var(--bg-color-3);
+  border: solid 1px var(--color-divider);
+  position: relative;
+}
+.scodestatus.showactive .scodeoptions {
+  max-height: max-content;
+}
+.scodestatus .scodeoptions {
+  background-color: var(--bg-color-2);
+}
+.scodeoptions, .userstatusui .statusmsg .smsgoptions {
+  width: 278px;
+  max-height: 0;
+  transition: all 0.2s ease-out;
+  overflow: hidden;
+  z-index: 2;
+  background-color: var(--bg-color-3);
+  border-radius: 4px;
+  box-shadow: 0 0 8px var(--box-shadow-color);
+  font-size: 13px;
+  position: absolute;
+  top: calc(100% + 4px);
+}
+.profile-status-icon {
+  background-color: var(--bg-color-3);
+  padding: 10px;
+  flex-shrink: 0;
+}
+.statushoverbox {
+  width: 36px;
+  height: 36px;
+  border-radius: 5px;
+  background-color: transparent;
+  position: relative;
+}
+.status {
+  width: 10px;
+  height: 10px;
+  position: relative;
+  line-height: 8px;
+}
+
+.zcstatus-1 {
+  background-color: #14b474;
+}
+.profile-status-message {
+  // font-family: "zoho-puvi-regular";
+  padding: 10px 12px;
+  text-align: left;
+  flex-grow: 1;
+}
+
+.zcl-divider-from-title:after {
+  content: "";
+  flex-grow: 1;
+  height: 1px;
+  border-bottom: 1px solid var(--color-divider);
+  margin-left: 6px;
+}
+.zcstatus-7 {
+  position: absolute;
+  color: #FFC42D;
+  left: 0px;
+}
+.zcstatus-2 {
+  background-color: #bfcacd;
+}
+.dnd-status-border {
+  border-top: 1px dashed var(--color-divider);
+}
+.zc-usersubsection {
+  margin: 25px 20px;
+}
+.pro-header {
+  font-size: 13px;
+  font-weight: bold;
+  position: relative;
+}
+.zc-usersubsection .options {
+  display: flex;
+  margin-top: 10px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.zc-usersubsection .options > div {
+  width: 48%;
+  height: 36px;
+  border-radius: 4px;
+  margin-top: 10px;
+  display: flex;
+  line-height: 20px;
+  font-size: 14px;
+}
+.pro-header:after {
+  border-bottom: solid 1px var(--border-color);
+  position: absolute;
+  content: "";
+  bottom: -10px;
+  right: 0;
+  width: 100%;
+}
+.zcstatus-5{
+  position: relative;
+  font-size: 15px;
+  z-index: 1;
+  // font-family: ZoFo-ChatBar-v2;
+  color: #f6394d;
+  left: 0px;
+}
+.userstatusui .statusmsg > input {
+  height: 28px;
+  padding: 0 8px;
+  font-size: 13px;
+  border: none;
+  flex-grow: 1;
+  border-radius: 4px;
+  background-color: transparent;
+  color: var(--color-main);
+}
+
+.statusmsg input{
+  outline: none;
+}
+.statusmsg .icnoptns {
+  width: 25px;
+  height: 28px;
+  cursor: pointer;
+  background-color: transparent;
+  border-radius: 0 4px 4px 0;
+  padding-right: 10px;
+}
+.smsgoptions {
+  max-height: 350px;
+  touch-action: none;
+  overflow: hidden !important;
+  padding: 0 6px 0;
+  width: 278px;
+  max-height: 0;
+  transition: all 0.2s ease-out;
+  overflow: hidden;
+  z-index: 2;
+  background-color: var(--bg-color-3);
+  border-radius: 4px;
+  box-shadow: 0 0 8px var(--box-shadow-color);
+  font-size: 13px;
+  position: absolute;
+  top: calc(100% + 4px);
+}
+.statusmsg.showactive .smsgoptions {
+  max-height: 350px;
+}
+ul{
+  list-style: none;
+  padding-left: 10px;
+}
+.statusmsg .smsgoptions li {
+  text-align: left;
+  padding: 7px 15px;
+  font-size: 14px;
+  display: block;
+  position: relative;
+  line-height: 18px;
+  border-radius: 5px;
+}
+.zc-usersubsection .options > div > span[class*="zcf-"] {
+  font-size: 16px;
+  margin-right: 10px;
+  width: 18px;
+  text-align: center;
+  color: var(--color-icon);
+}
+.zc-usersubsection .options > div > span[class*="msi-"] {
+  font-size: 16px;
+  margin-right: 10px;
+  width: 18px;
+  text-align: center;
+  color: var(--color-icon);
+}
+.zc-profilefootr {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  bottom: 30px !important;
+}
+.zc-mycliqapps {
+  // width: 100%;
+  display: flex;
+  align-items: center;
+  height: 60px;
+  padding: 0 30px;
+  background-color: var(--bg-color-3);
+  border-top: solid 1px var(--border-color);
+}
+.zc-mycliqapps > div > span {
+  color: var(--color-lp1);
+  margin-right: 16px;
+  cursor: unset;
+}
+.zc-usersubsection .options > div{
+  display: flex;
+  align-items: center;
+}
+.zc-usersubsection .options > div:hover{
+  background-color: #F1F4F7;
+}
