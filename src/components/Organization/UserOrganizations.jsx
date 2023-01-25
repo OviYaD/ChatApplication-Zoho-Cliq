@@ -22,8 +22,8 @@ export default function UserOrganizations({ orgList }) {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const defOrg = orgs.find(org => org.isDefault);
-        setDefault(defOrg.id);
+        // const defOrg = orgs.find(org => org.isDefault);
+        setDefault(orgs.defaultOrg);
     }, [])
     const openOrganization = (id) => {
 
