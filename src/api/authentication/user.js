@@ -60,13 +60,13 @@ export const ResetPassword = async (data) => {
 
 export const getProfile = async () => {
   const token = localStorage.getItem("token");
-  const options = {
-    headers: {
-      authorization: `Bearer ${token}`,
-    },
-  };
+  
   const userData = await axios
-    .get(`${config.END_POINT}/auth/profile`)
+    .get(`${config.END_POINT}/auth/profile`, {
+      headers: {
+        'Authorization': 'Bearer ' + (localStorage.getItem('token')) || ''
+      }
+    })
     .catch((error) => {
       if (error.response) {
         return { status: false };
