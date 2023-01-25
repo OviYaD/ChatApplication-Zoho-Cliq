@@ -39,9 +39,15 @@ export default function NewOrg() {
     const createOrg = async () => {
         setBtnName("Creating...");
         const res = await createOrganization({ name: orgname, is_discoverable: isPublic });
-        console.log(res);
-        dispatch(addOrg(res));
-        setTimeout(() => navigate('/getstarted'), 2000)
+        console.log(res)
+        if (res.status === 400) {
+            alert(res.message);
+
+            setTimeout(() => navigate({ pathname: "/getstarted", search: "?from=1" }), 2000)
+        }
+        else {
+            dispatch(addOrg(res));
+        }
 
     }
     return <>

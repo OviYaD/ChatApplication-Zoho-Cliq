@@ -39,6 +39,6 @@ export default function MenuIntems({ setOpenStatus }) {
 
             <Avatar onClick={() => { setOpenStatus(true) }} alt="Remy Sharp" src="https://contacts.zoho.in/file?fs=thumb&amp;nocache=1672909825507" style={{ marginLeft: "10px", width: "30px", height: "30px", cursor: "pointer" }} />
         </div>
-        <WidgetsIcon style={{ color: "#979797" }}></WidgetsIcon>
+        <WidgetsIcon onClick={() => navigate({ pathname: "/getstarted", search: `?from=1` })} style={{ cursor: "pointer", color: "#979797" }}></WidgetsIcon>
     </>;
 }

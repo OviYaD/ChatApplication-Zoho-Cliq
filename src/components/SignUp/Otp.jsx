@@ -28,7 +28,7 @@ export default function Otp({ userInfo, changeValidity }) {
             const userInfo = await getProfile();
             dispatch(setUser(userInfo));
             if (searchParams.get('id')) {
-                setTimeout(() => navigate('/join-organization'), 3000);
+                setTimeout(() => navigate({ pathname: '/join-organization', search: `?id=${searchParams.get('id')}` }), 3000);
             }
             else {
                 setTimeout(() => navigate('/getstarted'), 3000);

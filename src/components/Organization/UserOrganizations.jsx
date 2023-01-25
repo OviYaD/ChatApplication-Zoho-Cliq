@@ -13,6 +13,7 @@ import { setOrgList } from '../../redux/slices/organizationSlice';
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 export default function UserOrganizations({ orgList }) {
 
+    const searchParam = new URLSearchParams(document.location.search)
     const [btnName, setBtnName] = useState("Create Organization")
     const [defaultOrg, setDefault] = useState("");
 
@@ -22,8 +23,16 @@ export default function UserOrganizations({ orgList }) {
     const navigate = useNavigate();
 
     useEffect(() => {
-        // const defOrg = orgs.find(org => org.isDefault);
-        setDefault(orgs.defaultOrg);
+        const defOrg = orgs.find(org => org.isDefault);
+        console.log(defOrg);
+        if (defOrg) {
+            localStorage.setItem("!@#$%^org)(*&^%$id", defOrg.id);
+            console.log()
+            if (!searchParam.get('from')) {
+                navigate('/main')
+            }
+            setDefault(defOrg.id);
+        }
     }, [])
     const openOrganization = (id) => {
 
@@ -59,6 +68,7 @@ export default function UserOrganizations({ orgList }) {
             dispatch(setOrgList(updOrg))
         }
     }
+
 
     return <>
         <div className="wh100">
@@ -115,4 +125,6 @@ export default function UserOrganizations({ orgList }) {
         </div>
 
     </>;
+
+
 }

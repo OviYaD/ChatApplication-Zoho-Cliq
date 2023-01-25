@@ -73,6 +73,8 @@ export default function InvitationModal({ open, handleClose }) {
         }
         console.log(inviteMem)
         await createInvite([...inviteMem]);
+        alert("Invitation sent!");
+        handleClose();
     }
 
     return (

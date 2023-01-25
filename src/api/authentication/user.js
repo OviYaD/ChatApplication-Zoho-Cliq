@@ -48,7 +48,7 @@ export const loginUser = async (data) => {
 };
 
 export const verifyOtp = async (data) => {
-  // console.log()
+  console.log(data)
   const msg = await axios.post(`${config.END_POINT}/auth/check-otp`, data);
   console.log(msg);
   return msg.data.isValid;

@@ -18,10 +18,10 @@ export default function CancelRequest() {
 	const addMember = async () => {
 		await joinOrganization({ invitation_id: searchParams.get('id') })
 	}
-	function handleClick() {
+	async function handleClick() {
 		setLoading(true);
-		addMember();
-		setTimeout(() => navigate("/getstarted"), 2000)
+		await addMember();
+		setTimeout(() => navigate({ pathname: "/getstarted", search: "?from=1" }), 2000)
 
 	}
 
@@ -30,17 +30,18 @@ export default function CancelRequest() {
 	// )
 	const navigate = useNavigate();
 	useEffect(() => {
+		console.log("shdsjhdjsh");
 		const getInvitationDetails = async () => {
 			const inviDetails = await getInvitation(searchParams.get('id'));
 			setInvitationDetails(inviDetails);
 			const exists = await checkEmail({ email: inviDetails.email });
 			console.log("exists", exists);
-			if (exists) {
+			if (!exists) {
 				if (localStorage.getItem('token')) {
 					setLoggedIn(true);
 				}
 			}
-			setUserExists(exists);
+			setUserExists(!exists);
 
 		}
 		setQueryId(searchParams.get('id'));
@@ -99,7 +100,7 @@ export default function CancelRequest() {
 									{!userExists && <><div className="font24 clr-hdr fontB mT20 mB30">We can't found you!</div>
 										<div className="w75 mgA">
 											<div className="line24">We've searched your account to join the company wherein your colleague/friend whose email address
-												<span className="fontB font16">oviya.d@codingmart.com</span> is an owner of the organization and your account was missing.
+												<span className="fontB font16">{invitationDetails.owner_email}</span> is an owner of the organization and your account was missing.
 											</div>
 											<div className="mT30 font14 clrS">You can go ahead  and
 												<div className="flexM mT5">

@@ -5,11 +5,11 @@ export default function Profile(params) {
         <div className="prfinfo" prof-header="">
             <div className="bold font14 mrgT15" header="">Contact</div>
             <div className="posrel pair">
-                <div className="prf-adinfo" prof-val="">Anush Kumar</div>
+                <div className="prf-adinfo" prof-val="">Oviya D</div>
                 <div className="ellips">Display Name</div>
             </div>
             <div className="posrel pair">
-                <div className="prf-adinfo" prof-val="">anush.kumar@codingmart.com</div>
+                <div className="prf-adinfo" prof-val="">oviya.d@codingmart.com</div>
                 <div className="ellips">Email</div>
             </div>
             <div className="posrel pair">

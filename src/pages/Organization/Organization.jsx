@@ -27,16 +27,18 @@ export default function Organization() {
     useEffect(() => {
         const getOrgs = async () => {
             const orgs = await getOrganization();
-            setOrgs(orgs.organizations);
-            dispatch(setOrgList(orgs));
+            setOrgs(orgs);
+            if (orgs.length > 0) {
+                dispatch(setOrgList(orgs));
+            }
         }
         setUserDetails(user);
-        if (organization.length === 0) {
-            getOrgs();
-        }
-        else {
-            setOrgs(organization);
-        }
+        // if (organization.length === 0) {
+        getOrgs();
+        // }
+        // else {
+        // setOrgs(organization);
+        // }
 
     }, [])
 

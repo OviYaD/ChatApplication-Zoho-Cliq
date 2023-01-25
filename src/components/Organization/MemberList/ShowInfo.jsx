@@ -6,7 +6,7 @@ export default function ShowInfo({ setStatus }) {
     return <>
         <div id="peopleUserPreviewCnt" className="people-user-preview-cnt userdetail fdirC">
             <div id="peoplePreviewHdr" className="people-user-preview-hdr posrel flexC">
-                <div id="peoplePreviewSubHdr" className="winheader zcl-hdrline"><span id="hdr60016689751" data-key="60016689751" elemtype="contact" purpose="search">Anush Kumar</span>
+                <div id="peoplePreviewSubHdr" className="winheader zcl-hdrline"><span id="hdr60016689751" data-key="60016689751" elemtype="contact" purpose="search">Oviya D</span>
                     <div className='brdr'></div>
                 </div>
                 <div className="people-preview-close zcf-closeB zcl-icon--filled2" documentclick="closePeoplePreview" onClick={() => setStatus(false)}>
@@ -20,15 +20,15 @@ export default function ShowInfo({ setStatus }) {
                     <div className="zcbsprfl">
                         <div className="zcl-img zcl-img-type2 xxl cht-imgbdr mR25">
                             <img
-                                src="https://contacts.zoho.in/file?ID=60016689751&amp;exp=6000&amp;t=user&amp;fs=thumb"
-                                imgsrc="https://contacts.zoho.in/file?ID=60016689751&amp;exp=6000&amp;t=user&amp;fs=thumb"
+                                src="https://contacts.zoho.in/file?ID=60016688887&exp=6000&t=user&fs=thumb"
+                                imgsrc="https://contacts.zoho.in/file?ID=60016688887&exp=6000&t=user&fs=thumb"
                                 documentclick="viewprofileimage"
                                 uid="60016689751"
                             />
                             <div className="usrstatusbg"><div id="contactscode60016689751" scode="-1" className="usrstatus zcstatus--1"></div></div>
                         </div>
                         <div className="usrinfo ellips">
-                            <span id="contactdname60016689751" className="flexC"><span className="ellips font18 bold">Anush Kumar</span><span id="checkin_status" uid="60016689751" className="font14 checkin_status zcpredot"></span></span>
+                            <span id="contactdname60016689751" className="flexC"><span className="ellips font18 bold">Oviya D</span><span id="checkin_status" uid="60016689751" className="font14 checkin_status zcpredot"></span></span>
                             <div id="contactmailid60016689751" className="mT8 ellips">
                                 <div className="deptinfo lineN">
                                     <div id="deprt60016689751" className="posl ellips"></div>

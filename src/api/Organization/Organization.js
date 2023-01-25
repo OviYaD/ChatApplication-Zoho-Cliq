@@ -8,8 +8,15 @@ export const createOrganization = async (data) => {
     headers : {
       'Authorization': 'Bearer ' + (localStorage.getItem('token')) || ''
     }
-  });
+  }).catch((error) => {
+      if (error.response) {
+        return { status: error.response.data  };
+      }
+    });
   console.log(msg);
+  if(msg.status ){
+    return {status:400,message:msg.status.message};
+  }
   return msg.data.organizations[0];
 };
 
@@ -36,11 +43,16 @@ export const getOrganization = async () => {
       'Authorization': 'Bearer ' + (localStorage.getItem('token')) || ''
     }
   });
-  return res.data;
+  console.log(res);
+  return res.data.organizations;
 }
 
 export const setDefaultOrg = async (data) => {
-  const res = await axios.post(`${config.END_POINT}/organization/set-default`,data);
+  const res = await axios.post(`${config.END_POINT}/organization/set-default`,data,{
+    headers: {
+      'Authorization': 'Bearer ' + (localStorage.getItem('token')) || ''
+    }
+  });
 }
 
 export const getMember = async() => {
@@ -54,15 +66,15 @@ export const getMember = async() => {
 }
 
 export const getInvitation = async (data) => {
-  // const res = await axios.get(`{config.END_POINT}/organization/invite/${data}`);
-  const res = await axios.get(`${config.END_POINT}/organization/invite/6c43bcec-53d6-47c4-b989-af16e46f6f2a`);
+  const res = await axios.get(`${config.END_POINT}/organization/invite/${data}`);
+  // const res = await axios.get(`${config.END_POINT}/organization/invite/6c43bcec-53d6-47c4-b989-af16e46f6f2a`);
   console.log(res)
   return res.data.invite;
   
 }
 
 export const joinOrganization = async (data) => {
-  const res = await axios.post(`${config.END_POINT}/organization/join/`,data,{
+  const res = await axios.post(`${config.END_POINT}/organization/join`,data,{
     headers:{
       'Authorization': 'Bearer ' + (localStorage.getItem('token')) || ''
     }

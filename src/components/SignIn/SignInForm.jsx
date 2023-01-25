@@ -90,11 +90,11 @@ export default function SignInForm({ forgetPassword }) {
         if (status) {
             console.log(searchParams.get('id'))
             if (searchParams.get('id')) {
-                setTimeout(() => navigate('/join-organization'), 3000);
+                setTimeout(() => navigate({ pathname: '/join-organization', search: `?id=${searchParams.get('id')}` }), 5000);
                 setLoading(false);
             }
             else {
-                setTimeout(() => navigate('/getstarted'), 3000);
+                setTimeout(() => navigate('/getstarted'), 5000);
                 setLoading(false);
             }
         }
@@ -112,7 +112,7 @@ export default function SignInForm({ forgetPassword }) {
         if (validity) {
             console.log(searchParams.get('id'))
             if (searchParams.get('id')) {
-                setTimeout(() => navigate('/join-organization'), 5000);
+                setTimeout(() => navigate({ pathname: '/join-organization', search: `?id=${searchParams.get('id')}` }), 3000);
             }
             else {
                 setTimeout(() => navigate('/getstarted'), 5000);
