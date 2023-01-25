@@ -41,7 +41,7 @@ export default function NewOrg() {
         const res = await createOrganization({ name: orgname, is_discoverable: isPublic });
         console.log(res)
         if (res.status === 400) {
-            alert(res.message);
+            alert("Already have one Organization");
 
             setTimeout(() => navigate({ pathname: "/getstarted", search: "?from=1" }), 2000)
         }

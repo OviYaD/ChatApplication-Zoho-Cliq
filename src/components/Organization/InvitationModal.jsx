@@ -93,7 +93,7 @@ export default function InvitationModal({ open, handleClose }) {
                                 <table id="invite_inputbox mTB10" >
                                     <tbody>
                                         <tr>
-                                            <td className='name '><input content="fname" name="nameInp1" placeholder="Scott" onChange={handleChange} /></td>
+                                            <td className='name '><input content="fname" name="nameInp1" placeholder="Scott" style={{ color: "black" }} onChange={handleChange} /></td>
                                             <td className="posrel emailInput"><input listenevent="blur" name="emailInp1" content="email" inputpurpose="invite_table" listen="keyup" placeholder="scott@example.com" onChange={handleChange} /></td>
                                         </tr>
                                         <tr>
