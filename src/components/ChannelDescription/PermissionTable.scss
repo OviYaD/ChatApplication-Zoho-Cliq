@@ -1,0 +1,54 @@
+.channel-permission-cont {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 36px;
+  margin-right: 35px;
+  height: 100%;
+  font-family: "zoho-puvi-regular";
+}
+.channel-permission-cont .tblHead {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+.tbl {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+.tblRow {
+  display: table-row;
+}
+.tblHead .tblCel:first-child {
+  border-radius: 6px 0 0 0;
+}
+.tbl .tblCel:last-child {
+  border-right: 1px solid var(--color-divider);
+  border-radius: 0 6px 0 0;
+}
+.tblHead .tblCel {
+  background-color: var(--bg-color-2);
+  border: 1px solid var(--color-divider);
+  border-right: none;
+  font-size: 15px;
+  font-weight: bold;
+  color: var(--color-main);
+}
+.channel-permission-cont .tblCel {
+  padding: 15px 10px;
+  text-align: center;
+}
+.tbl .tblCel:first-child {
+  padding-left: 36px;
+}
+.tblCel {
+  display: table-cell;
+  vertical-align: middle;
+}
+.tbl.tblMain {
+  border: 1px solid var(--color-divider);
+  border-top: none;
+}
+.channel-preview-con .tblMain {
+  margin-bottom: 10px;
+}
