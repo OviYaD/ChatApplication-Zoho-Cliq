@@ -1,7 +1,7 @@
 .zccontent {
   padding-top: 0px;
   overflow: hidden;
-  background-color: var(--default-bg-color);
+  // background-color: var(--default-bg-color);
   height: 100%;
 
   article {
@@ -111,7 +111,8 @@
         position: relative;
         cursor: pointer;
         border-left: 2px solid var(--lhs-nav-bg);
-        padding: 0px 0px;
+        // padding: -5px 0px 10px 0px;
+        padding-bottom: 10px;
         height: 54px;
         margin: 2px 0px;
         width: var(--lhs-modules-wid);
@@ -184,22 +185,22 @@
   border-color: rgb(61, 194, 172) !important;
   background-color: var(--lhs-bg);
 }
-.contact-list{
+.contact-list {
   font-family: inherit;
-  font-family:"zoho-puvi-regular";
+  font-family: "zoho-puvi-regular";
   width: 230px;
-    color: var(--lhs-color);
-    background: var(--lhs-bg);
-    border-right: 1px solid rgba(0,0,0,0.2);
-    // overflow:hidden;
-    height:100%;
-    flex-grow:1;
-    display:flex;
-    flex-direction:column;
-    overflow-x: hidden;
-    overflow-y: auto;
-    // padding-bottom: 5px;
-    padding: 20px;
-    // padding: 0px 14px;
-    color: var(--main-clr);
+  color: var(--lhs-color);
+  background: var(--lhs-bg);
+  border-right: 1px solid rgba(0, 0, 0, 0.2);
+  // overflow:hidden;
+  height: 100%;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  overflow-y: auto;
+  // padding-bottom: 5px;
+  padding: 20px;
+  // padding: 0px 14px;
+  color: var(--main-clr);
 }
