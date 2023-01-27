@@ -3,21 +3,27 @@ import "./MemberList.scss"
 import InvitationModal from '../InvitationModal';
 import ShowInfo from './ShowInfo';
 import { getMember } from '../../../api/Organization/Organization';
+import { useSelector } from 'react-redux';
+import { setUser } from '../../../redux/slices/userSlice';
 
 export default function MemberList(params) {
 
+    const user = useSelector((state) => state.user)
     const [showInfo, setStatus] = useState(false);
     const [memList, setMemList] = useState([]);
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+    const [userEmail,setUser] = useState("")
 
     useEffect(() => {
         const getMemberList = async () => {
             const mems = await getMember();
             setMemList(mems);
+            console.log("user");
         }
         getMemberList();
+        console.log("user", user);
     }, [])
     return <>
         <div className="flex" style={{ backgroundColor: "#fff", width: "100%", borderRadius: "10px", marginLeft: "2px", marginRight: "8px", position: "relative" }}>
@@ -54,7 +60,7 @@ export default function MemberList(params) {
                 <div id="people_listview flexC" zc_sticky_title_list="" className="flexG ovrflwA user-card-container">
                     <div className="flex flexW listview"  >
                         {memList.map((mem, index) => {
-                            return <div uid={mem.id} key={index} type="user" className="user-card-item" documentclick="viewUserProfile" data-peoplepreview="" onClick={() => setStatus(true)}>
+                            return <div uid={mem.id} key={index} type="user" className="user-card-item" documentclick="viewUserProfile" data-peoplepreview="" onClick={() => { setStatus(true); setUser(mem.email) }}>
                                 <div className="flex fdirC">
                                     <div className="user-card-image">
                                         <div id="imgcontainer" className="flexM curP" uid="60016689751" imgsrc="https://contacts.zoho.in/file?ID=60016689751&amp;exp=6000&amp;t=user&amp;fs=thumb">
@@ -110,7 +116,7 @@ export default function MemberList(params) {
 
                 </div>
             </div>
-            {showInfo && <ShowInfo setStatus={setStatus}></ShowInfo>}
+            {showInfo && <ShowInfo setStatus={setStatus} userEmail={userEmail}></ShowInfo>}
 
         </div>
     </>;

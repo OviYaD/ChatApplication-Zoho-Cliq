@@ -1,8 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import Profile from './Profile';
 import CommonChats from './CommonChats';
+import { getMemberDetails } from '../../../api/Organization/Organization';
 
-export default function ShowInfo({ setStatus }) {
+export default function ShowInfo({ setStatus, userEmail }) {
+
+    const [userDetails, setDetails] = useState();
+    useEffect(() => {
+        const getUserDetails = async () => {
+            await getMemberDetails({ email: userEmail });
+        }
+        getUserDetails();
+    })
     return <>
         <div id="peopleUserPreviewCnt" className="people-user-preview-cnt userdetail fdirC">
             <div id="peoplePreviewHdr" className="people-user-preview-hdr posrel flexC">

@@ -5,7 +5,7 @@
   box-shadow: 297px 0px 3px var(--box-shadow-color);
   flex-shrink: 0;
   position: relative;
-  width: 82rem;
+  width: 100%;
   z-index: 15;
 }
 .custom_logo {
@@ -262,14 +262,13 @@
 }
 
 .ztb-item-bx {
-  margin-right: 22px;
   display: inline-flex;
   align-items: center;
   flex-shrink: 0;
   height: 100%;
   position: relative;
   padding: 5px 0;
-  margin: 0 14px 0 10px;
+  margin-left: auto;
 
   .tpbricon {
     width: 32px;

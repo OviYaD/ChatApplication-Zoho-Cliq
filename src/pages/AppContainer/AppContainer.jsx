@@ -5,7 +5,7 @@ import MainContainer from '../../components/MainContainer/MainContainer';
 export default function AppContainer() {
 
   return <>
-    <div style={{ backgroundColor: "black", position: "fixed" }}>
+    <div style={{ backgroundColor: "black", position: "fixed", width: "100%" }}>
       <MenuBar></MenuBar>
       <MainContainer></MainContainer>
     </div>

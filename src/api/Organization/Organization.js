@@ -65,6 +65,11 @@ export const getMember = async() => {
   return res.data.members;
 }
 
+export const getMemberDetails = async(data) => {
+  const res = await axios.post(`${config.END_POINT}/organization/member`,data);
+  console.log(res);
+}
+
 export const getInvitation = async (data) => {
   const res = await axios.get(`${config.END_POINT}/organization/invite/${data}`);
   // const res = await axios.get(`${config.END_POINT}/organization/invite/6c43bcec-53d6-47c4-b989-af16e46f6f2a`);
