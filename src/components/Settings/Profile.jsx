@@ -14,9 +14,9 @@ export default function Profile({ setOpenStatus }) {
         navigate('/signin', { replace: true });
     }
     return <>
-        <div id="myModal" className="modal">
+        <div id="myModal" className="profile-modal">
 
-            <div className="modal-content" style={{ padding: "0px 0 0 0px" }}>
+            <div className="profile-modal-content" style={{ padding: "0px 0 0 0px" }}>
                 <div style={{ height: "calc(100vh - 50px)", overflow: "auto" }}>
                     <div className="zc-usermenuheader">
                         <div purpose="closerhswin" className="msi-chtclose cur" onClick={() => setOpenStatus(false)}>
@@ -255,7 +255,7 @@ export default function Profile({ setOpenStatus }) {
                     </div>
                 </div>
             </div>
-            <div className="zc-profilefootr" style={{ width: "520px" }}>
+            <div className="zc-profilefootr" style={{ width: "25%" }}>
                 <div purpose="cliqapps" className="zc-mycliqapps justifySB flexC">
                     <div className="mobileapps flexC">
                         <span className="font13">Mobile</span><a target="_blank" href="http://itunes.apple.com/app/id1056478397?ls=1&amp;mt=8" className="mR20"><span className="msi-macstore font18 tooltip-up posrel" tooltip-title="iOS">

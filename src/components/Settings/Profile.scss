@@ -1,18 +1,17 @@
-.modal {
+.profile-modal {
     display: block;
     position: fixed;
     z-index: 100;
     width: 630px !important; 
-    padding-left: 61% !important;
+    padding-left: 71% !important;
     padding-top: 3%;
     bottom: 0;
-    top: 0;
     height: 100%;
     overflow: auto;
     background-color: rgb(0, 0, 0);
     background-color: rgba(0, 0, 0, 0.4);
   }
-  .modal-content {
+  .profile-modal-content {
     background-color: #fefefe;
     padding: 0 0 0 0;
     border: 1px solid #888;
@@ -351,7 +350,7 @@ ul{
   display: flex;
   flex-direction: column;
   position: absolute;
-  bottom: 30px !important;
+  bottom: 2px !important;
 }
 .zc-mycliqapps {
   // width: 100%;

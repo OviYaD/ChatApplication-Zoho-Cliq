@@ -18,7 +18,7 @@ import ChannelList from '../ChannelDescription/ChannelList';
 export default function MainContainer() {
     const [showCreateModal, setStatus] = useState(false);
     const [choice, setChoice] = useState("Org");
-    const [activeMenu, setActiveMenu] = useState("Org");
+    const [activeMenu, setActiveMenu] = useState("channels");
 
     return <>
         <div className="zccontent flexG main_container " >

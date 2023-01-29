@@ -34,31 +34,49 @@
   font-family: "zoho-puvi-regular";
   src: url(../static/fonts/ZohoPuviRegular.otf);
 }
-body {
-  background-color: black;
-}
-
 :root {
   --zoho-logo: url(//www.zohowebstatic.com/sites/zweb/images/commonroot/zoho-logo.svg);
   --primary-anchor-clr: #03a9f5;
   --common-elements: url(https://www.zohowebstatic.com/sites/zweb/images/commonroot/common-elements.svg);
+  --bg-color-3: #fff;
+  --border-color: #eceef1;
+  --list-item-hover-bg: #f1f4f7;
+  --bg-color-2: #f7f7f7;
+  --color-icon-rgb: 98, 114, 130;
+  --default-bg-color: #FFF;
+  --lhs-color: #fff;
+  --color-main: #222;
+  --box-shadow-color: rgba(0, 0, 0, 0.1);
   --body-bg: #202020;
   --lhs-nav-bg: #222;
   --lhs-nav-color: #b3b3b3;
   --topbar-bg: #2b2b2b;
+  --color-link: #1991EB;
   --lhs-sub-item-hovr: rgb(73 73 73 / 50%);
   --lhs-sub-item-selcted: #494949;
   --lhs-btn-bg: #3d3d3d;
   --remote-checkout-color: #464646;
   --lhs-bg-color: #2b2b2b;
+  --lhs-bg: #2b2b2b;
+  --bg-color-3: #fff;
+  --color-divider: #e6e6e6;
+  --box-shadow-color: rgba(0, 0, 0, 0.1);
+  --btn-neg-secondary-bg: #fff;
+  --icon-box-shadow: rgba(0, 0, 0, 0.2);
+  --color-lp3: #c4c4c4;
   --lhs-list-hover-bg: #494949;
   --color-icon-lhs: #979797;
   --color-divider-lhs: #393939;
+  --btn-neg-secondary-border: #ef5364;
   --color-icon-lhs-rgb: 151, 151, 151;
   --color-secondary-lhs: #b3b3b3;
   --box-shadow-color: rgba(0, 0, 0, 0.1);
   --lhs-width: 250px;
   --lhs-modules-wid: 64px;
+  --input-border-color: #e6e6e6;
+  --color-red: #ef5364;
+  --color-err: #f6394d;
+  --box-shadow-color3: rgba(0, 0, 0, 0.2);
   --color-hover1: #f1f4f7;
   --color-hover1-rgb: 241, 244, 247;
   --color-hover2: #f1f4f7;
@@ -76,10 +94,19 @@ body {
   --color-lp2: #ababab;
   --color-lp3: #c4c4c4;
   --clr-white: #fff;
+  --color-icon: #627282;
   --lhs-sub-item-hovr: rgb(73 73 73 / 50%);
   --color-theme: var(--zcl-color-theme1);
   --zcl-color-theme1-rgb: 61, 194, 172;
   --lhs-modules-wid: 64px;
+  --main-clr: #fff;
+  --color-secondary: #666;
+  --bg-color-2: #f7f7f7;
+  --color-hdr: #1a364f;
+  --color-red: #ef5364;
+  --color-lp1: #888;
+  --color-theme: var(--zcl-color-theme1);
+  --zcl-color-theme1: #3DC2AC;
 }
 
 .flexC,
@@ -88,13 +115,143 @@ body {
   align-items: center;
 }
 
+.mR8 {
+  margin-right: 8px;
+}
+
 .justifySB,
 .fjustifySB {
   justify-content: space-between;
 }
 
+.mT10, .mrgT10 {
+  margin-top: 10px;
+}
+
+.font13 {
+  font-size: 13px;
+}
+
+.font14 {
+  font-size: 14px;
+}
+
+.mrgT25 {
+  margin-top: 25px;
+}
+
+.mR20 {
+  margin-right: 20px;
+}
+
+.mrgR10 {
+  margin-right: 10px;
+}
+
+.status-dropdown.showactive {
+  border-color: var(--color-theme);
+}
+
+.currentactivityprfl {
+  height: 30px;
+}
+
+.userstatusui .scodestatus .status {
+  width: 10px;
+  height: 10px;
+  position: relative;
+  line-height: 8px;
+}
+
+.zcstatus-3 {
+  background-color: #fd3a36;
+}
+
+.status {
+  display: inline-block;
+  border-radius: 10px;
+  vertical-align: middle;
+  height: 8px;
+  width: 8px;
+}
+
+.mR10 {
+  margin-right: 10px;
+}
+
+.dIB {
+  display: inline-block;
+}
+
+.curP {
+  cursor: pointer;
+}
+
+.flexM, .dflxjustcent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .mT2 {
   margin-top: 2px;
+}
+
+.mTB10 {
+  margin: 10px 0;
+}
+
+.w25 {
+  width: 25%;
+}
+
+.clr-S {
+  color: var(--color-secondary);
+}
+
+.mLR20 {
+  margin: 0 20px;
+}
+
+.line20 {
+  line-height: 20px;
+}
+
+.font15 {
+  font-size: 15px;
+}
+
+.ellips {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.line18 {
+  line-height: 18px;
+}
+
+.mT3 {
+  margin-top: 3px;
+}
+
+.font14 {
+  font-size: 14px;
+}
+
+.ellips, .cmsg-btn, .zctitle {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: normal;
+}
+
+.mT3 {
+  margin-top: 3px;
+}
+
+.clr-S {
+  color: var(--color-secondary);
 }
 
 .flexG,
@@ -102,9 +259,64 @@ body {
   flex-grow: 1;
 }
 
+.ovrflwA {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.flexW {
+  flex-wrap: wrap;
+}
+
 .flex,
 .dflx {
   display: flex;
+}
+
+.mT50 {
+  margin-top: 50px;
+}
+
+.pLR36 {
+  padding: 0 36px;
+}
+
+.mT10,
+.mrgT10 {
+  margin-top: 10px;
+}
+
+.posrel {
+  position: relative;
+}
+
+.mL25 {
+  margin-left: 25px;
+}
+
+.pR30 {
+  padding-right: 30px;
+}
+
+.pL40 {
+  padding-left: 40px;
+}
+
+.flexG,
+.flxG {
+  flex-grow: 1;
+}
+
+.mT25 {
+  margin-top: 25px;
+}
+
+.pR36 {
+  padding-right: 36px;
+}
+
+.dN {
+  display: none;
 }
 
 .fshrink {
@@ -118,6 +330,22 @@ body {
 .justifySB,
 .fjustifySB {
   justify-content: space-between;
+}
+
+.font18 {
+  font-size: 18px;
+}
+
+.font14 {
+  font-size: 14px;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.mrgT15 {
+  margin-top: 15px;
 }
 
 .fdirC,
@@ -136,4 +364,168 @@ body {
 
 .mB20 {
   margin-bottom: 20px;
+}
+
+.pB5 {
+  padding-bottom: 5px;
+}
+
+.ellips {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.fontb {
+  font-weight: bold;
+}
+
+.font17 {
+  font-size: 17px;
+}
+
+.font16 {
+  font-size: 16px;
+}
+
+.w100 {
+  width: 100%;
+}
+
+.font12 {
+  font-size: 12px;
+}
+
+.mL15 {
+  margin-left: 15px;
+}
+
+.mL10 {
+  margin-left: 10px;
+}
+
+.clr-lp1 {
+  color: var(--color-lp1);
+}
+
+.textR {
+  text-align: right;
+}
+
+.fdirC {
+  flex-direction: column;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.ovrflwH {
+  overflow: hidden;
+}
+
+.ovrflwA {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.fjustifySA {
+  justify-content: space-around;
+}
+
+.flex {
+  display: flex;
+}
+
+.wh100 {
+  width: 100%;
+  height: 100%;
+}
+
+.flex {
+  display: flex;
+}
+
+.flexM {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pL1 {
+  padding-left: 1rem;
+}
+
+.mB80 {
+  margin-bottom: 80px;
+}
+
+.font300 {
+  font-weight: 300;
+}
+
+.font28 {
+  font-size: 1.75em;
+}
+
+.clr-hdr {
+  color: var(--color-hdr);
+}
+
+.mB35 {
+  margin-bottom: 35px;
+}
+
+.fontB {
+  font-weight: bold;
+}
+
+.font24 {
+  font-size: 1.5em;
+}
+
+.clr-hdr {
+  color: var(--color-hdr);
+}
+
+.clr-lp1 {
+  color: var(--color-lp1);
+}
+
+.mB30 {
+  margin-bottom: 30px;
+}
+
+.line26 {
+  line-height: 26px;
+}
+
+.fontI {
+  font-style: italic;
+}
+
+.fontB {
+  font-weight: bold;
+}
+
+.font16 {
+  font-size: 1em;
+}
+
+.line20 {
+  line-height: 20px;
+}
+
+.mT5 {
+  margin-top: 5px;
+}
+
+.textL {
+  text-align: left;
+}
+
+.curP,
+.cur {
+  cursor: pointer;
 }/*# sourceMappingURL=App.css.map */

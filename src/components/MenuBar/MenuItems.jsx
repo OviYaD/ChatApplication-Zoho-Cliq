@@ -13,7 +13,7 @@ import ViewModuleIcon from '@mui/icons-material/ViewModule';
 import { useDispatch } from 'react-redux';
 import { removeUser } from '../../redux/slices/userSlice';
 import { useNavigate } from 'react-router-dom';
-export default function MenuIntems({ setOpenStatus }) {
+export default function MenuItems({ setOpenStatus }) {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();

@@ -91,6 +91,19 @@
 .fjustifySB {
   justify-content: space-between;
 }
+.mL8 {
+  margin-left: 8px;
+}
+.floatl{
+  float: left;
+}
+.textC {
+  text-align: center;
+}
+
+.curP {
+  cursor: pointer;
+}
 .mT10, .mrgT10 {
   margin-top: 10px;
 }
@@ -333,6 +346,9 @@
   overflow-x: hidden;
   overflow-y: auto;
 }
+.fjustifySA {
+  justify-content: space-around;
+}
 .flex {
   display: flex;
 }
@@ -378,8 +394,21 @@
 .clr-hdr {
   color: var(--color-hdr);
 }
+.font13 {
+  font-size: 13px;
+}
+.clr6 {
+  color: var(--color-secondary);
+}
 .clr-lp1 {
   color: var(--color-lp1);
+}
+.mL20 {
+  margin-left: 20px;
+}
+
+.justifyE, .fjustifyE {
+  justify-content: flex-end;
 }
 .mB30 {
   margin-bottom: 30px;

@@ -59,10 +59,12 @@ h2 {
     align-items: center;
   }
   .table-header {
-    background-color: #95A5A6;
-    font-size: 14px;
+    color: rgb(61, 194, 172);
+    font-size: 15px;
     text-transform: uppercase;
     letter-spacing: 0.03em;
+    font-weight: bold;
+    font-family: 'zoho-puvi-semi-bold';
   }
   .table-row {
     background-color: #ffffff;

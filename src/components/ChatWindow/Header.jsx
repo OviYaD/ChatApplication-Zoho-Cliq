@@ -2,7 +2,7 @@ import React from 'react';
 import Diversity3OutlinedIcon from '@mui/icons-material/Diversity3Outlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 
-export default function Header({ setOpenStatus }) {
+export default function Header({ setOpenStatus, bodyContent, setBodyContent }) {
     return <>
         <div className="chatHeader">
             <div className="chat-wrapper dflx" style={{ justifyContent: "space-between" }}>
@@ -20,8 +20,8 @@ export default function Header({ setOpenStatus }) {
                             </div>
                         </div>
                         <div className='dflx opt '>
-                            <div className='opt-active'>Messages</div>
-                            <div>Media Files</div>
+                            <div className={`curP ${bodyContent === "chat" && "opt-active"}`} onClick={() => setBodyContent("chat")}>Messages</div>
+                            <div className={`curP ${bodyContent !== "chat" && "opt-active"}`} onClick={() => setBodyContent("media")}> Media Files</div>
                         </div>
                     </div>
                 </div>
