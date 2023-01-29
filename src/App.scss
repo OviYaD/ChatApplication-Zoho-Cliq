@@ -107,6 +107,9 @@
 .mT10, .mrgT10 {
   margin-top: 10px;
 }
+.mR12 {
+  margin-right: 12px;
+}
 .font13 {
   font-size: 13px;
 }
@@ -196,6 +199,21 @@
 .font14 {
   font-size: 14px;
 }
+.w75 {
+  width: 75%;
+}
+.posabs {
+  position: absolute;
+}
+.pLR36 {
+  padding: 20px 36px ;
+}
+.bdrR100 {
+  border-radius: 100%;
+}
+.font16 {
+  font-size: 16px;
+}
 .ellips, .cmsg-btn, .zctitle {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -227,9 +245,7 @@
 .mT50 {
   margin-top: 50px;
 }
-.pLR36 {
-  padding: 0 36px;
-}
+
 .mT10,
 .mrgT10 {
   margin-top: 10px;

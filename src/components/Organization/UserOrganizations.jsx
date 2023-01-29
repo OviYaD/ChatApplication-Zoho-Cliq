@@ -94,7 +94,7 @@ export default function UserOrganizations({ orgList }) {
                                         {orgs.map((org, index) => {
                                             return <li className="table-row" key={index}>
                                                 <div className="col col-1"  >{org.name}</div>
-                                                <div className="col col-2"   >{org.owner}</div>
+                                                <div className="col col-2"   >{org.owner.name}</div>
                                                 <div className="col col-3" >
                                                     <Button variant="contained" color="success" onClick={() => openOrganization(org.id)}>
                                                         Go

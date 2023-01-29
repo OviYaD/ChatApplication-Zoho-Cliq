@@ -8,9 +8,11 @@ import VolumeMuteIcon from '@mui/icons-material/VolumeMute';
 import VolumeUpOutlinedIcon from '@mui/icons-material/VolumeUpOutlined';
 import VolumeOffOutlinedIcon from '@mui/icons-material/VolumeOffOutlined';
 import Profile from '../Settings/Profile';
+import PersonalizeModal from '../Settings/PersonalizeModal';
 
 export default function MenuBar() {
     const [openProfile, setOpenStatus] = useState(false);
+    const [openPersonalize, setOpenPersonalizeStatus] = useState(false)
     const [mute, setMuteState] = useState(false);
     return <>
         <div className="topbar">
@@ -29,8 +31,8 @@ export default function MenuBar() {
                     <Search></Search>
                     <MenuItems setOpenStatus={setOpenStatus}></MenuItems>
                 </div>
-                {openProfile && <Profile setOpenStatus={setOpenStatus} ></Profile>}
-
+                {openProfile && <Profile setOpenStatus={setOpenStatus} setOpenPersonalizeStatus={setOpenPersonalizeStatus}></Profile>}
+                {openPersonalize && <PersonalizeModal setOpenPersonalizeStatus={setOpenPersonalizeStatus}></PersonalizeModal>}
 
                 {/* <a id="ztb-logo" className="custom_logo zcdefalut-logo">
                     <span id="ztb-logo-rebrand" className="zclogo flex">
