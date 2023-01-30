@@ -90,12 +90,12 @@ export default function SignInForm({ forgetPassword }) {
         if (status) {
             console.log(searchParams.get('id'))
             if (searchParams.get('id')) {
-                setTimeout(() => navigate({ pathname: '/join-organization', search: `?id=${searchParams.get('id')}` }), 5000);
-                setLoading(false);
+                setTimeout(() => { navigate({ pathname: '/join-organization', search: `?id=${searchParams.get('id')}` }); setLoading(false) }, 5000);
+                // setLoading(false);
             }
             else {
-                setTimeout(() => navigate('/getstarted'), 5000);
-                setLoading(false);
+                setTimeout(() => { navigate('/getstarted'); setLoading(false) }, 5000);
+                // setLoading(false);
             }
         }
         else {
