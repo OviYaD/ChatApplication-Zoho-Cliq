@@ -12,6 +12,7 @@ import MemberList from '../Organization/MemberList/MemberList';
 import Profile from '../Settings/Profile';
 import ProfileInfo from '../ChatWindow/ProfileInfo';
 import ChannelList from '../ChannelDescription/ChannelList';
+import { useEffect } from 'react';
 
 
 
@@ -19,7 +20,7 @@ export default function MainContainer() {
     const [showCreateModal, setStatus] = useState(false);
     const [choice, setChoice] = useState("Org");
     const [activeMenu, setActiveMenu] = useState("channels");
-
+    
     return <>
         <div className="zccontent flexG main_container " >
             <article>
