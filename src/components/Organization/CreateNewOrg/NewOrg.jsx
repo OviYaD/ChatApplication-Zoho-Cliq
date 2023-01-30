@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { toast } from 'react-toastify';
 import Header from '../Header';
 import ApartmentIcon from '@mui/icons-material/Apartment';
 import Checkbox from '@mui/material/Checkbox';
@@ -39,14 +40,36 @@ export default function NewOrg() {
     const createOrg = async () => {
         setBtnName("Creating...");
         const res = await createOrganization({ name: orgname, is_discoverable: isPublic });
-        console.log(res)
-        if (res.status === 400) {
-            alert("Already have one Organization");
+        console.log(res.status);
 
+        if (res.status) {
+            console.log(res.status)
+            // alert("Already have one Organization");
+            toast.error(res.status.message, {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            })
             setTimeout(() => navigate({ pathname: "/getstarted", search: "?from=1" }), 2000)
         }
         else {
+            toast.success("Organization Created", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            })
             dispatch(addOrg(res));
+            setTimeout(() => navigate({ pathname: "/getstarted", search: "?from=1" }), 2000)
         }
 
     }

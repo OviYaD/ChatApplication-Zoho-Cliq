@@ -3,21 +3,21 @@ import axios from "axios";
 import config from "../../config";
 
 export const createOrganization = async (data) => {
-  
-  const msg = await axios.post(`${config.END_POINT}/organization/create`, data,{
+
+  try{
+    const msg = await axios.post(`${config.END_POINT}/organization/create`, data,{
     headers : {
       'Authorization': 'Bearer ' + (localStorage.getItem('token')) || ''
     }
-  }).catch((error) => {
-      if (error.response) {
-        return { status: error.response.data  };
-      }
-    });
-  console.log(msg);
-  if(msg.status ){
-    return {status:400,message:msg.status.message};
+  })
+  return msg.data.organizations[0]
   }
-  return msg.data.organizations[0];
+  catch(error){
+      if (error.response) {
+        return { status: error.response.data };
+      }
+  };
+ 
 };
 
 export const createInvite = async (data) => {
@@ -55,8 +55,9 @@ export const setDefaultOrg = async (data) => {
   });
 }
 
-export const getMember = async() => {
-  const res = await axios.post(`${config.END_POINT}/organization/members`,{organization_id:localStorage.getItem('!@#$%^org)(*&^%$id')}, {
+export const getMember = async(data=null) => {
+  console.log(data);
+  const res = await axios.post(`${config.END_POINT}/organization/members`,{organization_id:localStorage.getItem('!@#$%^org)(*&^%$id'),...data}, {
     headers: {
       'Authorization': 'Bearer ' + (localStorage.getItem('token')) || ''
     }
