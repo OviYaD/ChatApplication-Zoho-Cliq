@@ -54,7 +54,11 @@ export const verifyOtp = async (data) => {
   return msg.data.isValid;
 };
 export const ResetPassword = async (data) => {
-  await axios.post(`${config.END_POINT}/auth/reset-password`, data);
+  await axios.post(`${config.END_POINT}/auth/reset-password`, data,{
+    headers: {
+        'Authorization': 'Bearer ' + (localStorage.getItem('token')) || ''
+      }
+  });
   return true;
 };
 
