@@ -14,7 +14,7 @@ export default function SignIn() {
 
     useEffect(() => {
         if (localStorage.getItem("token")) {
-            navigate('/main');
+            navigate('/getstarted');
         }
     }, [])
 

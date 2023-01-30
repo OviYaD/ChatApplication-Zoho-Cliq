@@ -9,7 +9,7 @@ export function SignUp() {
     const navigate = useNavigate();
     useEffect(() => {
         if (localStorage.getItem("token")) {
-            navigate('/main');
+            navigate('/getstarted');
         }
     }, [])
     return <>
