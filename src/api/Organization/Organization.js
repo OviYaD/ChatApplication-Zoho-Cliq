@@ -66,8 +66,13 @@ export const getMember = async() => {
 }
 
 export const getMemberDetails = async(data) => {
-  const res = await axios.post(`${config.END_POINT}/organization/member`,data);
-  console.log(res);
+  const res = await axios.post(`${config.END_POINT}/organization/member`,data,{
+    headers: {
+      'Authorization': 'Bearer ' + (localStorage.getItem('token')) || ''
+    }
+  });
+  // console.log(res);
+  return res.data.profile;
 }
 
 export const getInvitation = async (data) => {

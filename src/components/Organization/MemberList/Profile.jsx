@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 
-export default function Profile(params) {
+export default function Profile({ userDetails }) {
     return <>
         <div className="prfinfo" prof-header="">
             <div className="bold font14 mrgT15" header="">Contact</div>
             <div className="posrel pair">
-                <div className="prf-adinfo" prof-val="">Oviya D</div>
+                <div className="prf-adinfo" prof-val="">{userDetails.first_name}</div>
                 <div className="ellips">Display Name</div>
             </div>
             <div className="posrel pair">
-                <div className="prf-adinfo" prof-val="">oviya.d@codingmart.com</div>
+                <div className="prf-adinfo" prof-val="">{userDetails.email}</div>
                 <div className="ellips">Email</div>
             </div>
             <div className="posrel pair">
@@ -48,14 +48,14 @@ export default function Profile(params) {
                 <div className="ellips">Employee ID</div>
             </div>
             <div className="posrel pair">
-                <div className="prf-adinfo" prof-val=""><div id="statusmsg" className="zchvrsts line-clamp" operation="" uid="60016689751">Invited</div></div>
+                <div className="prf-adinfo" prof-val=""><div id="statusmsg" className="zchvrsts line-clamp" operation="" uid="60016689751">{userDetails.status}</div></div>
                 <div className="ellips">Status</div>
             </div>
         </div>
         <div className="prfinfo" prof-header="">
             <div className="bold font14 mrgT15" header="">Geo Location</div>
             <div className="posrel pair">
-                <div className="prf-adinfo" prof-val="">India</div>
+                <div className="prf-adinfo" prof-val="">{userDetails.country}</div>
                 <div className="ellips">Country</div>
             </div>
             <div className="posrel pair">

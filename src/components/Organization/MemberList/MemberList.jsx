@@ -8,13 +8,13 @@ import { setUser } from '../../../redux/slices/userSlice';
 
 export default function MemberList(params) {
 
-    const user = useSelector((state) => state.user)
+    const user = useSelector((state) => state.user);
     const [showInfo, setStatus] = useState(false);
     const [memList, setMemList] = useState([]);
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-    const [userEmail,setUser] = useState("")
+    const [userEmail, setUser] = useState("")
 
     useEffect(() => {
         const getMemberList = async () => {

@@ -85,7 +85,7 @@ export const checkEmail = async (data) => {
   console.log(config.END_POINT);
   const msg = await axios.post(`${config.END_POINT}/auth/check-email`, data);
   console.log(msg);
-  return msg.data.exists;
+  return !msg.data.exists;
 };
 
 export const loginOtp = async (data) => {
