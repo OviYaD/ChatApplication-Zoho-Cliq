@@ -14,17 +14,30 @@ export default function MemberList(params) {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+    const [searchText, setSearchText] = useState("");
     const [userEmail, setUser] = useState("")
 
     useEffect(() => {
         const getMemberList = async () => {
-            const mems = await getMember();
+            const mems = await getMember({ query: "" });
             setMemList(mems);
             console.log("user");
         }
         getMemberList();
         console.log("user", user);
     }, [])
+
+
+    const handleSearch = async (e) => {
+        const getMemberList = async () => {
+            const mems = await getMember({ query: e.target.value });
+            setMemList(mems);
+        }
+        setSearchText(e.target.value);
+        await getMemberList();
+
+    }
+
     return <>
         <div className="flex" style={{ backgroundColor: "#fff", width: "100%", borderRadius: "10px", marginLeft: "2px", marginRight: "8px", position: "relative" }}>
             <div className='wh100'>
@@ -47,7 +60,7 @@ export default function MemberList(params) {
                                             </svg>
                                         </span>
                                         <div className="zcl-search-input">
-                                            <input type="text" id="user-search-field" placeholder="Search by name or email address" />
+                                            <input type="text" id="user-search-field" placeholder="Search by name or email address" onChange={handleSearch} />
                                         </div>
                                     </div>
                                     <button className='invite-btn' onClick={handleOpen}>Invite</button>
