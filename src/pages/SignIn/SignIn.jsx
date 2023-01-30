@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Description from '../../components/SignIn/Description';
 import SignInForm from '../../components/SignIn/SignInForm';
@@ -11,6 +11,12 @@ export default function SignIn() {
     const [isResetPswrd, setResetPswrd] = useState(false);
     const [userData, setUserData] = useState();
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if (localStorage.getItem("token")) {
+            navigate('/main');
+        }
+    }, [])
 
     const forgetPassword = (userData) => {
         setUserData(userData);

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { ToastContainer } from 'react-toastify';
 import { BrowserRouter } from "react-router-dom";
 import "./App.scss";
 import { SignUp } from "./pages/SignUp/SignUp";
@@ -9,6 +10,7 @@ import { getProfile } from "./api/authentication/user";
 import { useSelector, useDispatch } from "react-redux";
 import { setUser } from "./redux/slices/userSlice";
 import { useNavigate } from "react-router-dom";
+  import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const dispatch = useDispatch();
@@ -21,9 +23,11 @@ function App() {
   //     navigate("/main");
   //   }
   // }, []);
+  
   return (
     <div className="App">
       <Router />
+      <ToastContainer />
     </div>
   );
 }
