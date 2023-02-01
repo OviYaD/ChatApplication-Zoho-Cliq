@@ -105,6 +105,7 @@
 
       .lhs-nav-item:first-child {
         margin: 0;
+        height: 50px;
       }
 
       .lhs-nav-item {
@@ -113,7 +114,6 @@
         border-left: 2px solid var(--lhs-nav-bg);
         // padding: -5px 0px 10px 0px;
         padding-bottom: 10px;
-        height: 54px;
         margin: 2px 0px;
         width: var(--lhs-modules-wid);
         flex-shrink: 0;
@@ -124,8 +124,7 @@
 
         .mod-icn {
           color: var(--lhs-nav-color);
-          width: 14px;
-          height: 14px;
+          height: 8px;
           display: flex;
           align-items: center;
           justify-content: center;

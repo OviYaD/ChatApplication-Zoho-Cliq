@@ -2,7 +2,7 @@ import React from 'react';
 import Diversity3OutlinedIcon from '@mui/icons-material/Diversity3Outlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 
-export default function Header({ setOpenStatus, bodyContent, setBodyContent }) {
+export default function Header({ chatInfo, setOpenStatus, bodyContent, setBodyContent }) {
     return <>
         <div className="chatHeader">
             <div className="chat-wrapper dflx" style={{ justifyContent: "space-between" }}>
@@ -14,12 +14,12 @@ export default function Header({ setOpenStatus, bodyContent, setBodyContent }) {
                     </div>
                     <div className='chatInfo'>
                         <div className='dflx'>
-                            <div className=''>#interns - 2022-23</div>
+                            <div className=''>#{chatInfo?.name}</div>
                             <div className='channelMem flexC' style={{ cursor: "pointer" }} >
                                 <PersonOutlineOutlinedIcon style={{ fontSize: "18px", color: "#d6d6d6" }}></PersonOutlineOutlinedIcon> <span style={{ color: "#d6d6d6", paddingLeft: "2px", fontFamily: "zoho-puvi-regular" }}>43</span>
                             </div>
                         </div>
-                        <div className='dflx opt '>
+                        <div className='dflx opt' style={{ marginLeft: "0px" }}>
                             <div className={`curP ${bodyContent === "chat" && "opt-active"}`} onClick={() => setBodyContent("chat")}>Messages</div>
                             <div className={`curP ${bodyContent !== "chat" && "opt-active"}`} onClick={() => setBodyContent("media")}> Media Files</div>
                         </div>

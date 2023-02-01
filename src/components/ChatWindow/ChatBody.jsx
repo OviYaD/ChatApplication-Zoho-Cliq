@@ -6,7 +6,7 @@ export default function ChatBody(params) {
             <div className='chatBody'>
                 <div className='chat-content'>
                     <div>sds</div>
-                    <div>whjdhwdhw</div>
+                    <div>whjdhwdhw xbnhsjdhskd,xm kzbOJXh;LKASDN;ALNS JSHDHSD HDSDH SKDH</div>
                     <div>whjdhwdhw</div>
                     <div>whjdhwdhw</div>
                     <div>whjdhwdhw</div>

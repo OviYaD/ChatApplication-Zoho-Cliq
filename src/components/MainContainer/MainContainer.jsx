@@ -13,14 +13,31 @@ import Profile from '../Settings/Profile';
 import ProfileInfo from '../ChatWindow/ProfileInfo';
 import ChannelList from '../ChannelDescription/ChannelList';
 import { useEffect } from 'react';
+import { getChannelInfo } from '../../api/Channel/Channel';
 
 
 
 export default function MainContainer() {
+
+    const searchParams = new URLSearchParams(document.location.search);
     const [showCreateModal, setStatus] = useState(false);
-    const [choice, setChoice] = useState("Org");
+    const [window, setWindow] = useState("chat");
     const [activeMenu, setActiveMenu] = useState("channels");
-    
+    const [chatInfo, setChatInfo] = useState();
+
+    useEffect(() => {
+        const channel_id = searchParams.get('channel');
+        if (channel_id) {
+            setChatDetails(channel_id);
+        }
+    }, [])
+
+
+    const setChatDetails = async (id) => {
+        console.log(searchParams.get('channel'))
+        const data = await getChannelInfo(id);
+        setChatInfo(data);
+    }
     return <>
         <div className="zccontent flexG main_container " >
             <article>
@@ -28,11 +45,11 @@ export default function MainContainer() {
                     <RemoteworkToggle></RemoteworkToggle>
 
                     <div className="left-wrapper flexG mT2 ps-container ">
-                        <SideNav activeMenu={activeMenu} setActiveMenu={setActiveMenu}></SideNav>
+                        <SideNav activeMenu={activeMenu} setActiveMenu={setActiveMenu} setWindow={setWindow}></SideNav>
                         {(() => {
                             switch (activeMenu) {
                                 case "chats": return <ContactList></ContactList>
-                                case "channels": return <ChannelList setStatus={setStatus}></ChannelList>
+                                case "channels": return <ChannelList setStatus={setStatus} setChatDetails={setChatDetails}></ChannelList>
                                 case "Org": return <OrganizationList></OrganizationList>
                             }
                         })()}
@@ -42,9 +59,9 @@ export default function MainContainer() {
                     </div>
                 </div>
                 {(() => {
-                    switch (activeMenu) {
+                    switch (window) {
                         case "Org": return <MemberList></MemberList>
-                        case "channels": return <ChatWindow></ChatWindow>
+                        case "chat": return <ChatWindow chatInfo={chatInfo}></ChatWindow>
 
                     }
                 })()}
