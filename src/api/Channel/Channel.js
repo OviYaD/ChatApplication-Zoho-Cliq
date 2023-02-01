@@ -30,6 +30,6 @@ export const getChannelInfo = async(id) => {
       'Authorization': 'Bearer ' + (localStorage.getItem('token')) || ''
     }
   });
-  console.log(res);
-  return res.data;
+  console.log(res.data.channel.name);
+  return res.data.channel;
 }

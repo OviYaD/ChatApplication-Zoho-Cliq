@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
+import "react-tooltip/dist/react-tooltip.css";
+import { Tooltip } from "react-tooltip";
 import './ChannelDescription.scss'
 import Diversity3OutlinedIcon from '@mui/icons-material/Diversity3Outlined';
 import Connector from './Connector';
 import Permissions from './Permissions';
+import moment from 'moment/moment';
 
 export default function ChannelDescription({ setOpenStatus, chatInfo }) {
     const [viewOption, setViewOption] = useState(1);
@@ -47,8 +50,33 @@ export default function ChannelDescription({ setOpenStatus, chatInfo }) {
                                 </div>
                             </div>
                         </div>
-                        <div className='auth-Info dflx'>
-                            <div className='name'> Created By <span className="per-name">Oviya D</span></div>
+                        <div className='auth-Info dflx justifySB'>
+
+                            <div className=' dflx justifySB'>
+                                <div className='name ellips' style={{ maxWidth: "230px" }}> Created By<span id="owner_name" className="per-name ellips">{`${chatInfo.owner.first_name} ${chatInfo.owner.last_name === null ? "" : chatInfo.owner.last_name}`}</span></div>
+                                <Tooltip
+                                    anchorId="owner_name"
+                                    place="bottom"
+                                    content={`${chatInfo.owner.first_name} ${chatInfo.owner.last_name === null ? "" : chatInfo.owner.last_name}`}
+                                />
+                                <div>
+                                    <span className="font12 mL10 clr-lp1 flexC"><span className="zcl-dot mR5 "></span><span className="diB"><span title="Wednesday, January 4 , 12:01 PM">{moment(chatInfo.created_at).fromNow()}</span></span></span>
+                                </div>
+                                <div className='authInfo-menu flexC'>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-three-dots-vertical" style={{ margin: "auto" }} viewBox="0 0 16 16">
+                                        <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <div className=''>
+                                <button className="leave "><span style={{ margin: "auto" }}>Leave</span></button>
+                                <button className="continue "><span style={{ margin: "auto" }}>Continue</span></button>
+                            </div>
+
+                        </div>
+
+                        {/* <div className='auth-Info dflx'>
+                            <div className='name'> Created By <span className="per-name"></span></div>
                             <div>
                                 <span className="font12 mL10 clr-lp1 flexC"><span className="zcl-dot mR5 "></span><span className="diB"><span title="Wednesday, January 4 , 12:01 PM">14 days ago</span></span></span>
                             </div>
@@ -60,7 +88,7 @@ export default function ChannelDescription({ setOpenStatus, chatInfo }) {
                             <button className="leave flexC"><span style={{ margin: "auto" }}>Leave</span></button>
                             <button className="continue flexC"><span style={{ margin: "auto" }}>Continue</span></button>
 
-                        </div>
+                        </div> */}
                     </div>
                 </div>
                 <div className="viewoptions">

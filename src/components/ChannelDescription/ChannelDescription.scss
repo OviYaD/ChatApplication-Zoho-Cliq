@@ -2,11 +2,11 @@
   display: block;
   position: fixed;
   z-index: 200;
-  padding-left: 55%;
+  padding-left: 46%;
   bottom: 0;
   top: 0;
-  width: 700px;
-  height: 100%;
+  width: 740px;
+  max-height: 100vh !important;
   overflow: auto;
   background-color: rgb(0, 0, 0);
   background-color: rgba(0, 0, 0, 0.4);
@@ -30,7 +30,7 @@
     word-wrap: break-word;
     padding: 0px;
     clear: both;
-    width: 600px;
+    width: 100%;
     touch-action: none;
     height: calc(100vh - 228px);
     overflow-y: auto;
@@ -71,10 +71,11 @@
   }
   .chnInfo {
     margin-top: 1rem;
+    max-width: 1000px;
     .desc {
       margin-left: 10px;
       margin-right: 20px;
-      width: 72%;
+      width: 82%;
       .desc-icon {
         border-radius: 5px;
         background: var(--icon-bg-color);
@@ -94,7 +95,6 @@
       .auth-Info {
         margin-top: 16px;
         font-family: "zoho-puvi-regular";
-
         .leave {
           background: var(--btn-neg-secondary-bg);
           border: 1px solid var(--btn-neg-secondary-border);
@@ -142,6 +142,7 @@
           .per-name {
             color: #1991eb;
             font-weight: bold;
+            margin-left:3px;
             border-bottom: 1px dashed #1991eb;
           }
         }
@@ -194,7 +195,7 @@
   top: 30px;
   background-color: var(--default-bg-color);
   width: 40px;
-  height: 40px;
+  height: 35px;
   border-radius: 100%;
   float: none;
   line-height: 28px;

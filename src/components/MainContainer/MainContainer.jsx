@@ -36,6 +36,7 @@ export default function MainContainer() {
     const setChatDetails = async (id) => {
         console.log(searchParams.get('channel'))
         const data = await getChannelInfo(id);
+        console.log("sgsgdjshjdhaxnbz2", data)
         setChatInfo(data);
     }
     return <>
