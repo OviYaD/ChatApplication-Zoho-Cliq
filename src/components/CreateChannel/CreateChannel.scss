@@ -7,9 +7,23 @@
   top: 0;
   width: 850px;
   height: 100%;
-  overflow: auto;
+  overflow: hidden;
   background-color: rgb(0, 0, 0);
   background-color: rgba(0, 0, 0, 0.4);
+}
+.headername {
+  color: #666;
+  font-size: 18px;
+  font-family: "zoho-puvi-semi-bold";
+  border-bottom: 2px solid #3dc2ac;
+  width: 35px;
+  padding-bottom: 10px;
+}
+.chnName {
+  color: black;
+  font-size: 18px;
+  font-weight: bold;
+  margin-left: 5px;
 }
 .channelcreation-modal-content {
   background-color: #fefefe;
@@ -35,16 +49,22 @@
   top: 30px;
   background-color: var(--default-bg-color);
   width: 40px;
-  height: 40px;
+  height: 34px;
   border-radius: 100%;
   float: none;
   line-height: 28px;
   color: var(--color-icon);
   text-align: center;
+
+  svg{
+    margin-top: 4px !important;
+  }
 }
 .cancleOpt {
   padding: 26px 36px;
-  margin-left: 50%;
+  position: absolute;
+  bottom: 0;
+  right: 10%;
   .zcl-btn--secondary {
     background: var(--default-bg-color);
     border: 1px solid #d4dadd;
@@ -247,9 +267,7 @@
   .chnLevel:hover {
     border-color: #3dc2ac;
   }
-  .org-btn:hover {
-    border-color: #3dc2ac;
-  }
+  
   .chnLevel {
     background-color: var(--bg-color-2);
     border-radius: 10px;
@@ -261,7 +279,8 @@
     .cat-desc {
       color: rgb(110, 110, 110);
       font-size: 15px;
-      margin-left: 10.5rem;
+      text-align: center;
+      
     }
     .org-btn {
       margin-left: 15rem;
@@ -277,6 +296,15 @@
       margin: 0 12px;
       border: 1px solid var(--color-divider);
       border-radius: 5px;
+
+      &:hover {
+        border: 1px solid  #3dc2ac;
+        background-color: #e3f5f2be;
+      }
+    }
+    .btn-active{
+      border: 2px solid  #3dc2ac;
+      background-color: #e3f5f2be;
     }
   }
 }

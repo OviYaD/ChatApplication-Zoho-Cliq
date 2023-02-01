@@ -9,22 +9,34 @@ import { setUser } from '../../../redux/slices/userSlice';
 export default function MemberList(params) {
 
     const user = useSelector((state) => state.user);
+    const organization = useSelector((state) => state.organization);
     const [showInfo, setStatus] = useState(false);
     const [memList, setMemList] = useState([]);
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     const [searchText, setSearchText] = useState("");
-    const [userEmail, setUser] = useState("")
+    const [userEmail, setUser] = useState("");
+    const [isOwner, setOwner] = useState("");
 
     useEffect(() => {
         const getMemberList = async () => {
             const mems = await getMember({ query: "" });
             setMemList(mems);
-            console.log("user");
         }
         getMemberList();
         console.log("user", user);
+        console.log("organization", organization);
+        const setOwnership = () => {
+            const org = JSON.parse(localStorage.getItem('!@#$%^org)(*&^%$'));
+            if (user.id === org.owner.id) {
+                setOwner(true);
+            }
+        }
+        setOwnership();
+
+
+
     }, [])
 
 
@@ -63,7 +75,7 @@ export default function MemberList(params) {
                                             <input type="text" id="user-search-field" placeholder="Search by name or email address" onChange={handleSearch} />
                                         </div>
                                     </div>
-                                    <button className='invite-btn' onClick={handleOpen}>Invite</button>
+                                    {isOwner && <button className='invite-btn' onClick={handleOpen}>Invite</button>}
                                     <InvitationModal open={open} handleClose={handleClose}></InvitationModal>
                                 </div>
                             </div>

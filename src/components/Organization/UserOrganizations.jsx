@@ -26,7 +26,7 @@ export default function UserOrganizations({ orgList }) {
         const defOrg = orgs.find(org => org.isDefault);
         console.log(defOrg);
         if (defOrg) {
-            localStorage.setItem("!@#$%^org)(*&^%$id", defOrg.id);
+            localStorage.setItem("!@#$%^org)(*&^%$", JSON.stringify(defOrg));
             console.log()
             if (!searchParam.get('from')) {
                 navigate('/main')
@@ -34,9 +34,9 @@ export default function UserOrganizations({ orgList }) {
             setDefault(defOrg.id);
         }
     }, [])
-    const openOrganization = (id) => {
+    const openOrganization = (org) => {
 
-        localStorage.setItem("!@#$%^org)(*&^%$id", id);
+        localStorage.setItem("!@#$%^org)(*&^%$", JSON.stringify(org));
         navigate('/main');
 
     }
@@ -96,7 +96,7 @@ export default function UserOrganizations({ orgList }) {
                                                 <div className="col col-1"  >{org.name}</div>
                                                 <div className="col col-2"   >{org.owner.name}</div>
                                                 <div className="col col-3" >
-                                                    <Button variant="contained" color="success" onClick={() => openOrganization(org.id)}>
+                                                    <Button variant="contained" color="success" onClick={() => openOrganization(org)}>
                                                         Go
                                                     </Button>
                                                 </div>
