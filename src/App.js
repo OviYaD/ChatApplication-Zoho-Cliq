@@ -18,11 +18,19 @@ function App() {
 
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   if (localStorage.getItem("token") !== null) {
-  //     navigate("/main");
-  //   }
-  // }, []);
+  useEffect(() => {
+    const fetchUser = async () => {
+            const userInfo = await getProfile();
+            console.log(userInfo);
+            if (userInfo.status) {
+                dispatch(setUser(userInfo.data.profile));
+            } else {
+                localStorage.removeItem("token");
+                navigate("/signin");
+            }
+        }
+        fetchUser();
+  }, []);
   
   return (
     <div className="App">

@@ -113,7 +113,7 @@ export default function SignUpBox({ changeValidity }) {
                                     onChange={() => setChecked((checked) => !checked)}
                                     inputProps={{ 'aria-label': 'controlled' }}
                                 />
-                                <label className="sign_agree" htmlhtmlFor="tos">
+                                <label className="sign_agree" htmlFor="tos">
                                     I agree to the
                                     <a href="https://www.zoho.com/cliq/terms.html" target="_blank" rel="noopener">Terms of Service </a>
                                     and

@@ -22,7 +22,7 @@ export const createOrganization = async (data) => {
 
 export const createInvite = async (data) => {
   console.log("sjhdjshdihfjd",data);
-  const msg = await axios.post(`${config.END_POINT}/organization/invite`, {organization_id:localStorage.getItem('!@#$%^org)(*&^%$id'),invitations:[...data]}, {
+  const msg = await axios.post(`${config.END_POINT}/organization/invite`, {organization_id:JSON.parse(localStorage.getItem('!@#$%^org)(*&^%$')).id,invitations:[...data]}, {
     headers: {
       'Authorization': 'Bearer ' + (localStorage.getItem('token')) || ''
     }
@@ -57,7 +57,7 @@ export const setDefaultOrg = async (data) => {
 
 export const getMember = async(data=null) => {
   console.log(data);
-  const res = await axios.post(`${config.END_POINT}/organization/members`,{organization_id:localStorage.getItem('!@#$%^org)(*&^%$id'),...data}, {
+  const res = await axios.post(`${config.END_POINT}/organization/members`,{organization_id:JSON.parse(localStorage.getItem('!@#$%^org)(*&^%$')).id,...data}, {
     headers: {
       'Authorization': 'Bearer ' + (localStorage.getItem('token')) || ''
     }
