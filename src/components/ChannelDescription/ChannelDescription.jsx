@@ -4,7 +4,7 @@ import Diversity3OutlinedIcon from '@mui/icons-material/Diversity3Outlined';
 import Connector from './Connector';
 import Permissions from './Permissions';
 
-export default function ChannelDescription({ setOpenStatus }) {
+export default function ChannelDescription({ setOpenStatus, chatInfo }) {
     const [viewOption, setViewOption] = useState(1);
     return <>
         <div id="myModal" className="channel-modal">
@@ -18,7 +18,7 @@ export default function ChannelDescription({ setOpenStatus }) {
                 <div className='modal-header dflx'>
                     <div className='headername'>Channels  </div>
                     <div className='' style={{ paddingLeft: "50px", paddingTop: "2px" }} >&#x3E;</div>
-                    <div className='chnName'>#Prezz</div>
+                    <div className='chnName'>#{chatInfo.name}</div>
                 </div>
                 <div className='chnInfo dflx'>
                     <div className='chatIcon'>
@@ -29,7 +29,7 @@ export default function ChannelDescription({ setOpenStatus }) {
                     <div className="desc">
                         <div className='dflx justifySB ' >
                             <div>
-                                <div style={{ fontFamily: "zoho-puvi-semi-bold" }}>#Prezz</div>
+                                <div style={{ fontFamily: "zoho-puvi-semi-bold" }}>#{chatInfo.name}</div>
                                 <div className='caption'>We are coming for Cliq's head</div>
                             </div>
                             <div className='dflx'>
