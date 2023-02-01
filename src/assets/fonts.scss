@@ -1,36 +1,26 @@
+$file_path:"https://d1eb183yjy6gxz.cloudfront.net/Fonts";
+
 @font-face {
     font-family: "zoho-puvi-black";
-    src: url(../static/fonts/ZohoPuviBlack.otf);
+    src: url(#{$file_path}/ZohoPuviBlack.otf);
 }
 @font-face {
     font-family: "zoho-puvi-bold";
-    src: url(../static/fonts/ZohoPuviBold.otf);
+    src: url(#{$file_path}/ZohoPuviBold.otf);
 }
 @font-face {
     font-family: "zoho-puvi-bold-italic";
-    src: url(../static/fonts/ZohoPuviBoldItalic.otf);
+    src: url(#{$file_path}/ZohoPuviBoldItalic.otf);
 }
 @font-face {
     font-family: "zoho-puvi-semi-bold";
-    src: url(../static/fonts/ZohoPuviSemibold.otf);
+    src: url(#{$file_path}/ZohoPuviSemibold.otf);
 }
 @font-face {
     font-family: "zoho-puvi-regular";
-    src: url(../static/fonts/ZohoPuviRegular.otf);
+    src: url(#{$file_path}/ZohoPuviRegular.otf);
 }
 @font-face {
     font-family: "zoho-puvi-medium";
-    src: url(../static/fonts/ZohoPuviMedium.otf);
-}
-@font-face {
-    font-family: "zoho-puvi-regular";
-    src: url(../static/fonts/ZohoPuviRegular.otf);
-}
-@font-face {
-    font-family: "zoho-puvi-regular";
-    src: url(../static/fonts/ZohoPuviRegular.otf);
-}
-@font-face {
-    font-family: "zoho-puvi-regular";
-    src: url(../static/fonts/ZohoPuviRegular.otf);
+    src: url(#{$file_path}/ZohoPuviMedium.otf);
 }
