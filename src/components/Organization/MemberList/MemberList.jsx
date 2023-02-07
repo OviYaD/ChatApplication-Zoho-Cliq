@@ -5,6 +5,8 @@ import ShowInfo from './ShowInfo';
 import { getMember } from '../../../api/Organization/Organization';
 import { useSelector } from 'react-redux';
 import { setUser } from '../../../redux/slices/userSlice';
+import moment from 'moment/moment';
+import tz from "moment-timezone";
 
 export default function MemberList(params) {
 
@@ -20,16 +22,15 @@ export default function MemberList(params) {
     const [isOwner, setOwner] = useState("");
 
     useEffect(() => {
+        console.log(user);
         const getMemberList = async () => {
             const mems = await getMember({ query: "" });
             setMemList(mems);
         }
         getMemberList();
-        console.log("user", user);
-        console.log("organization", organization);
         const setOwnership = () => {
             const org = JSON.parse(localStorage.getItem('!@#$%^org)(*&^%$'));
-            if (user.id === org.owner.id) {
+            if (user.user_id === org.owner.id) {
                 setOwner(true);
             }
         }
@@ -89,7 +90,7 @@ export default function MemberList(params) {
                                 <div className="flex fdirC">
                                     <div className="user-card-image">
                                         <div id="imgcontainer" className="flexM curP" uid="60016689751" imgsrc="https://contacts.zoho.in/file?ID=60016689751&amp;exp=6000&amp;t=user&amp;fs=thumb">
-                                            <img style={{ height: "110px" }} src={mem.profile.mini_avatar_url !== null ? mem.profile.mini_avatar_url : "https://contacts.zoho.in/file?ID=60016688887&exp=6000&t=user&fs=thumb"} /><span id="time" className="zchvrtm dN">11:43 PM</span>
+                                            <img style={{ height: "110px" }} src={!mem.profile.mini_avatar_url ? "https://contacts.zoho.in/file?ID=60016688887&exp=6000&t=user&fs=thumb" : mem.profile.mini_avatar_url} /><span id="time" className="zchvrtm dN">{new Date().getHours() + ":" + new Date().getMinutes() + " " + moment().format("A")}</span>
                                         </div>
                                     </div>
                                     <div className="user-card-pinfo">
