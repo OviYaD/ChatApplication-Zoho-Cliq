@@ -18,18 +18,35 @@ export const getChannels = async() => {
       'Authorization': 'Bearer ' + (localStorage.getItem('token')) || ''
     }
   });
-  console.log(res);
   return res.data.channels;
 }
 
 
 export const getChannelInfo = async(id) => {
-  console.log(id);
   const res = await axios.get(`${config.END_POINT}/channel/get-channel/${id}`,{
     headers : {
       'Authorization': 'Bearer ' + (localStorage.getItem('token')) || ''
     }
   });
-  console.log(res.data.channel.name);
   return res.data.channel;
+}
+
+export const getMembers = async (data) =>{
+  const res= await axios.post(`${config.END_POINT}/channel/members`,data,{
+    headers : {
+      'Authorization': 'Bearer ' + (localStorage.getItem('token')) || ''
+    }
+  });
+  console.log(res);
+  return res.data.members;
+}
+
+export const addMembers = async(data) => {
+  console.log(data)
+  const res = await axios.post(`${config.END_POINT}/channel/add-members`,data,{
+    headers : {
+      'Authorization': 'Bearer ' + (localStorage.getItem('token')) || ''
+    }
+  })
+  console.log(res);
 }
