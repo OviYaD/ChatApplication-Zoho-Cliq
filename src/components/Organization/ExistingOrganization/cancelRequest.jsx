@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { getInvitation, joinOrganization } from '../../../api/Organization/Organization';
 import { checkEmail } from '../../../api/authentication/user';
 import SendIcon from '@mui/icons-material/Send';
+import LoadingPage from '../../loaders/LoadingPage';
 
 export default function CancelRequest() {
 	const searchParams = new URLSearchParams(document.location.search);
@@ -39,9 +40,16 @@ export default function CancelRequest() {
 			if (!exists) {
 				if (localStorage.getItem('token')) {
 					setLoggedIn(true);
+					setUserExists(!exists);
+				}
+				else {
+					setLoggedIn(false);
+					setUserExists(exists);
 				}
 			}
-			setUserExists(!exists);
+			else {
+				setUserExists(!exists);
+			}
 
 		}
 		setQueryId(searchParams.get('id'));
@@ -150,6 +158,6 @@ export default function CancelRequest() {
 		</>
 	}
 	else {
-		return <>loading........</>
+		return <LoadingPage></LoadingPage>
 	}
 }
