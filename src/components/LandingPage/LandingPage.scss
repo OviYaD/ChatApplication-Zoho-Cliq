@@ -1,0 +1,54 @@
+.quote-container{
+    width: 65%;
+    border-radius: 0;
+    box-shadow: none;
+    display: block;
+    z-index: 0;
+    background-color: transparent;
+    text-align: center;
+    margin: auto;
+    left: 0;
+    top: -21%;
+    right: 0;
+    bottom: 0;
+    height: 300px;
+    padding: 50px;
+    font-size: 20px;
+    color: #545454;
+    position: absolute;
+}
+.quote-container::before{
+    content: "\F6B0";
+}
+.quote-text{
+    font-size: 26px;
+    font-weight: 300;
+    color: var(--color-secondary);
+    margin-top: -160px;
+    font-size: 26px;
+    font-weight: 300;
+    font-family:Lato,sans-serif;
+}
+.quote-msg{
+    font-size: 30px;
+    font-weight: 300;
+    font-family:Lato,sans-serif;
+    width: 630px;
+    color: black;
+
+}
+.quote-auth{
+    font-size: 22px;
+    color:rgb(102,102,102);
+    margin-top: 15px;
+}
+.quote-auth::after{
+    content: '-';
+    display: inline-block;
+    margin: 0 5px;
+
+}.quote-auth::before{
+    content: '-';
+    display: inline-block;
+    margin: 0 5px;
+}
