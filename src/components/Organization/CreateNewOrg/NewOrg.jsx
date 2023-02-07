@@ -96,7 +96,7 @@ export default function NewOrg() {
                                 <div id="createnamefield_holder" className="mB30">
                                     <div className="label-txt-hdr">Your company name</div>
                                     <input id="companynamefield" type="text" className="zcl-input" value={orgname} onChange={handleChange} inputpurpose="companyname" listen="keyup" placeholder="Eg: Zylker Corp" />
-                                    <div className="label-txt-hint">Min. 4 - Max. 30 characters</div>
+                                    <div className="label-txt-hint">Min. 5 - Max. 30 characters</div>
                                 </div>
                                 <div className="createcompanycheckboxes" style={{ marginBottom: "30px" }}>
                                     <div className="textL fontB clrText font15 line22 mB12">when a verified user tries joining Cliq,</div>

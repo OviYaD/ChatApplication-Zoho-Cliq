@@ -1,5 +1,6 @@
 import React from 'react';
-
+import "react-tooltip/dist/react-tooltip.css";
+import { Tooltip } from "react-tooltip";
 import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 import AlternateEmailOutlinedIcon from '@mui/icons-material/AlternateEmailOutlined';
 import CalendarTodayOutlinedIcon from '@mui/icons-material/CalendarTodayOutlined';
@@ -37,8 +38,18 @@ export default function MenuItems({ setOpenStatus }) {
                 <span className="zcf-announcement font18 announcementIcon ztb-icons"><span className="alert_icon" id="stackedNumber" ><CampaignOutlinedIcon></CampaignOutlinedIcon></span></span>
             </div>
 
-            <Avatar onClick={() => { setOpenStatus(true) }} alt="Remy Sharp" src="https://contacts.zoho.in/file?fs=thumb&amp;nocache=1672909825507" style={{ marginLeft: "10px", width: "30px", height: "30px", cursor: "pointer" }} />
+            <Avatar id="profile" onClick={() => { setOpenStatus(true) }} title="Profile" alt="Remy Sharp" src="https://contacts.zoho.in/file?fs=thumb&amp;nocache=1672909825507" style={{ marginLeft: "10px", width: "30px", height: "30px", cursor: "pointer" }} />
+            <Tooltip
+                anchorId="profile"
+                place="bottom"
+                content="Profile"
+            />
         </div>
-        <WidgetsIcon onClick={() => navigate({ pathname: "/getstarted", search: `?from=1` })} style={{ cursor: "pointer", color: "#979797", marginLeft: "0.8rem", marginRight: "0.8rem" }}></WidgetsIcon>
+        <WidgetsIcon id="org" title="Organizations" onClick={() => navigate({ pathname: "/getstarted", search: `?from=1` })} style={{ cursor: "pointer", color: "#979797", marginLeft: "0.8rem", marginRight: "0.8rem" }} ></WidgetsIcon>
+        <Tooltip
+            anchorId="org"
+            place="bottom"
+            content="Organizations"
+        />
     </>;
 }

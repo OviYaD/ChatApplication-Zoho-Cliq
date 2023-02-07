@@ -5,40 +5,48 @@ import RemoteworkToggle from './RemoteworkToggle';
 import ContactList from '../ContactList/contactList';
 import SideNav from './SideNav';
 import ChatWindow from '../ChatWindow/ChatWindow';
-import ChannelDescription from '../ChannelDescription/ChannelDescription';
+import ChannelDescription from '../ChannelComponents/ChannelDescription';
 import OrganizationList from '../OrganizationList/OrganizationList';
 import CreateChannelModal from '../CreateChannel/CreateChannelModal';
 import MemberList from '../Organization/MemberList/MemberList';
 import Profile from '../Settings/Profile';
 import ProfileInfo from '../ChatWindow/ProfileInfo';
-import ChannelList from '../ChannelDescription/ChannelList';
+import ChannelList from '../ChannelComponents/ChannelList';
 import { useEffect } from 'react';
 import { getChannelInfo } from '../../api/Channel/Channel';
+import { getMessageThroughSocket } from '../../SocketEvents/events';
+import LandingPage from '../LandingPage/LandingPage';
 
 
-
-export default function MainContainer() {
+export default function MainContainer({ newMsg, messages, socket, setMessages }) {
 
     const searchParams = new URLSearchParams(document.location.search);
     const [showCreateModal, setStatus] = useState(false);
-    const [window, setWindow] = useState("chat");
+    const [window, setWindow] = useState("quote");
     const [activeMenu, setActiveMenu] = useState("channels");
     const [chatInfo, setChatInfo] = useState();
+    const [actId, setActId] = useState("");
 
     useEffect(() => {
+
         const channel_id = searchParams.get('channel');
+        setActId(channel_id);
         if (channel_id) {
+
             setChatDetails(channel_id);
         }
     }, [])
 
 
     const setChatDetails = async (id) => {
-        console.log(searchParams.get('channel'))
+        console.log("socket=", socket);
         const data = await getChannelInfo(id);
-        console.log("sgsgdjshjdhaxnbz2", data)
         setChatInfo(data);
+        setWindow("chat");
+        getMessageThroughSocket(socket, id, new Date());
     }
+
+
     return <>
         <div className="zccontent flexG main_container " >
             <article>
@@ -50,7 +58,7 @@ export default function MainContainer() {
                         {(() => {
                             switch (activeMenu) {
                                 case "chats": return <ContactList></ContactList>
-                                case "channels": return <ChannelList setStatus={setStatus} setChatDetails={setChatDetails}></ChannelList>
+                                case "channels": return <ChannelList setWindow={setWindow} setStatus={setStatus} setChatDetails={setChatDetails} actId={actId} setActId={setActId}></ChannelList>
                                 case "Org": return <OrganizationList></OrganizationList>
                             }
                         })()}
@@ -62,7 +70,8 @@ export default function MainContainer() {
                 {(() => {
                     switch (window) {
                         case "Org": return <MemberList></MemberList>
-                        case "chat": return <ChatWindow chatInfo={chatInfo}></ChatWindow>
+                        case "chat": return <ChatWindow newMsg={newMsg} setWindow={setWindow} setActId={setActId} setMessages={setMessages} messages={messages} socket={socket} chatInfo={chatInfo}></ChatWindow>
+                        case "quote": return <LandingPage></LandingPage>
 
                     }
                 })()}

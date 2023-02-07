@@ -24,7 +24,7 @@ export default function SideNav({ setActiveMenu, activeMenu, setWindow }) {
                             <PersonOutlineOutlinedIcon style={{ fontSize: "25px" }}></PersonOutlineOutlinedIcon>
                             <div className="mod-name ellips">Contacts</div>
                         </div>
-                        <div id="lhs_channels" className={`lhs-nav-item  ${activeMenu === "channels" && "active"}`} onClick={() => { setActiveMenu("channels"); setWindow("chat") }} purpose="showTeamsTab">
+                        <div id="lhs_channels" className={`lhs-nav-item  ${activeMenu === "channels" && "active"}`} onClick={() => { setActiveMenu("channels"); }} purpose="showTeamsTab">
                             <div className="zcf-channel font13 mod-icn"></div>
                             <TagOutlinedIcon style={{ fontSize: "20px" }}></TagOutlinedIcon>
                             <div className="mod-name ellips">Channels</div>
