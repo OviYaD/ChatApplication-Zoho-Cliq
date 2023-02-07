@@ -52,6 +52,7 @@
   --color-hover2: #f1f4f7;
   --color-hover3: #f7f8f9;
   --color-icon-lhs: #979797;
+  --box-shadow-color2: rgba(0, 0, 0, 0.2);
   --color-theme: var(--zcl-color-theme1);
   --color-theme-rgb: var(--zcl-color-theme1-rgb);
   --videoplayer-theme-color: var(--color-theme);
@@ -78,11 +79,31 @@
   --color-theme: var(--zcl-color-theme1);
   --zcl-color-theme1: #3DC2AC;
 }
-
+*{
+  scroll-behavior: smooth;
+}
 .flexC,
 .dflxcent {
   display: flex;
   align-items: center;
+}
+
+element.style {
+}
+.zcoverlay .modalwindow * {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -khtml-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+.mLR5 {
+    margin: 0 5px;
+}
+.font17 {
+    font-size: 17px;
+}
+.clr-S__dark {
+    color: #afb3b7;
 }
 .mR8 {
   margin-right: 8px;

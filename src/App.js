@@ -21,15 +21,16 @@ function App() {
   useEffect(() => {
     const fetchUser = async () => {
             const userInfo = await getProfile();
-            console.log(userInfo);
             if (userInfo.status) {
                 dispatch(setUser(userInfo.data.profile));
             } else {
                 localStorage.removeItem("token");
-                navigate("/signin");
+                // navigate("/signin");
             }
         }
-        fetchUser();
+        if(localStorage.getItem("token")){
+          fetchUser();
+        }
   }, []);
   
   return (

@@ -4,7 +4,7 @@ import AppContainer from '../pages/AppContainer/AppContainer';
 import SignIn from '../pages/SignIn/SignIn';
 import { SignUp } from '../pages/SignUp/SignUp';
 import Organization from '../pages/Organization/Organization';
-import ChannelDescription from '../components/ChannelDescription/ChannelDescription';
+import ChannelDescription from '../components/ChannelComponents/ChannelDescription';
 import CreateChannelModal from '../components/CreateChannel/CreateChannelModal';
 import ExistingOrg from '../components/Organization/ExistingOrganization/ExistingOrg';
 import CancelRequest from '../components/Organization/ExistingOrganization/cancelRequest';
@@ -12,6 +12,11 @@ import InviteColleague from '../components/Organization/CreateNewOrg/inviteColle
 import ContactListPopup from '../components/CreateChannel/ContactListPopup';
 import InvitationModal from '../components/Organization/InvitationModal';
 import CreateOrgaizations from '../components/Organization/CreateOrgaizations';
+import AddMemberPopUp from '../components/ChannelComponents/AddMemberPopUp';
+import GoogleSignUp from '../components/GoogleSignUp/GoogleSignUp';
+import LoadingPage from '../components/loaders/LoadingPage';
+import MessageOptions from '../components/ChatWindow/MessageOptions';
+import EditHistory from '../components/ChatWindow/EditHistory';
 
 export default function Router() {
     return <>
@@ -28,8 +33,9 @@ export default function Router() {
             <Route path='/des' element={<ChannelDescription></ChannelDescription>} />
             <Route path="/list" element={<ContactListPopup></ContactListPopup>} />
             {/* <Route path='/' element={<Organization></Organization>} /> */}
-            <Route path="/test" element={<InvitationModal></InvitationModal>} />
+            <Route path="/test" element={<EditHistory></EditHistory>} />
             <Route path='/create' element={<CreateChannelModal></CreateChannelModal>} />
+            <Route path='/loader' element={<LoadingPage></LoadingPage>} />
         </Routes>
     </>;
 }
