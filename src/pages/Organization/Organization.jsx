@@ -8,6 +8,7 @@ import { getProfile } from '../../api/authentication/user';
 import { setUser } from '../../redux/slices/userSlice';
 import { getOrganization } from '../../api/Organization/Organization';
 import { setOrgList } from '../../redux/slices/organizationSlice';
+import LoadingPage from '../../components/loaders/LoadingPage';
 
 export default function Organization() {
     const [orgList, setOrgs] = useState();
@@ -63,4 +64,6 @@ export default function Organization() {
 
             </div>
         </>;
+    else
+        return <LoadingPage></LoadingPage>
 }
