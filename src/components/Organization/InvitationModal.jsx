@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import { validateEmail } from '../Validators/email';
 import "../../pages/Organization/Organization.scss";
 import { createInvite, createOrganization } from '../../api/Organization/Organization';
+import { toast } from 'react-toastify';
 
 const style = {
     position: 'absolute',
@@ -73,7 +74,16 @@ export default function InvitationModal({ open, handleClose }) {
         }
         console.log(inviteMem)
         await createInvite([...inviteMem]);
-        alert("Invitation sent!");
+        toast.success("Invitation sent!", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+        })
         handleClose();
     }
 
@@ -89,7 +99,7 @@ export default function InvitationModal({ open, handleClose }) {
                         <div className="font24 clr-hdr fontB ">Invite your Colleagues</div>
                         <div className="font16 line24 clr-lp1 invite-desc mTB10">You can invite at least a user at your convenience and get started with Cliq! Invite your folks and start collaborating right away.<em className="smile_pos smly"></em></div>
                         <div id="inputbox_textbox " >
-                            {multipleUser ? <textarea id="invite_textbox" inputpurpose="invite_textbox" listen="keyup" class="invitetxtbox font16" placeholder="Scott<scottfisher@zylker.com>,Matta<matta@zylker.com>" contentEditable="true"></textarea> :
+                            {multipleUser ? <textarea id="invite_textbox" inputpurpose="invite_textbox" listen="keyup" className="invitetxtbox font16" placeholder="Scott<scottfisher@zylker.com>,Matta<matta@zylker.com>" contentEditable="true"></textarea> :
                                 <table id="invite_inputbox mTB10" >
                                     <tbody>
                                         <tr>
