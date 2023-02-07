@@ -1,0 +1,494 @@
+.main {
+  display: block;
+  width: 600px;
+  background-color: #fff;
+  box-shadow: 0px 2px 30px #ccc6;
+  margin: auto;
+  position: relative;
+  z-index: 1;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  overflow: hidden;
+  border-radius: 40px;
+}
+.inner-header {
+  padding: 30px;
+  background: linear-gradient(90deg, #1389e3, #0093e5);
+  padding-bottom: 70px;
+  position: relative;
+  z-index: -1;
+}
+.header_bg {
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+}
+.bg_rectangle {
+  width: 250px;
+  height: 180px;
+  position: absolute;
+  background: #ffffff1a;
+  left: -118px;
+  top: -70px;
+  transform: rotate(-45deg);
+}
+.center_semi_circle {
+  position: absolute;
+  width: 98px;
+  height: 98px;
+  right: 135px;
+  border-radius: 50%;
+  background: #0000000d;
+  top: 97px;
+}
+.small_circle {
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  left: 123px;
+  background: #ffffff1a;
+  top: 67px;
+}
+
+.right_circle {
+  width: 194px;
+  height: 194px;
+  position: absolute;
+  background: #0000000d;
+  right: -59px;
+  bottom: 55px;
+  border-radius: 50%;
+}
+.IDP_log_container {
+  display: inline-block;
+  overflow: auto;
+}
+.zoho_icon {
+  float: left;
+  position: relative;
+  z-index: 1;
+}
+.IDP_logo {
+  width: 70px;
+  height: 70px;
+  background: #ffffff;
+  border: 2px solid #f5f5f5;
+  display: inline-block;
+  box-sizing: border-box;
+  border-radius: 50%;
+}
+.zoho_icon .idp_inner_logo {
+  width: 50px;
+  margin: 18px 8px;
+  background: url(https://static.zohocdn.com/iam/v2/components/images/zoho.23e9f1386f4d8aedfdf49c511c2b63dd.png)
+    no-repeat #fff 0px 5px;
+  background-size: 100%;
+}
+.idp_inner_logo {
+  width: 30px;
+  display: inline-block;
+  height: 30px;
+  margin: 18px;
+  background: url("https://static.zohocdn.com/iam/v2/components/images/zoho.23e9f1386f4d8aedfdf49c511c2b63dd.png")
+    no-repeat #fff 30px 0px;
+  background-size: 100%;
+}
+.other_IDPs {
+  display: inline-block;
+  float: left;
+  margin-left: -14px;
+}
+.logo_google .idp_inner_logo {
+  background-position: 0px 0px;
+}
+.idp_inner_logo {
+  width: 30px;
+  display: inline-block;
+  height: 30px;
+  margin: 18px;
+  background: url(https://static.zohocdn.com/iam/v2/components/images/Federated.350d66d52d6bca3183b9a1197e17eb38.png)
+    no-repeat #fff 30px 0px;
+  background-size: 100%;
+}
+.icon-Myself::before {
+  content: "\e904";
+}
+.inner-container {
+  padding: 40px 35px;
+  text-align: left;
+  margin-top: -40px;
+  background: white;
+  border-radius: 40px;
+  border: 2px solid #ececec;
+  box-sizing: border-box;
+}
+form {
+  display: block;
+  margin-top: 0em;
+  margin-block-end: 1em;
+}
+.photo_permission_option {
+  position: relative;
+  display: inline-block;
+}
+.profile-img {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 20px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+}
+.profile-img .pro_pic_blur {
+  //   filter: blur(5px);
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-size: 100% 100%;
+}
+
+
+#photo_permission + .select2-container--photo_permission_theme {
+  width: 38px !important;
+  height: 24px;
+  top: 0px;
+  right: 0px;
+  z-index: 4;
+  box-shadow: 1px -1px 2px 0px #00000021;
+}
+.select2-container--photo_permission_theme {
+  position: absolute;
+  border-radius: 12px;
+  background: #fff;
+  z-index: 3;
+}
+.select2-container {
+  z-index: 2;
+  display: inline-block;
+  height: 20px;
+}
+.user_name_text {
+  font-weight: 500;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+.desc_text {
+  font-size: 14px;
+  line-height: 24px;
+}
+b {
+  font-weight: 600;
+}
+.user_detail_form {
+  padding-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.detail_box {
+  padding: 8px 10px;
+  border-radius: 4px;
+  border: 1px solid #c7c7c7;
+  width: 250px;
+  box-sizing: border-box;
+  margin-bottom: 30px;
+}
+.user_header {
+  font-size: 10px;
+  line-height: 14px;
+  margin-bottom: 4px;
+  font-weight: 500;
+  color: #00000080;
+}
+.user_detail_input {
+  line-height: 20px;
+  border: none;
+  -webkit-appearance: none;
+  appearance: none;
+  outline: none;
+  font-size: 14px;
+  height: 20px;
+  padding: 0px;
+  width: 100%;
+  background: #fff;
+  font-family: "zoho-puvi-regular", Georgia;
+}
+
+.detail_box {
+  padding: 8px 10px;
+  border-radius: 4px;
+  border: 1px solid #c7c7c7;
+  width: 250px;
+  box-sizing: border-box;
+  margin-bottom: 30px;
+}
+.country_details {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.detail_box {
+  padding: 8px 10px;
+  border-radius: 4px;
+  border: 1px solid #c7c7c7;
+  width: 250px;
+  box-sizing: border-box;
+  margin-bottom: 30px;
+}
+
+
+.select2-container {
+  z-index: 2;
+  display: inline-block;
+  height: 20px;
+}
+
+.selection {
+  border-radius: 2px;
+  font-size: 14px;
+}
+.select2-selection {
+  display: block;
+  outline: none;
+  cursor: pointer;
+  line-height: 20px;
+}
+.select2-selection__arrow {
+  float: right;
+}
+
+.select2-selection__arrow b {
+  height: 0px;
+  width: 0px;
+  position: relative;
+  top: -5px;
+  border-radius: 1px;
+  display: inline-block;
+  margin-top: 6px;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid #666;
+}
+.select2-dropdown {
+  display: inline-block;
+  border: 1px solid #e4e4e4;
+  box-shadow: 0 2px 4px 0 rgb(0 0 0 / 13%);
+  box-sizing: border-box;
+  border-radius: 6px;
+  background: #fff;
+  margin-top: 9px;
+  margin-left: -11px;
+  width: 250px !important;
+  overflow: hidden;
+}
+.select2-search {
+  display: block;
+  padding: 10px;
+  position: relative;
+}
+.select2-search__field {
+  height: 32px;
+  border: none;
+  outline: none;
+  border-radius: 3px;
+  width: 100%;
+  font-size: 13px;
+  padding: 10.5px 8px;
+  border: 1px solid #dfdfdf;
+}
+.select2-results__options {
+  padding-left: 0px;
+  max-height: 200px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  background: white;
+  list-style-type: none;
+  box-sizing: border-box;
+  font-size: 14px;
+  white-space: nowrap;
+}
+.select2-results__option {
+  list-style-type: none;
+  height: auto;
+  box-sizing: border-box;
+  line-height: 16px;
+  font-family: "zoho-puvi-regular", Georgia;
+  font-size: 13px;
+  overflow: hidden;
+  padding: 12px 18px;
+  word-break: break-word;
+  border-radius: 0px 0px 6px 6px;
+}
+.select2-results__option--highlighted {
+}
+.select2-results__option {
+  list-style-type: none;
+  height: auto;
+  box-sizing: border-box;
+  line-height: 16px;
+  font-family: "zoho-puvi-regular", Georgia;
+  font-size: 13px;
+  overflow: hidden;
+  padding: 12px 18px;
+  word-break: break-word;
+  border-radius: 0px 0px 6px 6px;
+
+  &:hover {
+    background: #00000008;
+    color: #000000;
+    cursor: pointer;
+  }
+}
+.select2-results__option {
+  list-style-type: none;
+  height: auto;
+  box-sizing: border-box;
+  line-height: 16px;
+  font-family: "zoho-puvi-regular", Georgia;
+  font-size: 13px;
+  overflow: hidden;
+  padding: 12px 18px;
+  word-break: break-word;
+  border-radius: 0px 0px 6px 6px;
+}
+.pic {
+  margin-right: 10px;
+  width: 20px;
+  height: 14px;
+  background-size: 280px 252px;
+  background-image: url(https://static.zohocdn.com/iam/v2/components/images/Flags.bf353d6ca2559f23e4639e5b72b513e8.png);
+  background-position: -180px -238px;
+  float: left;
+  margin-top: 1px;
+}
+
+.flag_AF {
+  background-position: 0px 0px;
+}
+.flag_AL {
+  background-position: -20px 0px;
+}
+.flag_DZ {
+  background-position: -40px 0px;
+}
+.flag_AS {
+  background-position: -60px 0px;
+}
+.flag_AD {
+  background-position: -80px 0px;
+}
+.flag_AO {
+  background-position: -100px 0px;
+}
+.flag_AI {
+  background-position: -120px 0px;
+}
+
+.tos-container {
+  margin-bottom: 20px;
+}
+.check_container {
+  position: relative;
+  display: grid;
+  grid-template-columns: 22px auto;
+}
+.agree_checkbox {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  width: 0px;
+  height: 0px;
+  position: relative;
+  margin: 2px 0px;
+  border-radius: 3px;
+  // opacity: 0;
+}
+.agree_checkbox+label a {
+  text-decoration: none;
+  color: #1389E3;
+}
+.tos_error {
+  color: #EE3535;
+  font-size: 14px;
+  margin-top: 10px;
+  /* display: none; */
+}
+.form_btn {
+  padding: 0px 30px;
+  font-size: 13px;
+  color: #FFFFFF;
+  font-weight: 600;
+  background: #1389E3;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  margin-top: 30px;
+  cursor: pointer;
+  text-transform: uppercase;
+  box-sizing: border-box;
+  transition: all 0.3s ease-in-out;
+  height: 40px;
+}
+.link_account_option {
+  position: relative;
+  border: 2px solid #ECECEC;
+  margin-top: 40px;
+  padding: 20px;
+  border-radius: 10px;
+}
+.or_tag {
+  margin: auto;
+  padding: 0px 10px;
+  display: inline-block;
+  position: absolute;
+  background: #FFF;
+  top: -11px;
+  left: 0px;
+  right: 0px;
+  width: fit-content;
+  width: -moz-fit-content;
+  width: -webkit-fit-content;
+}
+.flex_link_container {
+  display: flex;
+  flex-wrap: nowrap;
+}
+.or_button {
+  background: #ECF7FF;
+  border: 1px solid #D9EFFF;
+  padding: 0px 20px;
+  cursor: pointer;
+  margin: auto;
+  line-height: 32px;
+  display: inline-block;
+  position: relative;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #0091FF;
+  box-sizing: border-box;
+  height: 34px;
+  margin-right: 0px;
+  margin-left: 30px;
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+.or_description {
+  font-size: 12px;
+  color: rgba(17,17,17,0.70);
+  letter-spacing: -0.2px;
+  line-height: 20px;
+  margin-top: 5px;
+}
