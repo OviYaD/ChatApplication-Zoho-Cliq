@@ -27,7 +27,7 @@ export default function ContactListPopup({ memList, setShowListStatus, participa
             console.log(data);
             console.log(user);
             data = data.filter((ele) => {
-                return ele.id !== user.id;
+                return ele.id !== user.user_id;
             })
             console.log(memList)
             data = data.filter((ele) => {
