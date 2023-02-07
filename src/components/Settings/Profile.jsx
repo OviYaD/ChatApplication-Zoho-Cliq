@@ -4,15 +4,30 @@ import { Logout } from '@mui/icons-material';
 import { useDispatch } from 'react-redux';
 import { removeUser } from '../../redux/slices/userSlice';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
+
 
 export default function Profile({ setOpenStatus, setOpenPersonalizeStatus }) {
     const dispatch = useDispatch();
+    const user = useSelector((state) => state.user)
     const navigate = useNavigate();
+    const [profileInfo, setProfileInfo] = useState({});
+
+    useEffect(() => {
+        console.log("profile info", user);
+        setProfileInfo(user);
+    }, []);
+
     const Logout = () => {
         localStorage.removeItem('token');
         dispatch(removeUser());
         navigate('/signin', { replace: true });
     }
+
+
+
+
     return <>
         <div id="myModal" className="profile-modal">
 
@@ -26,7 +41,7 @@ export default function Profile({ setOpenStatus, setOpenPersonalizeStatus }) {
                         </div>
                         <div className="cuserimg mrgT25 dIB posl">
                             <div className="usrimg" type="imgpreview">
-                                <img id="userprofileimgview" src="https://contacts.zoho.in/file?ID=60016689094&amp;nocache=1674451340247&amp;t=user&amp;fs=thumb" />
+                                <img id="userprofileimgview" src="https://contacts.zoho.in/file?ID=60016689094&nocache=1674451340247&t=user&fs=thumb" />
                             </div>
                             <input type="file" id="profilephotochange" name="photo" className="sendfile" accept="image/*" />
                             <span className="zuserimgchng msi-camera posa">
@@ -36,11 +51,11 @@ export default function Profile({ setOpenStatus, setOpenPersonalizeStatus }) {
                                 </svg>
                             </span>
                         </div>
-                        <div className="usrdetails ellips username bold">Oviya D</div>
-                        <div className="ellips useremail" title="oviya.d@codingmart.com">oviya.d@codingmart.com</div>
-                        <div className="ellips font13 mrgT10">
+                        <div className="usrdetails ellips username bold" style={{ textTransform: "capitalize" }}>{`${profileInfo.first_name} ${profileInfo.last_name === null ? "" : profileInfo.last_name}`}</div>
+                        <div className="ellips useremail" title="oviya.d@codingmart.com">{profileInfo.email}</div>
+                        <div className="ellips font13 mrgT10 ">
                             <span className="mrgR5 myaccntlink hvrinfo"><a href="https://accounts.zoho.in" target="_blank">My Zoho Account</a></span><span className="dot">.</span>
-                            <span documentclick="logout" type="button" className="signout hvrinfo cur mrgL5" onClick={Logout}>Sign Out</span>
+                            <span documentclick="logout" type="button" className="signout hvrinfo cur mrgL5 " onClick={Logout}>Sign Out</span>
                         </div>
                         <div id="userstatusdetails" statuspickerdiv="" className="userstatusui flexC">
                             <div className="status-dropdown scodestatus dIB fshrink mR10 " id="statusoptionscont_userstatusdetails" showstatusoptions="">
