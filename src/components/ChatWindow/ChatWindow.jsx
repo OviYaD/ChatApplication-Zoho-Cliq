@@ -9,7 +9,7 @@ import { useEffect } from 'react';
 import { getChannelInfo } from '../../api/Channel/Channel';
 import LandingPage from '../LandingPage/LandingPage';
 
-export default function ChatWindow({ newMsg, setWindow, messages, chatInfo, socket, setMessages, setActId }) {
+export default function ChatWindow({ isFinished, reload, setReload, newMsg, setWindow, messages, chatInfo, socket, setMessages, setActId }) {
     const [openDes, setOpenStatus] = useState(false);
     const [bodyContent, setBodyContent] = useState("chat");
 
@@ -30,7 +30,7 @@ export default function ChatWindow({ newMsg, setWindow, messages, chatInfo, sock
             <Header setActId={setActId} setWindow={setWindow} chatInfo={chatInfo} bodyContent={bodyContent} setBodyContent={setBodyContent} setOpenStatus={setOpenStatus} ></Header>
 
             {bodyContent === "chat" ? <>
-                <ChatBody newMsg={newMsg} socket={socket} messages={messages} chatInfo={chatInfo}></ChatBody>
+                <ChatBody isFinished={isFinished} setReload={setReload} reload={reload} newMsg={newMsg} socket={socket} messages={messages} chatInfo={chatInfo}></ChatBody>
                 <InputBox messages={messages} setMessages={setMessages} socket={socket}></InputBox>
             </> : <MediaFiles></MediaFiles>}
         </div>

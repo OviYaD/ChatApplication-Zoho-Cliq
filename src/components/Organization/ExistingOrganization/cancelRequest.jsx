@@ -78,7 +78,7 @@ export default function CancelRequest() {
 								<div className="waitingui">
 									<svg width="129px" height="61px" viewBox="0 0 129 61" version="1.1">
 										<defs></defs>
-										<g id="Page-1" stroke="none" stroke-width="1" fill="none" fillRule="evenodd">
+										<g id="Page-1" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
 											<g id="Artboard" transform="translate(-123.000000, -401.000000)">
 												<g id="failed" transform="translate(124.000000, 401.000000)">
 													<g id="cancel-(2)" transform="translate(34.000000, 0.000000)" fillRule="nonzero">
@@ -94,12 +94,12 @@ export default function CancelRequest() {
 														<circle id="Oval" cx="20.6108596" cy="3.15683041" r="3.10602924"></circle>
 													</g>
 													<path d="M76.9217661,42.710538 L58.2371754,42.710538 C57.6652398,42.710538 57.2018655,42.2469649 57.2018655,41.6752281 C57.2018655,41.1034912 57.6653392,40.6399181 58.2371754,40.6399181 L76.9217661,40.6399181 C77.4937018,40.6399181 77.957076,41.1034912 77.957076,41.6752281 C77.957076,42.2469649 77.4937018,42.710538 76.9217661,42.710538 Z" id="Shape" fill="#000000" fillRule="nonzero"></path>
-													<path d="M104.236842,8.5 L112.763158,8.5" id="Line" stroke="#C2C2C2" stroke-width="1.46999995" stroke-linecap="square"></path>
-													<path d="M18.2333333,53.5 L24.7666667,53.5" id="Line-Copy-2" stroke="#C2C2C2" stroke-width="1.46999995" stroke-linecap="square"></path>
-													<path d="M110.25,17.5 L126.75,17.5" id="Line-Copy" stroke="#C2C2C2" stroke-width="1.46999995" stroke-linecap="square"></path>
-													<path d="M0.243902439,45.5 L19.7560976,45.5" id="Line-Copy-3" stroke="#C2C2C2" stroke-width="1.46999995" stroke-linecap="square"></path>
-													<circle id="Oval-2" stroke="#C2C2C2" stroke-width="0.979999967" cx="103.5" cy="48.5" r="1.01000002"></circle>
-													<circle id="Oval-2-Copy" stroke="#C2C2C2" stroke-width="0.979999967" cx="25.5" cy="14.5" r="1.01000002"></circle>
+													<path d="M104.236842,8.5 L112.763158,8.5" id="Line" stroke="#C2C2C2" strokeWidth="1.46999995" strokeLinecap="square"></path>
+													<path d="M18.2333333,53.5 L24.7666667,53.5" id="Line-Copy-2" stroke="#C2C2C2" strokeWidth="1.46999995" strokeLinecap="square"></path>
+													<path d="M110.25,17.5 L126.75,17.5" id="Line-Copy" stroke="#C2C2C2" strokeWidth="1.46999995" strokeLinecap="square"></path>
+													<path d="M0.243902439,45.5 L19.7560976,45.5" id="Line-Copy-3" stroke="#C2C2C2" strokeWidth="1.46999995" strokeLinecap="square"></path>
+													<circle id="Oval-2" stroke="#C2C2C2" strokeWidth="0.979999967" cx="103.5" cy="48.5" r="1.01000002"></circle>
+													<circle id="Oval-2-Copy" stroke="#C2C2C2" strokeWidth="0.979999967" cx="25.5" cy="14.5" r="1.01000002"></circle>
 												</g>
 											</g>
 										</g>

@@ -20,11 +20,12 @@ export default function Header({ setActId, setWindow, chatInfo, setOpenStatus, b
                     </div>
                     <div className='chatInfo'>
                         <div className='dflx'>
-                            <div className=''>#{chatInfo?.name}</div>
+                            <div className='' >#{chatInfo?.name}</div>
                             <div className='channelMem flexC' style={{ cursor: "pointer" }} onClick={() => setShowMemList(true)}>
                                 <PersonOutlineOutlinedIcon style={{ fontSize: "18px", color: "#d6d6d6" }}></PersonOutlineOutlinedIcon> <span style={{ color: "#d6d6d6", paddingLeft: "2px", fontFamily: "zoho-puvi-regular" }}>{chatInfo?.members?.length}</span>
                             </div>
                         </div>
+
                         <div className='dflx opt' style={{ marginLeft: "0px" }}>
                             <div className={`curP ${bodyContent === "chat" && "opt-active"}`} onClick={() => setBodyContent("chat")}>Messages</div>
                             <div className={`curP ${bodyContent !== "chat" && "opt-active"}`} onClick={() => setBodyContent("media")}> Media Files</div>

@@ -14,15 +14,15 @@ import ProfileInfo from '../ChatWindow/ProfileInfo';
 import ChannelList from '../ChannelComponents/ChannelList';
 import { useEffect } from 'react';
 import { getChannelInfo } from '../../api/Channel/Channel';
-import { getMessageThroughSocket } from '../../SocketEvents/events';
+import { getMessageThroughSocket, markAsRead } from '../../SocketEvents/events';
 import LandingPage from '../LandingPage/LandingPage';
 
 
-export default function MainContainer({ newMsg, messages, socket, setMessages }) {
+export default function MainContainer({ isFinished, reload, setReload, newMsg, messages, socket, setMessages }) {
 
     const searchParams = new URLSearchParams(document.location.search);
     const [showCreateModal, setStatus] = useState(false);
-    const [window, setWindow] = useState("quote");
+    const [window, setWindow] = useState("chat");
     const [activeMenu, setActiveMenu] = useState("channels");
     const [chatInfo, setChatInfo] = useState();
     const [actId, setActId] = useState("");
@@ -43,7 +43,9 @@ export default function MainContainer({ newMsg, messages, socket, setMessages })
         const data = await getChannelInfo(id);
         setChatInfo(data);
         setWindow("chat");
-        getMessageThroughSocket(socket, id, new Date());
+        getMessageThroughSocket(socket, id);
+        markAsRead(socket, id);
+
     }
 
 
@@ -70,7 +72,7 @@ export default function MainContainer({ newMsg, messages, socket, setMessages })
                 {(() => {
                     switch (window) {
                         case "Org": return <MemberList></MemberList>
-                        case "chat": return <ChatWindow newMsg={newMsg} setWindow={setWindow} setActId={setActId} setMessages={setMessages} messages={messages} socket={socket} chatInfo={chatInfo}></ChatWindow>
+                        case "chat": return <ChatWindow isFinished={isFinished} reload={reload} setReload={setReload} newMsg={newMsg} setWindow={setWindow} setActId={setActId} setMessages={setMessages} messages={messages} socket={socket} chatInfo={chatInfo}></ChatWindow>
                         case "quote": return <LandingPage></LandingPage>
 
                     }

@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import moment from 'moment/moment';
 import { useSelector } from 'react-redux';
 import OutsideClickHandler from 'react-outside-click-handler';
-import { deleteMessage, editMessage, toggleReaction } from '../../SocketEvents/events';
+import { deleteMessage, editMessage, toggleReaction, createMessage } from '../../SocketEvents/events';
 import EditMessageInputBox from "./EditMessageInputBox"
 import EmojiPicker, {
     EmojiStyle,
@@ -16,8 +16,12 @@ import EmojiPicker, {
 } from "emoji-picker-react";
 import MessageOptions from './MessageOptions';
 import EditHistory from './EditHistory';
+import CircleLoader from '../loaders/CircleLoader';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import Diversity3OutlinedIcon from '@mui/icons-material/Diversity3Outlined';
 
-export default function Message({ newMsg, socket, messages }) {
+
+export default function Message({ chatInfo, newMsg, socket, messages }) {
 
     const user = useSelector((state) => state.user);
     const lastmsg = useRef();
@@ -33,8 +37,6 @@ export default function Message({ newMsg, socket, messages }) {
 
     useEffect(() => {
         console.log(messages);
-        if (newMsg) lastmsg.current.scrollIntoView();
-
         let prevDate = "";
         let prevUser = "";
         let setScroll = true;
@@ -71,8 +73,7 @@ export default function Message({ newMsg, socket, messages }) {
 
         })
         setMessages(msgList);
-
-
+        if (newMsg && msgList[msgList.length - 1]?.sender.user_id === user.user_id) lastmsg.current.scrollIntoView({ block: "end" });
 
     }, [messages])
 
@@ -108,11 +109,31 @@ export default function Message({ newMsg, socket, messages }) {
         }).length > 0
     }
     return <>
+        {/* <CircleLoader></CircleLoader> */}
+        {/* <InfiniteScroll
+            dataLength={10}
+            next={() => console.log("sskdjskdjsk")}
+            // style={{ display: 'flex', flexDirection: '' }} //To put endMessage and loader to the top.
+            // inverse={false} //
+            hasMore={true}
+            loader={<h4>Loading...</h4>}
+            scrollableTarget="scrollableDiv"
+        > */}
+
+        {messages.length === 0 && <div className='' style={{ textAlign: "center", alignItems: "center" }}>
+            <div className="chatIcon-wrapper" style={{ marginLeft: "auto", marginRight: "auto" }}>
+                <Diversity3OutlinedIcon style={{ color: "#bfbfbf" }}></Diversity3OutlinedIcon>
+            </div>
+            <h3>Here's the very start of this channel..</h3>
+            <p style={{ color: "gray", fontSize: "15px", marginBottom: "1.7rem", marginTop: "-0.51rem" }}>Use @mentions to mention someone specifically during the course of the conversation, and use /commands as shortcuts to perform things faster.</p>
+            <span className='cur' onClick={() => createMessage(socket, { chat_id: chatInfo._id, content: "Hi Frndz 👋", is_private: false })} style={{ border: "1px solid var(--color-secondary-lhs)", padding: "10px 30px", borderRadius: "10px" }}>Say <b>Hello</b></span>
+
+        </div>}
 
         {messageList && messageList.map((msg, index) => {
             return <div key={index}>
                 {msg.showDate && <div msguid={msg._id} purpose="date" className="zcmsg_dvdrmn in-view">
-                    <div msguid={msg._id} className="zcdvdmsg ">{moment(msg.created_at).format("dddd, MMMM DD YYYY")}</div>
+                    <div msguid={msg._id} className="zcdvdmsg ">{moment(msg.created_at).isSame(moment(), 'day') ? "Today" : moment(msg.created_at).isSame(moment().subtract(1, 'days'), 'day') ? "Yesterday" : moment(msg.created_at).format("dddd, MMMM DD YYYY")}</div>
                 </div>}
                 {msg.showUser && <div className="sender ellips   in-view">
                     <div className="chtimg floatl ">
@@ -145,7 +166,7 @@ export default function Message({ newMsg, socket, messages }) {
                                 emojiVersion="0.6"
                                 lazyLoadEmojis={true}
                                 suggestedEmojisMode={SuggestionMode.RECENT}
-                                emojiStyle={EmojiStyle.APPLE}
+                                emojiStyle={EmojiStyle.FACEBOOK}
 
                             />
                         </div>
@@ -172,14 +193,14 @@ export default function Message({ newMsg, socket, messages }) {
                         </blockquote> */}
 
                             {msg.content}
-                            <div className='msg-options zcreactn_emoji'>
+                            <div className={`msg-options zcreactn_emoji ${showMsgOptions._id === msg._id && "displayBlck"}`}>
                                 <div className="instant-reactions" onClick={() => handleReaction(msg._id, { unicode: "1f44d", name: "thumbsup" })}>
                                     <div>👍</div>
                                 </div>
                                 <div className="instant-reactions" onClick={() => handleReaction(msg._id, { unicode: "1f44c", name: "ok hand" })}>
                                     <div>👌</div>
                                 </div>
-                                <div className="instant-reactions" onClick={() => handleReaction(msg._id, "2795")}>
+                                <div className="instant-reactions" onClick={() => handleReaction(msg._id, { unicode: "2795", name: "Heavy Plus" })}>
                                     <div>➕</div>
                                 </div>
                                 <div className="instant-reactions">
@@ -193,21 +214,39 @@ export default function Message({ newMsg, socket, messages }) {
                                     arr[index] = true;
                                     return [...arr];
                                 })} >
-                                    <div>😊</div>
+                                    <div><svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="14"
+                                        height="14"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        strokeWidth="2"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                    >
+                                        <path d="M22 11v1a10 10 0 1 1-9-10" />
+                                        <path d="M8 14s1.5 2 4 2 4-2 4-2" />
+                                        <line x1="9" y1="9" x2="9.01" y2="9" />
+                                        <line x1="15" y1="9" x2="15.01" y2="9" />
+                                        <path d="M16 5h6" />
+                                        <path d="M19 2v6" />
+                                    </svg>
+                                    </div>
                                 </div>
                                 <div className="instant-reactions">
-                                    <div className='zcf-more' onClick={() => setShowMsgOptions(msg._id)}>
+                                    <div className='zcf-more' onClick={() => setShowMsgOptions(msg)}>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-three-dots-vertical" viewBox="0 0 16 16" >
                                             <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
                                         </svg>
                                     </div>
-                                    {showMsgOptions === msg._id && <MessageOptions setShowMsgOptions={setShowMsgOptions} isUser={true} msg={msg} socket={socket} editInputEnabler={editInputEnabler}></MessageOptions>}
                                 </div>
 
                             </div>
+                            {showMsgOptions._id === msg._id && <MessageOptions setShowMsgOptions={setShowMsgOptions} isUser={showMsgOptions.sender.user_id === user.user_id} msg={msg} socket={socket} editInputEnabler={editInputEnabler}></MessageOptions>}
                             {msg.is_updated && <span
                                 id="editinfo"
-                                class="cur zcedtinfo hvrinfo"
+                                className="cur zcedtinfo hvrinfo"
                                 title={moment(msg.update_history[msg.update_history.length - 1]?.updated_at).format("dddd, MMMM DD YYYY HH:mm a")}
                                 onClick={() => { setIdForHistory(msg) }}>
                                 (Edited)
@@ -216,7 +255,7 @@ export default function Message({ newMsg, socket, messages }) {
                             {msg.sender.user_id === user.user_id && <div className={`read-msg ${msg.read_by.length === 0 && "unread"}`} style={{ marginLeft: "5px", }} >
                                 <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" viewBox="0 0 122.88 74.46">
                                     <title>double-tick</title>
-                                    <path class="cls-1" d="M1.87,47.2a6.33,6.33,0,1,1,8.92-9c8.88,8.85,17.53,17.66,26.53,26.45l-3.76,4.45-.35.37a6.33,6.33,0,0,1-8.95,0L1.87,47.2ZM30,43.55a6.33,6.33,0,1,1,8.82-9.07l25,24.38L111.64,2.29c5.37-6.35,15,1.84,9.66,8.18L69.07,72.22l-.3.33a6.33,6.33,0,0,1-8.95.12L30,43.55Zm28.76-4.21-.31.33-9.07-8.85L71.67,4.42c5.37-6.35,15,1.83,9.67,8.18L58.74,39.34Z" />
+                                    <path className="cls-1" d="M1.87,47.2a6.33,6.33,0,1,1,8.92-9c8.88,8.85,17.53,17.66,26.53,26.45l-3.76,4.45-.35.37a6.33,6.33,0,0,1-8.95,0L1.87,47.2ZM30,43.55a6.33,6.33,0,1,1,8.82-9.07l25,24.38L111.64,2.29c5.37-6.35,15,1.84,9.66,8.18L69.07,72.22l-.3.33a6.33,6.33,0,0,1-8.95.12L30,43.55Zm28.76-4.21-.31.33-9.07-8.85L71.67,4.42c5.37-6.35,15,1.83,9.67,8.18L58.74,39.34Z" />
                                 </svg>
                             </div>}
                         </div>}
@@ -225,11 +264,12 @@ export default function Message({ newMsg, socket, messages }) {
                             {console.log(Object.keys(msg.reactions))}
 
                             {Object.keys(msg.reactions).map((reaction) => {
-                                return <div className={`zcreactn-optns   ${userExists(msg.reactions[reaction]) ? "zcreactn-optns-me" : "zcreactn-optns-others"}`} onClick={() => toggleReaction(socket, msg._id, { unicode: reaction.split(":")[0], name: reaction.split(":")[1] })}>
+                                return <div className={`zcreactn-optns cur   ${userExists(msg.reactions[reaction]) ? "zcreactn-optns-me" : "zcreactn-optns-others"}`} onClick={() => toggleReaction(socket, msg._id, { unicode: reaction.split(":")[0], name: reaction.split(":")[1] })}>
+                                    {console.log(reaction)}
                                     <em className="zcslymsg-anim-24-joy">
                                         <Emoji
                                             unified={reaction.split(":")[0]}
-                                            emojiStyle={EmojiStyle.APPLE}
+                                            emojiStyle={EmojiStyle.FACEBOOK}
                                             size={22}
                                         />
                                     </em><span count="1">{msg.reactions[reaction].length}</span>
@@ -239,17 +279,37 @@ export default function Message({ newMsg, socket, messages }) {
                                 let arr = new Array(messages.length).fill(false);
                                 arr[index] = true;
                                 return [...arr];
-                            })}>😊 </div>
+                            })}><svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="14"
+                                height="14"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                            >
+                                    <path d="M22 11v1a10 10 0 1 1-9-10" />
+                                    <path d="M8 14s1.5 2 4 2 4-2 4-2" />
+                                    <line x1="9" y1="9" x2="9.01" y2="9" />
+                                    <line x1="15" y1="9" x2="15.01" y2="9" />
+                                    <path d="M16 5h6" />
+                                    <path d="M19 2v6" />
+                                </svg> </div>
 
                         </div>}
                 </div>
             </div>
         })}
+        <div ref={lastmsg} style={{ height: "10px" }}></div>
+
+        {/* </InfiniteScroll> */}
 
         {/* {showInput && <><input type="text" value={editMsgInp} onChange={handleChange} />
             <button className='btn btn-primary' onClick={() => editMessage(socket, msgId, editMsgInp)}>EDit</button></>} */}
 
-        <div ref={lastmsg}></div>
+
 
 
 

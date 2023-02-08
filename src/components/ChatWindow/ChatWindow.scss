@@ -82,6 +82,16 @@
     }
   }
 }
+.chatIcon-wrapper {
+  width: 50px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px 4px 4px 4px;
+  box-shadow: 0px 0px 2px var(--color-lp3);
+  background-color: var(--bg-color-3);
+}
 
 .chatBody {
   display: flex;
@@ -281,6 +291,10 @@
         .msg-options{
           display: flex;
         }
+      }
+
+      .displayBlck{
+        display: flex !important;
       }
 
       .msg-options{

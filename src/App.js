@@ -11,6 +11,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { setUser } from "./redux/slices/userSlice";
 import { useNavigate } from "react-router-dom";
   import 'react-toastify/dist/ReactToastify.css';
+  import { Worker } from '@react-pdf-viewer/core';
 
 function App() {
   const dispatch = useDispatch();
@@ -35,7 +36,10 @@ function App() {
   
   return (
     <div className="App">
+    <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.3.122/build/pdf.worker.min.js">
+
       <Router />
+    </Worker>
       <ToastContainer />
     </div>
   );

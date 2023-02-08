@@ -35,6 +35,21 @@
     // padding-bottom: 10px;
     box-shadow: 1px 0 8px var(--box-shadow-color3);
 }
+.Inp-emoji-container{
+    transform: scaleY(1);
+    opacity: 1;
+    transform-origin: right bottom;
+    transition: height 0.3s cubic-bezier(0.25,0.8,0.25,1), opacity 0.3s cubic-bezier(0.25,0.8,0.25,1);
+    height: fit-content;
+    width: fit-content;
+    position: absolute;
+    bottom: calc(100% + 5px);
+    background-color: var(--bg-color-3);
+    z-index: 1112;
+    border-radius: 4px;
+    box-shadow: 1px 0 8px var(--box-shadow-color3);
+    right:0px !important;
+}
 .zcdqut {
     margin: auto;
     left: 0;

@@ -28,15 +28,15 @@ export default function EditHistory({ idForHistory, setIdForHistory }) {
                         </div>
                         <div className="flexG zcteammember-list posl ps-container ps-theme-default ps-active-y">
                             <div id="participants" style={{ overflow: "auto", maxHeight: "300px", overflowX: "hidden", scrollBehavior: "smooth" }}>
-                                <div id="edithistorycontainer" class="edit-hist-bdy in-view ps-container ps-theme-default ps-active-y" data-ps-id="b33fe6ef-f7a0-42b4-e750-93d63ae6d61e">
+                                <div id="edithistorycontainer" className="edit-hist-bdy in-view ps-container ps-theme-default ps-active-y" data-ps-id="b33fe6ef-f7a0-42b4-e750-93d63ae6d61e">
                                     {msgHistory.map((msg, index) => {
                                         return <>
-                                            <div class={`flex edit-hist-cont ${index === 0 ? "edit-hist-lastmsg" : index === idForHistory.update_history.length - 1 ? "edit-hist-frstmsg" : ""}`}>
-                                                <div class="font12 edit-hist-time">{moment(msg.updated_at).format("HH:mm A, MMM DD")}</div>
-                                                <div class="edit-hist-msgcont">
-                                                    {index === 0 && <div class="edit-hist-lastmsgday">{moment(msg.updated_at).fromNow()}, {moment(msg.updated_at).format("MMMM DD")}</div>}
+                                            <div className={`flex edit-hist-cont ${index === 0 ? "edit-hist-lastmsg" : index === idForHistory.update_history.length - 1 ? "edit-hist-frstmsg" : ""}`}>
+                                                <div className="font12 edit-hist-time">{moment(msg.updated_at).format("HH:mm A, MMM DD")}</div>
+                                                <div className="edit-hist-msgcont">
+                                                    {index === 0 && <div className="edit-hist-lastmsgday">{moment(msg.updated_at).fromNow()}, {moment(msg.updated_at).format("MMMM DD")}</div>}
                                                     <pre
-                                                        class="edit-hist-msg"
+                                                        className="edit-hist-msg"
                                                     >{msg.content}
                                                     </pre>
                                                 </div>
