@@ -13,6 +13,8 @@ export default function AppContainer() {
   const [socket, setSocket] = useState();
   const [messages, setMessages] = useState([]);
   const [newMsg, setNewMsg] = useState(false);
+  const [reload, setReload] = useState(true);
+  const [isFinished, setFinishState] = useState(false);
 
 
   useEffect(() => {
@@ -34,16 +36,22 @@ export default function AppContainer() {
     });
 
     socket.on("fetch-messages", (data) => {
-      console.log(data);
-      setMessages(data.messages);
-      setNewMsg(true);
+      [...data.messages, ...messages].length > 15 ? setNewMsg(false) : setNewMsg(true);
+      if (data.messages.length > 0 && data.messages[0]?.chat_id === messages[0]?.chat_id)
+        setMessages((messages) => [...data.messages, ...messages]);
+      else
+        setMessages((messages) => [...data.messages])
+      setReload(true);
+      setFinishState(data.isFinished);
 
     })
     socket.on("send-message", (data) => {
-      console.log("received", data.content);
-      console.log("skdjskdjsldjsjdks", messages)
       setMessages((messages) => [...messages, data])
       setNewMsg(true);
+    })
+
+    socket.on("read-message", (data) => {
+      console.log("read message", data.messages);
     })
 
     socket.on("delete-message", (data) => {
@@ -61,7 +69,7 @@ export default function AppContainer() {
 
     socket.on("edit-message", (data) => {
       console.log("received deleted msg", data, messages);
-      setNewMsg(false)
+      setNewMsg(false);
       setMessages((messages) => {
         const msg = [...messages];
         const index = msg.findIndex((msg) => msg._id === data._id);
@@ -98,9 +106,9 @@ export default function AppContainer() {
 
 
   return <>
-    {socket ? <div style={{ backgroundColor: "black", position: "fixed", width: "100%", fontFamily: "zoho-puvi-regular" }}>
+    {!socket ? <div style={{ backgroundColor: "black", position: "fixed", width: "100%", fontFamily: "zoho-puvi-regular" }}>
       <MenuBar></MenuBar>
-      <MainContainer socket={socket} messages={messages} setMessages={setMessages} newMsg={newMsg}></MainContainer>
+      <MainContainer isFinished={isFinished} setReload={setReload} reload={reload} socket={socket} messages={messages} setMessages={setMessages} newMsg={newMsg}></MainContainer>
     </div> : <LoadingPage></LoadingPage>}
   </>;
 

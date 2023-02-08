@@ -1,8 +1,8 @@
-export const getMessageThroughSocket = (socket,id,time) =>{
+export const getMessageThroughSocket = (socket,id,offset=0) =>{
     console.log("fetching messages.....",socket)
         socket.emit("fetch-message",{
             chat_id:id,
-            time
+            offset
         })
 }
 
@@ -30,4 +30,11 @@ export const toggleReaction = (socket,id,reaction) => {
         reaction,
         id
     })
+}
+
+export const markAsRead = (socket,id)=>{
+    console.log("mark as read")
+    socket.emit("read-message",{
+        chat_id:id
+    });
 }
