@@ -6,9 +6,11 @@ import Diversity3OutlinedIcon from '@mui/icons-material/Diversity3Outlined';
 import Connector from './Connector';
 import Permissions from './Permissions';
 import moment from 'moment/moment';
+import { useSelector } from 'react-redux';
 
-export default function ChannelDescription({ setOpenStatus, chatInfo }) {
+export default function ChannelDescription({ socket, setOpenStatus, chatInfo }) {
     const [viewOption, setViewOption] = useState(1);
+    const user = useSelector((state) => state.user)
     return <>
         <div id="myModal" className="channel-modal">
 
@@ -53,7 +55,7 @@ export default function ChannelDescription({ setOpenStatus, chatInfo }) {
                         <div className='auth-Info dflx justifySB'>
 
                             <div className=' dflx justifySB'>
-                                <div className='name ellips' style={{ maxWidth: "230px" }}> Created By<span id="owner_name" className="per-name ellips">{`${chatInfo.owner.first_name} ${chatInfo.owner.last_name === null ? "" : chatInfo.owner.last_name}`}</span></div>
+                                <div className='name ellips' style={{ maxWidth: "230px" }}> Created By<span id="owner_name" className="per-name ellips">{user.user_id === chatInfo.owner.user_id ? "You" : `${chatInfo.owner.first_name} ${chatInfo.owner.last_name === null ? "" : chatInfo.owner.last_name}`}</span></div>
                                 <Tooltip
                                     anchorId="owner_name"
                                     place="bottom"
@@ -100,7 +102,7 @@ export default function ChannelDescription({ setOpenStatus, chatInfo }) {
                 </div>
                 <div className='chatbody'>
                     {viewOption === 1 && ""}
-                    {viewOption === 2 && <Permissions chatInfo={chatInfo}></Permissions>}
+                    {viewOption === 2 && <Permissions socket={socket} chatInfo={chatInfo}></Permissions>}
                     {viewOption === 3 && <Connector></Connector>}
                 </div>
 
