@@ -1,0 +1,163 @@
+
+.staroptnsbox.src_tip {
+    position: relative;
+    box-shadow: none;
+    top: 0;
+    text-align: center;
+    height: 38px;
+    width: auto;
+    z-index: 0;
+    left: 0;
+    padding: 0.4rem;
+}
+
+
+.staroptnsbox {
+    height: 46px;
+    border-radius: 10px;
+    background-color: var(--bg-color-3);
+    box-shadow: 0 0 10px 0 rgb(0 0 0 / 16%);
+    position: absolute;
+    top: -50px;
+    display: flex;
+}
+.zcl-tab {
+    display: inline-flex;
+    padding: 3px 4px;
+    border-radius: 6px;
+    border: 1px solid var(--color-divider);
+    width: fit-content;
+    background-color: var(--default-bg-color);
+}
+.src_tip span[selected], .src_tip span:hover {
+    background-color: var(--color-hover1);
+    color: var(--color-main);
+}
+.src_tip span.default {
+    font-size: 16px;
+    line-height: 45px;
+}
+.staroptnsbox.src_tip span {
+    margin-right: 10px;
+    border: none;
+    width: 95px;
+    border-radius: 4px;
+    flex-direction: row;
+    color: #999999;
+}
+.staroptnsbox > span:first-child {
+    border-radius: 10px 0 0 10px;
+}
+.zcoverlay .modalwindow * {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -khtml-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+.staroptnsbox > span {
+    width: 68px;
+    border-right: solid 1px var(--color-divider);
+    font-size: 14px;
+    color: var(--color-main);
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 7px;
+}
+.star-msg-content{
+    height: calc(100vh - 80px);
+    overflow-y: scroll;
+}
+.strsmg {
+    border-bottom: 1px solid var(--border-color);
+    margin: 2px 0 0 0;
+    border-radius: 0;
+    padding: 8px 0 5px 0;
+    cursor: pointer;
+    background-color: var(--default-bg-color);
+    position: relative;
+
+    .zcstrrow {
+        border: none !important;
+        padding: 6px 30px 3px 0 !important;
+        display: inline-block;
+        position: relative;
+        width: 100%;
+    }
+}
+.star-msg-content{
+    padding: 10px 30px !important;
+    font-size: 15px;
+}
+.strsmg{
+    &:hover{
+        border-color: var(--zcl-color-theme1);
+        .zcunrdtit{
+            color: var(--zcl-color-theme1);
+        }
+    }
+}
+.usrimgsts, .zcchlconaticn {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+}
+.zc-1 img {
+    position: relative;
+    width: 38px;
+    height: 38px;
+}
+.zcunrd-rht {
+    margin-top: 10px;
+    clear: right;
+}
+.zcunrd-rht {
+    margin-left: 50px;
+}
+.zcunrdlt-txt {
+    width: 80%;
+    font-family: "zoho-puvi-semi-bold";
+}
+.zcstarmsg div.zcunrdlt-txt {
+    height: 40px;
+    padding-top: 13px;
+    width: 100%;
+}
+
+.zcunrdtit {
+    font-weight: bold;
+    color: var(--color-main);
+    min-width: 30px;
+    max-width: 70%;
+    font-size: 15px;
+}
+.zcstarw {
+    font-size: 8px;
+    letter-spacing: 0px;
+    vertical-align: middle;
+}
+.hst-lftcntr .zcunrd-dt {
+    text-align: right;
+    margin-right: 10px;
+    font-size: 14px;
+}.zcunrdlt-txt + .msi-starsel {
+    position: absolute;
+    left: 12px;
+    top: 52px;
+    font-size: 13px;
+}
+.zcstarmsg .strbmsg {
+    width: 80% !important;
+    float: left;
+    margin-top: 1px;
+    font-size: 16px;
+    line-height: 26px;
+}
+.strbmsg {
+    color: #787878 !important;
+    margin-left: 3rem;
+    margin-bottom: 1rem;
+}
