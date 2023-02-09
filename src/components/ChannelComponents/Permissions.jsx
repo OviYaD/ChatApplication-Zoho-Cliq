@@ -7,7 +7,7 @@ import Toggle from './Toggle';
 import { useSelector } from 'react-redux';
 
 
-export default function Permissions({ chatInfo }) {
+export default function Permissions({ socket, chatInfo }) {
     const [replyType, setReplyType] = useState("");
     const [discussionType, setDiscussionType] = useState("");
     const user = useSelector((state) => state.user);
@@ -123,7 +123,7 @@ export default function Permissions({ chatInfo }) {
                 <div className='subcategry'>Permissions</div>
                 <div className='channelConfigCont'>
                     <div className=''>
-                        <PermissionTable chatInfo={chatInfo.permissions} role={() => getUserRole()}  ></PermissionTable>
+                        <PermissionTable socket={socket} permissions={chatInfo.permissions} chatInfo={chatInfo}  ></PermissionTable>
                     </div>
                 </div>
             </div>
