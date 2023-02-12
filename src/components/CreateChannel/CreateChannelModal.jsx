@@ -3,6 +3,9 @@ import ContactListPopup from './ContactListPopup';
 import "./CreateChannel.scss"
 import { createChannel } from '../../api/Channel/Channel';
 import { toast } from 'react-toastify';
+import OutsideClickHandler from 'react-outside-click-handler';
+import LoadingButton from '@mui/lab/LoadingButton';
+import Switch from '@mui/material/Switch';
 
 export default function CreateChannelModal({ setStatus }) {
     const [showList, setShowListStatus] = useState(false);
@@ -11,7 +14,11 @@ export default function CreateChannelModal({ setStatus }) {
     const [chnDes, setChnDes] = useState("");
     const [participants, setParticipants] = useState("");
     const [chnType, setChnType] = useState("");
-    const [error, setError] = useState(false);
+    const [error, setError] = useState({ type: false, name: false });
+    const [loading, setLoading] = useState(false);
+    const [profile, setProfile] = useState();
+    const [visibility, setVisibility] = useState(true);
+    const [file, setFile] = useState();
     // const [participantsName,setParticipantsName] = useState("");
 
     const handleShowList = () => {
@@ -37,9 +44,27 @@ export default function CreateChannelModal({ setStatus }) {
         }
     }
 
+    const handleAddProfile = (e) => {
+
+        setFile(e.target.files[0])
+        setProfile(URL.createObjectURL(e.target.files[0]))
+    }
+
     const handleCreateChannel = async () => {
+        setLoading(true);
+        if (!chnType && !channelName) {
+            setError({ type: true, name: true });
+            setLoading(false);
+            return;
+        }
         if (!chnType) {
-            setError(true);
+            setError({ type: true, name: false });
+            setLoading(false);
+            return;
+        }
+        if (!channelName) {
+            setError({ type: false, name: true });
+            setLoading(false);
             return;
         }
         let partList = memList;
@@ -48,7 +73,10 @@ export default function CreateChannelModal({ setStatus }) {
         })
 
         console.log(partList);
-        const res = await createChannel({ name: channelName, organization_id: JSON.parse(localStorage.getItem("!@#$%^org)(*&^%$")).id, description: chnDes, visibility: true, type: chnType === "organization" ? "PUBLIC" : "PRIVATE", participants_list: partList })
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("data", JSON.stringify({ name: channelName, organization_id: JSON.parse(localStorage.getItem("!@#$%^org)(*&^%$")).id, description: chnDes, visibility, type: chnType === "organization" ? "PUBLIC" : "PRIVATE", participants_list: partList }))
+        const res = await createChannel(formData);
         setStatus(false);
         if (res.status === 201) {
 
@@ -75,13 +103,14 @@ export default function CreateChannelModal({ setStatus }) {
                 theme: "dark",
             })
         }
+        setLoading(false);
     }
 
     return <>
         <div className="CreateChannel">
             <div id="myModal" className="channelcreation-modal">
                 <div className="channelcreation-modal-content">
-                    <span id="winclose" className="zchat-close cclose" title="Close [Esc]" onClick={() => setStatus(false)} >
+                    <span id="winclose" className="cc-zchat-close cclose" title="Close [Esc]" onClick={() => setStatus(false)} >
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" style={{ marginTop: "10px" }} className="bi bi-x-lg" viewBox="0 0 16 16">
                             <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z" />
                         </svg>
@@ -120,7 +149,7 @@ export default function CreateChannelModal({ setStatus }) {
                                     chnType === "organization" ?
                                         <div className='mTB10 cat-desc' style={{ alignItem: "center" }}>All organization members can find and join the channel based on the channel's visibility.</div>
                                         :
-                                        error ?
+                                        error.type ?
                                             <div className='mTB10 cat-desc' style={{ alignItem: "center", color: "red" }}>Select the channel level that you want to create.</div>
                                             :
                                             <div className='mTB10 cat-desc' style={{ alignItem: "center" }}>Select the channel level that you want to create.</div>
@@ -139,36 +168,50 @@ export default function CreateChannelModal({ setStatus }) {
                                                     <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" />
                                                 </svg></div></em>
                                             </div>
-                                            <label htmlFor="channelphoto" className="zcl-avatar-action flexM zcf-camera">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-camera" style={{ position: "absolute", top: "10px" }} viewBox="0 0 16 16">
+                                            <label htmlFor="channelphoto" className="zcl-avatar-action flexM zcf-camera">{console.log(profile)}
+                                                {profile ? <img style={{ width: "150px", height: "150px" }} src={profile}></img> : <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-camera" style={{ position: "absolute", top: "10px" }} viewBox="0 0 16 16">
                                                     <path d="M15 12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h1.172a3 3 0 0 0 2.12-.879l.83-.828A1 1 0 0 1 6.827 3h2.344a1 1 0 0 1 .707.293l.828.828A3 3 0 0 0 12.828 5H14a1 1 0 0 1 1 1v6zM2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2z" />
                                                     <path d="M8 11a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5zm0 1a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM3 6.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z" />
-                                                </svg>
-                                                <input type="file" id="channelphoto" name="cphoto" className="dN" /></label>
+                                                </svg>}
+                                                <input type="file" id="channelphoto" name="cphoto" className="dN" onChange={handleAddProfile} /></label>
                                         </div>
                                         <div className="posrel flexG mL25">
-                                            <span className="flexM zcl-input-pretext">#</span><input type="text" name="name" value={channelName} listen="keyup" id="channelnameval" tabIndex="2" autoComplete="off" className="zcl-input pL40 pR30" placeholder="Development-hacks, competitor-news " onChange={handleChange} />
+                                            <span className="flexM zcl-input-pretext">#</span>
+                                            <input type="text" name="name" value={channelName} listen="keyup" id="channelnameval" tabIndex="2" autoComplete="off" className={`zcl-input pL40 pR30 ${error.name && "zcl-input-error"}`} placeholder="Development-hacks, competitor-news " onChange={handleChange} />
                                             <span id="channelnamecount" category="charcount" limit="50" className="limit-txt dN"></span><span className="hint-txt">Your channel name cannot have &lt; &gt; " | @ #</span>
                                             <span id="channelnameerrormsg" category="errormsg" className="error-txt"></span>
                                         </div>
                                     </div>
                                 </div>
-                                <div id="channelscopes-private" className="usrslctn" >
-                                    {showList && <ContactListPopup addParticipants={addParticipants} memList={memList} setShowListStatus={setShowListStatus} participants={participants}></ContactListPopup>}
-                                    <div className="zcl-row mT50 pR36 flex">
-                                        <div id="channels-invite-title" className="zcl-row-label mT10">Add Participants</div>
-                                        <div className="flexG posrel">
-                                            <div id="channels-usersuggest" className="posrel">
-                                                <div id="channels-usersuggest-error" purpose="showResultsDom" className="zcl-multiselect-input-container">
-                                                    <span id="channels-usersuggest-selnodes" data-selections=""></span>
-                                                    <input id="channels-usersuggest-search-field" type="text" value={participants} name="participants" tabIndex="3" placeholder="Launch the channel by adding a few members" prevsearchval="" data-multiple-emailid-pasteable="true" onFocus={() => setShowListStatus(true)} onChange={handleChange} />
+                                {chnType === "organization" && <div className="zcl-row mT25 mTB10 pR36 flexC">
+                                    <div className="zcl-row-label">Visibility</div>
+                                    <div className="flexG flexC">
+                                        <Switch defaultChecked onChange={(e) => setVisibility((visibility) => !visibility)} />
+                                        <span style={{ textTransform: "capitalize", color: "var(--color-lp1)", fontSize: "15px" }}>{visibility ? "All org members can join the channel." : "Organization members can be added only by the channel admin."}</span>
+                                    </div>
+                                </div>}
+                                <OutsideClickHandler onOutsideClick={() => setShowListStatus(false)}>
+
+                                    <div id="channelscopes-private" className="usrslctn" >
+                                        <div className="zcl-row mT50 pR36 flex">
+                                            <div id="channels-invite-title" className="zcl-row-label mT10">Add Participants</div>
+                                            <div style={{ position: "relative", width: "100%" }}>
+
+                                                {showList && <ContactListPopup addParticipants={addParticipants} memList={memList} setShowListStatus={setShowListStatus} participants={participants}></ContactListPopup>}
+                                                <div className="flexG " style={{ width: "100%" }}>
+                                                    <div id="channels-usersuggest" className="posrel">
+                                                        <div id="channels-usersuggest-error" purpose="showResultsDom" className="zcl-multiselect-input-container">
+                                                            <span id="channels-usersuggest-selnodes" data-selections=""></span>
+                                                            <input id="channels-usersuggest-search-field" type="text" value={participants} name="participants" tabIndex="3" placeholder="Launch the channel by adding a few members" prevsearchval="" data-multiple-emailid-pasteable="true" onFocus={() => setShowListStatus(true)} onChange={handleChange} />
+                                                        </div>
+                                                        <div id="channels-usersuggest-results" className="zcl-multiselect-list-container" align="down" style={{ display: "none" }}><div id="channels-usersuggest-list" className="zcl-multiselect-list"></div></div>
+                                                        <span id="channels-usersuggest-error-txt" className="error-txt"></span>
+                                                    </div>
                                                 </div>
-                                                <div id="channels-usersuggest-results" className="zcl-multiselect-list-container" align="down" style={{ display: "none" }}><div id="channels-usersuggest-list" className="zcl-multiselect-list"></div></div>
-                                                <span id="channels-usersuggest-error-txt" className="error-txt"></span>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </OutsideClickHandler>
                                 <div className="zcl-row mT50 pR36 flex">
                                     <div className="zcl-row-label mT8">Channel Description</div>
                                     <div className="flexG posrel">
@@ -183,8 +226,16 @@ export default function CreateChannelModal({ setStatus }) {
                         </div>
                         <div className='cancleOpt'>
                             <div className="fshrink flexC">
-                                <div className="zcl-btn zcl-btn--secondary" id="cancel" onClick={() => setStatus(false)}>Cancel</div>
-                                <div className="zcl-btn zcl-btn--primary mL20" id="createchannel" tabIndex="7" onClick={handleCreateChannel} style={{ cursor: "pointer" }} >Create Channel</div>
+                                <div className="zcl-btn zcl-btn--secondary" id="cancel" onClick={() => setStatus(false)} >Cancel</div>
+                                <div className=" mL20" id="createchannel" tabIndex="7" style={{ cursor: "pointer" }} >
+                                    {/* Create Channel */}
+                                    <LoadingButton
+                                        className='zcl-btn zcl-btn--primary'
+                                        onClick={handleCreateChannel}
+                                        loading={loading} color="success" variant="contained">
+                                        Create Channel
+                                    </LoadingButton>
+                                </div>
                             </div>
 
                         </div>
