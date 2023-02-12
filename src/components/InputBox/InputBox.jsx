@@ -73,7 +73,8 @@ export default function InputBox({ messages, socket, setMessages }) {
 
                 <div className='linkTag'>
                     <OutsideClickHandler onOutsideClick={() => setShowTagOpt(false)}>
-                        {showTagOpt && <div class="filepckr-actn" style={{ display: "block" }}>
+                        {showTagOpt && 
+                        <div class="filepckr-actn" style={{ display: "block" }}>
                             <div class="fileatchmnt zcl-menu-wrap" align="top" editoption="false">
                                 <div class="zcl-menu-item ellips">
                                     <em class="zcl-menu-item-icn zcf-code-snippet">

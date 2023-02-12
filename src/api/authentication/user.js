@@ -53,6 +53,7 @@ export const verifyOtp = async (data) => {
   console.log(msg);
   return msg.data.isValid;
 };
+
 export const ResetPassword = async (data) => {
   await axios.post(`${config.END_POINT}/auth/reset-password`, data,{
     headers: {

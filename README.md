@@ -11,6 +11,9 @@ Zoho Cliq simplifies your team communication with organized conversations, easy-
 | Axios             | 1.2.2   | Axios allows us to communicate with APIs easily in our React apps.                                                                                                                  |
 | React Router Dom  | 6.6.1   | Enables to implement dynamic routing in web apps.                                                                                                                                   |
 | Redux Toolkit     | 1.9.1   | Used to maintain and update data across your applications for multiple components to share, all while remaining independent of the components.                                      |
+| Socket IO    | 4.5.4   | Used to implement webSocket.                                      |
+| Toastify     | 9.1.1   | Used to inform or notify the user of an activity. Toast Notifications are popup messages that are added so as to display a message to a user. It can be a success message, warning message, or custom message. Toast Notification is also called Toastify Notifications. This all toast notification comes under-react-toastify module so to use them we need to import this module.
+    
 
 # Getting Started with Create React App
 

@@ -25,6 +25,8 @@ export default function Organization() {
             console.log(userInfo);
             if (userInfo.status) {
                 dispatch(setUser(userInfo.data.profile));
+                localStorage.setItem("!@#$%^&*(user_id)*&^%$#@!", userInfo.data.profile.user_id);
+
             } else {
                 localStorage.removeItem("token");
                 navigate("/signin");

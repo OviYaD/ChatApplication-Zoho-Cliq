@@ -19,12 +19,14 @@ export default function ChatWindow({ isFinished, reload, setReload, newMsg, setW
     //     console.log(windowInfo)
     //     const setChatDetails = async () => {
     //         const data = await getChannelInfo(windowInfo);
-    //         setChatInfo(data);
+    //         setChatInfo(data);socket
     //     }
     //     if (windowInfo) {
     //         setChatDetails();
     //     }
     // }, [windowInfo])
+
+    
     return <>
         <div className="" style={{ backgroundColor: "#fff", width: "100%", borderRadius: "10px", marginLeft: "2px", marginRight: "8px", position: "relative" }}>
             <Header setActId={setActId} setWindow={setWindow} chatInfo={chatInfo} bodyContent={bodyContent} setBodyContent={setBodyContent} setOpenStatus={setOpenStatus} ></Header>
@@ -34,6 +36,6 @@ export default function ChatWindow({ isFinished, reload, setReload, newMsg, setW
                 <InputBox messages={messages} setMessages={setMessages} socket={socket}></InputBox>
             </> : <MediaFiles></MediaFiles>}
         </div>
-        {openDes && <ChannelDescription chatInfo={chatInfo} setOpenStatus={setOpenStatus} ></ChannelDescription>}
+        {openDes && <ChannelDescription socket={socket} chatInfo={chatInfo} setOpenStatus={setOpenStatus} ></ChannelDescription>}
     </>;
 };

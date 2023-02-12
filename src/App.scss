@@ -15,6 +15,7 @@
   --color-icon-rgb: 98, 114, 130;
   --default-bg-color: #FFF;
   --lhs-color: #fff;
+  --box-shadow-color3: rgba(0, 0, 0, 0.2);
   --color-main: #222;
   --box-shadow-color: rgba(0, 0, 0, 0.1);
   --body-bg: #202020;
@@ -82,6 +83,39 @@
 *{
   scroll-behavior: smooth;
 }
+.pT25 {
+  padding-top: 25px;
+}
+.pLR36 {
+  padding: 0 36px;
+}
+.mR40 {
+  margin-right: 40px;
+}
+.mL20 {
+  margin-left: 20px;
+}
+.pT30 {
+  padding-top: 30px;
+}
+.flexW {
+  flex-wrap: wrap;
+}
+.type1{
+  color:rgb(244, 75, 75);
+}
+.type2{
+  color:rgb(102,195,45);
+}
+.type3{
+  color:rgb(244, 174, 30);
+}
+.type4{
+color:rgb(0,204, 230)
+}
+.type5{
+  color:rgb(47, 59, 185)
+}
 .zcl-btn--secondary {
   background: var(--default-bg-color);
   border: 1px solid var(--btn-secondary-border);
@@ -145,6 +179,9 @@ element.style {
 }
 .textC {
   text-align: center;
+}
+.mT16 {
+  margin-top: 16px;
 }
 
 .curP {

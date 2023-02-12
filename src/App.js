@@ -10,8 +10,9 @@ import { getProfile } from "./api/authentication/user";
 import { useSelector, useDispatch } from "react-redux";
 import { setUser } from "./redux/slices/userSlice";
 import { useNavigate } from "react-router-dom";
-  import 'react-toastify/dist/ReactToastify.css';
-  import { Worker } from '@react-pdf-viewer/core';
+import 'react-toastify/dist/ReactToastify.css';
+ import { Slide, Zoom, Flip, Bounce } from 'react-toastify';
+import { requestPermission } from './firebase';
 
 function App() {
   const dispatch = useDispatch();
@@ -24,6 +25,7 @@ function App() {
             const userInfo = await getProfile();
             if (userInfo.status) {
                 dispatch(setUser(userInfo.data.profile));
+                localStorage.setItem("!@#$%^&*(user_id)*&^%$#@!",userInfo.data.profile.user_id);
             } else {
                 localStorage.removeItem("token");
                 // navigate("/signin");
@@ -32,15 +34,13 @@ function App() {
         if(localStorage.getItem("token")){
           fetchUser();
         }
+        requestPermission()
   }, []);
   
   return (
     <div className="App">
-    <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.3.122/build/pdf.worker.min.js">
-
       <Router />
-    </Worker>
-      <ToastContainer />
+      <ToastContainer  transition={Slide}/>
     </div>
   );
 }

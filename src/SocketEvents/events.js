@@ -38,3 +38,10 @@ export const markAsRead = (socket,id)=>{
         chat_id:id
     });
 }
+
+export const permissionUpdate = (socket,channel_id,permissions) => {
+    socket.emit("edit-permissions",{
+        channel_id,
+        permissions
+    })
+} 

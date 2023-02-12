@@ -19,9 +19,13 @@ import EditHistory from './EditHistory';
 import CircleLoader from '../loaders/CircleLoader';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Diversity3OutlinedIcon from '@mui/icons-material/Diversity3Outlined';
+import StarWrapper from './StarWrapper';
+import { starMessage } from '../../api/General/message';
 
 
-export default function Message({ chatInfo, newMsg, socket, messages }) {
+const starType = { "IMPORTANT": "type1", "TODO": "type2", "NOTE": "type3", "MANAGER": "type4", "FOLLOWUP": "type5" };
+
+export default function Message({ newMsgId, setNewMsgId, chatInfo, newMsg, socket, messages }) {
 
     const user = useSelector((state) => state.user);
     const lastmsg = useRef();
@@ -34,6 +38,8 @@ export default function Message({ chatInfo, newMsg, socket, messages }) {
     const [idForHistory, setIdForHistory] = useState("");
     const [showInput, setShowInput] = useState(false);
     const [showMsgOptions, setShowMsgOptions] = useState("");
+    const [starId, setStarId] = useState("");
+    const [staredMsg, setStaredMsg] = useState([]);
 
     useEffect(() => {
         console.log(messages);
@@ -42,10 +48,13 @@ export default function Message({ chatInfo, newMsg, socket, messages }) {
         let setScroll = true;
         let intValue = new Array(messages.length).fill(false);
         setEmojiSelector(intValue);
+        let unreadMsgId = "";
         const msgList = messages.map((msg, index) => {
 
             let flags = { showDate: false, showUser: false, isFirstMsg: false };
-
+            if (!unreadMsgId && msg.read_by.length === 0) {
+                unreadMsgId = msg._id;
+            }
             if (prevDate === "" && prevUser === "") {
                 prevDate = msg.created_at;
                 prevUser = msg.sender.user_id;
@@ -68,12 +77,15 @@ export default function Message({ chatInfo, newMsg, socket, messages }) {
 
                 }
             }
-
-            return { ...msg, ...flags };
+            const isStar = msg.starred_by.filter((strMsg, i) => {
+                return strMsg.user.user_id === user.user_id;
+            });
+            setNewMsgId(unreadMsgId);
+            return { ...msg, ...flags, isStar: isStar ? isStar[0] : undefined };
 
         })
         setMessages(msgList);
-        if (newMsg && msgList[msgList.length - 1]?.sender.user_id === user.user_id) lastmsg.current.scrollIntoView({ block: "end" });
+        if (newMsg && msgList[msgList.length - 1]?.sender.user_id === user.user_id) setTimeout(() => lastmsg.current.scrollIntoView({ block: "end" }), 100);
 
     }, [messages])
 
@@ -97,6 +109,25 @@ export default function Message({ chatInfo, newMsg, socket, messages }) {
 
     }
 
+    const toggleStar = async (msgId, isStar) => {
+        if (!isStar) {
+            setStarId(msgId);
+        }
+        else {
+            setStarId("");
+            const res = await starMessage({ id: msgId, type: isStar.message_type });
+
+
+            setMessages(messageList => {
+
+                messageList[messageList.findIndex(msg => msg._id === msgId)] = { ...res, isStar: undefined };
+                return [...messageList]
+            })
+
+        }
+
+    }
+
     const handleReaction = (id, reaction) => {
         toggleReaction(socket, id, reaction);
 
@@ -108,6 +139,8 @@ export default function Message({ chatInfo, newMsg, socket, messages }) {
             return reac.user_id === user.user_id;
         }).length > 0
     }
+
+
     return <>
         {/* <CircleLoader></CircleLoader> */}
         {/* <InfiniteScroll
@@ -131,21 +164,33 @@ export default function Message({ chatInfo, newMsg, socket, messages }) {
         </div>}
 
         {messageList && messageList.map((msg, index) => {
-            return <div key={index}>
+            return <div key={index} className="msgContainer">
                 {msg.showDate && <div msguid={msg._id} purpose="date" className="zcmsg_dvdrmn in-view">
                     <div msguid={msg._id} className="zcdvdmsg ">{moment(msg.created_at).isSame(moment(), 'day') ? "Today" : moment(msg.created_at).isSame(moment().subtract(1, 'days'), 'day') ? "Yesterday" : moment(msg.created_at).format("dddd, MMMM DD YYYY")}</div>
                 </div>}
-                {msg.showUser && <div className="sender ellips   in-view">
+
+                {user.user_id !== msg.sender.user_id && newMsgId === msg._id && <div msguid={msg._id} purpose="new_msg" className="zcmsg_dvdrmn in-view">
+                    <div msguid={msg._id} className="zcdvdmsg-new " style={{ fontSize: "13px", color: "orange" }}>New Message</div>
+                </div>}
+
+                {msg.showUser && <div className="sender ellips in-view">
                     <div className="chtimg floatl ">
                         <img elemtype="user" hover="true" uid="60016689094" src={msg.sender.mini_avatar_url} className="cur" />
                     </div>
                     <span elemtype="user" hover="true" uid="60016689094" className="zctxtseln cur">{msg.sender.user_id === user.user_id ? "You" : msg.sender.first_name + " " + msg.sender.last_name}</span>
                 </div>}
                 <div className='msgtxt'  >
-                    <div className='zcnew-strtng flexC'>
-                        {!msg.is_deleted && <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" className="bi bi-star" viewBox="0 0 16 16" style={{ color: "grey" }}>
-                            <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z" />
-                        </svg>}
+                    {starId === msg._id && <StarWrapper setMessages={setMessages} setStarId={setStarId} msgId={msg._id}></StarWrapper>}
+
+                    <div className={`zcnew-strtng ${msg.isStar && "showStar"} flexC`}>
+                        {!msg.is_deleted && <span className='starred'>
+                            {!msg.isStar ? <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" className="bi bi-star" viewBox="0 0 16 16" style={{ color: "grey" }} onClick={() => toggleStar(msg._id, false)} >
+                                <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z" />
+                            </svg> :
+                                <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" fill="currentColor" className={`bi bi-star-fill ${starType[msg.isStar.message_type]}`} viewBox="0 0 16 16" onClick={() => toggleStar(msg._id, true)}>
+                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                                </svg>}
+                        </span>}
                         <div className="sent-time">{moment(msg.created_at).format("hh:mm a")}</div>
                     </div>
 
@@ -254,7 +299,7 @@ export default function Message({ chatInfo, newMsg, socket, messages }) {
                             {idForHistory !== "" && <EditHistory setIdForHistory={setIdForHistory} idForHistory={idForHistory}></EditHistory>}
                             {msg.sender.user_id === user.user_id && <div className={`read-msg ${msg.read_by.length === 0 && "unread"}`} style={{ marginLeft: "5px", }} >
                                 <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" viewBox="0 0 122.88 74.46">
-                                    <title>double-tick</title>
+
                                     <path className="cls-1" d="M1.87,47.2a6.33,6.33,0,1,1,8.92-9c8.88,8.85,17.53,17.66,26.53,26.45l-3.76,4.45-.35.37a6.33,6.33,0,0,1-8.95,0L1.87,47.2ZM30,43.55a6.33,6.33,0,1,1,8.82-9.07l25,24.38L111.64,2.29c5.37-6.35,15,1.84,9.66,8.18L69.07,72.22l-.3.33a6.33,6.33,0,0,1-8.95.12L30,43.55Zm28.76-4.21-.31.33-9.07-8.85L71.67,4.42c5.37-6.35,15,1.83,9.67,8.18L58.74,39.34Z" />
                                 </svg>
                             </div>}
@@ -279,24 +324,26 @@ export default function Message({ chatInfo, newMsg, socket, messages }) {
                                 let arr = new Array(messages.length).fill(false);
                                 arr[index] = true;
                                 return [...arr];
-                            })}><svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="14"
-                                height="14"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                strokeWidth="2"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                            >
+                            })}>
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="14"
+                                    height="14"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                >
                                     <path d="M22 11v1a10 10 0 1 1-9-10" />
                                     <path d="M8 14s1.5 2 4 2 4-2 4-2" />
                                     <line x1="9" y1="9" x2="9.01" y2="9" />
                                     <line x1="15" y1="9" x2="15.01" y2="9" />
                                     <path d="M16 5h6" />
                                     <path d="M19 2v6" />
-                                </svg> </div>
+                                </svg>
+                            </div>
 
                         </div>}
                 </div>

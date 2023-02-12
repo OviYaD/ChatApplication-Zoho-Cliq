@@ -12,6 +12,8 @@ export default function Permissions({ socket, chatInfo }) {
     const [discussionType, setDiscussionType] = useState("");
     const user = useSelector((state) => state.user);
 
+    
+
     const handleReplyTypeChange = (event) => {
         setReplyType(event.target.value);
     };

@@ -50,3 +50,17 @@ export const addMembers = async(data) => {
   })
   console.log(res);
 }
+
+export const getUnreadCount = async (data)=>{
+  const res= await axios.post(`${config.END_POINT}/chat/unread-count`,
+  {
+    "organization_id":JSON.parse(localStorage.getItem("!@#$%^org)(*&^%$")).id
+  },{
+    headers : {
+      'Authorization': 'Bearer ' + (localStorage.getItem('token')) || ''
+    }
+  })
+
+  console.log("unread count...",res);
+  return res.data.unreadCount;
+}

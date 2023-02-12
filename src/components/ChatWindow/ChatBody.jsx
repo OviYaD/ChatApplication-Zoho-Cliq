@@ -4,12 +4,14 @@ import CircleLoader from '../loaders/CircleLoader';
 import Message from './Message';
 import LoadingPage from '../loaders/LoadingPage';
 import { getMessageThroughSocket } from '../../SocketEvents/events';
+import { markAsRead } from '../../SocketEvents/events';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 export default function ChatBody({ isFinished, reload, setReload, chatInfo, newMsg, socket, messages }) {
 
     const chatbody = useRef();
     const [loader, setLoader] = useState(false);
+    const [newMsgId, setNewMsgId] = useState("");
     const style = {
         height: 30,
         border: "1px solid green",
@@ -31,9 +33,16 @@ export default function ChatBody({ isFinished, reload, setReload, chatInfo, newM
 
 
     return <>
-        {!messages ? <div style={{ margin: "3px" }} >
+        {messages ? <div style={{ margin: "3px" }} >
             <div className='chatBody' onScroll={handleScroll}>
-                <div className='chat-content' ref={chatbody} id="scrollableDiv">
+                <div className='chat-content' ref={chatbody} id="scrollableDiv" onClick={() => {
+                    if (newMsgId) {
+                        markAsRead(socket, chatInfo._id);
+                        setNewMsgId("");
+                    }
+
+
+                }}>
                     <div ref={chatbody}></div>
                     {!isFinished && <CircleLoader></CircleLoader>}
                     {/* <InfiniteScroll
@@ -50,7 +59,11 @@ export default function ChatBody({ isFinished, reload, setReload, chatInfo, newM
                                 div - #{index}
                             </div>
                         ))} */}
-                    <Message chatInfo={chatInfo} newMsg={newMsg} socket={socket} messages={messages}></Message>
+                    <Message chatInfo={chatInfo} newMsg={newMsg} socket={socket}
+                        messages={messages}
+                        newMsgId={newMsgId}
+                        setNewMsgId={setNewMsgId}
+                    ></Message>
                     {/* </InfiniteScroll> */}
                 </div>
             </div>

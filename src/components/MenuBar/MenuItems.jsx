@@ -26,7 +26,7 @@ export default function MenuItems({ setOpenStatus }) {
     return <>
         <div className="ztb-item-bx" id="ztb-menu-container" data-action-wrap="">
             <div type="button" className="ztb-button-type tpbricon dN" id="ztb-topBarScheduleMsgIcon" data-purpose="zctopBarScheduleMsgIcon" title="Scheduled Messages"><span className="zcf-schedule dN font20 pT1 ztb-icons"></span></div>
-            <div type="button" className="ztb-button-type tpbricon" id="ztb-starredmessages" data-purpose="zcstarredmessages" title="Starred Messages"><span className="zcf-star ztb-icons"><StarBorderOutlinedIcon ></StarBorderOutlinedIcon></span></div>
+            <div type="button" className="ztb-button-type tpbricon" id="ztb-starredmessages" data-purpose="zcstarredmessages" title="Starred Messages"><span className="zcf-star ztb-icons" onClick={() => navigate("/star")}><StarBorderOutlinedIcon ></StarBorderOutlinedIcon></span></div>
             <div type="button" className="ztb-button-type tpbricon" id="ztb-atmention" data-purpose="zcatmention" ztooltip="Mentions" title="Mentions">
                 <span className="zcf-mention ztb-icons"><AlternateEmailOutlinedIcon ></AlternateEmailOutlinedIcon></span>
                 <div id="ztb-atmentioncount" className="msgnotify mT3" style={{ display: "none" }}>0</div>

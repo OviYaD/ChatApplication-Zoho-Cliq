@@ -16,25 +16,89 @@ import { useEffect } from 'react';
 import { getChannelInfo } from '../../api/Channel/Channel';
 import { getMessageThroughSocket, markAsRead } from '../../SocketEvents/events';
 import LandingPage from '../LandingPage/LandingPage';
+import { useSelector } from 'react-redux';
+import JoinChannelModal from '../CreateChannel/JoinChannelModal';
 
 
-export default function MainContainer({ isFinished, reload, setReload, newMsg, messages, socket, setMessages }) {
+export default function MainContainer({ setNewMsg, isFinished, reload, setReload, newMsg, messages, socket, setMessages }) {
 
     const searchParams = new URLSearchParams(document.location.search);
     const [showCreateModal, setStatus] = useState(false);
-    const [window, setWindow] = useState("chat");
+    const [showJoinChannelModal, setShowJoinChannelModal] = useState(false);
+    const [window, setWindow] = useState("quote");
     const [activeMenu, setActiveMenu] = useState("channels");
     const [chatInfo, setChatInfo] = useState();
     const [actId, setActId] = useState("");
+    const [unreadMsg, setUnreadMsg] = useState({});
+    const [unreadCount, setUnreadCount] = useState();
+    const user = useSelector((state) => state.user);
 
     useEffect(() => {
 
         const channel_id = searchParams.get('channel');
+        localStorage.setItem("*&^%$#!@#$%^&Channel#$&^%$id*&^%^&*(", channel_id);
         setActId(channel_id);
         if (channel_id) {
 
             setChatDetails(channel_id);
         }
+
+        socket.on("edit-permissions", (data) => {
+            console.log("edit permission", data);
+            setChatInfo((chatInfo) => {
+                return {
+                    ...chatInfo,
+                    permissions: data
+                }
+            })
+        })
+        socket.on("read-message", (data) => {
+            console.log("read message", data.messages, user);
+            if (data.messages) {
+                console.log(data.messages, messages)
+                setMessages((messages) => messages.map((msg, index) => {
+                    for (let i = 0; i < data.messages.length; i++) {
+                        if (msg._id === data.messages[i]._id) {
+                            return data.messages[i]
+                        }
+                    }
+                    return msg;
+                }))
+
+                // if (data.messages[0].read_by.filter((readUser, i) => {
+                //     return readUser.user_id === localStorage.getItem("!@#$%^&*(user_id)*&^%$#@!")
+                // }).length > 0) {
+                //     setUnreadMsg((unread) => delete unread[data.messages[0].chat_id])
+                // }
+
+                // console.log(readMsg);
+                // setMessages(readMsg);
+            }
+
+        })
+
+        socket.on("send-message", (data) => {
+            console.log("send message.........", data, user);
+            if (data.sender.user_id === localStorage.getItem("!@#$%^&*(user_id)*&^%$#@!") || data.chat_id === localStorage.getItem("*&^%$#!@#$%^&Channel#$&^%$id*&^%^&*(")) {
+                setMessages((messages) => [...messages, data])
+            }
+            console.log(data.sender.user_id, "!==", localStorage.getItem("!@#$%^&*(user_id)*&^%$#@!"), " &&", data.chat_id, "!== ", localStorage.getItem("*&^%$#!@#$%^&Channel#$&^%$id*&^%^&*("))
+            if (data.sender.user_id !== localStorage.getItem("!@#$%^&*(user_id)*&^%$#@!") && data.chat_id !== localStorage.getItem("*&^%$#!@#$%^&Channel#$&^%$id*&^%^&*(")) {
+                console.log("send unread count", unreadCount)
+                setUnreadCount(unreadCount => {
+                    unreadCount[data.chat_id] = unreadCount[data.chat_id] ? unreadCount[data.chat_id] + 1 : 1;
+                    return { ...unreadCount }
+                })
+            }
+
+            // console.log("unread", unread, unreadMsg);
+            // const unread = unreadMsg[data.chat_id] ? [...unreadMsg[data.chat_id], data] : [data];
+
+            // setUnreadMsg(unreadMsg => {
+            //     return { ...unreadMsg, [data.chat_id]: unread }
+            // });
+            setNewMsg(true);
+        })
     }, [])
 
 
@@ -44,7 +108,7 @@ export default function MainContainer({ isFinished, reload, setReload, newMsg, m
         setChatInfo(data);
         setWindow("chat");
         getMessageThroughSocket(socket, id);
-        markAsRead(socket, id);
+        // markAsRead(socket, id);
 
     }
 
@@ -60,7 +124,7 @@ export default function MainContainer({ isFinished, reload, setReload, newMsg, m
                         {(() => {
                             switch (activeMenu) {
                                 case "chats": return <ContactList></ContactList>
-                                case "channels": return <ChannelList setWindow={setWindow} setStatus={setStatus} setChatDetails={setChatDetails} actId={actId} setActId={setActId}></ChannelList>
+                                case "channels": return <ChannelList setShowJoinChannelModal={setShowJoinChannelModal} unreadCount={unreadCount} setUnreadCount={setUnreadCount} setWindow={setWindow} setStatus={setStatus} setChatDetails={setChatDetails} actId={actId} setActId={setActId}></ChannelList>
                                 case "Org": return <OrganizationList></OrganizationList>
                             }
                         })()}
@@ -85,6 +149,8 @@ export default function MainContainer({ isFinished, reload, setReload, newMsg, m
 
             </article>
             {showCreateModal && <CreateChannelModal setStatus={setStatus}></CreateChannelModal>}
+            {showJoinChannelModal && <JoinChannelModal setShowJoinChannelModal={setShowJoinChannelModal}></JoinChannelModal>}
+
         </div>
 
 

@@ -103,12 +103,99 @@
           position: relative;
           flex-shrink: 0;
 
+         .drpdwn-option {
+            top: calc(100% + 1px);
+        }
+        .zindex3 {
+            z-index: 3;
+        }
+        .drpdwn-option {
+            position: absolute;
+            width: 100%;
+            left: 0;
+            top: calc(100% + 3px);
+            border-radius: 5px;
+            background-color: var(--bg-color-3);
+            z-index: 2;
+            box-shadow: 0px 2px 8px var(--box-shadow-color2);
+
+            .drsrchhdn {
+              position: absolute;
+              z-index: -1;
+              opacity: 0;
+
+              .srchin {
+                border-radius: 5px;
+                background-color: var(--bg-color-2);
+                border: solid 1px var(--color-divider);
+                box-shadow: inset 0px 2px 2px rgb(0 0 0 / 5%);
+                margin: 5px 8px;
+                display: flex;
+                align-items: center;
+                padding: 0 10px;
+                height: 34px;
+            }
+            .srchin > input {
+              background-color: transparent;
+              flex-grow: 1;
+              min-width: 0;
+              height: 100%;
+              font-size: inherit;
+              color: var(--color-main);
+          }
+          }
+        }
+
+          .option-list {
+            max-height: max-content;
+
+            .option-item {
+              height: 36px;
+              line-height: 36px;
+              padding: 0 30px 0 14px;
+              color: var(--color-main);
+              font-size: 14px;
+              position: relative;
+              border-radius: 4px;
+              margin: 1px 0;
+              cursor: pointer;
+
+              &:hover{
+                background-color: rgb(241, 244, 247);
+              }
+
+              
+          }
+          .sel_status::after{
+            color: var(--color-theme);
+            top: 0px;
+            right: 10px;
+            position: absolute;
+            font-size: 15px;
+            content: "\2713";
+          }
+          }
+          
+        
+          .option-list {
+              transition: all 0.2s ease-out;
+              overflow-y: auto;
+              position: relative;
+              padding: 5px;
+          }
+          .ps-container {
+              -ms-touch-action: none;
+              touch-action: none;
+              overflow: hidden !important;
+              -ms-overflow-style: none;
+          }
           .drpdwn-label {
             color: #b3b3b3 !important;
             font-size: 14px;
             color: var(--color-secondary);
             flex-grow: 1;
             line-height: normal;
+            text-transform: capitalize;
           }
           .ellips {
             white-space: nowrap;
@@ -214,7 +301,7 @@
             outline: none;
             position: relative;
             z-index: 2;
-            color: var(--color-main);
+            color: #fff;
             background: transparent;
             height: 100%;
             border-radius: 5px;

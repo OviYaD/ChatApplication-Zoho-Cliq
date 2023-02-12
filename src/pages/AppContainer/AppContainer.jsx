@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { io } from 'socket.io-client';
 import { setSocket, removeSocket } from '../../redux/slices/socketSlice';
 import { useSelector } from 'react-redux';
+import { Worker } from '@react-pdf-viewer/core';
 import LoadingPage from '../../components/loaders/LoadingPage';
 
 
@@ -15,6 +16,7 @@ export default function AppContainer() {
   const [newMsg, setNewMsg] = useState(false);
   const [reload, setReload] = useState(true);
   const [isFinished, setFinishState] = useState(false);
+  const searchParams = new URLSearchParams(document.location.search);
 
 
   useEffect(() => {
@@ -36,22 +38,50 @@ export default function AppContainer() {
     });
 
     socket.on("fetch-messages", (data) => {
-      [...data.messages, ...messages].length > 15 ? setNewMsg(false) : setNewMsg(true);
-      if (data.messages.length > 0 && data.messages[0]?.chat_id === messages[0]?.chat_id)
-        setMessages((messages) => [...data.messages, ...messages]);
-      else
-        setMessages((messages) => [...data.messages])
+      console.log("fetching messages...", data);
+      setNewMsg(!data.isReload);
+      data.isReload ? setMessages((messages) => [...data.messages, ...messages]) : setMessages(data.messages)
+      // [...data.messages, ...messages].length > messages.length ? setNewMsg(false) : setNewMsg(true);
+      // console.log(searchParams.get("channel") === data.messages[0]?.chat_id);
+      // if (searchParams.get("channel") === data.messages[0]?.chat_id) {
+      // }
+
+
+      // if (data.messages.length > 0 && data.messages[0]?.chat_id === messages[0]?.chat_id)
+      //   setMessages((messages) => [...data.messages, ...messages]);
+      // else if (searchParams.get('channel') !== data.messages[0]?.chat_id) {
+      //   setMessages(data.messages);
+      //   setNewMsg(true)
+      // }
+      // else
+      //   setMessages((messages) => [...data.messages, ...messages])
       setReload(true);
       setFinishState(data.isFinished);
 
     })
-    socket.on("send-message", (data) => {
-      setMessages((messages) => [...messages, data])
-      setNewMsg(true);
-    })
+    // socket.on("send-message", (data) => {
+
+    //   setMessages((messages) => [...messages, data])
+    //   setNewMsg(true);
+    // })
 
     socket.on("read-message", (data) => {
       console.log("read message", data.messages);
+      if (data.messages) {
+        console.log(data.messages, messages)
+        setMessages((messages) => messages.map((msg, index) => {
+          for (let i = 0; i < data.messages.length; i++) {
+            if (msg._id === data.messages[i]._id) {
+              return data.messages[i]
+            }
+          }
+          return msg;
+        }))
+        // console.log(readMsg);
+        // setMessages(readMsg);
+
+      }
+
     })
 
     socket.on("delete-message", (data) => {
@@ -106,9 +136,13 @@ export default function AppContainer() {
 
 
   return <>
-    {!socket ? <div style={{ backgroundColor: "black", position: "fixed", width: "100%", fontFamily: "zoho-puvi-regular" }}>
+    {socket ? <div style={{ backgroundColor: "black", position: "fixed", width: "100%", fontFamily: "zoho-puvi-regular" }}>
       <MenuBar></MenuBar>
-      <MainContainer isFinished={isFinished} setReload={setReload} reload={reload} socket={socket} messages={messages} setMessages={setMessages} newMsg={newMsg}></MainContainer>
+      <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.3.122/build/pdf.worker.min.js">
+
+        <MainContainer setNewMsg={setNewMsg} isFinished={isFinished} setReload={setReload} reload={reload} socket={socket} messages={messages} setMessages={setMessages} newMsg={newMsg}></MainContainer>
+      </Worker>
+
     </div> : <LoadingPage></LoadingPage>}
   </>;
 

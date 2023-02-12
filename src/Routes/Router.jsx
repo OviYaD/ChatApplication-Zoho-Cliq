@@ -19,6 +19,7 @@ import MessageOptions from '../components/ChatWindow/MessageOptions';
 import EditHistory from '../components/ChatWindow/EditHistory';
 import FilePreview from '../components/ChatWindow/FilePreview';
 import DeleteConfirmation from '../components/ChatWindow/DeleteConfirmation';
+import StarMessages from '../components/StarMessages/StarMessages';
 
 export default function Router() {
     return <>
@@ -38,6 +39,7 @@ export default function Router() {
             <Route path="/test" element={<DeleteConfirmation></DeleteConfirmation>} />
             <Route path='/create' element={<CreateChannelModal></CreateChannelModal>} />
             <Route path='/loader' element={<LoadingPage></LoadingPage>} />
+            <Route path="/star" element={<StarMessages></StarMessages>} />
         </Routes>
     </>;
 }
