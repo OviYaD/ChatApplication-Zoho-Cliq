@@ -1,6 +1,8 @@
 import { initializeApp } from "firebase/app";
 import {GoogleAuthProvider,signInWithPopup,getAuth} from "firebase/auth";
 import {getFirestore,query,collection,where,getDocs,addDoc} from "firebase/firestore";
+import { getMessaging,getToken } from "firebase/messaging";
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyCMB3Vfvz_XZUs57GKFrs0DVa6oAI_u5PA",
@@ -12,8 +14,37 @@ const firebaseConfig = {
   measurementId: "G-ZJBHCNC5ZG"
 };
 const app = initializeApp(firebaseConfig);
+const messaging = getMessaging(app);
+// messaging.getToken(messaging, {vapidKey: "BPFrLpzCHsQmVAGZz7rtkIa5T0Pvbbn84wq_yGPS1wVOZHxXz30X5ac-E9Qx1Cza-2wwJNDJtg0NBrtVVVXoX5o"});
+
 const auth = getAuth(app);
 const db = getFirestore(app);
+
+export function requestPermission() {
+  console.log('Requesting permission...');
+  Notification.requestPermission().then((permission) => {
+    if (permission === 'granted') {
+      console.log('Notification permission granted.');
+      getToken(messaging, {vapidKey: "BPFrLpzCHsQmVAGZz7rtkIa5T0Pvbbn84wq_yGPS1wVOZHxXz30X5ac-E9Qx1Cza-2wwJNDJtg0NBrtVVVXoX5o"}).then((currentToken) => {
+      if (currentToken) {
+        console.log("current token",currentToken);
+      } else {
+        console.log('No registration token available. Request permission to generate one.');
+      }
+    }).catch((err) => {
+      console.log('An error occurred while retrieving token. ', err);
+    });
+    }
+    else{
+      console.log('no grant');
+    }
+  })
+  
+}
+
+
+
+
 const googleProvider = new GoogleAuthProvider();
 export const signInWithGoogle = async () => {
   try {
