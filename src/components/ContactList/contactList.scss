@@ -52,11 +52,30 @@
 
     .bi-circle {
     }
+    .hideShow{
+      display: none;
+    }
     .options {
       margin-left: auto;
-      display: none;
+      
       font-size: 10px;
       color: grey;
+      
+      .notify{
+        transition: all .2s;
+        display: inline-block;
+        background-color: var(--lhs-unread-bg);
+        border-radius: 8px;
+        font: normal 11px Lato;
+        color: #fff;
+        line-height: 16px;
+        min-width: 14px;
+        padding: 1px 3px;
+        text-align: center;
+        text-shadow: 0 1px 0 rgb(0 0 0 / 10%);
+        margin-right: 8px;
+        flex-shrink: 0;
+      }
     }
     .bi-x-lg {
       padding-left: 0.5rem;
@@ -71,7 +90,7 @@
     background-color: rgb(53, 52, 52);
     color: #fff;
     font-weight: 600;
-    .options {
+    .hideShow {
       display: flex;
     }
   }
@@ -79,4 +98,35 @@
     font-style: italic;
     font-size: 14px;
   }
+  .dot-sprtr {
+    position: relative;
+    margin-left: 15px;
+}
+.join{
+  color: var(--color-lp1);
+  font-size: 12px;
+}
+.join:hover{
+  color:#bbb8b8;
+  .dot{
+    background-color: #bbb8b8;
+  }
+}
+.dot-sprtr::after {
+  width: 4px;
+  height: 4px;
+  left: 0;
+  top: 10px;
+  
+}
+.dot-sprtr::after {
+  content: "";
+  position: absolute;
+  left: -9px;
+  top: 13px;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background-color: #a8a8a8;
+}
 }

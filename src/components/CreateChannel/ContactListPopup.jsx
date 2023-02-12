@@ -3,6 +3,7 @@ import './ContactListPopup.scss';
 import { useEffect } from 'react';
 import { getMember } from '../../api/Organization/Organization';
 import { useSelector } from "react-redux";
+import CircleLoader from '../loaders/CircleLoader';
 
 // const list = [
 //     { name: "Anush Kumar", email: "anush.kumar@codingmart.com", img: "https://contacts.zoho.in/file?ID=60016689751&exp=6000&t=user&fs=thumb" },
@@ -18,7 +19,7 @@ import { useSelector } from "react-redux";
 // ]
 export default function ContactListPopup({ memList, setShowListStatus, participants, addParticipants }) {
 
-    const [list, setList] = useState([]);
+    const [list, setList] = useState();
     const user = useSelector((state) => state.user);
 
     useEffect(() => {
@@ -47,20 +48,22 @@ export default function ContactListPopup({ memList, setShowListStatus, participa
     }
 
     return <>
-        <div id="channels-usersuggest-results" className="zcl-multiselect-list-container zc-form-fixedinp posfix" align="down" style={{ display: "block", top: "25px", left: "831.188px", width: "436.812px" }}>
-            <div id="channels-usersuggest-list" className="zcl-multiselect-list">
+        <div id="channels-usersuggest-results" className="zcl-multiselect-list-container zc-form-fixedinp posfix" align="down" style={{ position: "absolute", display: "flex", top: "53px" }}>
+            <div id="channels-usersuggest-list" className="zcl-multiselect-list" style={{ minHeight: "50px", maxHeight: "calc(100vh - 493px)", width: "100%", overflowY: "scroll" }}>
                 <div id="orgcontacts" searchcatagory="orgcontacts">
-                    {list.map((ele, index) => {
-                        return <div className="zcl-list-item" key={index} uid={ele.id} dname="AJIT Verma" purpose="search" onClick={() => handleAddParticipants(ele)}>
-                            <div className="posrel fshrink mR10"><img src={ele.profile.mini_avatar_url ?? "	https://contacts.zoho.in/file?ID=60016689094&nocache=1674451340247&t=user&fs=thumb"} className="zcl-list-item-img36" /></div>
-                            <div className="flexG ellips">
-                                <div className="ellips flexC"><span className="ellips">{ele.profile.first_name} </span></div>
-                                <div className="fshrink clr6 font14 w50 ellips">{ele.email}</div>
+                    {list ? list.length > 0 ?
+                        list.map((ele, index) => {
+                            return <div className="zcl-list-item" key={index} uid={ele.id} dname="AJIT Verma" purpose="search" onClick={() => handleAddParticipants(ele)}>
+                                <div className="posrel fshrink mR10"><img src={ele.profile.mini_avatar_url ?? "	https://contacts.zoho.in/file?ID=60016689094&nocache=1674451340247&t=user&fs=thumb"} className="zcl-list-item-img36" /></div>
+                                <div className="flexG ellips">
+                                    <div className="ellips flexC"><span className="ellips">{ele.profile.first_name} </span></div>
+                                    <div className="fshrink clr6 font14 w50 ellips">{ele.email}</div>
+                                </div>
                             </div>
-                        </div>
-                    })}
-
-
+                        })
+                        : <div style={{ textAlign: "center" }}>
+                            No user Found
+                        </div> : <CircleLoader></CircleLoader>}
                 </div>
             </div>
         </div>
