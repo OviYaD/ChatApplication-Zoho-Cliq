@@ -20,7 +20,7 @@ export default function StarMessages(params) {
     useEffect(() => {
         const getStarMsg = async () => {
             const res = await getStarredMessage();
-            // console.log(res);
+            console.log("star messages....", res);
             setStarMessages(res);
             setActiveCategory("all");
             setMsgToShow(res);
@@ -92,7 +92,7 @@ export default function StarMessages(params) {
 
                                         </div>
                                         <div>
-                                            <div class="zcempty-title font18">Its empty here. <br /> Just go ahead and star your messages under the label <b>{activeCat}</b></div>
+                                            <div className="zcempty-title font18">Its empty here. <br /> Just go ahead and star your messages under the label <b>{activeCat}</b></div>
                                         </div>
                                     </div>
                                 </span> :

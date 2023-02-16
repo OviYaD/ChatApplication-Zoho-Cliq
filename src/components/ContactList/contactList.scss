@@ -57,7 +57,7 @@
     }
     .options {
       margin-left: auto;
-      
+      display: none;
       font-size: 10px;
       color: grey;
       
@@ -91,6 +91,9 @@
     color: #fff;
     font-weight: 600;
     .hideShow {
+      display: flex;
+    }
+    .options{
       display: flex;
     }
   }

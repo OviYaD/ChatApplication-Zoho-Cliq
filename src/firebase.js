@@ -5,7 +5,7 @@ import { getMessaging,getToken } from "firebase/messaging";
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCMB3Vfvz_XZUs57GKFrs0DVa6oAI_u5PA",
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: "prezz-c204b.firebaseapp.com",
   projectId: "prezz-c204b",
   storageBucket: "prezz-c204b.appspot.com",
@@ -25,9 +25,10 @@ export function requestPermission() {
   Notification.requestPermission().then((permission) => {
     if (permission === 'granted') {
       console.log('Notification permission granted.');
-      getToken(messaging, {vapidKey: "BPFrLpzCHsQmVAGZz7rtkIa5T0Pvbbn84wq_yGPS1wVOZHxXz30X5ac-E9Qx1Cza-2wwJNDJtg0NBrtVVVXoX5o"}).then((currentToken) => {
+      getToken(messaging, {vapidKey: process.env.REACT_APP_FIREBASE_VAPIDKEY}).then((currentToken) => {
       if (currentToken) {
         console.log("current token",currentToken);
+        localStorage.setItem("$%^&*(*&^%$#@#$%^&*()n(*(*otify(*&&*(t(*&*(oken)(*&^&*(",currentToken)
       } else {
         console.log('No registration token available. Request permission to generate one.');
       }
@@ -41,9 +42,6 @@ export function requestPermission() {
   })
   
 }
-
-
-
 
 const googleProvider = new GoogleAuthProvider();
 export const signInWithGoogle = async () => {
@@ -66,28 +64,3 @@ export const signInWithGoogle = async () => {
     alert(err.message);
   }
 };
-
-
-// Import the functions you need from the SDKs you need
-// import { initializeApp } from "firebase/app";
-// import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-// const firebaseConfig = {
-//   apiKey: "AIzaSyCMB3Vfvz_XZUs57GKFrs0DVa6oAI_u5PA",
-//   authDomain: "prezz-c204b.firebaseapp.com",
-//   projectId: "prezz-c204b",
-//   storageBucket: "prezz-c204b.appspot.com",
-//   messagingSenderId: "726282553313",
-//   appId: "1:726282553313:web:6121c3479208a618dab4a0",
-//   measurementId: "G-ZJBHCNC5ZG"
-// };
-
-// Initialize Firebase
-// const app = initializeApp(firebaseConfig);
-// const analytics = getAnalytics(app);
-// npm install firebase
-// npm install -g firebase-tools

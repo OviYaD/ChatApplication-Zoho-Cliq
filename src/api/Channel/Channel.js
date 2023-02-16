@@ -64,3 +64,55 @@ export const getUnreadCount = async (data)=>{
   console.log("unread count...",res);
   return res.data.unreadCount;
 }
+
+export const getOrganizationChannels = async(data="") => {
+  const res= await axios.post(`${config.END_POINT}/channel/get-org-channels`,{
+    query: data,
+    "organization_id":JSON.parse(localStorage.getItem("!@#$%^org)(*&^%$")).id
+  },{
+    headers : {
+      'Authorization': 'Bearer ' + (localStorage.getItem('token')) || ''
+    }
+  })
+  console.log("org channel list",res);
+  return res.data.channels;
+
+}
+
+export const joinChannel = async(channel_id) => {
+
+  try{
+      const res= await axios.post(`${config.END_POINT}/channel/join-channel`,{
+      channel_id
+    },{
+      headers : {
+        'Authorization': 'Bearer ' + (localStorage.getItem('token')) || ''
+      }
+    })
+    return true;
+  }
+  catch(e){
+    console.log(e);
+    return false;
+  }
+
+}
+
+export const editChannel = async(data,id) => {
+
+  try{
+    const msg = await axios.post(`${config.END_POINT}/channel/edit-channel/${id}`, data,{
+    headers : {
+      'Authorization': 'Bearer ' + (localStorage.getItem('token')) || ''
+    }
+  });
+  return true;
+  }
+  catch(e){
+    console.log(e);
+    return false;
+  }
+ 
+
+
+}

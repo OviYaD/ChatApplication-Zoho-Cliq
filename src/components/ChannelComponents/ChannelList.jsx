@@ -78,8 +78,8 @@ export default function ChannelList({ setShowJoinChannelModal, unreadCount, setU
                         <div className='dflx justifySB heading ' >
                             <span className=" font17 ellips flexC " style={{ fontSize: "13px", color: "#8cbfff" }}>
                                 <span style={{ padding: "0.25rem 0.2rem 0rem 0.25rem", backgroundColor: "#458deb", borderRadius: "5px", textAlign: "center", marginRight: "0.5rem" }}>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" style={{ color: "white" }} fill="currentColor" class="bi bi-diagram-2-fill" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd" d="M6 3.5A1.5 1.5 0 0 1 7.5 2h1A1.5 1.5 0 0 1 10 3.5v1A1.5 1.5 0 0 1 8.5 6v1H11a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-1 0V8h-5v.5a.5.5 0 0 1-1 0v-1A.5.5 0 0 1 5 7h2.5V6A1.5 1.5 0 0 1 6 4.5v-1zm-3 8A1.5 1.5 0 0 1 4.5 10h1A1.5 1.5 0 0 1 7 11.5v1A1.5 1.5 0 0 1 5.5 14h-1A1.5 1.5 0 0 1 3 12.5v-1zm6 0a1.5 1.5 0 0 1 1.5-1.5h1a1.5 1.5 0 0 1 1.5 1.5v1a1.5 1.5 0 0 1-1.5 1.5h-1A1.5 1.5 0 0 1 9 12.5v-1z" />
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" style={{ color: "white" }} fill="currentColor" className="bi bi-diagram-2-fill" viewBox="0 0 16 16">
+                                        <path fillRule="evenodd" d="M6 3.5A1.5 1.5 0 0 1 7.5 2h1A1.5 1.5 0 0 1 10 3.5v1A1.5 1.5 0 0 1 8.5 6v1H11a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-1 0V8h-5v.5a.5.5 0 0 1-1 0v-1A.5.5 0 0 1 5 7h2.5V6A1.5 1.5 0 0 1 6 4.5v-1zm-3 8A1.5 1.5 0 0 1 4.5 10h1A1.5 1.5 0 0 1 7 11.5v1A1.5 1.5 0 0 1 5.5 14h-1A1.5 1.5 0 0 1 3 12.5v-1zm6 0a1.5 1.5 0 0 1 1.5-1.5h1a1.5 1.5 0 0 1 1.5 1.5v1a1.5 1.5 0 0 1-1.5 1.5h-1A1.5 1.5 0 0 1 9 12.5v-1z" />
                                     </svg>
                                 </span>
                                 Organization</span>
@@ -95,7 +95,6 @@ export default function ChannelList({ setShowJoinChannelModal, unreadCount, setU
                                 </span>
                                 <span className='pL1 ellips'> {channel.name}</span>
                                 <span className='options dflx'>
-                                    {console.log(unreadCount, "=", channel._id)}
                                     {unreadCount[channel._id] && <span className='notify' style={{ fontFamily: "zoho-puvi-semi-bold", color: "#fff", backgroundColor: "var(--color-red)", borderRadius: "100%" }}>{unreadCount[channel._id]}</span>}
                                     <span className='dflx hideShow'>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" className="bi bi-pin-angle-fill" viewBox="0 0 16 16">
@@ -112,7 +111,7 @@ export default function ChannelList({ setShowJoinChannelModal, unreadCount, setU
                         <div className='dflx justifySB heading flexC' >
                             <span className=" font17 ellips flexC" style={{ fontSize: "13px", color: "#ff8687" }}>
                                 <span style={{ padding: "0.29rem 0.2rem 0.1rem 0.2rem", backgroundColor: "#f26c6e", borderRadius: "5px", textAlign: "center", marginRight: "0.5rem" }}>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" style={{ color: "white" }} fill="currentColor" class="bi bi-radioactive" viewBox="0 0 16 16">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" style={{ color: "white" }} fill="currentColor" className="bi bi-radioactive" viewBox="0 0 16 16">
                                         <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1ZM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Z" />
                                         <path d="M9.653 5.496A2.986 2.986 0 0 0 8 5c-.61 0-1.179.183-1.653.496L4.694 2.992A5.972 5.972 0 0 1 8 2c1.222 0 2.358.365 3.306.992L9.653 5.496Zm1.342 2.324a2.986 2.986 0 0 1-.884 2.312 3.01 3.01 0 0 1-.769.552l1.342 2.683c.57-.286 1.09-.66 1.538-1.103a5.986 5.986 0 0 0 1.767-4.624l-2.994.18Zm-5.679 5.548 1.342-2.684A3 3 0 0 1 5.005 7.82l-2.994-.18a6 6 0 0 0 3.306 5.728ZM10 8a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z" />
                                     </svg>

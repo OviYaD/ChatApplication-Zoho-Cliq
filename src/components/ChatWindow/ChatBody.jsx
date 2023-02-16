@@ -1,17 +1,18 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ReactDOM } from 'react-dom/client';
 import CircleLoader from '../loaders/CircleLoader';
-import Message from './Message';
+import Message from './MessageAssets/Message';
 import LoadingPage from '../loaders/LoadingPage';
 import { getMessageThroughSocket } from '../../SocketEvents/events';
 import { markAsRead } from '../../SocketEvents/events';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
-export default function ChatBody({ isFinished, reload, setReload, chatInfo, newMsg, socket, messages }) {
+export default function ChatBody({ setReplyTo, isFinished, reload, setReload, chatInfo, newMsg, socket, messages }) {
 
     const chatbody = useRef();
     const [loader, setLoader] = useState(false);
     const [newMsgId, setNewMsgId] = useState("");
+    const url = new URLSearchParams(document.location.search);
     const style = {
         height: 30,
         border: "1px solid green",
@@ -25,7 +26,7 @@ export default function ChatBody({ isFinished, reload, setReload, chatInfo, newM
         // console.log("skdjskjsd", window.innerHeight, " ", height, " ", contentHeight, reload, isFinished);
         if (reload && !isFinished && contentHeight + height <= 399) {
             // console.log("reloading........")
-            setTimeout(() => { getMessageThroughSocket(socket, chatInfo._id, messages.length); }, 2000)
+            setTimeout(() => { getMessageThroughSocket(socket, localStorage.getItem("*&^%$#!@#$%^&Channel#$&^%$id*&^%^&*("), url.get("channel") === null ? true : false, messages.length) }, 2000)
             setReload(false);
 
         }
@@ -37,7 +38,7 @@ export default function ChatBody({ isFinished, reload, setReload, chatInfo, newM
             <div className='chatBody' onScroll={handleScroll}>
                 <div className='chat-content' ref={chatbody} id="scrollableDiv" onClick={() => {
                     if (newMsgId) {
-                        markAsRead(socket, chatInfo._id);
+                        markAsRead(socket, localStorage.getItem("*&^%$#!@#$%^&Channel#$&^%$id*&^%^&*("), url.get("channel") === null ? true : false);
                         setNewMsgId("");
                     }
 
@@ -63,6 +64,7 @@ export default function ChatBody({ isFinished, reload, setReload, chatInfo, newM
                         messages={messages}
                         newMsgId={newMsgId}
                         setNewMsgId={setNewMsgId}
+                        setReplyTo={setReplyTo}
                     ></Message>
                     {/* </InfiniteScroll> */}
                 </div>

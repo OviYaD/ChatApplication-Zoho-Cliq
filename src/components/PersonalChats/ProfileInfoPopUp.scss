@@ -1,0 +1,108 @@
+.info-container{
+    position: absolute;
+    top:calc(100vh - 100%);
+    left:calc(100% - 10px);
+    .sub-container{
+        width: 270px;
+        min-height: 280px;
+        box-sizing: border-box;
+        z-index: 1000;
+        background-color: var(--color-hover2);
+        border-radius: 10px;
+        box-shadow: 0 0 4px var(--box-shadow-color2);
+        overflow: hidden;
+        font-size: 13px;
+
+        .img-wrapper{
+            height: 100px;
+            width: 270px;
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+            .img-bg-fill{
+                width: 100%;
+                height: 100%;
+                -webkit-filter: blur(10px); /* Safari 6.0 - 9.0 */
+                filter: blur(10px);
+            }
+            .img-display{
+                width: auto;
+                height: 100%;
+                border-radius: 0px;
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                margin: auto;
+                cursor: pointer;
+            }
+        }
+        .profile-info{
+            position: relative;
+            min-height: fit-content;
+            max-height: 350px;
+            background-color: var(--default-bg-color);
+            margin: -40px 15px 15px;
+            padding: 10px 15px 10px 15px;
+            color: var(--color-main);
+            min-height: 50px;
+            // width: calc(100% - 50px);
+            border-radius: 10px;
+            box-shadow: 0 1px 2px var(--box-shadow-color);
+            font-family: "zoho-puvi-regular";
+
+            .prof-name{
+                font-family: "zoho-puvi-semi-bold";
+                font-size: 14px;
+                margin-left: 5px;
+            }
+            .in-out{
+                font-size: 13px;
+                font-family: "zoho-puvi-semi-bold";
+                color:var(--color-lp1)
+            }
+            .prof-email{
+                font-size:12px;
+                margin-left: .1rem;
+                margin-top: 0.5rem;
+                font-family: "zoho-puvi-regular";
+                font-weight: 100;
+                color:var()
+            }
+            .lastChat{
+                margin-top: 20px;
+                .lastChatTym{
+                    font-size: 10px;
+                    font-family: Lato,sans-serif;
+                    color:var(--color-lp1);
+                }
+                .msg-text{
+                    margin-top:8px;
+                    margin-left: 1.1rem;
+                    color:rgba(49, 49, 49, 0.541);
+                    font-size: 12.5px;
+                }
+            }
+            .personal-num{
+                color:rgb(102, 102, 102);
+                font-family: Lato,sans-serif;
+                font-size: 14px;
+                margin-top: 15px;
+                .number{
+                    font-family: "zoho-puvi-semi-bold";
+                    color:rgb(34, 34, 34);
+                }
+            }
+            .info-option{
+                margin-top: 20px;
+                span{
+                    color: rgb(98, 114, 130);
+                    background-color: rgb(241, 244  , 247);
+                    padding: 9px;
+                    border-radius: 100%;
+                }
+            }
+        }
+    }
+}

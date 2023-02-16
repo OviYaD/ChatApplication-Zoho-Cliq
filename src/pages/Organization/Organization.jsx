@@ -10,7 +10,8 @@ import { getOrganization } from '../../api/Organization/Organization';
 import { setOrgList } from '../../redux/slices/organizationSlice';
 import LoadingPage from '../../components/loaders/LoadingPage';
 
-export default function Organization() {
+export default function 
+Organization() {
     const [orgList, setOrgs] = useState();
     const user = useSelector((state) => state.user);
     const organization = useSelector((state) => state.organization);

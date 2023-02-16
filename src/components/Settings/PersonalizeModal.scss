@@ -175,10 +175,11 @@
         font-size: 16px;
     }
     .zcl-ico.zcl-input.zcl-input-info {
-        border-color: #0000;
-        pointer-events: none;
+        border-color: #0000 ;
+        pointer-events:stroke !important;
         opacity: 1;
-    }n, .zcl-icon-sm, .zcl-icon-md, .zcl-icon-lg, .zcl-icon-xl, .zcl-icon-xs, .zcl-icon-xxs {
+    } 
+    .zcl-icon-sm, .zcl-icon-md, .zcl-icon-lg, .zcl-icon-xl, .zcl-icon-xs, .zcl-icon-xxs {
         position: relative;
         background: #0000;
         border: 1px solid #0000;

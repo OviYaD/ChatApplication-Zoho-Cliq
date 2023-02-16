@@ -285,6 +285,13 @@
       text-align: center;
       
     }
+    .org-btn.disabled{
+      cursor:auto;
+      &:hover{
+        border: 1px solid var(--color-divider);
+        background-color: #fff;
+      }
+    }
     .org-btn {
       margin-left: 15rem;
       height: 50px;
@@ -304,10 +311,11 @@
         border: 1px solid  #3dc2ac;
         background-color: #e3f5f2be;
       }
+      
     }
     .btn-active{
-      border: 2px solid  #3dc2ac;
-      background-color: #e3f5f2be;
+      border: 2px solid  #3dc2ac !important;
+      background-color: #e3f5f2be !important;
     }
   }
 }

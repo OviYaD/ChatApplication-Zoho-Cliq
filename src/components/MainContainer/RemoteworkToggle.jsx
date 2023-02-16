@@ -56,16 +56,16 @@ export default function RemoteworkToggle() {
     }
   }));
   return <>
-    <div id="lhs_remote_work" elemtype="view_remote_work" purpose="viewRemoteWork" documentclick="view_remote_work" className="rw-lhs-tab justifySB flexC LHS-RW fshrink" style={{ marginTop: "2px" }}>
+    <div id="lhs_remote_work" className="rw-lhs-tab justifySB flexC LHS-RW fshrink" style={{ marginTop: "2px" }}>
       <div className="font16 fontB" >Remote Work</div>
       <div id="lhs_remote_checkin_status" className="LHS-checkin-optn">
         <div className="flexC LHS-RW-checkbox">
           <div id="lhs_checkin_timer" className="mR8 clr-lp1 font11 dN">
             00:09:01 Hrs
           </div>
-          <FormControlLabel
+          <div style={{ position: "absolute", right: "-10px" }}><FormControlLabel
             control={<IOSSwitch sx={{ m: 1 }} defaultChecked />}
-          />
+          /></div>
 
         </div>
       </div>

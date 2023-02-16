@@ -54,6 +54,57 @@ $border-color: #e6e6e6;
       color: grey;
     }
 
+    .part-list{
+      background-color: var(--default-bg-color);
+      max-height: 450px;
+      overflow: hidden;
+      border-radius: 5px;
+      position: absolute;
+      bottom: 110%;
+      bottom: calc(100% + 5px);
+      width:98%;
+      left: 0px;
+      z-index: 1112;
+      box-shadow: 1px 0 8px var(--box-shadow-color3);
+      padding: 10px;
+
+      .mem-cat{
+        font-family: "zoho-puvi-semi-bold";
+        font-size: 13px;
+      }
+      .mem-list-item{
+        margin: 20px 10px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid var(--color-lp3);
+
+        &:hover{
+          border-color: #3dc2ac;
+        }
+
+        .mem-img{
+          border-radius: 100%;
+          width: 44px;
+          height: 44px;
+          overflow: hidden;
+        }
+        .mem-info{
+          padding-left:"20px";
+
+          .mem-name{
+            font-family: "zoho-puvi-semi-bold";
+            font-size: 14px;
+          }
+          .mem-email{
+            color:var(--color-lp1);
+            font-family: Lato,sans-serif;
+            font-size:13px;
+            margin-top: 4px;
+          }
+        }
+      }
+      
+    }
+
     .textArea {
       position: relative;
       flex-grow: 1;

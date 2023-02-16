@@ -4,7 +4,7 @@ importScripts(
 );
 
 const firebaseConfig = {
-    apiKey: "AIzaSyCMB3Vfvz_XZUs57GKFrs0DVa6oAI_u5PA",
+  apiKey: "AIzaSyCMB3Vfvz_XZUs57GKFrs0DVa6oAI_u5PA",
   authDomain: "prezz-c204b.firebaseapp.com",
   projectId: "prezz-c204b",
   storageBucket: "prezz-c204b.appspot.com",
@@ -28,24 +28,24 @@ messaging.onBackgroundMessage((payload) => {
   };
 
   self.registration.showNotification(notificationTitle, notificationOptions);
-//   self.addEventListener('notificationclick', function(event) {
-//     let url = 'http://localhost:3000/';
-//     event.notification.close(); // Android needs explicit close.
-//     event.waitUntil(
-//         clients.matchAll({type: 'window'}).then( windowClients => {
-//             // Check if there is already a window/tab open with the target URL
-//             for (var i = 0; i < windowClients.length; i++) {
-//                 var client = windowClients[i];
-//                 // If so, just focus it.
-//                 if (client.url === url && 'focus' in client) {
-//                     return client.focus();
-//                 }
-//             }
-//             // If not, then open the target URL in a new window/tab.
-//             if (clients.openWindow) {
-//                 return clients.openWindow(url);
-//             }
-//         })
-//     );
-// });
+  self.addEventListener('notificationclick', function(event) {
+    let url = 'http://localhost:3000/';
+    event.notification.close(); // Android needs explicit close.
+    event.waitUntil(
+        clients.matchAll({type: 'window'}).then( windowClients => {
+            // Check if there is already a window/tab open with the target URL
+            for (var i = 0; i < windowClients.length; i++) {
+                var client = windowClients[i];
+                // If so, just focus it.
+                if (client.url === url && 'focus' in client) {
+                    return client.focus();
+                }
+            }
+            // If not, then open the target URL in a new window/tab.
+            if (clients.openWindow) {
+                return clients.openWindow(url);
+            }
+        })
+    );
+});
 });

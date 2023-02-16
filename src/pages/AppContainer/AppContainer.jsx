@@ -139,7 +139,6 @@ export default function AppContainer() {
     {socket ? <div style={{ backgroundColor: "black", position: "fixed", width: "100%", fontFamily: "zoho-puvi-regular" }}>
       <MenuBar></MenuBar>
       <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.3.122/build/pdf.worker.min.js">
-
         <MainContainer setNewMsg={setNewMsg} isFinished={isFinished} setReload={setReload} reload={reload} socket={socket} messages={messages} setMessages={setMessages} newMsg={newMsg}></MainContainer>
       </Worker>
 

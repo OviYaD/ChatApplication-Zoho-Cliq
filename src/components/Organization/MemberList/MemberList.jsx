@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 import { setUser } from '../../../redux/slices/userSlice';
 import moment from 'moment/moment';
 import tz from "moment-timezone";
+import CircleLoader from '../../loaders/CircleLoader';
 
 export default function MemberList(params) {
 
@@ -84,13 +85,13 @@ export default function MemberList(params) {
                     </div>
                 </div>
                 <div id="people_listview flexC" zc_sticky_title_list="" className="flexG ovrflwA user-card-container">
-                    <div className="flex flexW listview"  >
+                    {memList.length > 0 ? <div className="flex flexW listview"  >
                         {memList.map((mem, index) => {
                             return <div uid={mem.id} key={index} type="user" className="user-card-item" documentclick="viewUserProfile" data-peoplepreview="" onClick={() => { setStatus(true); setUser(mem.email) }}>
                                 <div className="flex fdirC">
                                     <div className="user-card-image">
                                         <div id="imgcontainer" className="flexM curP" uid="60016689751" imgsrc="https://contacts.zoho.in/file?ID=60016689751&amp;exp=6000&amp;t=user&amp;fs=thumb">
-                                            <img style={{ height: "110px" }} src={!mem.profile.mini_avatar_url ? "https://contacts.zoho.in/file?ID=60016688887&exp=6000&t=user&fs=thumb" : mem.profile.mini_avatar_url} /><span id="time" className="zchvrtm dN">{new Date().getHours() + ":" + new Date().getMinutes() + " " + moment().format("A")}</span>
+                                            <img style={{ height: "110px" }} src={!mem.profile.mini_avatar_url ? "https://contacts.zoho.in/file?ID=60016688887&exp=6000&t=user&fs=thumb" : process.env.REACT_APP_BUCKET_END_POINT + mem.profile.mini_avatar_url} /><span id="time" className="zchvrtm dN">{new Date().getHours() + ":" + new Date().getMinutes() + " " + moment().format("A")}</span>
                                         </div>
                                     </div>
                                     <div className="user-card-pinfo">
@@ -138,8 +139,9 @@ export default function MemberList(params) {
                             </div>
                         })}
 
-                    </div>
-
+                    </div> :
+                        <CircleLoader></CircleLoader>
+                    }
                 </div>
             </div>
             {showInfo && <ShowInfo setStatus={setStatus} userEmail={userEmail}></ShowInfo>}

@@ -16,7 +16,7 @@ export default function SideNav({ setActiveMenu, activeMenu, setWindow }) {
             <div id="lhs_module_nav" className="flex fdirC justifySB h100 lhs-module-navigator">
                 <div className="overflow-controls">
                     <div id="lhs_module_items" className="flexG mB20 posrel ps-container ps-theme-default ps-active-y" data-ps-id="2467d49f-d46e-6e6d-32d8-d32c3528c4e1">
-                        <div id="lhs_chats" className={`lhs-nav-item ${activeMenu === "chats" && "active"}`} onClick={() => { setActiveMenu("chats"); setWindow("chat") }} purpose="showConvosTab">
+                        <div id="lhs_chats" className={`lhs-nav-item ${activeMenu === "chats" && "active"}`} onClick={() => { setActiveMenu("chats"); setWindow("quote") }} purpose="showConvosTab">
                             <ChatOutlinedIcon style={{ fontSize: "20px" }}></ChatOutlinedIcon>
                             <div className="mod-name ellips">chats</div>
                         </div>

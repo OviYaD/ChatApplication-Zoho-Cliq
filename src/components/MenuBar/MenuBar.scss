@@ -8,6 +8,7 @@
   width: 100%;
   z-index: 15;
 }
+
 .custom_logo {
   cursor: pointer;
   background-color: var(--topbar-bg);
@@ -60,6 +61,163 @@
   }
 }
 
+.searchResult{
+  position: absolute;
+  width: 706px;
+  background-color: #fff;
+  // min-height: 150px;
+  // max-height: fit-content;
+  border-radius: 8px;
+  padding: 0px;
+  margin: 5px;
+  box-shadow: 0px 4px 40px var(--box-shadow-color);
+  overflow: hidden;
+  min-height: fit-content;
+  max-height: 908px;
+
+  .frqt-contact-head{
+    font-family: "zoho-puvi-semi-bold";
+    font-size: 13px;
+  }
+  .srp{
+      padding: 5px;
+      position: relative;
+
+      .profilecon{
+        padding: 15px 15px 12px 20px;
+        background: linear-gradient(0deg, rgba(var(--color-icon-rgb),0.2), var(--default-bg-color));
+        line-height: 1.5;
+        min-height: 150px;
+        position: relative;
+        .personal-det{
+          margin-top: 20px;
+        }
+        .show-opt{
+          position: absolute;
+          bottom: 10px;
+          font-family: Lato,sans-serif;
+          .opt-item{
+            margin-right: 15px;
+            font-size: 14px;
+            letter-spacing: 0.7px;
+          }
+          .opt-item.active{
+            border-bottom: 2px solid green;
+            background-color: transparent;
+            padding: 5px;
+          }
+        }
+        .profile-section{
+          position: relative;
+        }
+    }
+    .opt-content{
+      height: calc(100vh - 250px);
+      background-color: var(--bg-color-2);
+      padding: 0px 20px;
+      .prf-adinfo {
+        padding: 10px 0 0 120px;
+        font-size: 15px;
+        line-height: 1.5;
+        color: var(--color-main);
+    }
+    .float{
+      position:fixed;
+      width:fit-content;
+      // height:60px;
+      bottom:40px;
+      left:57%;
+      right: 43%;
+      // right:40px;
+      background-color:#0C9;
+      color:#FFF;
+      border-radius:50px;
+      text-align:center;
+      box-shadow: 2px 2px 3px #999;
+    }
+    .prf-cat{
+      position: absolute;
+      top: 15px;
+      font-size: 14px;
+      left: 5px;
+      color: var(--color-secondary);
+      line-height: 1.23;
+      max-width: 100px;
+  }
+    }
+    
+    
+      
+
+      .srp-item-container{
+        height: calc(100vh - 100px);
+        overflow-y: scroll;
+      }
+      .srp-item{
+        padding: 5px;
+
+
+        &:hover{
+          background-color: rgb(241,244,247);
+        }
+      }
+
+      .column-2{
+        width: 50%;
+       
+      }
+      .srp-info{
+        // width: 100%;
+        padding:10px 20px;
+
+        .srp-name{
+          font-family: "zoho-puvi-semi-bold";
+          font-size:15px;
+          color:#3b9652;
+        }
+        .srp-email{
+          margin-top: 0.4rem;
+          color:var(--color-lp1);
+          font-size: 13px;
+        }
+      }
+  }
+  .frqt-contact{
+    width: 100%;
+    height: fit-content;
+    padding: 10px;
+    
+    .frqt-contact-list{
+      padding: 10px 20px;
+      .frqt-contact-items{
+        // position: relative;
+        margin-right: 1rem;
+        padding: 10px;
+        &:hover{
+          background-color: rgba(127, 255, 212, 0.055);
+        }
+      }
+      .list-img-wrapper{
+        width: 38px;
+        height: 38px;
+        border-radius: 100%;
+        overflow: hidden;
+        text-align: center;
+        margin: auto;
+        
+      }
+      .contact-name{
+        font-size: 13px;
+        width: 50px;
+        line-height: 18px;
+        margin-top: 8px;
+        word-break: break-all;
+        max-height: 38px;
+      }
+    }
+
+  }
+}
 .zctop-cht {
   position: relative;
   height: 50px;
@@ -85,6 +243,18 @@
       z-index: 1001;
       cursor: text;
 
+      
+      .search-active{
+        background-color: #fff !important;
+
+        
+        .drpdwn-input{
+          background-color: rgba(151,151,151,0.1) !important;
+        }
+        .zcgs-input-con{
+          width: 1000px !important;
+        }
+      }
       .zcgsincnt {
         background-color: rgba(var(--color-icon-lhs-rgb), 0.2);
         width: 100%;
@@ -206,6 +376,7 @@
             position: relative;
             height: 110%;
           }
+          
           .drpdwn-input {
             height: 32px;
             padding: 0 12px;
@@ -288,12 +459,15 @@
             position: absolute;
             left: 2px;
             color: var(--color-icon-lhs);
-            top: 55%;
+            top: 50%;
+            bottom: 50%;
             font-size: 18px;
             transform: translateY(-50%);
+            margin-left: 10px;
           }
           .zcsstinfo {
-            padding-left: 14px;
+            // padding-left: 14px;
+            margin-left: 2.2rem;
             font-size: 15px;
             font-weight: normal;
             border: none;
@@ -439,7 +613,7 @@
   // background-color: var(--color-hover2);
   color: var(--color-main);
   border-radius: 5px;
-  display: flex;
+  // display: flex;
 }
 .ztb-topband {
   display: flex;

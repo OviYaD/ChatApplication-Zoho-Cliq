@@ -1,0 +1,61 @@
+.edit-hist-cont.edit-hist-lastmsg {
+    padding-top: 10px;
+    background: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0) 30px, rgba(60, 189, 168, 0.08) 2%);
+    background: -moz-linear-gradient(bottom, rgba(0, 0, 0, 0) 30px, rgba(60, 189, 168, 0.08) 2%);
+}.edit-hist-cont {
+    padding: 0px 34px;
+    font-family: Lato,sans-serif;
+    
+}
+.edit-hist-time {
+    line-height: 26px;
+    position: relative;
+    min-width: 100px;
+    color: var(--color-lp1);
+}
+.edit-hist-time::before {
+    font-size: 12px;
+    content: "";
+    position: absolute;
+    top: 22px;
+    bottom: -4px;
+    right: -26px;
+    border-left: 1px dashed var(--color-divider);
+}
+.edit-hist-frstmsg{
+    .edit-hist-time::before{
+    border-left: 1px dashed white;
+}
+}
+.edit-hist-lastmsg .edit-hist-time::after {
+    background-color: rgb(61,194,172);
+}
+.edit-hist-lastmsg{
+    background-color: rgba(61, 194, 172, 0.192);
+}
+.edit-hist-time::after {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: var(--color-divider);
+    border-radius: 50%;
+    top: 8px;
+    right: -30px;
+}
+.edit-hist-msgcont {
+    font-size: 16px;
+    padding: 0px 30px 40px 44px;
+    position: relative;
+    width: 100%;
+}
+.edit-hist-lastmsgday {
+    position: absolute;
+    top: -40px;
+    font-size: 12px;
+    color: var(--color-lp1);
+    z-index: 1000000;
+}
+.edit-hist-bdy{
+    padding-top: 50px;
+}

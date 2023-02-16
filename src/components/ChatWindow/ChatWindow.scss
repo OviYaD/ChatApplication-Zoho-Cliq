@@ -258,8 +258,8 @@
       border-top-left-radius: 0px !important;
     }
     .message{
-      width: max-content;
-      max-width: 90%;
+      width: fit-content;
+      max-width: 80%;
       min-width: 50px;
       margin-left:10px;
       background-color: var(--bg-color-3);
@@ -271,14 +271,35 @@
       word-wrap: break-word;
       white-space: pre-wrap;
 
+      .file-display{
+        border-left: 1px solid rgba(128, 128, 128, 0.308);
+        padding-left: 10px;
+        min-width: 73%;
+      }
+
       blockquote {
         border-color: var(--color-theme) !important;
         box-shadow: none;
         background-color: rgba(var(--bg-color-2-rgb),0.6);
         margin-bottom: 5px;
     }
+    .msg-img{
+      .dwnld-btn{
+        visibility: hidden;
+        opacity: 0;
+        transition: visibility 0s, opacity 0.25s linear;
+        // transition: all 0.5s ease-in-out linear;
+      }
+    }
+    .msg-img:hover{
+      // transition: visibility 0s, opacity 0.5s linear;
+      .dwnld-btn{
+        visibility: visible;
+        opacity: 1;
+      }
+    }
     .quotedmsgdiv {
-      background-color: var(--bg-color-3);
+      background-color: rgba(247, 247, 247,0.6);
       padding: 8px;
       padding-top: 5px;
       cursor: pointer;
@@ -464,6 +485,8 @@
   max-height: 66px;
   line-height: 22px;
   font-size: 14px;
+  max-width: 98%;
+  
 }
 .msgtxt .quotedmsgsender {
   height: 20px;

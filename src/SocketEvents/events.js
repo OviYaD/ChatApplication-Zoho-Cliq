@@ -1,8 +1,9 @@
-export const getMessageThroughSocket = (socket,id,offset=0) =>{
+export const getMessageThroughSocket = (socket,id,is_private,offset=0) =>{
     console.log("fetching messages.....",socket)
         socket.emit("fetch-message",{
             chat_id:id,
-            offset
+            is_private,
+            offset,
         })
 }
 
@@ -32,10 +33,11 @@ export const toggleReaction = (socket,id,reaction) => {
     })
 }
 
-export const markAsRead = (socket,id)=>{
+export const markAsRead = (socket,id,is_private)=>{
     console.log("mark as read")
     socket.emit("read-message",{
-        chat_id:id
+        chat_id:id,
+        is_private
     });
 }
 
@@ -45,3 +47,27 @@ export const permissionUpdate = (socket,channel_id,permissions) => {
         permissions
     })
 } 
+
+export const sendNotification = (socket,id,token) => {
+    console.log("sent notification.....");
+    socket.emit("send-notification",{
+        id,
+        token
+    })
+}
+
+export const upinChats = (socket,chat_id) => {
+    socket.emit("unpin-chat",{
+        chat_id,
+        organization_id:JSON.parse(localStorage.getItem("!@#$%^org)(*&^%$")).id
+    })
+}
+
+export const pinChats = (socket,chat_id,chat_type,organization_id) => {
+    console.log("pin chat.........")
+    socket.emit("pin-chat",{
+        chat_id,
+        chat_type,
+        organization_id:JSON.parse(localStorage.getItem("!@#$%^org)(*&^%$")).id
+    })
+}

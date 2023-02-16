@@ -74,7 +74,7 @@ export const getProfile = async () => {
     })
     .catch((error) => {
       if (error.response) {
-        return { status: false };
+        return { status: false , errorCode: error.response.status };
       }
     });
   if (!userData.status) {
@@ -84,7 +84,17 @@ export const getProfile = async () => {
   // return false;
 };
 
-export const updateProfile = () => {};
+export const updateProfile = async (data) => {
+  console.log("profile....",data);
+  const res = await axios.post(`${config.END_POINT}/auth/update-profile`, data,{
+    headers : {
+      'Authorization': 'Bearer ' + (localStorage.getItem('token')) || ''
+    }
+  });
+  console.log(res);
+  return res.data.profile;
+};
+
 
 export const checkEmail = async (data) => {
   console.log(config.END_POINT);

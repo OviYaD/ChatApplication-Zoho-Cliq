@@ -35,7 +35,7 @@
     float: none;
     // color: #e9e9ea;
     color: var(--color-lp1);
-    overflow: hidden;
+    // overflow-y: hidden;
 
     .rw-lhs-tab {
       border-left: 2px solid rgb(61, 194, 172) !important;
@@ -46,7 +46,7 @@
       height: 43px;
       // color: var(--clr-white);
       // border-left: 2px solid var(--body-bg);
-      margin: 0px -20px 0px 0px;
+      // margin: 0px -20px 0px 0px;
       cursor: pointer;
       font-size: 16px;
       padding: 0px 14px;

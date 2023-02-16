@@ -1,10 +1,133 @@
 import React, { useState, useEffect } from 'react';
 import OutsideClickHandler from 'react-outside-click-handler';
 import "./PersonalizeModal.scss"
+import { useSelector, useDispatch } from 'react-redux';
+import { updateProfile } from '../../api/authentication/user';
+import { setUser } from '../../redux/slices/userSlice';
+import { toast } from 'react-toastify';
 
 export default function PersonalizeModal({ setOpenPersonalizeStatus }) {
     const [uplaodPic, setuploadPic] = useState(true);
     const [isEdit, setIsEdit] = useState(false);
+    const user = useSelector((state) => state.user);
+    const [firstName, setFirstName] = useState();
+    const [lastName, setLastName] = useState();
+    const [email, setEmail] = useState();
+    const [personalNum, setPersonalNum] = useState();
+    const [wrkNum, setWrkNum] = useState();
+    const [designation, setDesignation] = useState();
+    const [department, setDepartment] = useState();
+    const [reportTo, setReportTo] = useState();
+    const [seatingLocation, setSeatingLocation] = useState();
+    const [employeeId, setEmployeeId] = useState();
+    const dispatch = useDispatch();
+    const [fileData, setFileData] = useState();
+
+
+    useEffect(() => {
+        console.log(user);
+        setFirstName(user.first_name);
+        setLastName(user.last_name);
+        setEmail(user.email);
+        setPersonalNum(user.phone_personal);
+        setWrkNum(user.phone_work);
+        setDesignation(user.designation);
+        setDepartment(user.department);
+        setReportTo(user.reporting_to);
+        setSeatingLocation(user.seating_location);
+        setEmployeeId(user.employee_id);
+    }, [])
+
+    const handleChange = (e) => {
+        e.preventDefault();
+        if (e.target.type === "file") {
+            console.log("form data.......", e.target.files)
+            saveProfile(e, e.target.files[0]);
+        }
+        if (e.target.name === "firstName") {
+            setFirstName(e.target.value);
+        }
+        else if (e.target.name === "lastName") {
+            setLastName(e.target.value);
+        }
+        else if (e.target.name === "phone-personal") {
+            setPersonalNum(e.target.value);
+        }
+        else if (e.target.name === "phone-work") {
+            setWrkNum(e.target.value);
+        }
+        else if (e.target.name === "designation") {
+            setDesignation(e.target.value);
+        }
+        else if (e.target.name === 'department') {
+            setDepartment(e.target.value);
+        }
+        else if (e.target.name === "reporting_to") {
+            setReportTo(e.target.value);
+        }
+        else if (e.target.name === "seating_location") {
+            setSeatingLocation(e.target.value);
+        }
+        else if (e.target.name === "employee_id") {
+            setEmployeeId(e.target.value);
+        }
+        // else if ()
+    }
+
+    const saveProfile = async (e, files) => {
+        console.log("filess.......", files)
+        setuploadPic(true)
+        if (files) {
+            console.log("file uploads...........")
+            const formData = new FormData();
+            formData.append("file", files);
+            const updatedProfile = await updateProfile(formData);
+            dispatch(setUser(updatedProfile));
+
+        }
+        else {
+            console.log("data uploads...........")
+            const formData = new FormData();
+            formData.append("data", JSON.stringify({ first_name: firstName, last_name: lastName, phone_work: wrkNum, phone_personal: personalNum, designation: designation, department: department, reporting_to: reportTo, seating_location: seatingLocation, employee_id: employeeId }));
+            const updatedProfile = await updateProfile(formData);
+            dispatch(setUser(updatedProfile));
+
+
+        }
+
+        setIsEdit(false)
+        toast.success("Profile updated successfully", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+        })
+
+    }
+
+    const removeProfile = async () => {
+        setuploadPic(true)
+
+        const formData = new FormData();
+        formData.append("data", JSON.stringify({ remove_profile_image: true }));
+        const updatedProfile = await updateProfile(formData);
+        dispatch(setUser(updatedProfile));
+        toast.success("Profile updated successfully", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+        })
+    }
+
     return <>
         <div className='personalizaModal modalwindow zcoverlay flex fdirC'>
             <div id="zcwindows" className="zcoverlay" style={{ zIndex: "1000" }}>
@@ -117,35 +240,35 @@ export default function PersonalizeModal({ setOpenPersonalizeStatus }) {
                                             <div id="profmaincont" className="personalinfo-mainx zcl-card-body no-padding">
                                                 <div id="userprofview" className="zcprofilesec pLR36 flexC">
                                                     <div className="userprofinfo flexG flexC">
-                                                        <div class="zcprofpiccover bdrR100 flex">
-                                                            <div id="profpreview" class="bdrR100 posl zcpiccontainer curP" operation="viewprofilepic">
+                                                        <div className="zcprofpiccover bdrR100 flex">
+                                                            <div id="profpreview" className="bdrR100 posl zcpiccontainer curP" operation="viewprofilepic">
                                                                 <img
                                                                     id="usrimgview"
-                                                                    uid="60016689094"
-                                                                    class="zcprofpic objFitCover"
-                                                                    imgsrc="https://contacts.zoho.in/file?ID=60016689094&amp;exp=6000&amp;t=user&amp;fs=thumb"
-                                                                    src="https://contacts.zoho.in/file?ID=60016689094&amp;exp=6000&amp;t=user&amp;fs=thumb"
+                                                                    className="zcprofpic objFitCover"
+                                                                    src={user.avatar_url.includes("https") ? user.avatar_url : process.env.REACT_APP_BUCKET_END_POINT + user.avatar_url}
                                                                 />
-                                                                <div id="profpicoverlay" class="profpicsel curP posl" onClick={() => setuploadPic(false)}><span id="profilepicmenu" class="zcf-camera">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style={{ color: "white" }} fill="currentColor" class="bi bi-camera" viewBox="0 0 16 16">
+                                                                <div id="profpicoverlay" className="profpicsel curP posl" onClick={() => setuploadPic(false)}><span id="profilepicmenu" className="zcf-camera">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style={{ color: "white" }} fill="currentColor" className="bi bi-camera" viewBox="0 0 16 16">
                                                                         <path d="M15 12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h1.172a3 3 0 0 0 2.12-.879l.83-.828A1 1 0 0 1 6.827 3h2.344a1 1 0 0 1 .707.293l.828.828A3 3 0 0 0 12.828 5H14a1 1 0 0 1 1 1v6zM2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2z" />
                                                                         <path d="M8 11a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5zm0 1a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM3 6.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z" />
                                                                     </svg>
                                                                 </span></div>
                                                             </div>
                                                             <OutsideClickHandler onOutsideClick={() => setuploadPic(true)}>
-                                                                <div class={`zcl-menu-wrap profmenubox ${uplaodPic && "dN"}`} id="popup-view" align="right">
-                                                                    <div class="zcl-menu-item ellips posl cur">
-                                                                        <input type="file" id="profilepicupdate" accept="image/*" class="wh100 curP posabs changeprofpic" /><em class="zcl-menu-item-icn zcf-upload"></em><span class="ellips">Upload photo</span>
+                                                                <div className={`zcl-menu-wrap profmenubox ${uplaodPic && "dN"}`} id="popup-view" align="right">
+                                                                    <div className="zcl-menu-item ellips posl cur">
+                                                                        <input type="file" id="profilepicupdate" className="wh100 curP posabs changeprofpic" onChange={handleChange} />
+                                                                        <em className="zcl-menu-item-icn zcf-upload"></em>
+                                                                        <span className="ellips">Upload photo</span>
                                                                     </div>
-                                                                    <div class="zcl-menu-item ellips zcl-neg-menu-item cur"><em class="zcl-menu-item-icn zcf-delete2"></em><span class="ellips">Remove photo</span></div>
+                                                                    <div className="zcl-menu-item ellips zcl-neg-menu-item cur"><em className="zcl-menu-item-icn zcf-delete2"></em><span className="ellips" onClick={removeProfile}>Remove photo</span></div>
                                                                 </div>
                                                             </OutsideClickHandler>
                                                         </div>
 
                                                         <div className="mL20">
-                                                            <div className="ellips bold font18">Oviya D</div>
-                                                            <div className="ellips mT10 clr-lp1 font14">oviya.d@codingmart.com</div>
+                                                            <div className="ellips bold font18">{user.first_name + "  " + user.last_name ?? ""}</div>
+                                                            <div className="ellips mT10 clr-lp1 font14">{user.email}</div>
                                                             <div className="ellips font13 mT10">
                                                                 <span><a className="zcl-hyperlink" href="https://accounts.zoho.in" target="_blank">Manage Zoho Profile </a></span>
                                                             </div>
@@ -159,114 +282,114 @@ export default function PersonalizeModal({ setOpenPersonalizeStatus }) {
                                                     </span><span className="ellips font14">Edit Profile</span></div>
                                                 </div>
 
-                                                {!isEdit && <div class="editinfosec">
-                                                    <div class="pT25"><div class="zcmodal-right-title">Contact</div></div>
-                                                    <div class="zceditseccont flex flexW pLR36">
-                                                        <div id="userprofile_first_name" class="zceditelem pT30 flexC mR40 posrel">
-                                                            <div class="zcedittitle posl clr-lp1 font15 flexC text-transC fshrink pR5">First Name</div>
-                                                            <div class="posrel mL20 w100" style={{ minWidth: "295px" }}>
-                                                                <input id="first_name" type="text" data-name="First Name" style={{ width: "100%" }} class="zcl-input font15 zcl-input-info" value="Oviya" placeholder="" editvalue="true" />
-                                                                <div invalidtxt="" class="posa field_error font13"></div>
+                                                {!isEdit && <div className="editinfosec">
+                                                    <div className="pT25"><div className="zcmodal-right-title">Contact</div></div>
+                                                    <div className="zceditseccont flex flexW pLR36">
+                                                        <div id="userprofile_first_name" className="zceditelem pT30 flexC mR40 posrel">
+                                                            <div className="zcedittitle posl clr-lp1 font15 flexC text-transC fshrink pR5">First Name</div>
+                                                            <div className="posrel mL20 w100" style={{ minWidth: "295px" }}>
+                                                                <input id="first_name" type="text" data-name="First Name" style={{ width: "100%" }} className="zcl-input font15 zcl-input-info" value={user.first_name} placeholder="" editvalue="true" />
+                                                                <div invalidtxt="" className="posa field_error font13"></div>
                                                             </div>
                                                         </div>
-                                                        <div id="userprofile_last_name" class="zceditelem pT30 flexC mR40 posrel">
-                                                            <div class="zcedittitle posl clr-lp1 font15 flexC text-transC fshrink pR5">Last Name</div>
-                                                            <div class="posrel mL20 w100" style={{ minWidth: "295px" }}>
-                                                                <input id="last_name" type="text" data-name="Last Name" style={{ width: "100%" }} class="zcl-input font15 zcl-input-info" value="D" placeholder="" editvalue="true" />
-                                                                <div invalidtxt="" class="posa field_error font13"></div>
+                                                        <div id="userprofile_last_name" className="zceditelem pT30 flexC mR40 posrel">
+                                                            <div className="zcedittitle posl clr-lp1 font15 flexC text-transC fshrink pR5">Last Name</div>
+                                                            <div className="posrel mL20 w100" style={{ minWidth: "295px" }}>
+                                                                <input id="last_name" type="text" data-name="Last Name" style={{ width: "100%" }} className="zcl-input font15 zcl-input-info" value={user.last_name === "" ? "-" : user.last_name} placeholder="" editvalue="false" />
+                                                                <div invalidtxt="" className="posa field_error font13"></div>
                                                             </div>
                                                         </div>
-                                                        <div id="userprofile_email_id" class="zceditelem pT30 flexC mR40 posrel">
-                                                            <div class="zcedittitle posl clr-lp1 font15 flexC text-transC fshrink pR5">Email</div>
-                                                            <div class="posrel mL20 w100" style={{ minWidth: "295px" }}>
-                                                                <input id="email_id" type="text" data-name="Email" style={{ width: "100%" }} class="zcl-input font15 zcl-input-info" value="oviya.d@codingmart.com" placeholder="" editvalue="false" />
-                                                                <div invalidtxt="" class="posa field_error font13"></div>
+                                                        <div id="userprofile_email_id" className="zceditelem pT30 flexC mR40 posrel">
+                                                            <div className="zcedittitle posl clr-lp1 font15 flexC text-transC fshrink pR5">Email</div>
+                                                            <div className="posrel mL20 w100" style={{ minWidth: "295px" }}>
+                                                                <input id="email_id" type="text" data-name="Email" style={{ width: "100%" }} className="zcl-input font15 zcl-input-info" value={user.email} placeholder="" editvalue="false" />
+                                                                <div invalidtxt="" className="posa field_error font13"></div>
                                                             </div>
                                                         </div>
-                                                        <div id="userprofile_phone" class="zceditelem pT30 flexC mR40 posrel">
-                                                            <div class="zcedittitle posl clr-lp1 font15 flexC text-transC fshrink pR5">Work Phone</div>
-                                                            <div class="posrel mL20 w100" style={{ minWidth: "295px" }}>
-                                                                <input id="phone" type="text" data-name="Work Phone" style={{ width: "100%" }} class="zcl-input font15 zcl-input-info" value="-" placeholder="" editvalue="false" />
-                                                                <div invalidtxt="" class="posa field_error font13"></div>
+                                                        <div id="userprofile_phone" className="zceditelem pT30 flexC mR40 posrel">
+                                                            <div className="zcedittitle posl clr-lp1 font15 flexC text-transC fshrink pR5">Work Phone</div>
+                                                            <div className="posrel mL20 w100" style={{ minWidth: "295px" }}>
+                                                                <input id="phone" type="text" data-name="Work Phone" style={{ width: "100%" }} className="zcl-input font15 zcl-input-info" value="-" placeholder="" editvalue="false" />
+                                                                <div invalidtxt="" className="posa field_error font13"></div>
                                                             </div>
                                                         </div>
-                                                        <div id="userprofile_mobile" class="zceditelem pT30 flexC mR40 posrel">
-                                                            <div class="zcedittitle posl clr-lp1 font15 flexC text-transC fshrink pR5">Personal Mobile</div>
-                                                            <div class="posrel mL20 w100" style={{ minWidth: "295px" }}>
-                                                                <input id="mobile" type="text" data-name="Personal Mobile" style={{ width: "100%" }} class="zcl-input font15 zcl-input-info" value="-" placeholder="" editvalue="true" />
-                                                                <div invalidtxt="" class="posa field_error font13"></div>
+                                                        <div id="userprofile_mobile" className="zceditelem pT30 flexC mR40 posrel">
+                                                            <div className="zcedittitle posl clr-lp1 font15 flexC text-transC fshrink pR5">Personal Mobile</div>
+                                                            <div className="posrel mL20 w100" style={{ minWidth: "295px" }}>
+                                                                <input id="mobile" type="text" data-name="Personal Mobile" style={{ width: "100%" }} className="zcl-input font15 zcl-input-info" value="-" placeholder="" editvalue="true" />
+                                                                <div invalidtxt="" className="posa field_error font13"></div>
                                                             </div>
                                                         </div>
-                                                        <div id="userprofile_extension" class="zceditelem pT30 flexC mR40 posrel">
-                                                            <div class="zcedittitle posl clr-lp1 font15 flexC text-transC fshrink pR5">Extension</div>
-                                                            <div class="posrel mL20 w100" style={{ minWidth: "295px" }}>
-                                                                <input id="extension" type="text" data-name="Extension" style={{ width: "100%" }} class="zcl-input font15 zcl-input-info" value="-" placeholder="" editvalue="true" />
-                                                                <div invalidtxt="" class="posa field_error font13"></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="pT25"><div class="zcmodal-right-title">Work</div></div>
-                                                    <div class="zceditseccont flex flexW pLR36">
-                                                        <div id="userprofile_designation" class="zceditelem pT30 flexC mR40 posrel">
-                                                            <div class="zcedittitle posl clr-lp1 font15 flexC text-transC fshrink pR5">Designation</div>
-                                                            <div class="posrel mL20 w100" style={{ minWidth: "295px" }}>
-                                                                <input id="designation" type="text" data-name="Designation" style={{ width: "100%" }} class="zcl-input font15 zcl-input-info" value="-" placeholder="" editvalue="false" />
-                                                                <div invalidtxt="" class="posa field_error font13"></div>
-                                                            </div>
-                                                        </div>
-                                                        <div id="userprofile_department" class="zceditelem pT30 flexC mR40 posrel">
-                                                            <div class="zcedittitle posl clr-lp1 font15 flexC text-transC fshrink pR5">Department</div>
-                                                            <div class="posrel mL20 w100" style={{ minWidth: "295px" }}>
-                                                                <input id="department" type="text" data-name="Department" style={{ width: "100%" }} class="zcl-input font15 zcl-input-info" value="-" placeholder="" editvalue="false" />
-                                                                <div invalidtxt="" class="posa field_error font13"></div>
-                                                            </div>
-                                                        </div>
-                                                        <div id="userprofile_reportingto" class="zceditelem pT30 flexC mR40 posrel">
-                                                            <div class="zcedittitle posl clr-lp1 font15 flexC text-transC fshrink pR5">Reporting To</div>
-                                                            <div class="posrel mL20 w100" style={{ minWidth: "295px" }}>
-                                                                <input id="reportingto" type="text" data-name="Reporting To" style={{ width: "100%" }} class="zcl-input font15 zcl-input-info" value="-" placeholder="" editvalue="false" />
-                                                                <div invalidtxt="" class="posa field_error font13"></div>
-                                                            </div>
-                                                        </div>
-                                                        <div id="userprofile_work_location" class="zceditelem pT30 flexC mR40 posrel">
-                                                            <div class="zcedittitle posl clr-lp1 font15 flexC text-transC fshrink pR5">Seating Location</div>
-                                                            <div class="posrel mL20 w100" style={{ minWidth: "295px" }}>
-                                                                <input id="work_location" type="text" data-name="Seating Location" style={{ width: "100%" }} class="zcl-input font15 zcl-input-info" value="-" placeholder="" editvalue="true" />
-                                                                <div invalidtxt="" class="posa field_error font13"></div>
-                                                            </div>
-                                                        </div>
-                                                        <div id="userprofile_employee_id" class="zceditelem pT30 flexC mR40 posrel">
-                                                            <div class="zcedittitle posl clr-lp1 font15 flexC text-transC fshrink pR5">Employee ID</div>
-                                                            <div class="posrel mL20 w100" style={{ minWidth: "295px" }}>
-                                                                <input id="employee_id" type="text" data-name="Employee ID" style={{ width: "100%" }} class="zcl-input font15 zcl-input-info" value="-" placeholder="" editvalue="false" />
-                                                                <div invalidtxt="" class="posa field_error font13"></div>
+                                                        <div id="userprofile_extension" className="zceditelem pT30 flexC mR40 posrel">
+                                                            <div className="zcedittitle posl clr-lp1 font15 flexC text-transC fshrink pR5">Extension</div>
+                                                            <div className="posrel mL20 w100" style={{ minWidth: "295px" }}>
+                                                                <input id="extension" type="text" data-name="Extension" style={{ width: "100%" }} className="zcl-input font15 zcl-input-info" value="-" placeholder="" editvalue="true" />
+                                                                <div invalidtxt="" className="posa field_error font13"></div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="pT25"><div class="zcmodal-right-title">Geo Location</div></div>
-                                                    <div class="zceditseccont flex flexW pLR36">
-                                                        <div id="userprofile_country" class="zceditelem pT30 flexC mR40">
-                                                            <div class="zcedittitle posl clr-lp1 font15 flexC text-transC fshrink pR5">Country</div>
-                                                            <div class="posrel mL20 w100" style={{ minWidth: "295px" }}>
-                                                                <div id="selcountry" data-key="India" data-name="Country" style={{ width: "100%" }} purpose="dropdown" class="country zcl-dropdown-wrp prof-drpdwn unedited">India</div>
-                                                                <div invalidtxt="" class="posa field_error font13"></div>
+                                                    <div className="pT25"><div className="zcmodal-right-title">Work</div></div>
+                                                    <div className="zceditseccont flex flexW pLR36">
+                                                        <div id="userprofile_designation" className="zceditelem pT30 flexC mR40 posrel">
+                                                            <div className="zcedittitle posl clr-lp1 font15 flexC text-transC fshrink pR5">Designation</div>
+                                                            <div className="posrel mL20 w100" style={{ minWidth: "295px" }}>
+                                                                <input id="designation" type="text" data-name="Designation" style={{ width: "100%" }} className="zcl-input font15 zcl-input-info" value="-" placeholder="" editvalue="false" />
+                                                                <div invalidtxt="" className="posa field_error font13"></div>
                                                             </div>
                                                         </div>
-                                                        <div id="userprofile_timezone" class="zceditelem pT30 flexC mR40">
-                                                            <div class="zcedittitle posl clr-lp1 font15 flexC text-transC fshrink pR5">Time zone</div>
-                                                            <div class="posrel mL20 w100" style={{ minWidth: "295px" }}>
-                                                                <div id="seltimezone" data-key="Asia/Kolkata" data-name="Time zone" style={{ width: "100%" }} purpose="dropdown" class="timezone zcl-dropdown-wrp prof-drpdwn unedited">Asia/Kolkata</div>
-                                                                <div invalidtxt="" class="posa field_error font13"></div>
+                                                        <div id="userprofile_department" className="zceditelem pT30 flexC mR40 posrel">
+                                                            <div className="zcedittitle posl clr-lp1 font15 flexC text-transC fshrink pR5">Department</div>
+                                                            <div className="posrel mL20 w100" style={{ minWidth: "295px" }}>
+                                                                <input id="department" type="text" data-name="Department" style={{ width: "100%" }} className="zcl-input font15 zcl-input-info" value="-" placeholder="" editvalue="false" />
+                                                                <div invalidtxt="" className="posa field_error font13"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div id="userprofile_reportingto" className="zceditelem pT30 flexC mR40 posrel">
+                                                            <div className="zcedittitle posl clr-lp1 font15 flexC text-transC fshrink pR5">Reporting To</div>
+                                                            <div className="posrel mL20 w100" style={{ minWidth: "295px" }}>
+                                                                <input id="reportingto" type="text" data-name="Reporting To" style={{ width: "100%" }} className="zcl-input font15 zcl-input-info" value="-" placeholder="" editvalue="false" />
+                                                                <div invalidtxt="" className="posa field_error font13"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div id="userprofile_work_location" className="zceditelem pT30 flexC mR40 posrel">
+                                                            <div className="zcedittitle posl clr-lp1 font15 flexC text-transC fshrink pR5">Seating Location</div>
+                                                            <div className="posrel mL20 w100" style={{ minWidth: "295px" }}>
+                                                                <input id="work_location" type="text" data-name="Seating Location" style={{ width: "100%" }} className="zcl-input font15 zcl-input-info" value="-" placeholder="" editvalue="true" />
+                                                                <div invalidtxt="" className="posa field_error font13"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div id="userprofile_employee_id" className="zceditelem pT30 flexC mR40 posrel">
+                                                            <div className="zcedittitle posl clr-lp1 font15 flexC text-transC fshrink pR5">Employee ID</div>
+                                                            <div className="posrel mL20 w100" style={{ minWidth: "295px" }}>
+                                                                <input id="employee_id" type="text" data-name="Employee ID" style={{ width: "100%" }} className="zcl-input font15 zcl-input-info" value="-" placeholder="" editvalue="false" />
+                                                                <div invalidtxt="" className="posa field_error font13"></div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="pT25"><div class="zcmodal-right-title">Additional Info</div></div>
-                                                    <div class="zceditseccont flex flexW pLR36">
-                                                        <div id="userprofile_language" class="zceditelem pT30 flexC mR40">
-                                                            <div class="zcedittitle posl clr-lp1 font15 flexC text-transC fshrink pR5">Language</div>
-                                                            <div class="posrel mL20 w100" style={{ minWidth: "295px" }}>
-                                                                <div id="sellanguage" data-key="English" data-name="Language" style={{ width: "100%" }} purpose="dropdown" class="language zcl-dropdown-wrp prof-drpdwn unedited">English</div>
-                                                                <div invalidtxt="" class="posa field_error font13"></div>
+                                                    <div className="pT25"><div className="zcmodal-right-title">Geo Location</div></div>
+                                                    <div className="zceditseccont flex flexW pLR36">
+                                                        <div id="userprofile_country" className="zceditelem pT30 flexC mR40">
+                                                            <div className="zcedittitle posl clr-lp1 font15 flexC text-transC fshrink pR5">Country</div>
+                                                            <div className="posrel mL20 w100" style={{ minWidth: "295px" }}>
+                                                                <div id="selcountry" data-key="India" data-name="Country" style={{ width: "100%" }} purpose="dropdown" className="country zcl-dropdown-wrp prof-drpdwn unedited">{user.country}</div>
+                                                                <div invalidtxt="" className="posa field_error font13"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div id="userprofile_timezone" className="zceditelem pT30 flexC mR40">
+                                                            <div className="zcedittitle posl clr-lp1 font15 flexC text-transC fshrink pR5">Time zone</div>
+                                                            <div className="posrel mL20 w100" style={{ minWidth: "295px" }}>
+                                                                <div id="seltimezone" data-key="Asia/Kolkata" data-name="Time zone" style={{ width: "100%" }} purpose="dropdown" className="timezone zcl-dropdown-wrp prof-drpdwn unedited">{user.timezone}</div>
+                                                                <div invalidtxt="" className="posa field_error font13"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div className="pT25"><div className="zcmodal-right-title">Additional Info</div></div>
+                                                    <div className="zceditseccont flex flexW pLR36">
+                                                        <div id="userprofile_language" className="zceditelem pT30 flexC mR40">
+                                                            <div className="zcedittitle posl clr-lp1 font15 flexC text-transC fshrink pR5">Language</div>
+                                                            <div className="posrel mL20 w100" style={{ minWidth: "295px" }}>
+                                                                <div id="sellanguage" data-key="English" data-name="Language" style={{ width: "100%" }} purpose="dropdown" className="language zcl-dropdown-wrp prof-drpdwn unedited">{user.langage ?? "English"}</div>
+                                                                <div invalidtxt="" className="posa field_error font13"></div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -274,129 +397,123 @@ export default function PersonalizeModal({ setOpenPersonalizeStatus }) {
 
 
                                                 {isEdit && <>
-                                                    <div class="zceditsec" id="profeditsec">
-                                                        <div id="zinfosec" class="default-info">
-                                                            <div class="acc-logo flex vsbH" id="logoholder">
-                                                                <img src="https://static.zohocdn.com/chat/source/officechat/images/zoho_logo.png" /><span class="clr-H fontB font15" style={{ marginRight: "5px" }}>Accounts</span>
-                                                                <span class="ellips font12 clr-lp1 mL5">Changes made here will be reflected in your <a href="https://accounts.zoho.in" target="_blank" class="zcl-hyperlink">Zoho Accounts</a> and thereby across all Zoho services.</span>
+                                                    <div className="zceditsec" id="profeditsec">
+                                                        <div id="zinfosec" className="default-info">
+                                                            <div className="acc-logo flex vsbH" id="logoholder">
+                                                                <img src="https://static.zohocdn.com/chat/source/officechat/images/zoho_logo.png" /><span className="clr-H fontB font15" style={{ marginRight: "5px" }}>Accounts</span>
+                                                                <span className="ellips font12 clr-lp1 mL5">Changes made here will be reflected in your <a href="https://accounts.zoho.in" target="_blank" className="zcl-hyperlink">Zoho Accounts</a> and thereby across all Zoho services.</span>
                                                             </div>
-                                                            <div class="editinfosec">
-                                                                <div class="pT25"><div class="zcmodal-right-title">Contact</div></div>
-                                                                <div class="zceditseccont flex flexW pLR36">
-                                                                    <div id="userprofile_first_name" class="zceditelem pT30 flexC mR40 posrel">
-                                                                        <div class="zcedittitle posl clr-lp1 font15 flexC text-transC fshrink pR5">First Name</div>
-                                                                        <div class="posrel mL20 w100" style={{ minWidth: "295px" }}>
-                                                                            <input id="first_name" type="text" data-name="First Name" style={{ width: "100%" }} class="zcl-input font15 zcl-input-info" value="Oviya" placeholder="" editvalue="true" />
-                                                                            <div invalidtxt="" class="posa field_error font13"></div>
+                                                            <div className="editinfosec">
+                                                                <div className="pT25"><div className="zcmodal-right-title">Contact</div></div>
+                                                                <div className="zceditseccont flex flexW pLR36">
+                                                                    <div id="userprofile_first_name" className="zceditelem pT30 flexC mR40 posrel">
+                                                                        <div className="zcedittitle posl clr-lp1 font15 flexC text-transC fshrink pR5">First Name</div>
+                                                                        <div className="posrel mL20 w100" style={{ minWidth: "295px" }}>
+                                                                            <input id="first_name" type="text" data-name="First Name" style={{ width: "100%" }} className="zcl-ico zcl-input font15 zcl-input-info" value={firstName} onChange={handleChange} name="firstName" placeholder="" />
+                                                                            <div invalidtxt="" className="posa field_error font13"></div>
                                                                         </div>
                                                                     </div>
-                                                                    <div id="userprofile_last_name" class="zceditelem pT30 flexC mR40 posrel">
-                                                                        <div class="zcedittitle posl clr-lp1 font15 flexC text-transC fshrink pR5">Last Name</div>
-                                                                        <div class="posrel mL20 w100" style={{ minWidth: "295px" }}>
-                                                                            <input id="last_name" type="text" data-name="Last Name" style={{ width: "100%" }} class="zcl-input font15 zcl-input-info" value="D" placeholder="" editvalue="true" />
-                                                                            <div invalidtxt="" class="posa field_error font13"></div>
+                                                                    <div id="userprofile_last_name" className="zceditelem pT30 flexC mR40 posrel">
+                                                                        <div className="zcedittitle posl clr-lp1 font15 flexC text-transC fshrink pR5">Last Name</div>
+                                                                        <div className="posrel mL20 w100" style={{ minWidth: "295px" }}>
+                                                                            <input id="last_name" type="text" data-name="Last Name" style={{ width: "100%" }} className="zcl-ico zcl-input font15 zcl-input-info" value={lastName ?? "-"} onChange={handleChange} name="lastName" placeholder="" editvalue="true" />
+                                                                            <div invalidtxt="" className="posa field_error font13"></div>
                                                                         </div>
                                                                     </div>
-                                                                    <div id="userprofile_email_id" class="zceditelem pT30 flexC mR40 posrel">
-                                                                        <div class="zcedittitle posl clr-lp1 font15 flexC text-transC fshrink pR5">Email</div>
-                                                                        <div class="posrel mL20 w100" style={{ minWidth: "295px" }}>
-                                                                            <input id="email_id" type="text" data-name="Email" style={{ width: "100%" }} class="zcl-input font15 zcl-input-info" value="oviya.d@codingmart.com" placeholder="" editvalue="false" />
-                                                                            <div invalidtxt="" class="posa field_error font13"></div>
+                                                                    <div id="userprofile_email_id" className="zceditelem pT30 flexC mR40 posrel" >
+                                                                        <div className="zcedittitle posl clr-lp1 font15 flexC text-transC fshrink pR5">Email</div>
+                                                                        <div className="posrel mL20 w100" style={{ minWidth: "295px", color: "gray", fontSize: "14px" }}>
+                                                                            {user.email}
+                                                                            <div invalidtxt="" className="posa field_error font13"></div>
                                                                         </div>
                                                                     </div>
-                                                                    <div id="userprofile_phone" class="zceditelem pT30 flexC mR40 posrel">
-                                                                        <div class="zcedittitle posl clr-lp1 font15 flexC text-transC fshrink pR5">Work Phone</div>
-                                                                        <div class="posrel mL20 w100" style={{ minWidth: "295px" }}>
-                                                                            <input id="phone" type="text" data-name="Work Phone" style={{ width: "100%" }} class="zcl-input font15 zcl-input-info" value="-" placeholder="" editvalue="false" />
-                                                                            <div invalidtxt="" class="posa field_error font13"></div>
+                                                                    <div id="userprofile_phone" className="zceditelem pT30 flexC mR40 posrel">
+                                                                        <div className="zcedittitle posl clr-lp1 font15 flexC text-transC fshrink pR5">Work Phone</div>
+                                                                        <div className="posrel mL20 w100" style={{ minWidth: "295px" }}>
+                                                                            <input id="phone" type="text" data-name="Work Phone" style={{ width: "100%" }} className="zcl-ico zcl-input font15 zcl-input-info" value={personalNum ?? "-"} onChange={handleChange} name="phone-personal" placeholder="" editvalue="false" />
+                                                                            <div invalidtxt="" className="posa field_error font13"></div>
                                                                         </div>
                                                                     </div>
-                                                                    <div id="userprofile_mobile" class="zceditelem pT30 flexC mR40 posrel">
-                                                                        <div class="zcedittitle posl clr-lp1 font15 flexC text-transC fshrink pR5">Personal Mobile</div>
-                                                                        <div class="posrel mL20 w100" style={{ minWidth: "295px" }}>
-                                                                            <input id="mobile" type="text" data-name="Personal Mobile" style={{ width: "100%" }} class="zcl-input font15 zcl-input-info" value="-" placeholder="" editvalue="true" />
-                                                                            <div invalidtxt="" class="posa field_error font13"></div>
+                                                                    <div id="userprofile_mobile" className="zceditelem pT30 flexC mR40 posrel">
+                                                                        <div className="zcedittitle posl clr-lp1 font15 flexC text-transC fshrink pR5">Personal Mobile</div>
+                                                                        <div className="posrel mL20 w100" style={{ minWidth: "295px" }}>
+                                                                            <input id="mobile" type="text" data-name="Personal Mobile" style={{ width: "100%" }} className="zcl-ico zcl-input font15 zcl-input-info" value={wrkNum ?? "-"} onChange={handleChange} name="phone-work" placeholder="" editvalue="true" />
+                                                                            <div invalidtxt="" className="posa field_error font13"></div>
                                                                         </div>
                                                                     </div>
-                                                                    <div id="userprofile_extension" class="zceditelem pT30 flexC mR40 posrel">
-                                                                        <div class="zcedittitle posl clr-lp1 font15 flexC text-transC fshrink pR5">Extension</div>
-                                                                        <div class="posrel mL20 w100" style={{ minWidth: "295px" }}>
-                                                                            <input id="extension" type="text" data-name="Extension" style={{ width: "100%" }} class="zcl-input font15 zcl-input-info" value="-" placeholder="" editvalue="true" />
-                                                                            <div invalidtxt="" class="posa field_error font13"></div>
+
+                                                                </div>
+                                                                <div className="pT25"><div className="zcmodal-right-title">Work</div></div>
+                                                                <div className="zceditseccont flex flexW pLR36">
+                                                                    <div id="userprofile_designation" className="zceditelem pT30 flexC mR40 posrel">
+                                                                        <div className="zcedittitle posl clr-lp1 font15 flexC text-transC fshrink pR5">Designation</div>
+                                                                        <div className="posrel mL20 w100" style={{ minWidth: "295px" }}>
+                                                                            <input id="designation" type="text" data-name="Designation" style={{ width: "100%" }} className="zcl-ico zcl-input font15 zcl-input-info" value={designation ?? "-"} onChange={handleChange} name="designation" placeholder="" editvalue="false" />
+                                                                            <div invalidtxt="" className="posa field_error font13"></div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div id="userprofile_department" className="zceditelem pT30 flexC mR40 posrel">
+                                                                        <div className="zcedittitle posl clr-lp1 font15 flexC text-transC fshrink pR5">Department</div>
+                                                                        <div className="posrel mL20 w100" style={{ minWidth: "295px" }}>
+                                                                            <input id="department" type="text" data-name="Department" style={{ width: "100%" }} className="zcl-ico zcl-input font15 zcl-input-info" value={department ?? "-"} onChange={handleChange} name="department" placeholder="" editvalue="false" />
+                                                                            <div invalidtxt="" className="posa field_error font13"></div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div id="userprofile_reportingto" className="zceditelem pT30 flexC mR40 posrel">
+                                                                        <div className="zcedittitle posl clr-lp1 font15 flexC text-transC fshrink pR5">Reporting To</div>
+                                                                        <div className="posrel mL20 w100" style={{ minWidth: "295px" }}>
+                                                                            <input id="reportingto" type="text" data-name="Reporting To" style={{ width: "100%" }} className="zcl-ico zcl-input font15 zcl-input-info" value={reportTo ?? "-"} onChange={handleChange} name="reporting_to" placeholder="" editvalue="false" />
+                                                                            <div invalidtxt="" className="posa field_error font13"></div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div id="userprofile_work_location" className="zceditelem pT30 flexC mR40 posrel">
+                                                                        <div className="zcedittitle posl clr-lp1 font15 flexC text-transC fshrink pR5">Seating Location</div>
+                                                                        <div className="posrel mL20 w100" style={{ minWidth: "295px" }}>
+                                                                            <input id="work_location" type="text" data-name="Seating Location" style={{ width: "100%" }} className=" zcl-ico zcl-input font15 zcl-input-info" value={seatingLocation ?? "-"} onChange={handleChange} name="seating_location" placeholder="" editvalue="true" />
+                                                                            <div invalidtxt="" className="posa field_error font13"></div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div id="userprofile_employee_id" className="zceditelem pT30 flexC mR40 posrel">
+                                                                        <div className="zcedittitle posl clr-lp1 font15 flexC text-transC fshrink pR5">Employee ID</div>
+                                                                        <div className="posrel mL20 w100" style={{ minWidth: "295px" }}>
+                                                                            <input id="employee_id" type="text" data-name="Employee ID" style={{ width: "100%" }} className="zcl-ico zcl-input font15 zcl-input-info" value={employeeId ?? "-"} onChange={handleChange} name="employee_id" placeholder="" editvalue="false" />
+                                                                            <div invalidtxt="" className="posa field_error font13"></div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <div class="pT25"><div class="zcmodal-right-title">Work</div></div>
-                                                                <div class="zceditseccont flex flexW pLR36">
-                                                                    <div id="userprofile_designation" class="zceditelem pT30 flexC mR40 posrel">
-                                                                        <div class="zcedittitle posl clr-lp1 font15 flexC text-transC fshrink pR5">Designation</div>
-                                                                        <div class="posrel mL20 w100" style={{ minWidth: "295px" }}>
-                                                                            <input id="designation" type="text" data-name="Designation" style={{ width: "100%" }} class="zcl-input font15 zcl-input-info" value="-" placeholder="" editvalue="false" />
-                                                                            <div invalidtxt="" class="posa field_error font13"></div>
+                                                                <div className="pT25"><div className="zcmodal-right-title">Geo Location</div></div>
+                                                                <div className="zceditseccont flex flexW pLR36">
+                                                                    <div id="userprofile_country" className="zceditelem pT30 flexC mR40">
+                                                                        <div className="zcedittitle posl clr-lp1 font15 flexC text-transC fshrink pR5">Country</div>
+                                                                        <div className="posrel mL20 w100" style={{ minWidth: "295px" }}>
+                                                                            <div id="selcountry" data-key="India" data-name="Country" style={{ width: "100%" }} purpose="dropdown" className="country zcl-dropdown-wrp prof-drpdwn unedited">India</div>
+                                                                            <div invalidtxt="" className="posa field_error font13"></div>
                                                                         </div>
                                                                     </div>
-                                                                    <div id="userprofile_department" class="zceditelem pT30 flexC mR40 posrel">
-                                                                        <div class="zcedittitle posl clr-lp1 font15 flexC text-transC fshrink pR5">Department</div>
-                                                                        <div class="posrel mL20 w100" style={{ minWidth: "295px" }}>
-                                                                            <input id="department" type="text" data-name="Department" style={{ width: "100%" }} class="zcl-input font15 zcl-input-info" value="-" placeholder="" editvalue="false" />
-                                                                            <div invalidtxt="" class="posa field_error font13"></div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div id="userprofile_reportingto" class="zceditelem pT30 flexC mR40 posrel">
-                                                                        <div class="zcedittitle posl clr-lp1 font15 flexC text-transC fshrink pR5">Reporting To</div>
-                                                                        <div class="posrel mL20 w100" style={{ minWidth: "295px" }}>
-                                                                            <input id="reportingto" type="text" data-name="Reporting To" style={{ width: "100%" }} class="zcl-input font15 zcl-input-info" value="-" placeholder="" editvalue="false" />
-                                                                            <div invalidtxt="" class="posa field_error font13"></div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div id="userprofile_work_location" class="zceditelem pT30 flexC mR40 posrel">
-                                                                        <div class="zcedittitle posl clr-lp1 font15 flexC text-transC fshrink pR5">Seating Location</div>
-                                                                        <div class="posrel mL20 w100" style={{ minWidth: "295px" }}>
-                                                                            <input id="work_location" type="text" data-name="Seating Location" style={{ width: "100%" }} class="zcl-input font15 zcl-input-info" value="-" placeholder="" editvalue="true" />
-                                                                            <div invalidtxt="" class="posa field_error font13"></div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div id="userprofile_employee_id" class="zceditelem pT30 flexC mR40 posrel">
-                                                                        <div class="zcedittitle posl clr-lp1 font15 flexC text-transC fshrink pR5">Employee ID</div>
-                                                                        <div class="posrel mL20 w100" style={{ minWidth: "295px" }}>
-                                                                            <input id="employee_id" type="text" data-name="Employee ID" style={{ width: "100%" }} class="zcl-input font15 zcl-input-info" value="-" placeholder="" editvalue="false" />
-                                                                            <div invalidtxt="" class="posa field_error font13"></div>
+                                                                    <div id="userprofile_timezone" className="zceditelem pT30 flexC mR40">
+                                                                        <div className="zcedittitle posl clr-lp1 font15 flexC text-transC fshrink pR5">Time zone</div>
+                                                                        <div className="posrel mL20 w100" style={{ minWidth: "295px" }}>
+                                                                            <div id="seltimezone" data-key="Asia/Kolkata" data-name="Time zone" style={{ width: "100%" }} purpose="dropdown" className="timezone zcl-dropdown-wrp prof-drpdwn unedited">Asia/Kolkata</div>
+                                                                            <div invalidtxt="" className="posa field_error font13"></div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <div class="pT25"><div class="zcmodal-right-title">Geo Location</div></div>
-                                                                <div class="zceditseccont flex flexW pLR36">
-                                                                    <div id="userprofile_country" class="zceditelem pT30 flexC mR40">
-                                                                        <div class="zcedittitle posl clr-lp1 font15 flexC text-transC fshrink pR5">Country</div>
-                                                                        <div class="posrel mL20 w100" style={{ minWidth: "295px" }}>
-                                                                            <div id="selcountry" data-key="India" data-name="Country" style={{ width: "100%" }} purpose="dropdown" class="country zcl-dropdown-wrp prof-drpdwn unedited">India</div>
-                                                                            <div invalidtxt="" class="posa field_error font13"></div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div id="userprofile_timezone" class="zceditelem pT30 flexC mR40">
-                                                                        <div class="zcedittitle posl clr-lp1 font15 flexC text-transC fshrink pR5">Time zone</div>
-                                                                        <div class="posrel mL20 w100" style={{ minWidth: "295px" }}>
-                                                                            <div id="seltimezone" data-key="Asia/Kolkata" data-name="Time zone" style={{ width: "100%" }} purpose="dropdown" class="timezone zcl-dropdown-wrp prof-drpdwn unedited">Asia/Kolkata</div>
-                                                                            <div invalidtxt="" class="posa field_error font13"></div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="pT25"><div class="zcmodal-right-title">Additional Info</div></div>
-                                                                <div class="zceditseccont flex flexW pLR36">
-                                                                    <div id="userprofile_language" class="zceditelem pT30 flexC mR40">
-                                                                        <div class="zcedittitle posl clr-lp1 font15 flexC text-transC fshrink pR5">Language</div>
-                                                                        <div class="posrel mL20 w100" style={{ minWidth: "295px" }}>
-                                                                            <div id="sellanguage" data-key="English" data-name="Language" style={{ width: "100%" }} purpose="dropdown" class="language zcl-dropdown-wrp prof-drpdwn unedited">English</div>
-                                                                            <div invalidtxt="" class="posa field_error font13"></div>
+                                                                <div className="pT25"><div className="zcmodal-right-title">Additional Info</div></div>
+                                                                <div className="zceditseccont flex flexW pLR36">
+                                                                    <div id="userprofile_language" className="zceditelem pT30 flexC mR40">
+                                                                        <div className="zcedittitle posl clr-lp1 font15 flexC text-transC fshrink pR5">Language</div>
+                                                                        <div className="posrel mL20 w100" style={{ minWidth: "295px" }}>
+                                                                            <div id="sellanguage" data-key="English" data-name="Language" style={{ width: "100%" }} purpose="dropdown" className="language zcl-dropdown-wrp prof-drpdwn unedited">English</div>
+                                                                            <div invalidtxt="" className="posa field_error font13"></div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div id="editsec-btns" class="personalinfo-ftr">
-                                                        <button class="zcl-btn zcl-btn--secondary mR20" operation="cancel" onClick={() => setIsEdit(false)}>Cancel</button>
-                                                        <button id="saveprof-btn" class="zcl-btn zcl-btn--primary" operation="saveprofile">Save Changes</button>
+                                                    <div id="editsec-btns" className="personalinfo-ftr">
+                                                        <button className="zcl-btn zcl-btn--secondary mR20" operation="cancel" onClick={() => setIsEdit(false)}>Cancel</button>
+                                                        <button id="saveprof-btn" className="zcl-btn zcl-btn--primary" operation="saveprofile" onClick={saveProfile}>Save Changes</button>
                                                     </div>
                                                 </>}
                                             </div>
