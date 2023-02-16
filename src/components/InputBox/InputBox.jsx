@@ -37,6 +37,8 @@ export default function InputBox({ replyTo, setReplyTo, messages, socket, setMes
             setReplyTo("");
             console.log("emiting messages.........")
             createMessage(socket, {
+
+                organization_id: JSON.parse(localStorage.getItem("!@#$%^org)(*&^%$")).id,
                 is_private: url.get("channel") === null ? true : false,
                 chat_id: url.get("channel") === null ? url.get("chat") : url.get("channel"),
                 content: message.replace(/^\s+|\s+$/g, ''),
@@ -67,6 +69,7 @@ export default function InputBox({ replyTo, setReplyTo, messages, socket, setMes
     const shareFiles = (message) => {
 
         createMessage(socket, {
+            organization_id: JSON.parse(localStorage.getItem("!@#$%^org)(*&^%$")).id,
             is_private: url.get("channel") === null ? true : false,
             chat_id: url.get("channel") === null ? url.get("chat") : url.get("channel"),
             content: message.replace(/^\s+|\s+$/g, ''),

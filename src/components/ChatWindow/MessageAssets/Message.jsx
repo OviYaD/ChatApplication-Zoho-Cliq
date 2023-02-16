@@ -172,7 +172,9 @@ export default function Message({ setReplyTo, newMsgId, setNewMsgId, chatInfo, n
             </div>
             <h3>Here's the very start of this channel..</h3>
             <p style={{ color: "gray", fontSize: "15px", marginBottom: "1.7rem", marginTop: "-0.51rem" }}>Use @mentions to mention someone specifically during the course of the conversation, and use /commands as shortcuts to perform things faster.</p>
-            <span className='cur' onClick={() => createMessage(socket, { chat_id: url.get("channel") === null ? url.get("chat") : url.get("channel"), content: "Hi Frndz 👋", is_private: url.get("channel") === null ? true : false })} style={{ border: "1px solid var(--color-secondary-lhs)", padding: "10px 30px", borderRadius: "10px" }}>Say <b>Hello</b></span>
+            <span className='cur' onClick={() => createMessage(socket, {
+                organization_id: JSON.parse(localStorage.getItem("!@#$%^org)(*&^%$")).id, chat_id: url.get("channel") === null ? url.get("chat") : url.get("channel"), content: "Hi Frndz 👋", is_private: url.get("channel") === null ? true : false
+            })} style={{ border: "1px solid var(--color-secondary-lhs)", padding: "10px 30px", borderRadius: "10px" }}>Say <b>Hello</b></span>
 
         </div>
         }

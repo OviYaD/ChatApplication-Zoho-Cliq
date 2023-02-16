@@ -1,18 +1,22 @@
 import React, { useState, useEffect } from 'react'
-import './contactList.scss'
+import './chatList.scss'
 import MoreHorizTwoToneIcon from '@mui/icons-material/MoreHorizTwoTone';
 import { useSelector } from 'react-redux';
 import { fetchPinChats, fetchConvoChats } from '../../api/chats/chat';
 import { pinChats, upinChats } from '../../SocketEvents/events';
 import ProfileInfoPopUp from '../PersonalChats/ProfileInfoPopUp';
+import { useHistory, useLocation } from 'react-router-dom'
+import { getUnreadCount } from '../../api/Channel/Channel';
 
-export default function ContactList({ socket }) {
+export default function ChatList({ unreadCount, setUnreadCount, actId, socket, setActId, setWindow, setChatDetails }) {
     const [openPins, setOpenPins] = useState(true);
     const [openConversations, setOpenConversations] = useState(true);
     const [pinnedChats, setPinnedChats] = useState();
     const [convoChats, setConvoChats] = useState([]);
     const [showProfile, setShowProfile] = useState("");
     const user = useSelector((state) => state.user);
+    const searchParams = new URLSearchParams(document.location.search);
+    const url = new URL(window.location);
 
     useEffect(() => {
         console.log(pinnedChats)
@@ -23,6 +27,9 @@ export default function ContactList({ socket }) {
         const getChatList = async () => {
             const pin = await fetchPinChats();
             let convo = await fetchConvoChats();
+            const res = await getUnreadCount();
+            console.log("unread count", res)
+            setUnreadCount(res);
             console.log(convo);
             setPinnedChats(pin);
             convo = filterUnpiChats(pin, convo);
@@ -59,11 +66,41 @@ export default function ContactList({ socket }) {
         return chats.filter((chat) => {
             return !pin.find(cht => cht.chat_id === chat.chat_id)
         })
+    }
+
+    const openChat = (chat, type) => {
+        if (type !== "CHANNEL") {
+            if (searchParams.get("channel")) {
+                url.searchParams.delete('channel');
+                window.history.pushState({}, '', url);
+            }
+            url.searchParams.set('chat', chat.user.user_id);
+            setWindow("chat");
+            window.history.pushState({}, '', url);
+            setActId(chat.chat_id);
+            setChatDetails(chat.user.user_id, true)
+            localStorage.setItem("*&^%$#!@#$%^&Channel#$&^%$id*&^%^&*(", chat.user.user_id)
+        }
+        else {
+            if (searchParams.get("chat")) {
+                url.searchParams.delete('chat');
+                window.history.pushState({}, '', url);
+            }
+            url.searchParams.set('channel', chat.chat_id);
+            setWindow("chat");
+            window.history.pushState({}, '', url);
+            setActId(chat.chat_id);
+            setChatDetails(chat.chat_id, false)
+            localStorage.setItem("*&^%$#!@#$%^&Channel#$&^%$id*&^%^&*(", chat.chat_id)
+        }
+
+
 
     }
 
     return <>
-        {convoChats && <div className="flexG flex-col h100 ovrflwH app-submodule-nav">
+        {convoChats && 
+        <div className="flexG flex-col h100 ovrflwH app-submodule-nav">
             <div className="flexG h100 flex-col mychats">
 
                 <div className="flexG ovrflwA pb5 overflow-controls">
@@ -76,7 +113,7 @@ export default function ContactList({ socket }) {
                             {openPins &&
                                 <div className='chatList'>
                                     {pinnedChats.map((chats, index) => {
-                                        return <div key={chats.chat_id} className="dflx list active" onMouseEnter={() => setShowProfile(chats.chat_id)} onMouseLeave={() => setShowProfile("")}>
+                                        return <div key={chats.chat_id} className={`dflx list ${actId === chats.chat_id && "active"} `} onMouseEnter={() => setShowProfile(chats.chat_id)} onMouseLeave={() => setShowProfile("")} onClick={() => openChat(chats.chat_id, chats.chat_type)}>
 
                                             {chats.chat_type === "CHANNEL" ? <span className='hashTag'>#</span> :
                                                 <span className=' flexC'>
@@ -86,6 +123,8 @@ export default function ContactList({ socket }) {
                                                 </span>}
                                             <span className='pL1 ellips'> {chats.channel ? chats.channel.name : user.first_name + " " + user.last_name}</span>
                                             <div className='options dflx'>
+                                                {unreadCount[chats.chat_id] && <span className='notify' style={{ fontFamily: "zoho-puvi-semi-bold", color: "#fff", backgroundColor: "var(--color-red)", borderRadius: "100%" }}>{unreadCount[chats.chat_id]}</span>}
+
                                                 <div title="Unpin" onClick={() => upinChats(socket, chats.chat_id)}>
 
                                                     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" fill="currentColor" width="10" height="10"  >
@@ -114,7 +153,7 @@ export default function ContactList({ socket }) {
                         </div>
                         {openConversations && <div className="chatList">
                             {convoChats.map((chats, index) => {
-                                return <div key={chats.chat_id} className="dflx list " onMouseEnter={() => setShowProfile(chats.chat_id)} onMouseLeave={() => setShowProfile("")}>
+                                return <div key={chats.chat_id} className={`dflx list ${actId === chats.chat_id && "active"} `} onMouseEnter={() => setShowProfile(chats.chat_id)} onMouseLeave={() => setShowProfile("")} onClick={() => openChat(chats, chats.chat_type)}>
                                     {chats.chat_type === "CHANNEL" ? <span className='hashTag'>#</span> :
                                         <span className=' flexC'>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="7" height="7" fill="currentColor" className="bi bi-circle" viewBox="0 0 16 16" >
@@ -123,6 +162,8 @@ export default function ContactList({ socket }) {
                                         </span>}
                                     <span className='pL1 ellips'>{chats.channel ? chats.channel.name : chats.user.first_name + " " + chats.user.last_name}</span>
                                     <div className='options dflx'>
+                                        {unreadCount[chats.chat_id] && <span className='notify' style={{ fontFamily: "zoho-puvi-semi-bold", color: "#fff", backgroundColor: "var(--color-red)", borderRadius: "100%" }}>{unreadCount[chats.chat_id]}</span>}
+
                                         <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" class="bi bi-pin-angle-fill" viewBox="0 0 16 16" onClick={() => pinChats(socket, chats.chat_id, chats.chat_type)}>
                                             <path d="M9.828.722a.5.5 0 0 1 .354.146l4.95 4.95a.5.5 0 0 1 0 .707c-.48.48-1.072.588-1.503.588-.177 0-.335-.018-.46-.039l-3.134 3.134a5.927 5.927 0 0 1 .16 1.013c.046.702-.032 1.687-.72 2.375a.5.5 0 0 1-.707 0l-2.829-2.828-3.182 3.182c-.195.195-1.219.902-1.414.707-.195-.195.512-1.22.707-1.414l3.182-3.182-2.828-2.829a.5.5 0 0 1 0-.707c.688-.688 1.673-.767 2.375-.72a5.922 5.922 0 0 1 1.013.16l3.134-3.133a2.772 2.772 0 0 1-.04-.461c0-.43.108-1.022.589-1.503a.5.5 0 0 1 .353-.146z" />
                                         </svg>

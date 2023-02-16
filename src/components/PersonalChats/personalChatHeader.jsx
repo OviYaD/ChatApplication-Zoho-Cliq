@@ -2,12 +2,16 @@ import React, { useState, useEffect } from 'react';
 import Diversity3OutlinedIcon from '@mui/icons-material/Diversity3Outlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import AddMemberPopUp from '../ChannelComponents/AddMemberPopUp/AddMemberPopUp';
+import { sendInvitation } from '../../api/chats/chat';
 
 export default function PersonalChatHeader({ setActId, setWindow, chatInfo, setOpenStatus, bodyContent, setBodyContent }) {
     const [showMemList, setShowMemList] = useState(false);
     const url = new URL(window.location);
     let params = new URLSearchParams(url.search);
 
+    const sentContactInvitation = async () => {
+        const res = await sendInvitation(chatInfo.user_id);
+    }
 
     return <>
         {chatInfo && <div className="chatHeader">
@@ -27,7 +31,7 @@ export default function PersonalChatHeader({ setActId, setWindow, chatInfo, setO
                             </div> */}
                         </div>
 
-                        <div className='dflx opt' style={{ marginLeft: "0px", fontFamily: "zoho-puvi-regular", fontSize: "12px" }}>
+                        <div className='dflx opt' style={{ marginLeft: "0px", fontFamily: "zoho-puvi-regular", fontSize: "12px" }} onClick={sentContactInvitation}>
                             + Add to contact
                             {/* <div className={`curP ${bodyContent === "chat" && "opt-active"}`} onClick={() => setBodyContent("chat")}>Messages</div>
                             <div className={`curP ${bodyContent !== "chat" && "opt-active"}`} onClick={() => setBodyContent("media")}> Media Files</div> */}
