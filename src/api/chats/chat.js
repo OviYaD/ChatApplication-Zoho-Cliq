@@ -41,11 +41,3 @@ export const getProfileAndLastMessage = async(data) => {
   console.log(res);
   return res.data;
 }
-
-export const sendInvitation  = async (receiver_id) => {
-  const res = await axios.post(`${config.END_POINT}/contact/create`,{receiver_id},{
-    headers: {
-        'Authorization': 'Bearer ' + (localStorage.getItem('token')) || ''
-      }
-  });
-}

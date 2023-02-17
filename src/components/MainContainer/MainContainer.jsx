@@ -117,7 +117,7 @@ export default function MainContainer({ setNewMsg, isFinished, reload, setReload
     }, [])
 
 
-    const setChatDetails = async (id, isPrivate) => {
+    const setChatDetails = async (id, isPrivate = false) => {
         let data;
         console.log("id = ", id, " isPrivate = ", isPrivate);
         if (isPrivate) {
@@ -130,7 +130,7 @@ export default function MainContainer({ setNewMsg, isFinished, reload, setReload
 
         setChatInfo(data);
         setWindow("chat");
-        getMessageThroughSocket(socket, localStorage.getItem("*&^%$#!@#$%^&Channel#$&^%$id*&^%^&*("), url.get("channel") === null ? true : false,);
+        getMessageThroughSocket(socket, localStorage.getItem("*&^%$#!@#$%^&Channel#$&^%$id*&^%^&*("), isPrivate);
         // markAsRead(socket, id);
 
     }

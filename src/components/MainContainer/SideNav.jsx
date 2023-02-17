@@ -20,7 +20,7 @@ export default function SideNav({ setActiveMenu, activeMenu, setWindow }) {
                             <ChatOutlinedIcon style={{ fontSize: "20px" }}></ChatOutlinedIcon>
                             <div className="mod-name ellips">chats</div>
                         </div>
-                        <div id="lhs_contacts" className="lhs-nav-item " purpose="showDMsTab" data-activetab="">
+                        <div id="lhs_contacts" className={`lhs-nav-item ${activeMenu === "contact" && "active"}`} onClick={() => { setActiveMenu("contact"); }} purpose="showDMsTab" data-activetab="">
                             <PersonOutlineOutlinedIcon style={{ fontSize: "25px" }}></PersonOutlineOutlinedIcon>
                             <div className="mod-name ellips">Contacts</div>
                         </div>

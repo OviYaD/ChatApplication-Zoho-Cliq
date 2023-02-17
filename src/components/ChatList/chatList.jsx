@@ -15,6 +15,7 @@ export default function ChatList({ unreadCount, setUnreadCount, actId, socket, s
     const [convoChats, setConvoChats] = useState([]);
     const [showProfile, setShowProfile] = useState("");
     const user = useSelector((state) => state.user);
+    const [delayHandler, setDelayHandler] = useState(null)
     const searchParams = new URLSearchParams(document.location.search);
     const url = new URL(window.location);
 
@@ -93,9 +94,17 @@ export default function ChatList({ unreadCount, setUnreadCount, actId, socket, s
             setChatDetails(chat.chat_id, false)
             localStorage.setItem("*&^%$#!@#$%^&Channel#$&^%$id*&^%^&*(", chat.chat_id)
         }
+    }
 
+    const handleMouseEnter = (chats) => {
+        setDelayHandler(setTimeout(() => {
+            setShowProfile(chats.chat_id)
+        }, 3000))
+    }
 
-
+    const handleMouseLeave = () => {
+        clearTimeout(delayHandler)
+        setShowProfile("")
     }
 
     return <>
@@ -113,7 +122,7 @@ export default function ChatList({ unreadCount, setUnreadCount, actId, socket, s
                                 {openPins &&
                                     <div className='chatList'>
                                         {pinnedChats.map((chats, index) => {
-                                            return <div key={chats.chat_id} className={`dflx list ${actId === chats.chat_id && "active"} `} onMouseEnter={() => setShowProfile(chats.chat_id)} onMouseLeave={() => setShowProfile("")} onClick={() => openChat(chats.chat_id, chats.chat_type)}>
+                                            return <div key={chats.chat_id} className={`dflx list ${actId === chats.chat_id && "active"} `} onMouseEnter={() => handleMouseEnter(chats)} onMouseLeave={handleMouseLeave} onClick={() => openChat(chats, chats.chat_type)}>
 
                                                 {chats.chat_type === "CHANNEL" ? <span className='hashTag'>#</span> :
                                                     <span className=' flexC'>
@@ -121,7 +130,7 @@ export default function ChatList({ unreadCount, setUnreadCount, actId, socket, s
                                                             <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
                                                         </svg>
                                                     </span>}
-                                                <span className='pL1 ellips'> {chats.channel ? chats.channel.name : user.first_name + " " + user.last_name}</span>
+                                                <span className='pL1 ellips'> {chats.channel ? chats.channel.name : chats.user.first_name + " " + chats.user.last_name}</span>
                                                 <div className='options dflx'>
                                                     {unreadCount[chats.chat_id] && <span className='notify' style={{ fontFamily: "zoho-puvi-semi-bold", color: "#fff", backgroundColor: "var(--color-red)", borderRadius: "100%" }}>{unreadCount[chats.chat_id]}</span>}
 

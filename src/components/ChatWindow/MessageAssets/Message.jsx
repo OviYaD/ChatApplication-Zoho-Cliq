@@ -22,6 +22,7 @@ import Diversity3OutlinedIcon from '@mui/icons-material/Diversity3Outlined';
 import StarWrapper from './StarWrapper';
 import { starMessage } from '../../../api/General/message';
 import { Tooltip } from 'react-tooltip';
+import ProfileInfoPopUp from '../../PersonalChats/ProfileInfoPopUp';
 
 
 const starType = { "IMPORTANT": "type1", "TODO": "type2", "NOTE": "type3", "MANAGER": "type4", "FOLLOWUP": "type5" };
@@ -41,6 +42,7 @@ export default function Message({ setReplyTo, newMsgId, setNewMsgId, chatInfo, n
     const [showMsgOptions, setShowMsgOptions] = useState("");
     const [starId, setStarId] = useState("");
     const [staredMsg, setStaredMsg] = useState([]);
+    const [showProfile, setShowProfile] = useState("");
     const url = new URLSearchParams(document.location.search);
 
     useEffect(() => {
@@ -190,12 +192,19 @@ export default function Message({ setReplyTo, newMsgId, setNewMsgId, chatInfo, n
                         <div msguid={msg._id} className="zcdvdmsg-new " style={{ fontSize: "13px", color: "orange" }}>New Message</div>
                     </div>}
 
-                    {msg.showUser && <div className="sender ellips in-view">
-                        <div className="chtimg floatl ">
-                            <img elemtype="user" hover="true" uid="60016689094" src={msg.sender.mini_avatar_url} className="cur" />
-                        </div>
-                        <span elemtype="user" hover="true" uid="60016689094" className="zctxtseln cur">{msg.sender.user_id === user.user_id ? "You" : msg.sender.first_name + " " + msg.sender.last_name}</span>
-                    </div>}
+                    <OutsideClickHandler onOutsideClick={() => setShowProfile("")}>
+                        {msg.showUser &&
+                            <div className="sender ellips in-view" style={{ position: "relative" }}>
+                                <div className="chtimg floatl " onClick={() => { setShowProfile(msg.sender.user_id + index); console.log(msg.sender.user_id + index) }}>
+                                    <img elemtype="user" hover="true" uid="60016689094" src={msg.sender.mini_avatar_url.includes("https") ? msg.sender.mini_avatar_url : process.env.REACT_APP_BUCKET_END_POINT + msg.sender.mini_avatar_url} className="cur" />
+                                </div>
+                                <span elemtype="user" hover="true" uid="60016689094" className="zctxtseln cur">{msg.sender.user_id === user.user_id ? "You" : msg.sender.first_name + " " + msg.sender.last_name}</span>
+                            </div>}
+                        {showProfile === msg.sender.user_id + index &&
+                            <div style={{ position: 'absolute', zIndex: "1000", top: "-99%", left: "10%" }}>
+                                <ProfileInfoPopUp chatInfo={msg.sender.user_id} isChatUser={true}></ProfileInfoPopUp>
+                            </div>}
+                    </OutsideClickHandler>
                     <div className='msgtxt'  >
                         {starId === msg._id && <StarWrapper setMessages={setMessages} setStarId={setStarId} msgId={msg._id}></StarWrapper>}
 
@@ -210,6 +219,7 @@ export default function Message({ setReplyTo, newMsgId, setNewMsgId, chatInfo, n
                             </span>}
                             <div className="sent-time">{moment(msg.created_at).format("hh:mm a")}</div>
                         </div>
+
 
                         {!msg.is_deleted && emojiSelector[index] && <OutsideClickHandler
                             onOutsideClick={() => {
