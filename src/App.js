@@ -34,7 +34,7 @@ function App() {
         if(localStorage.getItem("token")){
           fetchUser();
         }
-        requestPermission()
+        requestPermission();
   }, []);
   
   return (

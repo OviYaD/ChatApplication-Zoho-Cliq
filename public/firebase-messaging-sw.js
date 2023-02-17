@@ -29,7 +29,7 @@ messaging.onBackgroundMessage((payload) => {
 
   self.registration.showNotification(notificationTitle, notificationOptions);
   self.addEventListener('notificationclick', function(event) {
-    let url = 'http://localhost:3000/';
+    let url = "https://prezz.live";
     event.notification.close(); // Android needs explicit close.
     event.waitUntil(
         clients.matchAll({type: 'window'}).then( windowClients => {
