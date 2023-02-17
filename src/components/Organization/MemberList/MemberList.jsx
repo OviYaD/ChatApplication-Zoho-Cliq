@@ -91,7 +91,7 @@ export default function MemberList(params) {
                                 <div className="flex fdirC">
                                     <div className="user-card-image">
                                         <div id="imgcontainer" className="flexM curP" uid="60016689751" imgsrc="https://contacts.zoho.in/file?ID=60016689751&amp;exp=6000&amp;t=user&amp;fs=thumb">
-                                            <img style={{ height: "110px" }} src={!mem.profile.mini_avatar_url ? "https://contacts.zoho.in/file?ID=60016688887&exp=6000&t=user&fs=thumb" : process.env.REACT_APP_BUCKET_END_POINT + mem.profile.mini_avatar_url} /><span id="time" className="zchvrtm dN">{new Date().getHours() + ":" + new Date().getMinutes() + " " + moment().format("A")}</span>
+                                            <img style={{ height: "110px" }} src={mem.profile.mini_avatar_url.includes("https") ? mem.profile.mini_avatar_url : process.env.REACT_APP_BUCKET_END_POINT + mem.profile.mini_avatar_url} /><span id="time" className="zchvrtm dN">{new Date().getHours() + ":" + new Date().getMinutes() + " " + moment().format("A")}</span>
                                         </div>
                                     </div>
                                     <div className="user-card-pinfo">

@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import "./MainContainer.scss";
 import RemoteworkToggle from './RemoteworkToggle';
-import ContactList from '../ContactList/contactList';
+import ChatList from '../ChatList/chatList';
 import SideNav from './SideNav';
 import ChatWindow from '../ChatWindow/ChatWindow';
 import ChannelDescription from '../ChannelComponents/ChannelDescription/ChannelDescription';
@@ -21,6 +21,7 @@ import JoinChannelModal from '../CreateChannel/JoinChannelModal';
 import { sendNotification } from '../../SocketEvents/events';
 import { getChatUserInfo } from '../../api/chats/chat';
 import LoadingPage from '../loaders/LoadingPage';
+import ContactList from '../ContactList/ContactList';
 
 
 export default function MainContainer({ setNewMsg, isFinished, reload, setReload, newMsg, messages, socket, setMessages }) {
@@ -116,7 +117,7 @@ export default function MainContainer({ setNewMsg, isFinished, reload, setReload
     }, [])
 
 
-    const setChatDetails = async (id, isPrivate) => {
+    const setChatDetails = async (id, isPrivate = false) => {
         let data;
         console.log("id = ", id, " isPrivate = ", isPrivate);
         if (isPrivate) {
@@ -129,7 +130,7 @@ export default function MainContainer({ setNewMsg, isFinished, reload, setReload
 
         setChatInfo(data);
         setWindow("chat");
-        getMessageThroughSocket(socket, localStorage.getItem("*&^%$#!@#$%^&Channel#$&^%$id*&^%^&*("), url.get("channel") === null ? true : false,);
+        getMessageThroughSocket(socket, localStorage.getItem("*&^%$#!@#$%^&Channel#$&^%$id*&^%^&*("), isPrivate);
         // markAsRead(socket, id);
 
     }
@@ -145,9 +146,10 @@ export default function MainContainer({ setNewMsg, isFinished, reload, setReload
                         <SideNav activeMenu={activeMenu} setActiveMenu={setActiveMenu} setWindow={setWindow}></SideNav>
                         {(() => {
                             switch (activeMenu) {
-                                case "chats": return <ContactList socket={socket}></ContactList>
+                                case "chats": return <ChatList unreadCount={unreadCount} setUnreadCount={setUnreadCount} setChatDetails={setChatDetails} socket={socket} setWindow={setWindow} setActId={setActId} actId={actId}></ChatList>
                                 case "channels": return <ChannelList setShowJoinChannelModal={setShowJoinChannelModal} unreadCount={unreadCount} setUnreadCount={setUnreadCount} setWindow={setWindow} setStatus={setStatus} setChatDetails={setChatDetails} actId={actId} setActId={setActId}></ChannelList>
                                 case "Org": return <OrganizationList></OrganizationList>
+                                case "contact": return <ContactList></ContactList>
                             }
                         })()}
                         {/* <ContactList></ContactList> */}

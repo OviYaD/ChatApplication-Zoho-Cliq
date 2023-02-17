@@ -37,8 +37,8 @@ export default function ChatWindow({ isFinished, reload, setReload, newMsg, setW
 
     return <>
         <div className="" style={{ backgroundColor: "#fff", width: "100%", borderRadius: "10px", marginLeft: "2px", marginRight: "8px", position: "relative" }}>
-            <Header setActId={setActId} setWindow={setWindow} chatInfo={chatInfo} bodyContent={bodyContent} setBodyContent={setBodyContent} setOpenStatus={setOpenStatus} ></Header>
-            {/* <PersonalChatHeader setActId={setActId} setWindow={setWindow} chatInfo={chatInfo} bodyContent={bodyContent} setBodyContent={setBodyContent} setOpenStatus={setOpenStatus} ></PersonalChatHeader> */}
+            {chatInfo?.user_id === undefined ? <Header setActId={setActId} setWindow={setWindow} chatInfo={chatInfo} bodyContent={bodyContent} setBodyContent={setBodyContent} setOpenStatus={setOpenStatus} ></Header>
+                : <PersonalChatHeader setActId={setActId} setWindow={setWindow} chatInfo={chatInfo} bodyContent={bodyContent} setBodyContent={setBodyContent} setOpenStatus={setOpenStatus} ></PersonalChatHeader>}
 
             {bodyContent === "chat" ? <>
                 <ChatBody setReplyTo={setReplyTo} isFinished={isFinished} setReload={setReload} reload={reload} newMsg={newMsg} socket={socket} messages={messages} chatInfo={chatInfo}></ChatBody>
