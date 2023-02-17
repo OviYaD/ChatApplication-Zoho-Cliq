@@ -108,7 +108,7 @@ export default function AddMemberPopUp({ chatInfo, setShowMemList }) {
                                     {superUsers.length > 0 && superUsers.map((mem, index) => {
                                         return <div key={mem._id} uid={mem._id} className="zcl-win-modal1-item">
                                             <div className="fshrink posrel contct-img bdrR100">
-                                                <img className="w100 h100 bdrR100" src={mem.user?.mini_avatar_url || ""} style={{ background: "transparent" }} />
+                                                <img className="w100 h100 bdrR100" src={mem.user.mini_avatar_url.includes("https") ? mem.user?.mini_avatar_url : process.env.REACT_APP_BUCKET_END_POINT + mem.user?.mini_avatar_url} style={{ background: "transparent" }} />
                                             </div>
                                             <div className="mL12 flexG ellips">
                                                 <div className="flexC">
@@ -184,14 +184,14 @@ export default function AddMemberPopUp({ chatInfo, setShowMemList }) {
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-three-dots-vertical" viewBox="0 0 16 16">
                                                     <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
                                                 </svg>
-                                                <div className='zcl-menu-wrap '>
+                                                {/* <div className='zcl-menu-wrap '>
                                                     <div className='ellips zcl-menu-item'>Assign as moderators</div>
                                                     <div className='ellips zcl-menu-item'>Assign as moderators</div>
                                                     <div className='ellips zcl-menu-item'>Assign as moderators</div>
                                                     <div className='ellips zcl-menu-item'>Assign as moderators</div>
                                                     <div className='ellips zcl-menu-item remove'>Remove</div>
 
-                                                </div>
+                                                </div> */}
                                             </span>
                                         </div>
                                     })}

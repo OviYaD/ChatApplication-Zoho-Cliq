@@ -10,6 +10,7 @@ export default function ChannelList({ setShowJoinChannelModal, unreadCount, setU
     const user = useSelector((state) => state.user);
     const [orgChannelList, setOrgChannelList] = useState([]);
     const [personalChannelList, setPersonalChannelList] = useState([]);
+    const searchParams = new URLSearchParams(document.location.search);
     const url = new URL(window.location);
     // const [unreadCount,setUn]
 
@@ -51,6 +52,10 @@ export default function ChannelList({ setShowJoinChannelModal, unreadCount, setU
         localStorage.setItem("*&^%$#!@#$%^&Channel#$&^%$id*&^%^&*(", id)
         setActId(id);
         setWindow("chat");
+        if (searchParams.get("chat")) {
+            url.searchParams.delete('chat');
+            window.history.pushState({}, '', url);
+        }
         url.searchParams.set('channel', id);
         window.history.pushState({}, '', url);
         setChatDetails(id);
