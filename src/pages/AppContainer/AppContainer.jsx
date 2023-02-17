@@ -27,6 +27,7 @@ export default function AppContainer() {
     console.log("socket testing");
     const socket = io.connect(process.env.REACT_APP_SOCKET_END_POINT, {
       path: "/api/socket.io",
+      secure: true,
       query: { "token": localStorage.getItem("token") },
       'transports': ['websocket', 'polling'],
     });
