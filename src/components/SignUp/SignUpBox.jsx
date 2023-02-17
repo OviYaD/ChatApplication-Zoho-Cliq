@@ -5,7 +5,7 @@ import { validateEmail } from '../Validators/email';
 import { validatePassword } from '../Validators/password';
 import { validateMobileNumber } from '../Validators/mobileNumber';
 import { useNavigate } from 'react-router-dom';
-import { signInWithGoogle } from '../../firebase';
+// import { signInWithGoogle } from '../../firebase';
 
 export default function SignUpBox({ changeValidity }) {
     const [email, setEmail] = useState("");
@@ -129,7 +129,7 @@ export default function SignUpBox({ changeValidity }) {
                         </div>
                         <div className="socl-signup">
                             <p><b>or sign in using  </b>
-                                <span className="vi-google" title="Google" onClick={() => signInWithGoogle()}>Google</span>
+                                <span className="vi-google" title="Google" >Google</span>
                                 <span className="vi-facebook" title="Facebook" >Facebook</span>
                                 <span className="vi-linkedin" title="Linkedin">Linkedin</span>
                                 <span className="vi-twitter" title="Twitter" >Twitter</span>

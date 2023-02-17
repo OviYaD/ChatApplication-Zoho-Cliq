@@ -1,4 +1,4 @@
-import { async } from "@firebase/util";
+// import { async } from "@firebase/util";
 import axios from "axios";
 import config from "../../config";
 

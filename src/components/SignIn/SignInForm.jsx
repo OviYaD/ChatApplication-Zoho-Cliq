@@ -3,7 +3,7 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import { checkEmail, emailOtp, loginOtp, loginUser, verifyOtp } from '../../api/authentication/user';
 import { useNavigate } from 'react-router-dom';
 import ResendOtp from './resendOtp';
-import { signInWithGoogle } from '../../firebase';
+// import { signInWithGoogle } from '../../firebase';
 
 
 export default function SignInForm({ forgetPassword }) {
@@ -222,7 +222,7 @@ export default function SignInForm({ forgetPassword }) {
                         <div className="options_caption">
                             Sign in using
                         </div>
-                        <span className="fed_div google_icon google_fed small_box show_fed" style={{ display: "inline-block" }} onClick={() => signInWithGoogle()}>
+                        <span className="fed_div google_icon google_fed small_box show_fed" style={{ display: "inline-block" }}>
                             <div className="fed_center_google">
                                 <span className="fed_icon googleIcon"></span>
                             </div>
