@@ -25,9 +25,8 @@ export default function MenuItems({ setOpenStatus }) {
     }
     return <>
         <div className="ztb-item-bx" id="ztb-menu-container" data-action-wrap="">
-            <div type="button" className="ztb-button-type tpbricon dN" id="ztb-topBarScheduleMsgIcon" data-purpose="zctopBarScheduleMsgIcon" title="Scheduled Messages"><span className="zcf-schedule dN font20 pT1 ztb-icons"></span></div>
             <div type="button" className="ztb-button-type tpbricon" id="ztb-starredmessages" data-purpose="zcstarredmessages" title="Starred Messages"><span className="zcf-star ztb-icons" onClick={() => navigate("/star")}><StarBorderOutlinedIcon ></StarBorderOutlinedIcon></span></div>
-            <div type="button" className="ztb-button-type tpbricon" id="ztb-atmention" data-purpose="zcatmention" ztooltip="Mentions" title="Mentions">
+            {/* <div type="button" className="ztb-button-type tpbricon" id="ztb-atmention" data-purpose="zcatmention" ztooltip="Mentions" title="Mentions">
                 <span className="zcf-mention ztb-icons"><AlternateEmailOutlinedIcon ></AlternateEmailOutlinedIcon></span>
                 <div id="ztb-atmentioncount" className="msgnotify mT3" style={{ display: "none" }}>0</div>
             </div>
@@ -36,7 +35,7 @@ export default function MenuItems({ setOpenStatus }) {
             <div type="button" className="ztb-button-type tpbricon" id="ztb-setintegration" data-purpose="zcsetintegration" title="Extensions"><span className="zcf-marketplace font20 ztb-icon-marketplace ztb-icons"><StorefrontOutlinedIcon></StorefrontOutlinedIcon></span></div>
             <div type="button" className="ztb-button-type tpbricon" id="ztb-notificationIcon" data-purpose="zcnotificationIcon" style={{ pointerEvents: "all", opacity: "1" }} title="Announcements">
                 <span className="zcf-announcement font18 announcementIcon ztb-icons"><span className="alert_icon" id="stackedNumber" ><CampaignOutlinedIcon></CampaignOutlinedIcon></span></span>
-            </div>
+            </div> */}
 
             <Avatar id="profile" onClick={() => { setOpenStatus(true) }} title="Profile" alt="Remy Sharp" src="https://contacts.zoho.in/file?fs=thumb&amp;nocache=1672909825507" style={{ marginLeft: "10px", width: "30px", height: "30px", cursor: "pointer" }} />
             <Tooltip
@@ -44,8 +43,8 @@ export default function MenuItems({ setOpenStatus }) {
                 place="bottom"
                 content="Profile"
             />
+            <WidgetsIcon id="org" title="Organizations" onClick={() => navigate({ pathname: "/getstarted", search: `?from=1` })} style={{ cursor: "pointer", color: "#979797", marginLeft: "0.8rem", marginRight: "0.8rem" }} ></WidgetsIcon>
         </div>
-        <WidgetsIcon id="org" title="Organizations" onClick={() => navigate({ pathname: "/getstarted", search: `?from=1` })} style={{ cursor: "pointer", color: "#979797", marginLeft: "0.8rem", marginRight: "0.8rem" }} ></WidgetsIcon>
         <Tooltip
             anchorId="org"
             place="bottom"

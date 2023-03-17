@@ -1,8 +1,9 @@
-export const getMessageThroughSocket = (socket,id,is_private,offset=0) =>{
-    console.log("fetching messages.....",socket)
+export const getMessageThroughSocket = (socket,id,is_private,message,offset=0) =>{
+    console.log("fetching messages.....",message)
         socket.emit("fetch-message",{
             chat_id:id,
             is_private,
+            message,
             offset,
         })
 }

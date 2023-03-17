@@ -41,3 +41,30 @@ export const getProfileAndLastMessage = async(data) => {
   console.log(res);
   return res.data;
 }
+
+export const getSentMessages = async(query="",offset) => {
+  const res = await axios.post(`${config.END_POINT}/chat/sent-messages`,{
+    query,
+    offset,
+    organization_id:JSON.parse(localStorage.getItem("!@#$%^org)(*&^%$")).id
+  },
+  {
+    headers: {
+        'Authorization': 'Bearer ' + (localStorage.getItem('token')) || ''
+      }
+  }
+  );
+  console.log(res);
+  return res.data;
+}
+
+export const getRecentMsg = async(data) => {
+  const res = await axios.post(`${config.END_POINT}/chat/recent-messages`,data,
+  {
+    headers: {
+        'Authorization': 'Bearer ' + (localStorage.getItem('token')) || ''
+      }
+  })
+  console.log(res);
+  return res.data.messages;
+}

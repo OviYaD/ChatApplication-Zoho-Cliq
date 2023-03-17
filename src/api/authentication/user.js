@@ -55,12 +55,18 @@ export const verifyOtp = async (data) => {
 };
 
 export const ResetPassword = async (data) => {
-  await axios.post(`${config.END_POINT}/auth/reset-password`, data,{
-    headers: {
-        'Authorization': 'Bearer ' + (localStorage.getItem('token')) || ''
-      }
-  });
-  return true;
+  try{
+    await axios.post(`${config.END_POINT}/auth/reset-password`, data,{
+      headers: {
+          'Authorization': 'Bearer ' + (localStorage.getItem('token')) || ''
+        }
+    });
+    return true;
+  }
+  catch(e){
+    console.log(e);
+    return false;
+  }
 };
 
 export const getProfile = async () => {
@@ -97,10 +103,15 @@ export const updateProfile = async (data) => {
 
 
 export const checkEmail = async (data) => {
-  console.log(config.END_POINT);
+  try{
+    console.log(config.END_POINT);
   const msg = await axios.post(`${config.END_POINT}/auth/check-email`, data);
   console.log(msg);
-  return !msg.data.exists;
+  return false;
+  }
+  catch(e){
+    return true;
+  }
 };
 
 export const loginOtp = async (data) => {
@@ -117,3 +128,17 @@ export const loginOtp = async (data) => {
   }
   return false;
 };
+
+
+export const googleAuth = async(idToken) =>{
+  try{
+  const msg = await axios.post(`${config.END_POINT}/auth/google-signin`,{idToken});
+  if (msg.status === 200) {
+      localStorage.setItem("token", msg.data.token);
+  }
+  return true;
+  }
+  catch(err){
+    return false;
+  }
+}

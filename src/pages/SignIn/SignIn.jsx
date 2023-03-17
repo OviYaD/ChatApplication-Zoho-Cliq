@@ -33,7 +33,7 @@ export default function SignIn() {
                 <Description></Description>
 
             </div>
-            <div id="signuplink">Don't have a Zoho account? <a href="" style={{ textDecoration: "none", color: "#159AFF" }} onClick={() => navigate("/")}>Sign Up Now</a></div>
+            <div id="signuplink">Don't have a Prezz account? <a href="" style={{ textDecoration: "none", color: "#159AFF" }} onClick={() => navigate("/")}>Sign Up Now</a></div>
         </div>}
     </>;
 

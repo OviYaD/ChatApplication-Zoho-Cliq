@@ -54,9 +54,9 @@ export default function ContactListPopup({ memList, setShowListStatus, participa
                     {list ? list.length > 0 ?
                         list.map((ele, index) => {
                             return <div className="zcl-list-item" key={index} uid={ele.id} dname="AJIT Verma" purpose="search" onClick={() => handleAddParticipants(ele)}>
-                                <div className="posrel fshrink mR10"><img src={ele.profile.mini_avatar_url ?? "	https://contacts.zoho.in/file?ID=60016689094&nocache=1674451340247&t=user&fs=thumb"} className="zcl-list-item-img36" /></div>
+                                <div className="posrel fshrink mR10"><img src={process.env.REACT_APP_BUCKET_COMP_END_POINT + ele.user.image_url ?? "https://contacts.zoho.in/file?ID=60016689094&nocache=1674451340247&t=user&fs=thumb"} className="zcl-list-item-img36" /></div>
                                 <div className="flexG ellips">
-                                    <div className="ellips flexC"><span className="ellips">{ele.profile.first_name} </span></div>
+                                    <div className="ellips flexC"><span className="ellips">{ele.user.first_name} </span></div>
                                     <div className="fshrink clr6 font14 w50 ellips">{ele.email}</div>
                                 </div>
                             </div>

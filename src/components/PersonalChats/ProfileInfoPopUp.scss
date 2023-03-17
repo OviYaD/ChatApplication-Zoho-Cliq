@@ -1,6 +1,7 @@
 .info-container{
     position: absolute;
-    top:calc(100vh - 100%);
+    z-index: 30000;
+    top:calc(100vh - 70%);
     left:calc(100% - 10px);
     .sub-container{
         width: 270px;

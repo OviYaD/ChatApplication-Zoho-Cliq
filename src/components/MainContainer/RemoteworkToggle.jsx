@@ -56,7 +56,7 @@ export default function RemoteworkToggle() {
     }
   }));
   return <>
-    <div id="lhs_remote_work" className="rw-lhs-tab justifySB flexC LHS-RW fshrink" style={{ marginTop: "2px" }}>
+    <div id="lhs_remote_work" className="rw-lhs-tab justifySB flexC LHS-RW fshrink" style={{ marginTop: "50px" }}>
       <div className="font16 fontB" >Remote Work</div>
       <div id="lhs_remote_checkin_status" className="LHS-checkin-optn">
         <div className="flexC LHS-RW-checkbox">

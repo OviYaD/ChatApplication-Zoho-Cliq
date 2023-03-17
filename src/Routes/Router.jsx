@@ -24,6 +24,11 @@ import ProfileInfoPopUp from '../components/PersonalChats/ProfileInfoPopUp';
 import MenuBar from '../components/MenuBar/MenuBar';
 import EditChannel from '../components/CreateChannel/EditChannel';
 import ContactList from '../components/ContactList/ContactList';
+import MediaFiles from '../components/ChatWindow/MessageAssets/MediaFiles';
+import LandingPage from '../components/LandingPage/LandingPage';
+import Search from '../components/MenuBar/Search';
+import JoinChannelModal from '../components/CreateChannel/JoinChannelModal';
+import InputBox from '../components/InputBox/InputBox';
 
 export default function Router() {
 
@@ -42,7 +47,7 @@ export default function Router() {
             <Route path='/des' element={<ChannelDescription></ChannelDescription>} />
             <Route path="/list" element={<ContactListPopup></ContactListPopup>} />
             {/* <Route path='/' element={<Organization></Organization>} /> */}
-            <Route path="/test" element={<ContactList></ContactList>} />
+            <Route path="/test" element={<Search></Search>} />
             <Route path='/create' element={<CreateChannelModal></CreateChannelModal>} />
             <Route path='/loader' element={<LoadingPage></LoadingPage>} />
             <Route path="/star" element={<StarMessages></StarMessages>} />

@@ -26,7 +26,7 @@ export default function ChatBody({ setReplyTo, isFinished, reload, setReload, ch
         // console.log("skdjskjsd", window.innerHeight, " ", height, " ", contentHeight, reload, isFinished);
         if (reload && !isFinished && contentHeight + height <= 399) {
             // console.log("reloading........")
-            setTimeout(() => { getMessageThroughSocket(socket, localStorage.getItem("*&^%$#!@#$%^&Channel#$&^%$id*&^%^&*("), url.get("channel") === null ? true : false, messages.length) }, 2000)
+            setTimeout(() => { getMessageThroughSocket(socket, localStorage.getItem("*&^%$#!@#$%^&Channel#$&^%$id*&^%^&*("), "", url.get("channel") === null ? true : false, messages.length) }, 2000)
             setReload(false);
 
         }
@@ -38,7 +38,11 @@ export default function ChatBody({ setReplyTo, isFinished, reload, setReload, ch
             <div className='chatBody' onScroll={handleScroll}>
                 <div className='chat-content' ref={chatbody} id="scrollableDiv" onClick={() => {
                     if (newMsgId) {
-                        markAsRead(socket, localStorage.getItem("*&^%$#!@#$%^&Channel#$&^%$id*&^%^&*("), url.get("channel") === null ? true : false);
+                        markAsRead(
+                            socket,
+                            localStorage.getItem("*&^%$#!@#$%^&Channel#$&^%$id*&^%^&*("),
+                            url.get("channel") === null ? true : false
+                        );
                         setNewMsgId("");
                     }
 

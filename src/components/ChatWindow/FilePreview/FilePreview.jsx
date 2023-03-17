@@ -52,6 +52,7 @@ export default function FilePreview({ chatInfo, shareFiles, setPreviewFile, file
         setEmojiSelector(false)
     }
     return <>
+        <div className="bg-focus"></div>
         <div id="zcwindows" className="zcoverlay preview" style={{ zIndex: "20000" }}>
             <div id="participants" className="modalwindow  zcl-win-modal1 zcalgncntr zcbg_mask">
                 <div>
@@ -61,9 +62,9 @@ export default function FilePreview({ chatInfo, shareFiles, setPreviewFile, file
                                 <div className="font17 fontB ellips cur" >Share with
                                 </div>
                                 <div style={{ height: "22px", width: "22px", boxShadow: "0 0 2px var(--color-lp3)", backgroundColor: "white", borderRadius: "100%", marginLeft: "15px" }}>
-                                    <img style={{ height: "100%", width: "100%", borderRadius: "50%" }} src={chatInfo.image_url}></img>
+                                    <img style={{ height: "100%", width: "100%", borderRadius: "50%" }} src={chatInfo?.image_url}></img>
                                 </div>
-                                <div style={{ fontSize: "16px", fontFamily: "zoho-puvi-semi-bold", color: "rgb(61,194,172", marginLeft: "15px" }}>{chatInfo.name}</div>
+                                <div style={{ fontSize: "16px", fontFamily: "zoho-puvi-semi-bold", color: "rgb(61,194,172", marginLeft: "15px" }}>{chatInfo?.name}</div>
 
                             </div>
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="bi bi-x-lg zcl-icon--filled2" viewBox="0 0 16 16" onClick={() => setPreviewFile(false)}>
@@ -182,7 +183,9 @@ export default function FilePreview({ chatInfo, shareFiles, setPreviewFile, file
                     </div>
                     <div className="fileshare-ftr flexC" style={{ marginTop: "-15px" }}>
                         <div className="admorefiles fshrink">
-                            <div className="hvrinfo font15 theme-link fontB" purpose="addmorefiles" style={{ marginTop: "-25px" }}>+ Add files</div>
+                            <div className="hvrinfo font15 theme-link fontB" purpose="addmorefiles" style={{ marginTop: "-25px" }}>
+                                {/* + Add files */}
+                            </div>
                             <form id="upload" type="html5" enctype="multipart/form-data"><input id="addfile1264013913143657497" chid="1264013913143657497" className="dN" type="file" multiple="true" /></form>
                         </div>
                         <div className="mLA fshrink" style={{ marginTop: "-25px" }} id="fileactionbtns">

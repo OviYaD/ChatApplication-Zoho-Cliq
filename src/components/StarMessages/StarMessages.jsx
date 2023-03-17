@@ -101,7 +101,7 @@ export default function StarMessages(params) {
                                         return <div className="strsmg" key={msg._id}>
                                             <div className="zcstrrow">
                                                 <div className="usrimgsts floatl zc-1" style={{ backgroundColor: "black", borderRadius: "100%", overflow: "hidden" }}>
-                                                    <img className="floatl rds4" title={`${msg.sender.first_name}`} src={msg.sender.mini_avatar_url} />
+                                                    <img className="floatl rds4" title={`${msg.sender.first_name}`} src={msg.sender.image_url} />
                                                 </div>
                                                 <div className="zcunrd-rht">
                                                     <div className="zcunrdlt-txt">

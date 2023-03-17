@@ -245,7 +245,7 @@ export default function PersonalizeModal({ setOpenPersonalizeStatus }) {
                                                                 <img
                                                                     id="usrimgview"
                                                                     className="zcprofpic objFitCover"
-                                                                    src={user.avatar_url.includes("https") ? user.avatar_url : process.env.REACT_APP_BUCKET_END_POINT + user.avatar_url}
+                                                                    src={process.env.REACT_APP_BUCKET_END_POINT + user.image_url}
                                                                 />
                                                                 <div id="profpicoverlay" className="profpicsel curP posl" onClick={() => setuploadPic(false)}><span id="profilepicmenu" className="zcf-camera">
                                                                     <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" style={{ color: "white" }} fill="currentColor" className="bi bi-camera" viewBox="0 0 16 16">
@@ -270,7 +270,7 @@ export default function PersonalizeModal({ setOpenPersonalizeStatus }) {
                                                             <div className="ellips bold font18">{user.first_name + "  " + user.last_name ?? ""}</div>
                                                             <div className="ellips mT10 clr-lp1 font14">{user.email}</div>
                                                             <div className="ellips font13 mT10">
-                                                                <span><a className="zcl-hyperlink" href="https://accounts.zoho.in" target="_blank">Manage Zoho Profile </a></span>
+                                                                <span><a className="zcl-hyperlink" href="https://accounts.zoho.in" target="_blank">Manage Prezz Profile </a></span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -401,7 +401,7 @@ export default function PersonalizeModal({ setOpenPersonalizeStatus }) {
                                                         <div id="zinfosec" className="default-info">
                                                             <div className="acc-logo flex vsbH" id="logoholder">
                                                                 <img src="https://static.zohocdn.com/chat/source/officechat/images/zoho_logo.png" /><span className="clr-H fontB font15" style={{ marginRight: "5px" }}>Accounts</span>
-                                                                <span className="ellips font12 clr-lp1 mL5">Changes made here will be reflected in your <a href="https://accounts.zoho.in" target="_blank" className="zcl-hyperlink">Zoho Accounts</a> and thereby across all Zoho services.</span>
+                                                                <span className="ellips font12 clr-lp1 mL5">Changes made here will be reflected in your <a href="https://accounts.zoho.in" target="_blank" className="zcl-hyperlink">Prezz Accounts</a> and thereby across all Prezz services.</span>
                                                             </div>
                                                             <div className="editinfosec">
                                                                 <div className="pT25"><div className="zcmodal-right-title">Contact</div></div>

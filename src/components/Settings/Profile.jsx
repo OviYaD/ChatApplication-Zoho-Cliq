@@ -33,7 +33,7 @@ export default function Profile({ setOpenStatus, setOpenPersonalizeStatus }) {
 
             <div className="profile-modal-content" style={{ padding: "0px 0 0 0px" }}>
                 <div style={{ height: "calc(100vh - 50px)", overflow: "auto" }}>
-                    <div className="zc-usermenuheader">
+                    <div className="zc-usermenuheader pB10">
                         <div purpose="closerhswin" className="msi-chtclose cur" onClick={() => setOpenStatus(false)}>
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" style={{ marginTop: "10px" }} className="bi bi-x-lg" viewBox="0 0 16 16">
                                 <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z" />
@@ -43,21 +43,21 @@ export default function Profile({ setOpenStatus, setOpenPersonalizeStatus }) {
                             <div className="usrimg" type="imgpreview">
                                 <img id="userprofileimgview" src="https://contacts.zoho.in/file?ID=60016689094&nocache=1674451340247&t=user&fs=thumb" />
                             </div>
-                            <input type="file" id="profilephotochange" name="photo" className="sendfile" accept="image/*" />
+                            {/* <input type="file" id="profilephotochange" name="photo" className="sendfile" accept="image/*" />
                             <span className="zuserimgchng msi-camera posa">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" className="bi bi-camera-fill" style={{ marginTop: "-5px", marginLeft: "-2px", zIndex: "100" }} viewBox="0 0 16 16">
                                     <path d="M10.5 8.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
                                     <path d="M2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2zm.5 2a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm9 2.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0z" />
                                 </svg>
-                            </span>
+                            </span> */}
                         </div>
                         <div className="usrdetails ellips username bold" style={{ textTransform: "capitalize" }}>{`${profileInfo.first_name} ${profileInfo.last_name === null ? "" : profileInfo.last_name}`}</div>
-                        <div className="ellips useremail" title="oviya.d@codingmart.com">{profileInfo.email}</div>
+                        <div className="ellips useremail" title={profileInfo.email}>{profileInfo.email}</div>
                         <div className="ellips font13 mrgT10 ">
-                            <span className="mrgR5 myaccntlink hvrinfo"><a href="https://accounts.zoho.in" target="_blank">My Zoho Account</a></span><span className="dot">.</span>
+                            <span className="mrgR5 myaccntlink hvrinfo"><a href="https://accounts.zoho.in" target="_blank">My Prezz Account</a></span><span className="dot">.</span>
                             <span documentclick="logout" type="button" className="signout hvrinfo cur mrgL5 " onClick={Logout}>Sign Out</span>
                         </div>
-                        <div id="userstatusdetails" statuspickerdiv="" className="userstatusui flexC">
+                        {/* <div id="userstatusdetails" statuspickerdiv="" className="userstatusui flexC">
                             <div className="status-dropdown scodestatus dIB fshrink mR10 " id="statusoptionscont_userstatusdetails" showstatusoptions="">
                                 <div currentscode="1" className="cur currentactivityprfl flexC pLR10" scode="3" style={{ paddingRight: "10px", paddingLeft: "10px" }}><span className="status zcstatus-3 dsinblk"></span><em className="zcf-downArrow font10 mL10 clr-icon2">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" className="bi bi-chevron-down" viewBox="0 0 16 16" style={{ color: "#000", paddingLeft: "10px" }}>
@@ -162,10 +162,10 @@ export default function Profile({ setOpenStatus, setOpenPersonalizeStatus }) {
                                 </div>
 
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                     <div purpose="mycliq" className="zc-usersubsection">
-                        <div className="pro-header">My Cliq</div>
+                        <div className="pro-header">My Prezz</div>
                         <div className="options">
                             <div purpose="personalize" onClick={() => { setOpenPersonalizeStatus(true); setOpenStatus(false) }}>
                                 <span className="zcf-personalise-settng"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-gear" viewBox="0 0 16 16">
@@ -269,36 +269,36 @@ export default function Profile({ setOpenStatus, setOpenPersonalizeStatus }) {
                         </div>
                     </div>
                 </div>
-            </div>
-            <div className="zc-profilefootr" style={{ width: "25%" }}>
-                <div purpose="cliqapps" className="zc-mycliqapps justifySB flexC">
-                    <div className="mobileapps flexC">
-                        <span className="font13">Mobile</span><a target="_blank" href="http://itunes.apple.com/app/id1056478397?ls=1&amp;mt=8" className="mR20"><span className="msi-macstore font18 tooltip-up posrel" tooltip-title="iOS">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-apple" viewBox="0 0 16 16">
-                                <path d="M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516.024.034 1.52.087 2.475-1.258.955-1.345.762-2.391.728-2.43Zm3.314 11.733c-.048-.096-2.325-1.234-2.113-3.422.212-2.189 1.675-2.789 1.698-2.854.023-.065-.597-.79-1.254-1.157a3.692 3.692 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56.244.729.625 1.924 1.273 2.796.576.984 1.34 1.667 1.659 1.899.319.232 1.219.386 1.843.067.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-2.758.347-.79.505-1.217.473-1.282Z" />
-                                <path d="M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516.024.034 1.52.087 2.475-1.258.955-1.345.762-2.391.728-2.43Zm3.314 11.733c-.048-.096-2.325-1.234-2.113-3.422.212-2.189 1.675-2.789 1.698-2.854.023-.065-.597-.79-1.254-1.157a3.692 3.692 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56.244.729.625 1.924 1.273 2.796.576.984 1.34 1.667 1.659 1.899.319.232 1.219.386 1.843.067.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-2.758.347-.79.505-1.217.473-1.282Z" />
-                            </svg>
+                <div className="zc-profilefootr">
+                    <div purpose="cliqapps" className="zc-mycliqapps justifySB flexC">
+                        <div className="mobileapps flexC">
+                            <span className="font13">Mobile</span><a target="_blank" href="http://itunes.apple.com/app/id1056478397?ls=1&amp;mt=8" className="mR20"><span className="msi-macstore font18 tooltip-up posrel" tooltip-title="iOS">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-apple" viewBox="0 0 16 16">
+                                    <path d="M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516.024.034 1.52.087 2.475-1.258.955-1.345.762-2.391.728-2.43Zm3.314 11.733c-.048-.096-2.325-1.234-2.113-3.422.212-2.189 1.675-2.789 1.698-2.854.023-.065-.597-.79-1.254-1.157a3.692 3.692 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56.244.729.625 1.924 1.273 2.796.576.984 1.34 1.667 1.659 1.899.319.232 1.219.386 1.843.067.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-2.758.347-.79.505-1.217.473-1.282Z" />
+                                    <path d="M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516.024.034 1.52.087 2.475-1.258.955-1.345.762-2.391.728-2.43Zm3.314 11.733c-.048-.096-2.325-1.234-2.113-3.422.212-2.189 1.675-2.789 1.698-2.854.023-.065-.597-.79-1.254-1.157a3.692 3.692 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56.244.729.625 1.924 1.273 2.796.576.984 1.34 1.667 1.659 1.899.319.232 1.219.386 1.843.067.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-2.758.347-.79.505-1.217.473-1.282Z" />
+                                </svg>
 
-                        </span></a>
-                        <a target="_blank" href="http://play.google.com/store/apps/details?id=com.zoho.chat"><span className="msi-plystore font18 tooltip-up posrel" tooltip-title="Android">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-google-play" viewBox="0 0 16 16">
-                                <path d="M14.222 9.374c1.037-.61 1.037-2.137 0-2.748L11.528 5.04 8.32 8l3.207 2.96 2.694-1.586Zm-3.595 2.116L7.583 8.68 1.03 14.73c.201 1.029 1.36 1.61 2.303 1.055l7.294-4.295ZM1 13.396V2.603L6.846 8 1 13.396ZM1.03 1.27l6.553 6.05 3.044-2.81L3.333.215C2.39-.341 1.231.24 1.03 1.27Z" />
-                            </svg>
-                        </span></a>
-                    </div>
-                    <div className="desktopapps flexC">
-                        <span className="font13">Desktop</span><a target="_blank" className="mR20" href="https://www.zoho.com/cliq/desktop/osx.html"><span className="msi-macstore font18 tooltip-up posrel" tooltip-title="Mac">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-apple" viewBox="0 0 16 16">
-                                <path d="M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516.024.034 1.52.087 2.475-1.258.955-1.345.762-2.391.728-2.43Zm3.314 11.733c-.048-.096-2.325-1.234-2.113-3.422.212-2.189 1.675-2.789 1.698-2.854.023-.065-.597-.79-1.254-1.157a3.692 3.692 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56.244.729.625 1.924 1.273 2.796.576.984 1.34 1.667 1.659 1.899.319.232 1.219.386 1.843.067.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-2.758.347-.79.505-1.217.473-1.282Z" />
-                                <path d="M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516.024.034 1.52.087 2.475-1.258.955-1.345.762-2.391.728-2.43Zm3.314 11.733c-.048-.096-2.325-1.234-2.113-3.422.212-2.189 1.675-2.789 1.698-2.854.023-.065-.597-.79-1.254-1.157a3.692 3.692 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56.244.729.625 1.924 1.273 2.796.576.984 1.34 1.667 1.659 1.899.319.232 1.219.386 1.843.067.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-2.758.347-.79.505-1.217.473-1.282Z" />
-                            </svg>
-                        </span></a>
-                        <a target="_blank" className="mR20" href="https://www.zoho.com/cliq/desktop/windows.html"><span className="msi-windws font18 tooltip-up posrel" tooltip-title="Windows">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-windows" viewBox="0 0 16 16">
-                                <path d="M6.555 1.375 0 2.237v5.45h6.555V1.375zM0 13.795l6.555.933V8.313H0v5.482zm7.278-5.4.026 6.378L16 16V8.395H7.278zM16 0 7.33 1.244v6.414H16V0z" />
-                            </svg>
-                        </span></a>
-                        <a target="_blank" className="sel" href="https://www.zoho.com/cliq/desktop/linux.html"><span className="zcf-linuxicon font18 tooltip-up posrel" tooltip-title="Linux"></span></a>
+                            </span></a>
+                            <a target="_blank" href="http://play.google.com/store/apps/details?id=com.zoho.chat"><span className="msi-plystore font18 tooltip-up posrel" tooltip-title="Android">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-google-play" viewBox="0 0 16 16">
+                                    <path d="M14.222 9.374c1.037-.61 1.037-2.137 0-2.748L11.528 5.04 8.32 8l3.207 2.96 2.694-1.586Zm-3.595 2.116L7.583 8.68 1.03 14.73c.201 1.029 1.36 1.61 2.303 1.055l7.294-4.295ZM1 13.396V2.603L6.846 8 1 13.396ZM1.03 1.27l6.553 6.05 3.044-2.81L3.333.215C2.39-.341 1.231.24 1.03 1.27Z" />
+                                </svg>
+                            </span></a>
+                        </div>
+                        <div className="desktopapps flexC">
+                            <span className="font13">Desktop</span><a target="_blank" className="mR20" href="https://www.zoho.com/cliq/desktop/osx.html"><span className="msi-macstore font18 tooltip-up posrel" tooltip-title="Mac">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-apple" viewBox="0 0 16 16">
+                                    <path d="M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516.024.034 1.52.087 2.475-1.258.955-1.345.762-2.391.728-2.43Zm3.314 11.733c-.048-.096-2.325-1.234-2.113-3.422.212-2.189 1.675-2.789 1.698-2.854.023-.065-.597-.79-1.254-1.157a3.692 3.692 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56.244.729.625 1.924 1.273 2.796.576.984 1.34 1.667 1.659 1.899.319.232 1.219.386 1.843.067.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-2.758.347-.79.505-1.217.473-1.282Z" />
+                                    <path d="M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516.024.034 1.52.087 2.475-1.258.955-1.345.762-2.391.728-2.43Zm3.314 11.733c-.048-.096-2.325-1.234-2.113-3.422.212-2.189 1.675-2.789 1.698-2.854.023-.065-.597-.79-1.254-1.157a3.692 3.692 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56.244.729.625 1.924 1.273 2.796.576.984 1.34 1.667 1.659 1.899.319.232 1.219.386 1.843.067.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-2.758.347-.79.505-1.217.473-1.282Z" />
+                                </svg>
+                            </span></a>
+                            <a target="_blank" className="mR20" href="https://www.zoho.com/cliq/desktop/windows.html"><span className="msi-windws font18 tooltip-up posrel" tooltip-title="Windows">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-windows" viewBox="0 0 16 16">
+                                    <path d="M6.555 1.375 0 2.237v5.45h6.555V1.375zM0 13.795l6.555.933V8.313H0v5.482zm7.278-5.4.026 6.378L16 16V8.395H7.278zM16 0 7.33 1.244v6.414H16V0z" />
+                                </svg>
+                            </span></a>
+                            <a target="_blank" className="sel" href="https://www.zoho.com/cliq/desktop/linux.html"><span className="zcf-linuxicon font18 tooltip-up posrel" tooltip-title="Linux"></span></a>
+                        </div>
                     </div>
                 </div>
             </div>

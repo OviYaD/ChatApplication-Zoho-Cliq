@@ -22,6 +22,9 @@ import { sendNotification } from '../../SocketEvents/events';
 import { getChatUserInfo } from '../../api/chats/chat';
 import LoadingPage from '../loaders/LoadingPage';
 import ContactList from '../ContactList/ContactList';
+import HistoryOption from '../History/HistoryOption';
+import History from '../History/History';
+import MenuBar from '../MenuBar/MenuBar';
 
 
 export default function MainContainer({ setNewMsg, isFinished, reload, setReload, newMsg, messages, socket, setMessages }) {
@@ -105,19 +108,12 @@ export default function MainContainer({ setNewMsg, isFinished, reload, setReload
                     return { ...unreadCount }
                 })
             }
-
-            // console.log("unread", unread, unreadMsg);
-            // const unread = unreadMsg[data.chat_id] ? [...unreadMsg[data.chat_id], data] : [data];
-
-            // setUnreadMsg(unreadMsg => {
-            //     return { ...unreadMsg, [data.chat_id]: unread }
-            // });
             setNewMsg(true);
         })
     }, [])
 
 
-    const setChatDetails = async (id, isPrivate = false) => {
+    const setChatDetails = async (id, isPrivate = false, message = "") => {
         let data;
         console.log("id = ", id, " isPrivate = ", isPrivate);
         if (isPrivate) {
@@ -130,13 +126,14 @@ export default function MainContainer({ setNewMsg, isFinished, reload, setReload
 
         setChatInfo(data);
         setWindow("chat");
-        getMessageThroughSocket(socket, localStorage.getItem("*&^%$#!@#$%^&Channel#$&^%$id*&^%^&*("), isPrivate);
+        getMessageThroughSocket(socket, localStorage.getItem("*&^%$#!@#$%^&Channel#$&^%$id*&^%^&*("), isPrivate, message);
         // markAsRead(socket, id);
 
     }
 
 
     return <>
+        <MenuBar setChatDetails={setChatDetails} setWindow={setWindow} setActId={setActId}></MenuBar>
         <div className="zccontent flexG main_container " >
             <article>
                 <div className="zcleftsidebar">
@@ -146,10 +143,11 @@ export default function MainContainer({ setNewMsg, isFinished, reload, setReload
                         <SideNav activeMenu={activeMenu} setActiveMenu={setActiveMenu} setWindow={setWindow}></SideNav>
                         {(() => {
                             switch (activeMenu) {
-                                case "chats": return <ChatList unreadCount={unreadCount} setUnreadCount={setUnreadCount} setChatDetails={setChatDetails} socket={socket} setWindow={setWindow} setActId={setActId} actId={actId}></ChatList>
                                 case "channels": return <ChannelList setShowJoinChannelModal={setShowJoinChannelModal} unreadCount={unreadCount} setUnreadCount={setUnreadCount} setWindow={setWindow} setStatus={setStatus} setChatDetails={setChatDetails} actId={actId} setActId={setActId}></ChannelList>
                                 case "Org": return <OrganizationList></OrganizationList>
                                 case "contact": return <ContactList></ContactList>
+                                case "history": return <HistoryOption></HistoryOption>
+                                case "chats": return <ChatList unreadCount={unreadCount} setUnreadCount={setUnreadCount} setChatDetails={setChatDetails} socket={socket} setWindow={setWindow} setActId={setActId} actId={actId}></ChatList>
                             }
                         })()}
                         {/* <ContactList></ContactList> */}
@@ -162,6 +160,7 @@ export default function MainContainer({ setNewMsg, isFinished, reload, setReload
                         case "Org": return <MemberList></MemberList>
                         case "chat": return <ChatWindow isFinished={isFinished} reload={reload} setReload={setReload} newMsg={newMsg} setWindow={setWindow} setActId={setActId} setMessages={setMessages} messages={messages} socket={socket} chatInfo={chatInfo}></ChatWindow>
                         case "quote": return <LandingPage></LandingPage>
+                        case "history": return <History></History>
 
                     }
                 })()}

@@ -37,7 +37,7 @@ export default function EditMessageInputBox({ setMsgId, socket, msgContent }) {
                     </label>
                 </div>
                 <div className="fshrink mL12 flexC">
-                    <div id="canceledit" purpose="canceledit" className="zcl-btn-xs zcl-btn--secondary msg-edit-cancel_btn"><span className="msg-edit-cancel_label" onClick={() => setMsgId("")} >Cancel</span></div>
+                    <div id="canceledit" purpose="canceledit" className="zcl-btn-xs zcl-btn--secondary msg-edit-cancel_btn"><span className="msg-edit-cancel_label" style={{ color: "var(--color-lp1)" }} onClick={() => setMsgId("")} >Cancel</span></div>
                     <div id="saveedit" purpose="saveedit" className="zcl-btn-xs zcl-btn--primary" style={{ marginLeft: "10px" }} onClick={() => { editMessage(socket, msgContent._id, editMsg); setMsgId("") }}>Save</div>
                 </div>
             </div>

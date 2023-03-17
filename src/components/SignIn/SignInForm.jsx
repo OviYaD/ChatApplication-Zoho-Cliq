@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import LoadingButton from '@mui/lab/LoadingButton';
-import { checkEmail, emailOtp, loginOtp, loginUser, verifyOtp } from '../../api/authentication/user';
+import { checkEmail, emailOtp, googleAuth, loginOtp, loginUser, verifyOtp } from '../../api/authentication/user';
 import { useNavigate } from 'react-router-dom';
 import ResendOtp from './resendOtp';
 // import { signInWithGoogle } from '../../firebase';
+import { toast } from 'react-toastify';
+import { validateEmail } from '../Validators/email';
 
 
 export default function SignInForm({ forgetPassword }) {
@@ -18,13 +20,45 @@ export default function SignInForm({ forgetPassword }) {
     const [showOtpField, setOtpField] = useState(false);
     const [emailExists, setEmailExists] = useState();
     const [error, setError] = useState(false);
+    const [inputError, setInputError] = useState(false);
     const navigate = useNavigate();
 
 
-    const handleKeyDown = (event) => {
-        if (event.keyCode === 13) {
+    // const handelSignInWithGoogle = async () => {
+    //     const idToken = await signInWithGoogle();
+    //     const res = await googleAuth(idToken);
+    //     if (res) {
+    //         navigate("/getstarted")
+    //     }
+    //     else {
+    //         toast.error("Temporary Error", {
+    //             position: "top-right",
+    //             autoClose: 5000,
+    //             hideProgressBar: false,
+    //             closeOnClick: true,
+    //             pauseOnHover: true,
+    //             draggable: true,
+    //             progress: undefined,
+    //             theme: "dark",
+    //         })
+    //     }
+    // }
+
+    const handleKeyDown = (event, field) => {
+        // event.preventDefault();
+        console.log("event,field", event, field)
+        if (event.key === 'Enter') {
             event.preventDefault();
+            if (field === "email")
+                handleClick();
+            else if (field === "pswd")
+                handleSignin()
+            else if (field === "otp")
+                loginWithOtp();
+
+
         }
+
     }
 
     const handleChange = (e) => {
@@ -44,18 +78,23 @@ export default function SignInForm({ forgetPassword }) {
 
     const handleClick = async () => {
         setLoading(() => !loading);
+        let error = {};
+        !validateEmail(email) ? error.email = false : error.email = true;
+        setInputError(!error.email);
 
-        const emailExists = await checkEmail({ email });
-        if (!emailExists) {
-            setEmailExists(true);
-            setEmailField(false);
-            setOtpField(false);
-            setPswdField(true);
-            setError(false);
-            setPassword('');
-        }
-        else {
-            setError(true);
+        if (error.email) {
+            const emailExists = await checkEmail({ email });
+            if (!emailExists) {
+                setEmailExists(true);
+                setEmailField(false);
+                setOtpField(false);
+                setPswdField(true);
+                setError(false);
+                setPassword('');
+            }
+            else {
+                setError(true);
+            }
         }
         setLoading(false);
     }
@@ -150,7 +189,9 @@ export default function SignInForm({ forgetPassword }) {
                             {showEmailField && <>
                                 <div className="textbox_div">
                                     <span>
-                                        <input id="login_id" placeholder="Email address or mobile number" value={email} onChange={handleChange} onKeyDown={handleKeyDown} type="email" name="email" className="textbox" required tabIndex="1" autoFocus={true} />
+                                        <input id="login_id" placeholder="Email address or mobile number" value={email} onChange={handleChange} onKeyDown={(e) => handleKeyDown(e, "email")} type="email" name="email" className="textbox" required tabIndex="1" autoFocus={true} />
+
+                                        {inputError && <div className="fielderror errorlabel" >Enter Valid Email</div>}
                                         {error && <div className="fielderror errorlabel" >This account cannot be found. Please use a different account or <a href="" onClick={() => navigate("/")}>sign up</a> for a new account.</div>}
                                     </span>
                                 </div>
@@ -169,7 +210,7 @@ export default function SignInForm({ forgetPassword }) {
 
                             {showPswdField && <div className="textbox_div">
                                 <span>
-                                    <input id="password" placeholder="Enter password" name="password" type="password" className="textbox" value={password} onKeyDown={handleKeyDown} onChange={handleChange} required autoFocus={true} />
+                                    <input id="password" placeholder="Enter password" name="password" type="password" className="textbox" value={password} onKeyDown={(e) => handleKeyDown(e, "pswd")} onChange={handleChange} required autoFocus={true} />
                                     {error && <div className="fielderror errorlabel" >Incorrect password. Please try again.</div>}
                                 </span>
                                 <div className="textbox_actions" id="enableotpoption" style={{ display: "block" }}>
@@ -189,7 +230,7 @@ export default function SignInForm({ forgetPassword }) {
 
                             {showOtpField && <div className="textbox_div">
                                 <span>
-                                    <input id="otp" placeholder="Enter Otp" name="otp" type="number" className="textbox" required="" value={otp} onKeyDown={handleKeyDown} onChange={handleChange} autoFocus={true} />
+                                    <input id="otp" placeholder="Enter Otp" name="otp" type="number" className="textbox" required="" value={otp} onKeyDown={(e) => handleKeyDown(e, "otp")} onChange={handleChange} autoFocus={true} />
                                     {error && <div className="fielderror errorlabel" >Invalid otp. Please try again.</div>}
                                 </span>
                                 <div className="textbox_actions" id="enableotpoption" style={{ display: "block" }}>
@@ -222,12 +263,14 @@ export default function SignInForm({ forgetPassword }) {
                         <div className="options_caption">
                             Sign in using
                         </div>
-                        <span className="fed_div google_icon google_fed small_box show_fed" style={{ display: "inline-block" }}>
+                        <span className="fed_div google_icon google_fed small_box show_fed" style={{ display: "inline-block" }}
+                        // onClick={handelSignInWithGoogle}
+                        >
                             <div className="fed_center_google">
                                 <span className="fed_icon googleIcon"></span>
                             </div>
                         </span>
-                        <span className="fed_div MS_icon azure_fed small_box show_fed" title="Sign in using Microsoft" style={{ display: "inline-block" }}>
+                        {/* <span className="fed_div MS_icon azure_fed small_box show_fed" title="Sign in using Microsoft" style={{ display: "inline-block" }}>
                             <div className="fed_center">
                                 <span className="fed_icon"></span>
                                 <span className="fed_text" style={{ display: "none" }}>Microsoft</span>
@@ -261,7 +304,7 @@ export default function SignInForm({ forgetPassword }) {
                             <span className="morecircle"></span>
                             <span className="morecircle"></span>
                             <span className="morecircle"></span>
-                        </span>
+                        </span> */}
                     </div></>}
             </div>
         </div>

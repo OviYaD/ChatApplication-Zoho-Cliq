@@ -1,0 +1,72 @@
+.btnactive{
+    width: fit-content;
+    transition:all 0.2s ease-out;
+    .zcl-search-input {
+        display: flex !important;
+        input:focus{
+            width: 20%;
+            outline: none;
+            border: none;
+        }
+    }
+  }
+  .date-display{
+    position: sticky;
+    background-color: white;
+    top:0px;
+    padding: 8px 15px;
+    font-family: "zoho-puvi-semi-bold";
+    color: rgb(171, 171, 171);
+    margin-bottom: 10px;
+  }
+  .chat-history-container{
+    margin: 8px 30px;
+    height: calc(100vh - 200px);
+    overflow: scroll;
+    position: relative;
+
+    .chat-history{
+        .sendTo{
+            display: flex;
+            margin: 0px 10px;
+            .img_container{
+                width: 30px;
+                height: 30px;
+                border-radius: 100%;
+                overflow: hidden;
+            }
+            .receiver-name{
+                margin-left: 10px;
+                font-family: "zoho-puvi-semi-bold";
+                font-size: 14px
+            }
+        }
+        .msg-display{
+            border-radius: 5px;
+            margin: 5px 40px;
+            padding: 10px 8px;
+            width: 94%;
+            cursor: pointer;
+
+            &:hover{
+                background-color: rgb(241,244,247);
+            }
+            .sent-msg{
+                max-width: 49rem;
+                font-size:13px;
+            }
+            .sent-time{
+                color: var(--color-lp2);
+                font-size: 13px;
+                // font-family: "zoho-puvi-semi-bold";
+
+            }
+        }
+    }
+    .end-border{
+        border-bottom: 1px solid var(--border-color);
+        margin-left: 30px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+}

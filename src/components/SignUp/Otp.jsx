@@ -14,7 +14,15 @@ export default function Otp({ userInfo, changeValidity }) {
 
     const navigate = useNavigate()
 
+    const handleSubmit = (event) => {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            createAccount();
+        }
+    }
+
     const createAccount = async () => {
+
         setBtnText("VERIFY...");
         setValidity(true);
         // const data={...userInfo, otp, phone:userInfo.mobileNumber};
@@ -47,7 +55,7 @@ export default function Otp({ userInfo, changeValidity }) {
                 <span className="change" onClick={() => changeValidity()} >Change</span>
             </div>
             <span className="za-otp-container field-error">
-                <input type="text" className="form-input" tabIndex="1" name="otp" id="otpfield" placeholder="Enter OTP" value={otp} onChange={(e) => { setOtp(e.target.value) }} />
+                <input type="text" className="form-input" tabIndex="1" name="otp" id="otpfield" placeholder="Enter OTP" value={otp} onChange={(e) => { setOtp(e.target.value) }} onKeyDown={handleSubmit} />
 
                 <ResendOtp setValidity={setValidity} email={userInfo.email} isValid={isValid}></ResendOtp>
             </span>
@@ -55,7 +63,7 @@ export default function Otp({ userInfo, changeValidity }) {
                 <span className="error" style={{ color: "red", fontSize: "13px", fontFamily: "zoho-puvi-regular" }}>Please enter a valid OTP</span>
             </div>}
             <span className="za-submitbtn-otp">
-                <input type="button" tabIndex="1" className="signupbtn changeloadbtn" value={btnText} name="otpfield" placeholder="" onClick={createAccount} />
+                <input type="button" tabIndex="1" className="signupbtn changeloadbtn" value={btnText} name="otpfield" placeholder="" onClick={createAccount} disabled={btnText === "VERIFY..."} />
                 <div className="loadingImg"></div>
             </span>
         </span>

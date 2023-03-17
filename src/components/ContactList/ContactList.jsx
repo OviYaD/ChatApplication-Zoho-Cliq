@@ -95,7 +95,7 @@ export default function ContactList(params) {
                                         return <div key={invite._id} className={`dflx list `} style={{ position: "relative", paddingLeft: "0.9rem", paddingRight: "0px" }}>
 
                                             <span className=' flexC' style={{ width: "30px", height: "30px", borderRadius: "100%", overflow: "hidden", marginLeft: "0px" }}>
-                                                <img width="100%" height="100%" src={invite.sender.mini_avatar_url.includes("https") ? invite.sender.mini_avatar_url : process.env.REACT_APP_BUCKET_END_POINT + invite.sender.mini_avatar_url}></img>
+                                                <img width="100%" height="100%" src={invite.sender.image_url.includes("https") ? invite.sender.image_url : process.env.REACT_APP_BUCKET_END_POINT + invite.sender.image_url}></img>
                                             </span>
                                             <span className=' ellips flexC' style={{ minWidth: "30px", maxWidth: "100px", paddingLeft: "0.5rem" }}> {invite.sender.first_name + " " + invite.sender.last_name}</span>
                                             <div className='flexC' style={{ position: "absolute", right: "10px" }}>
@@ -129,7 +129,7 @@ export default function ContactList(params) {
                                         return <div key={contact._id} className={`dflx list `} style={{ position: "relative", paddingLeft: "0.9rem", paddingRight: "0px" }}>
 
                                             <span className=' flexC' style={{ width: "30px", height: "30px", borderRadius: "100%", overflow: "hidden", marginLeft: "0px" }}>
-                                                <img width="100%" height="100%" src={contact.mini_avatar_url.includes("https") ? contact.mini_avatar_url : process.env.REACT_APP_BUCKET_END_POINT + contact.mini_avatar_url}></img>
+                                                <img width="100%" height="100%" src={contact.image_url.includes("https") ? contact.image_url : process.env.REACT_APP_BUCKET_END_POINT + contact.image_url}></img>
                                             </span>
                                             <span className=' ellips flexC' style={{ minWidth: "30px", maxWidth: "100px", paddingLeft: "0.5rem" }}> {contact.first_name + " " + contact.last_name}</span>
 

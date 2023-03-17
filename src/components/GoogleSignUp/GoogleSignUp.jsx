@@ -54,7 +54,7 @@ export default function GoogleSignUp() {
               <div className="user_name_text">Welcome pattasu balu!</div>
 
               <div className="desc_text">
-                A new Zoho account will be created for the email address{" "}
+                A new Prezz account will be created for the email address{" "}
                 <b>pattasubalu321@gmail.com</b>.
               </div>
 
@@ -138,7 +138,7 @@ export default function GoogleSignUp() {
                   <a href="http://www.zoho.com/privacy.html" target="_blank">
                     Privacy policies
                   </a>{" "}
-                  of Zoho Corporation
+                  of Prezz Corporation
                 </label>
               </div>
 
@@ -159,7 +159,7 @@ export default function GoogleSignUp() {
                 <div>
                   <div className="or_header">Link existing accounts</div>
                   <div className="or_description">
-                    If you have a Zoho account, you can link your{" "}
+                    If you have a Prezz account, you can link your{" "}
                     <b>
                       <span style={{ textTransform: "capitalize" }}>google</span>{" "}
                       account

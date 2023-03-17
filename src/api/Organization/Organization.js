@@ -3,7 +3,6 @@ import axios from "axios";
 import config from "../../config";
 
 export const createOrganization = async (data) => {
-
   try{
     const msg = await axios.post(`${config.END_POINT}/organization/create`, data,{
     headers : {

@@ -1,5 +1,5 @@
 .header {
-  background: #fff;
+  background: #fff !important;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -50,8 +50,9 @@
   position: fixed;
   top: 0;
   width: 35%;
+  z-index: 99;
   background: url(https://www.zohowebstatic.com/sites/zweb/images/zp-signup-bg.jpg)
-    left top no-repeat;
+    left top repeat;
   content: "";
   height: 100%;
   left: 0;
@@ -275,6 +276,9 @@
         margin-left: 3px;
         margin-right: 3px;
       }
+    }
+    .cur{
+      cursor: pointer;
     }
     .sgnbtn input[type="submit"],
     .sgnbtn input[type="button"] {

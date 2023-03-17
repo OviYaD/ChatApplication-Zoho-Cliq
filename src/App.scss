@@ -345,6 +345,16 @@ element.style {
   margin-top: 50px;
 }
 
+.bg-focus{
+  background-color: #000;
+  opacity: 0.3;
+  width: 200%;
+  height: 300%;
+  margin-left: -100%;
+  margin-top: -100%;
+  margin-bottom: -100%;
+  position: fixed;
+}
 .mT10,
 .mrgT10 {
   margin-top: 10px;
@@ -405,6 +415,10 @@ element.style {
 .dflx {
   display: flex;
 }
+.pT12{
+  padding-top: 12px;
+}
+
 .fdirC {
   flex-direction: column;
 }
@@ -430,6 +444,32 @@ element.style {
 }
 .w100 {
   width: 100%;
+}
+.w45{
+  width: 45%;
+  margin-right:10px ;
+}
+
+.pL12 {
+  padding-left: 12px;
+}
+.font12 {
+  font-size: 12px;
+}
+.pB10 {
+  padding-bottom: 10px;
+}
+.mB5 {
+  margin-bottom: 5px;
+}
+.text-transU {
+  text-transform: uppercase;
+}
+.textC {
+  text-align: center;
+}
+.fontB {
+  font-weight: bold;
 }
 .font12 {
   font-size: 12px;

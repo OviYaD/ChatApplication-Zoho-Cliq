@@ -67,7 +67,7 @@ export default function InviteColleague() {
                         <div className="right-panel flexM">
                             <div className="">
                                 <div className="font24 clr-hdr fontB">Invite your Colleagues</div>
-                                <div className="font16 line24 clr-lp1 invite-desc">You can invite at least a user at your convenience and get started with Cliq! Invite your folks and start collaborating right away.<em className="smile_pos smly"></em></div>
+                                <div className="font16 line24 clr-lp1 invite-desc">You can invite at least a user at your convenience and get started with Prezz! Invite your folks and start collaborating right away.<em className="smile_pos smly"></em></div>
                                 <div id="inputbox_textbox " style={{ marginLeft: "6rem" }}>
                                     <table id="invite_inputbox" >
                                         <tbody>

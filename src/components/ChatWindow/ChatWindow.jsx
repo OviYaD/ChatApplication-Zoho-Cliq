@@ -31,19 +31,20 @@ export default function ChatWindow({ isFinished, reload, setReload, newMsg, setW
     // }, [windowInfo])
 
     useEffect(() => {
-        console.log("OPEN EDIT", openEdit)
+        console.log("OPEN EDIT", openEdit);
+        setBodyContent("chat");
     }, [openEdit])
 
 
     return <>
-        <div className="" style={{ backgroundColor: "#fff", width: "100%", borderRadius: "10px", marginLeft: "2px", marginRight: "8px", position: "relative" }}>
+        <div className="" style={{ backgroundColor: "#fff", width: "100%", marginTop: "51px", borderRadius: "10px", marginLeft: "2px", marginRight: "8px", position: "relative" }}>
             {chatInfo?.user_id === undefined ? <Header setActId={setActId} setWindow={setWindow} chatInfo={chatInfo} bodyContent={bodyContent} setBodyContent={setBodyContent} setOpenStatus={setOpenStatus} ></Header>
                 : <PersonalChatHeader setActId={setActId} setWindow={setWindow} chatInfo={chatInfo} bodyContent={bodyContent} setBodyContent={setBodyContent} setOpenStatus={setOpenStatus} ></PersonalChatHeader>}
 
             {bodyContent === "chat" ? <>
                 <ChatBody setReplyTo={setReplyTo} isFinished={isFinished} setReload={setReload} reload={reload} newMsg={newMsg} socket={socket} messages={messages} chatInfo={chatInfo}></ChatBody>
                 <InputBox setReplyTo={setReplyTo} replyTo={replyTo} messages={messages} setMessages={setMessages} socket={socket} chatInfo={chatInfo}></InputBox>
-            </> : <MediaFiles></MediaFiles>}
+            </> : <MediaFiles chatInfo={chatInfo}></MediaFiles>}
         </div>
         {openDes && <ChannelDescription setEditOpenStatus={setEditOpenStatus} socket={socket} chatInfo={chatInfo} setOpenStatus={setOpenStatus} ></ChannelDescription>}
         {openEdit && <EditChannel setEditOpenStatus={setEditOpenStatus} socket={socket} chatInfo={chatInfo} setOpenStatus={setOpenStatus} ></EditChannel>}

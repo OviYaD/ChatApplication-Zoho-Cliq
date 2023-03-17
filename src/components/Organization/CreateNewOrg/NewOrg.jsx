@@ -99,7 +99,7 @@ export default function NewOrg() {
                                     <div className="label-txt-hint">Min. 5 - Max. 30 characters</div>
                                 </div>
                                 <div className="createcompanycheckboxes" style={{ marginBottom: "30px" }}>
-                                    <div className="textL fontB clrText font15 line22 mB12">when a verified user tries joining Cliq,</div>
+                                    <div className="textL fontB clrText font15 line22 mB12">when a verified user tries joining Prezz,</div>
 
                                     <label htmlFor="request_join" id="requestjoin_cb" className="curP flex mL5" style={{ display: "flex" }}>
                                         <div className="zcl-checkbox"><Checkbox {...label} size="small" onChange={checkBoxStatus} /><span className="msi-checkbox-tick flexM"></span></div>

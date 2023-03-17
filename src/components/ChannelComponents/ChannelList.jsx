@@ -59,7 +59,6 @@ export default function ChannelList({ setShowJoinChannelModal, unreadCount, setU
         url.searchParams.set('channel', id);
         window.history.pushState({}, '', url);
         setChatDetails(id);
-
     }
 
     return <>

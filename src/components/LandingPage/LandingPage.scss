@@ -1,5 +1,5 @@
 .quote-container{
-    width: 65%;
+    width: 100%;
     border-radius: 0;
     box-shadow: none;
     display: block;
@@ -12,7 +12,7 @@
     right: 0;
     bottom: 0;
     height: 300px;
-    padding: 50px;
+    // padding: 50px;
     font-size: 20px;
     color: #545454;
     position: absolute;
@@ -30,6 +30,8 @@
     font-family:Lato,sans-serif;
 }
 .quote-msg{
+    margin-left: auto;
+    margin-right: auto;
     font-size: 30px;
     font-weight: 300;
     font-family:Lato,sans-serif;

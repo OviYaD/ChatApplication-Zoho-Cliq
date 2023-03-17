@@ -22,7 +22,7 @@ export default function SignUpNav() {
         <div className="header">
             <a href="#" className="logo">zoho</a>
             <span className="login-text">
-                Have a Zoho Account?
+                Have a Prezz Account?
                 <a href="" className="login-link" onClick={handleSingin}>SIGN IN</a>
             </span>
         </div>

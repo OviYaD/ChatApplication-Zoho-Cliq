@@ -46,8 +46,8 @@ export default function ProfileInfoPopUp({ styles, chatInfo, isChatUser }) {
         {chatDetails && <div className="info-container" >
             <div className='sub-container'>
                 <div className="img-wrapper">
-                    <img className='img-bg-fill' src={chatDetails.chat_type === "CHANNEL" ? chatDetails.profile.image_url ?? "https://www.shutterstock.com/image-vector/business-communication-group-discussion-icon-260nw-1677444301.jpg" : chatDetails.profile.mini_avatar_url.includes("https") ? chatDetails.profile.mini_avatar_url : process.env.REACT_APP_BUCKET_END_POINT + chatDetails.profile.mini_avatar_url}></img>
-                    <img className="img-display" src={chatDetails.chat_type === "CHANNEL" ? chatDetails.profile.image_url ?? "https://www.shutterstock.com/image-vector/business-communication-group-discussion-icon-260nw-1677444301.jpg" : chatDetails.profile.mini_avatar_url.includes("https") ? chatDetails.profile.mini_avatar_url : process.env.REACT_APP_BUCKET_END_POINT + chatDetails.profile.mini_avatar_url}></img>
+                    <img className='img-bg-fill' src={chatDetails.chat_type === "CHANNEL" ? chatDetails.profile.image_url ?? "https://www.shutterstock.com/image-vector/business-communication-group-discussion-icon-260nw-1677444301.jpg" : chatDetails.profile.image_url.includes("https") ? chatDetails.profile.image_url : process.env.REACT_APP_BUCKET_END_POINT + chatDetails.profile.image_url}></img>
+                    <img className="img-display" src={chatDetails.chat_type === "CHANNEL" ? chatDetails.profile.image_url ?? "https://www.shutterstock.com/image-vector/business-communication-group-discussion-icon-260nw-1677444301.jpg" : chatDetails.profile.image_url.includes("https") ? chatDetails.profile.image_url : process.env.REACT_APP_BUCKET_END_POINT + chatDetails.profile.image_url}></img>
                 </div>
                 <div className='profile-info'>
                     <div className='flexC'>
@@ -69,7 +69,7 @@ export default function ProfileInfoPopUp({ styles, chatInfo, isChatUser }) {
                         <div className=' flexC justifySB'>
                             <div className='flexC'>
                                 <span style={{ width: "30px", height: "30px", borderRadius: "100%", overflow: "hidden" }}>
-                                    <img width="100%" height="100%" src={chatDetails.last_message.sender.mini_avatar_url.includes("https") ? chatDetails.last_message.sender.mini_avatar_url : process.env.REACT_APP_BUCKET_END_POINT + chatDetails.last_message.sender.mini_avatar_url}></img>
+                                    <img width="100%" height="100%" src={chatDetails.last_message.sender.image_url.includes("https") ? chatDetails.last_message.sender.image_url : process.env.REACT_APP_BUCKET_END_POINT + chatDetails.last_message.sender.image_url}></img>
                                 </span>
 
                                 {/* <span>

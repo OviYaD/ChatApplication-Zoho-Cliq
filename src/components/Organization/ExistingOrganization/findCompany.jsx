@@ -37,7 +37,7 @@ export default function FindCompany({ setEmailFound, setOrgDetails }) {
                 <div className="label-txt-hdr">Your colleague's email address</div>
                 <input id="teammate_mailidfield" type="text" className="zcl-input" inputpurpose="teammate_mailid" value={email} onChange={handleChange} listen="keyup" placeholder="Eg: scott@gmail.com" />
                 <div id="mailid_input" className="posabs err_txt"></div>
-                {!found && <div id="finderrortxt" className="err_txt">Oops.. this email address isn't a part of Cliq.</div>}
+                {!found && <div id="finderrortxt" className="err_txt">Oops.. this email address isn't a part of Prezz.</div>}
             </div>
             <div id="finderrortxt" className="err_txt"></div>
             <button id="findcompanybtn" purpose="findCompany" className={`btn-large ${!validEmail && "disabled"}  mT40 mB10`} onClick={cheackEmail}>Find the Company</button>

@@ -3,6 +3,8 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import { useNavigate } from 'react-router-dom';
 import { emailOtp, ResetPassword, verifyOtp, checkEmail } from '../../api/authentication/user';
 import ResendOtp from '../../components/SignIn/resendOtp';
+import { validateEmail } from '../../components/Validators/email';
+import { toast } from 'react-toastify';
 
 export default function PasswordReset({ userData, setResetPswrd }) {
     const [loading, setLoading] = useState(false);
@@ -17,6 +19,10 @@ export default function PasswordReset({ userData, setResetPswrd }) {
     const [pswrdMisMatch, setPswrdMisMatch] = useState(false);
     const [invalidOtp, setOtpStatus] = useState(false)
     const [invalidEmail, setEmailStatus] = useState(false);
+    const [inputError, setInputError] = useState(false);
+    const [showPswrd, setShowPswrd] = useState(false)
+    const [showCPswrd, setShowCPswrd] = useState(false)
+
 
     const navigate = useNavigate();
 
@@ -32,9 +38,21 @@ export default function PasswordReset({ userData, setResetPswrd }) {
         }
     }, [email])
 
-    const handleKeyDown = (event) => {
+    const handleKeyDown = (event, field) => {
         if (event.keyCode === 13) {
             event.preventDefault();
+            if (field === "email")
+                verifyEmail();
+            else if (field === "otp")
+                handleVerification();
+            else if (field === "pswd") {
+                var $this = (event.target);
+                var index = parseFloat($this.attr('data-index'));
+                ('[data-index="' + (index + 1).toString() + '"]').focus();
+            }
+            else if (field === "cpswd") {
+                updatePassword();
+            }
         }
     }
 
@@ -87,13 +105,19 @@ export default function PasswordReset({ userData, setResetPswrd }) {
 
     const verifyEmail = async () => {
         setLoading(() => !loading);
-        const verified = await checkEmail({ email });
-        if (email.length <= 0 || verified) {
-            setEmailStatus(true)
-        }
-        else {
-            setEmailField(false);
-            setSendOtpBtn(true);
+        let error = {};
+        !validateEmail(email) ? error.email = false : error.email = true;
+        setInputError(!error.email);
+
+        if (error.email) {
+            const verified = await checkEmail({ email });
+            if (email.length <= 0 || verified) {
+                setEmailStatus(true)
+            }
+            else {
+                setEmailField(false);
+                setSendOtpBtn(true);
+            }
         }
         setLoading(false);
 
@@ -104,8 +128,32 @@ export default function PasswordReset({ userData, setResetPswrd }) {
         setPswrdMisMatch(false);
         setTimeout(() => setLoading(false), 1000);
         if (!pswrd.length <= 0 && pswrd === confirmPswrd) {
-            await ResetPassword({ email, otp, password: pswrd });
-            setResetPswrd(false);
+            const res = await ResetPassword({ email, otp, password: pswrd });
+            if (res) {
+                toast.success("Password updated Successfully", {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                })
+                setResetPswrd(false);
+            }
+            else {
+                toast.error("Old Password Can't be used", {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                })
+            }
         }
         else {
             setPswrdMisMatch(true);
@@ -119,12 +167,13 @@ export default function PasswordReset({ userData, setResetPswrd }) {
                     showEmailField && <>
                         <div className='info_head'>
                             <span id="headtitle">Forgot Password</span>
-                            <div className="head_info">Enter your registered email address to change your Zoho account password.</div>
+                            <div className="head_info">Enter your registered email address to change your Prezz account password.</div>
                         </div>
                         <div className="textbox_div">
                             <span style={{ marginBottom: "25px" }}>
-                                <input id="email" placeholder="Enter Email" name="email" type="email" className={`textbox ${invalidEmail && "errorborder"}`} required value={email} onChange={handleChange} onKeyDown={handleKeyDown} />
+                                <input id="email" placeholder="Enter Email" name="email" type="email" className={`textbox ${invalidEmail && "errorborder"}`} required value={email} onChange={handleChange} onKeyDown={(e) => handleKeyDown(e, "email")} />
                                 {invalidEmail && <div className="fielderror errorlabel">Invalid Email address. Please try again. <a href="#" onClick={() => navigate("/")}>Sign up</a></div>}
+                                {inputError && <div className="fielderror errorlabel" >Enter Valid Email</div>}
 
                             </span>
                             <LoadingButton className="btn"
@@ -161,7 +210,7 @@ export default function PasswordReset({ userData, setResetPswrd }) {
                 </div>}
                 {showOtpField && <div className="textbox_div">
                     <span>
-                        <input id="otp" placeholder="Enter Otp" name="otp" type="number" className="textbox" required="" value={otp} onChange={handleChange} onKeyDown={handleKeyDown} />
+                        <input id="otp" placeholder="Enter Otp" name="otp" type="number" className="textbox" required="" value={otp} onChange={handleChange} onKeyDown={(e) => handleKeyDown(e, "otp")} />
                         {invalidOtp && <div className="fielderror errorlabel">Incorrect OTP. Please try again.</div>}
 
                     </span>
@@ -189,8 +238,37 @@ export default function PasswordReset({ userData, setResetPswrd }) {
                         <div className="head_info">Enter a unique and strong password that is easy to remember so that you won't forget it the next time.</div>
                     </div>
                     <span>
-                        <input id="pswrd" placeholder="New Password" name="newpass" type="text" className="textbox" required="" value={pswrd} onChange={handleChange} onKeyDown={handleKeyDown} />
-                        <input id="confirm_pswrd" placeholder="Confirm New Password" name="confirmpass" type="text" className={`textbox ${pswrdMisMatch && "errorborder"}`} style={{ marginTop: "30px" }} required="" value={confirmPswrd} onChange={handleChange} onKeyDown={handleKeyDown} />
+                        <div style={{ position: "relative" }}>
+
+                            <input id="pswrd" placeholder="New Password" name="newpass" type={`${showPswrd ? "text" : "password"}`} className="textbox" required="" value={pswrd} onChange={handleChange} onKeyDown={(e) => handleKeyDown(e, "pswd")} data-index="1" />
+                            <div className='cur' style={{ position: "absolute", top: "12.5px", right: "10px", color: "#000" }} onClick={() => setShowPswrd((showPswrd) => !showPswrd)}>
+                                {!showPswrd ? <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                                    <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
+                                    <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
+                                </svg> :
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-eye-slash" viewBox="0 0 16 16">
+                                        <path d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7.028 7.028 0 0 0-2.79.588l.77.771A5.944 5.944 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.134 13.134 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755-.165.165-.337.328-.517.486l.708.709z" />
+                                        <path d="M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829l.822.822zm-2.943 1.299.822.822a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829z" />
+                                        <path d="M3.35 5.47c-.18.16-.353.322-.518.487A13.134 13.134 0 0 0 1.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7.029 7.029 0 0 1 8 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709zm10.296 8.884-12-12 .708-.708 12 12-.708.708z" />
+                                    </svg>
+                                }
+                            </div>
+                        </div>
+                        <div style={{ position: "relative" }}>
+                            <input id="confirm_pswrd" placeholder="Confirm New Password" name="confirmpass" type={`${showCPswrd ? "text" : "password"}`} className={`textbox ${pswrdMisMatch && "errorborder"}`} style={{ marginTop: "30px" }} required="" value={confirmPswrd} onChange={handleChange} onKeyDown={(e) => handleKeyDown(e, "cpswd")} data-index="2" />
+                            <div className='cur' style={{ position: "absolute", top: "12.5px", right: "10px", color: "#000" }} onClick={() => setShowCPswrd((showCPswrd) => !showCPswrd)}>
+                                {!showCPswrd ? <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                                    <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
+                                    <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
+                                </svg> :
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-eye-slash" viewBox="0 0 16 16">
+                                        <path d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7.028 7.028 0 0 0-2.79.588l.77.771A5.944 5.944 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.134 13.134 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755-.165.165-.337.328-.517.486l.708.709z" />
+                                        <path d="M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829l.822.822zm-2.943 1.299.822.822a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829z" />
+                                        <path d="M3.35 5.47c-.18.16-.353.322-.518.487A13.134 13.134 0 0 0 1.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7.029 7.029 0 0 1 8 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709zm10.296 8.884-12-12 .708-.708 12 12-.708.708z" />
+                                    </svg>
+                                }
+                            </div>
+                        </div>
                         {pswrdMisMatch && <div className="fielderror errorlabel">Passwords don't match</div>}
                     </span>
 

@@ -28,7 +28,6 @@
       .icons-last {
         color: grey;
         margin: 5px;
-        padding-right: 7px;
         font-size: 5px;
       }
       .icons {
@@ -617,6 +616,7 @@
   overflow-x: hidden;
   overflow-y: auto;
   margin-top: 56px;
+  font-family: "zoho-puvi-semi-bold";
 }
 .cwin-mediatab:after {
   content: "";
@@ -698,7 +698,7 @@
     .rep-month{
       width: 250px;
       font-size: 16px;
-        padding: 10px 5px 12px 5px;
+      padding: 10px 15px 12px 15px;
       height: 38px;
       color: var(--color-main);
       line-height: 24px;
@@ -778,13 +778,13 @@
 //   position: relative;
 //   z-index: 1;
 // }
-.ml-search.zcl-search.active {
+.ml-search.zcl-search.btnactive {
   /* align-self: center; */
   /* height: 34px; */
   /* width: 650px; */
   border-color: none;
 }
-.zcl-search.active {
+.zcl-search.btnactive {
   width: 390px;
 }
 .ml-search.zcl-search, .zcl-icon.ml-icon {
@@ -794,7 +794,7 @@
 .zcl-search {
   transition: all .2s ease-out;
 }
-.ml-search.zcl-search.active {
+.zcl-search.btnactive {
   align-self: center;
   height: 34px;
   width: 650px;
@@ -814,7 +814,7 @@
   z-index: 1;
 }
 
-.zcl-search.active .zcl-seach-icon {
+.zcl-search.btnactive .zcl-seach-icon {
   cursor: default;
 }
 .zcl-search .zcl-icon--default {
@@ -840,15 +840,21 @@
   border-color: var(--color-divider);
   background-color: var(--default-bg-color);
 }
-.zcl-search.active .zcl-search-input {
+.zcl-search.btnactive .zcl-search-input {
   display: flex;
+}
+.btnactive{
+  .zcl-search-input {
+display: flex !important;
+  }
 }
 div.zcl-search-input {
   flex-grow: 1;
   padding-right: 10px;
   cursor: default;
   overflow: hidden;
-  display: none;
+  // display: none;
+  visibility: hidden;
 }
 .zcl-search-input input, .zcl-search-input input:focus {
   border: none !important;
@@ -1074,9 +1080,75 @@ html, body, div, a, span, ul, li, p, blockquote, pre, address, p, strong, fields
   background-position: 50% 50% !important;
   background-size: cover !important;
   object-fit: cover;
+
+}
+
+.ml-grid-item:hover{
+  .img_bg,.img_option{
+    visibility: visible;
+  }
+}
+.img_bg{
+  background-color: #000;
+  visibility: hidden;
+	transition: .3s ease-in-out;
+  opacity: 0.4;
+  height: 136px;
+  width: 100%;
+  top:0;
+
+}
+.img_option{
+  visibility: hidden;
+	transition: .3s ease-in-out;
+  width: 90%;
+  top: 7px;
+  left: 7px;
+  right: 7px;
 }
 .ml-grid-item img {
   border-radius: 3px;
+}
+.medialisting-sticky-title{
+  position: sticky;
+  top:0;
+  z-index: 10000;
+  background-color: #fff;
+}
+.p12 {
+  padding: 12px;
+}
+.ml-emptygrid-item {
+  font-size: 51px;
+  background-color: var(--color-hover1);
+  color: var(--btn-secondary-border);
+}
+.zc-upldfile {
+  width: 100%;
+  height: 52px;
+}
+.zc-upldfile {
+  font-size: 98px;
+  color: rgba(var(--color-icon-rgb),0.2);
+}
+.ml-file-default {
+  font-size: 12px;
+  position: absolute;
+  top: 29px;
+  left: 100px;
+  box-shadow: 0 1px 4px 0 rgb(0 0 0 / 11%);
+  border-radius: 3px;
+  color: #7c98a0;
+  background-color: var(--default-bg-color);
+  width: 18%;
+  height: 20px;
+  padding: 7px 0px 0px 0px;
+}
+.ml-filesize {
+  color: var(--color-lp1);
+}
+.file-display{
+  font-family: "zoho-puvi-regular";
 }
 .gridlay {
   display: grid;
@@ -1084,7 +1156,7 @@ html, body, div, a, span, ul, li, p, blockquote, pre, address, p, strong, fields
   grid-gap: 3px;
 }
 .ml-data-container {
-  padding: 2px 36px 0px;
+  padding: 0px 36px 0px;
   line-height: initial;
 }
 

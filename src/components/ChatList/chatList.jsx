@@ -97,9 +97,10 @@ export default function ChatList({ unreadCount, setUnreadCount, actId, socket, s
     }
 
     const handleMouseEnter = (chats) => {
+        console.log("open profile.........");
         setDelayHandler(setTimeout(() => {
             setShowProfile(chats.chat_id)
-        }, 3000))
+        }, 1000))
     }
 
     const handleMouseLeave = () => {
@@ -162,7 +163,7 @@ export default function ChatList({ unreadCount, setUnreadCount, actId, socket, s
                             </div>
                             {openConversations && <div className="chatList">
                                 {convoChats.map((chats, index) => {
-                                    return <div key={chats.chat_id} className={`dflx list ${actId === chats.chat_id && "active"} `} onMouseEnter={() => setShowProfile(chats.chat_id)} onMouseLeave={() => setShowProfile("")} onClick={() => openChat(chats, chats.chat_type)}>
+                                    return <div key={chats.chat_id} className={`dflx list ${actId === chats.chat_id && "active"} `} onMouseEnter={() => handleMouseEnter(chats)} onMouseLeave={handleMouseLeave} onClick={() => openChat(chats, chats.chat_type)}>
                                         {chats.chat_type === "CHANNEL" ? <span className='hashTag'>#</span> :
                                             <span className=' flexC'>
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="7" height="7" fill="currentColor" className="bi bi-circle" viewBox="0 0 16 16" >

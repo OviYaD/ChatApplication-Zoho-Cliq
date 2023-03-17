@@ -1,21 +1,21 @@
 .profile-modal {
-    display: block;
-    position: fixed;
-    z-index: 100;
-    width: 630px !important; 
-    padding-left: 71% !important;
-    padding-top: 3%;
-    bottom: 0;
-    height: 100%;
-    overflow: auto;
-    background-color: rgb(0, 0, 0);
-    background-color: rgba(0, 0, 0, 0.4);
+  display: block;
+  position: fixed;
+  z-index: 100;
+  width: 29%;
+  padding-left: 71% !important;
+  padding-top: 3%;
+  bottom: 0;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
   }
   .profile-modal-content {
     background-color: #fefefe;
     padding: 0 0 0 0;
     border: 1px solid #888;
-    width: 61%;
+    width: 100%;
     // font-family: "zoho-puvi-regular";
   } 
   .usermenuheader{
@@ -27,7 +27,7 @@
   }
  .zc-usermenuheader {
     background: linear-gradient(0deg, rgba(var(--color-icon-rgb),0.2), var(--default-bg-color));
-    padding: 0px 10px;
+    padding: 0px 10px 20px 10px;
     text-align: center;
     position: relative;
     border-bottom: dashed 1px var(--color-divider);
@@ -76,17 +76,17 @@
   top: -100;
   cursor: pointer;
 }
-.cuserimg:hover {
-  .zuserimgchng {
-    display: block;
-    opacity: 15;
-  }
-  .usrimg > img{
-    // display: none;
-    opacity: 0.2;
-  }
+// .cuserimg:hover {
+//   .zuserimgchng {
+//     display: block;
+//     opacity: 15;
+//   }
+//   .usrimg > img{
+//     // display: none;
+//     opacity: 0.2;
+//   }
 
-}
+// }
 
 .options span{
   cursor: pointer;
@@ -351,8 +351,9 @@ ul{
 .zc-profilefootr {
   display: flex;
   flex-direction: column;
-  position: absolute;
-  bottom: 2px !important;
+  position: fixed;
+  bottom: 0;
+  width: 29%;
 }
 .zc-mycliqapps {
   // width: 100%;

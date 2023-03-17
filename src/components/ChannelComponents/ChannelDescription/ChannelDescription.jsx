@@ -7,10 +7,50 @@ import Connector from './Connector';
 import Permissions from './Permissions';
 import moment from 'moment/moment';
 import { useSelector } from 'react-redux';
+import { leaveChannel } from '../../../api/Channel/Channel';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
-export default function ChannelDescription({ setEditOpenStatus, socket, setOpenStatus, chatInfo }) {
+export default function ChannelDescription({ setEditOpenStatus, socket, setOpenStatus, chatInfo = { name: "prezz" } }) {
     const [viewOption, setViewOption] = useState(1);
-    const user = useSelector((state) => state.user)
+    const user = useSelector((state) => state.user);
+    const url = new URL(window.location);
+    const navigate = useNavigate();
+
+
+    const handleLeaveChannel = async () => {
+        const res = await leaveChannel({ channel_id: chatInfo._id });
+        if (res) {
+            setOpenStatus(false)
+            url.searchParams.delete('chat');
+            url.searchParams.delete('channel');
+            toast.success("You Left the Channel", {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+            })
+            window.location.reload();
+            navigate("/main");
+
+        }
+        else {
+            toast.error("Error, Try After Some times", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+            })
+        }
+    }
     return <>
         <div id="myModal" className="channel-modal">
 
@@ -35,7 +75,7 @@ export default function ChannelDescription({ setEditOpenStatus, socket, setOpenS
                         <div className='dflx justifySB ' >
                             <div>
                                 <div style={{ fontFamily: "zoho-puvi-semi-bold" }}>#{chatInfo.name}</div>
-                                <div className='caption'>We are coming for Cliq's head</div>
+                                <div className='caption'>We are coming for Prezz's head</div>
                             </div>
                             <div className='dflx'>
                                 <div className='desc-icon flexC cur'>
@@ -55,23 +95,23 @@ export default function ChannelDescription({ setEditOpenStatus, socket, setOpenS
                         <div className='auth-Info dflx justifySB'>
 
                             <div className=' dflx justifySB'>
-                                <div className='name ellips' style={{ maxWidth: "230px" }}> Created By<span id="owner_name" className="per-name ellips">{user.user_id === chatInfo.owner.user_id ? "You" : `${chatInfo.owner.first_name} ${chatInfo.owner.last_name === null ? "" : chatInfo.owner.last_name}`}</span></div>
+                                <div className='name ellips' style={{ maxWidth: "230px" }}> Created By<span id="owner_name" className="per-name ellips">{user.user_id === chatInfo.owner?.user_id ? "You" : `${chatInfo.owner.first_name} ${chatInfo.owner.last_name === null ? "" : chatInfo.owner.last_name}`}</span></div>
                                 <Tooltip
                                     anchorId="owner_name"
                                     place="bottom"
-                                    content={`${chatInfo.owner.first_name} ${chatInfo.owner.last_name === null ? "" : chatInfo.owner.last_name}`}
+                                    content={`${chatInfo.owner?.first_name} ${chatInfo.owner?.last_name === null ? "" : chatInfo.owner?.last_name}`}
                                 />
                                 <div>
                                     <span className="font12 mL10 clr-lp1 flexC"><span className="zcl-dot mR5 "></span><span className="diB"><span title="Wednesday, January 4 , 12:01 PM">{moment(chatInfo.created_at).fromNow()}</span></span></span>
                                 </div>
-                                <div className='authInfo-menu flexC'>
+                                {/* <div className='authInfo-menu flexC'>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-three-dots-vertical" style={{ margin: "auto" }} viewBox="0 0 16 16">
                                         <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
                                     </svg>
-                                </div>
+                                </div> */}
                             </div>
-                            <div className=''>
-                                <button className="leave "><span style={{ margin: "auto" }}>Leave</span></button>
+                            <div className='' style={{ width: "50%" }}>
+                                <button className="leave cur"><span style={{ margin: "auto" }} onClick={handleLeaveChannel}>Leave</span></button>
                                 <button className="continue "><span style={{ margin: "auto" }}>Continue</span></button>
                             </div>
 

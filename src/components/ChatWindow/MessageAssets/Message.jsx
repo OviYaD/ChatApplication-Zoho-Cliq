@@ -196,7 +196,7 @@ export default function Message({ setReplyTo, newMsgId, setNewMsgId, chatInfo, n
                         {msg.showUser &&
                             <div className="sender ellips in-view" style={{ position: "relative" }}>
                                 <div className="chtimg floatl " onClick={() => { setShowProfile(msg.sender.user_id + index); console.log(msg.sender.user_id + index) }}>
-                                    <img elemtype="user" hover="true" uid="60016689094" src={msg.sender.mini_avatar_url.includes("https") ? msg.sender.mini_avatar_url : process.env.REACT_APP_BUCKET_END_POINT + msg.sender.mini_avatar_url} className="cur" />
+                                    <img elemtype="user" hover="true" uid="60016689094" src={msg.sender.image_url.includes("https") ? msg.sender.image_url : process.env.REACT_APP_BUCKET_COMP_END_POINT + msg.sender.image_url} className="cur" />
                                 </div>
                                 <span elemtype="user" hover="true" uid="60016689094" className="zctxtseln cur">{msg.sender.user_id === user.user_id ? "You" : msg.sender.first_name + " " + msg.sender.last_name}</span>
                             </div>}
@@ -279,7 +279,7 @@ export default function Message({ setReplyTo, newMsgId, setNewMsgId, chatInfo, n
                                                     <div className="quotedmsgellips">
                                                         <div className="quotedmsgsender">
                                                             <span className="cur floatl ellips bold w100" style={{ fontSize: "13px" }}>
-                                                                {msg.reply_to.sender.first_name + " " + msg.reply_to.sender.last_name ?? ""}
+                                                                {msg.sender.user_id === user.user_id ? "You" : msg.reply_to.sender.first_name + " " + msg.reply_to.sender.last_name ?? ""}
                                                                 <span className="reply-dt ellips fshrink">
                                                                     <span title="">{moment(msg.reply_to.created_at).isSame(moment(), 'day') ? moment(msg.reply_to.created_at).format("hh:mm A") : moment(msg.reply_to.created_at).isSame(moment().subtract(1, 'days'), 'day') ? "Yesterday , " + moment(msg.reply_to.created_at).format("hh:mm A") : moment(msg.reply_to.created_at).format("MMM DD, hh:mm A")} </span>
                                                                 </span>

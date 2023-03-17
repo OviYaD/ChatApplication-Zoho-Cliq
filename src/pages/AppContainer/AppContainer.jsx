@@ -11,6 +11,7 @@ import LoadingPage from '../../components/loaders/LoadingPage';
 
 export default function AppContainer() {
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
   const [socket, setSocket] = useState();
   const [messages, setMessages] = useState([]);
   const [newMsg, setNewMsg] = useState(false);
@@ -43,20 +44,6 @@ export default function AppContainer() {
       console.log("fetching messages...", data);
       setNewMsg(!data.isReload);
       data.isReload ? setMessages((messages) => [...data.messages, ...messages]) : setMessages(data.messages)
-      // [...data.messages, ...messages].length > messages.length ? setNewMsg(false) : setNewMsg(true);
-      // console.log(searchParams.get("channel") === data.messages[0]?.chat_id);
-      // if (searchParams.get("channel") === data.messages[0]?.chat_id) {
-      // }
-
-
-      // if (data.messages.length > 0 && data.messages[0]?.chat_id === messages[0]?.chat_id)
-      //   setMessages((messages) => [...data.messages, ...messages]);
-      // else if (searchParams.get('channel') !== data.messages[0]?.chat_id) {
-      //   setMessages(data.messages);
-      //   setNewMsg(true)
-      // }
-      // else
-      //   setMessages((messages) => [...data.messages, ...messages])
       setReload(true);
       setFinishState(data.isFinished);
 
@@ -100,7 +87,7 @@ export default function AppContainer() {
     })
 
     socket.on("edit-message", (data) => {
-      console.log("received deleted msg", data, messages);
+      console.log("received edited msg", data, messages);
       setNewMsg(false);
       setMessages((messages) => {
         const msg = [...messages];
@@ -138,8 +125,7 @@ export default function AppContainer() {
 
 
   return <>
-    {socket ? <div style={{ backgroundColor: "black", position: "fixed", width: "100%", fontFamily: "zoho-puvi-regular" }}>
-      <MenuBar></MenuBar>
+    {user.first_name && socket ? <div style={{ backgroundColor: "black", position: "fixed", width: "100%", fontFamily: "zoho-puvi-regular" }}>
       <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.3.122/build/pdf.worker.min.js">
         <MainContainer setNewMsg={setNewMsg} isFinished={isFinished} setReload={setReload} reload={reload} socket={socket} messages={messages} setMessages={setMessages} newMsg={newMsg}></MainContainer>
       </Worker>

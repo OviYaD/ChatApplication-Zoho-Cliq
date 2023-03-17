@@ -1,5 +1,6 @@
 import axios from "axios";
 import config from "../../config";
+import { media } from '../../assets/mock_data';
 
 export const createChannel = async (data) => {
   console.log(data);
@@ -42,13 +43,19 @@ export const getMembers = async (data) =>{
 }
 
 export const addMembers = async(data) => {
-  console.log(data)
+  try{
+    console.log(data)
   const res = await axios.post(`${config.END_POINT}/channel/add-members`,data,{
     headers : {
       'Authorization': 'Bearer ' + (localStorage.getItem('token')) || ''
     }
   })
   console.log(res);
+  return true;
+  }
+  catch(e){
+    return false;
+  }
 }
 
 export const getUnreadCount = async (data)=>{
@@ -112,7 +119,42 @@ export const editChannel = async(data,id) => {
     console.log(e);
     return false;
   }
- 
+}
 
+export const getMediaFiles = async(data) => {
+  console.log("",data);
+  const res =  await axios.post(`${config.END_POINT}/channel/media`,data ,{
+    headers : {
+      'Authorization': 'Bearer ' + (localStorage.getItem('token')) || ''
+    }
+  });
+  console.log(res);
+  return res.data.messages;
+  // return media.messages;
+}
 
+export const removeMember = async(data) => {
+  const res =  await axios.post(`${config.END_POINT}/channel/remove-member`,data ,{
+    headers : {
+      'Authorization': 'Bearer ' + (localStorage.getItem('token')) || ''
+    }
+  });
+  console.log(res);
+  // return res.data.messages;
+}
+
+export const leaveChannel = async(data) => {
+  try{
+    const res =  await axios.post(`${config.END_POINT}/channel/leave-channel`,data ,{
+    headers : {
+      'Authorization': 'Bearer ' + (localStorage.getItem('token')) || ''
+    }
+  });
+  console.log(res);
+  return true;
+  }
+  catch(e){
+    console.log(e);
+    return false;
+  }
 }

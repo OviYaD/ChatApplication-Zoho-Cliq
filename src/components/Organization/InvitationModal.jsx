@@ -89,6 +89,8 @@ export default function InvitationModal({ open, handleClose }) {
 
     return (
         <div>
+            {open && <div className="bg-focus"></div>}
+
             <Modal
                 keepMounted
                 open={open}
@@ -97,7 +99,7 @@ export default function InvitationModal({ open, handleClose }) {
                 <Box sx={style}>
                     <div className="" style={{ alignItem: "center", textAlign: "center" }}>
                         <div className="font24 clr-hdr fontB ">Invite your Colleagues</div>
-                        <div className="font16 line24 clr-lp1 invite-desc mTB10">You can invite at least a user at your convenience and get started with Cliq! Invite your folks and start collaborating right away.<em className="smile_pos smly"></em></div>
+                        <div className="font16 line24 clr-lp1 invite-desc mTB10">You can invite at least a user at your convenience and get started with Prezz! Invite your folks and start collaborating right away.<em className="smile_pos smly"></em></div>
                         <div id="inputbox_textbox " >
                             {multipleUser ? <textarea id="invite_textbox" inputpurpose="invite_textbox" listen="keyup" className="invitetxtbox font16" placeholder="Scott<scottfisher@zylker.com>,Matta<matta@zylker.com>" contentEditable="true"></textarea> :
                                 <table id="invite_inputbox mTB10" >

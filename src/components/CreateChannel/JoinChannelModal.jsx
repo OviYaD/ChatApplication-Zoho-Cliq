@@ -4,15 +4,13 @@ import { getOrganizationChannels, joinChannel } from '../../api/Channel/Channel'
 import CircleLoader from '../loaders/CircleLoader';
 import moment from 'moment/moment';
 import { toast } from 'react-toastify';
-import { query } from 'firebase/firestore';
+// import { query } from 'firebase/firestore';
 
 export default function JoinChannelModal({ setShowJoinChannelModal, setStatus }) {
     const [channelList, setChannelList] = useState();
     const [query, setQuery] = useState();
 
     useEffect(() => {
-
-
         getChannelList("");
     }, [])
 
@@ -87,7 +85,7 @@ export default function JoinChannelModal({ setShowJoinChannelModal, setStatus })
                         <div className='chnName'>Create  Channel</div>
                     </div> */}
                     <div className='mTB10' style={{ color: "var(--color-lp1)", lineHeight: "24px", fontSize: "15px", marginRight: "20px" }}>
-                        Cliq Channels are where conversations happen on any topic ranging from #engineering to #garage-bands. Join channels that interests you or simply create one!
+                        Prezz Channels are where conversations happen on any topic ranging from #engineering to #garage-bands. Join channels that interests you or simply create one!
                     </div>
 
                     <div id="channellistsearchholder" className=" fshrink mT16" style={{ padding: "20px 36px 20px 0px" }}>

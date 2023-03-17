@@ -53,7 +53,7 @@ export default function MemberList(params) {
     }
 
     return <>
-        <div className="flex" style={{ backgroundColor: "#fff", width: "100%", borderRadius: "10px", marginLeft: "2px", marginRight: "8px", position: "relative" }}>
+        <div className="flex" style={{ backgroundColor: "#fff", width: "100%", marginTop: "51px", borderRadius: "10px", marginLeft: "2px", marginRight: "8px", position: "relative" }}>
             <div className='wh100'>
                 <div className="main-container-header ovrflwH fshrink people-cont-header">
                     <div className="w100 flex justifySB">
@@ -91,7 +91,7 @@ export default function MemberList(params) {
                                 <div className="flex fdirC">
                                     <div className="user-card-image">
                                         <div id="imgcontainer" className="flexM curP" uid="60016689751" imgsrc="https://contacts.zoho.in/file?ID=60016689751&amp;exp=6000&amp;t=user&amp;fs=thumb">
-                                            <img style={{ height: "110px" }} src={mem.profile.mini_avatar_url.includes("https") ? mem.profile.mini_avatar_url : process.env.REACT_APP_BUCKET_END_POINT + mem.profile.mini_avatar_url} /><span id="time" className="zchvrtm dN">{new Date().getHours() + ":" + new Date().getMinutes() + " " + moment().format("A")}</span>
+                                            <img style={{ height: "110px" }} src={mem.user.image_url.includes("https") ? mem.user.image_url : process.env.REACT_APP_BUCKET_END_POINT + mem.user.image_url} /><span id="time" className="zchvrtm dN">{new Date().getHours() + ":" + new Date().getMinutes() + " " + moment().format("A")}</span>
                                         </div>
                                     </div>
                                     <div className="user-card-pinfo">
@@ -99,7 +99,7 @@ export default function MemberList(params) {
                                             <div className="user-personal">
                                                 <div className="flexC font15 line20 posrel">
                                                     <span id="status" className="usrstatus zcstatus--1 fshrink"></span>
-                                                    <span className="ellips fontB clr-M">{mem.profile.first_name}</span>
+                                                    <span className="ellips fontB clr-M">{mem.user.first_name}</span>
                                                     <span id="checkin_status" uid="60016689751" className="font14 checkin_status zcpredot fshrink"></span>
                                                 </div>
                                                 <div className="mT3 font14 line18 clr-S ellips"><a className="clr-S" href="mailto:anush.kumar@codingmart.com">{mem.email}</a></div>
@@ -144,7 +144,7 @@ export default function MemberList(params) {
                     }
                 </div>
             </div>
-            {showInfo && <ShowInfo setStatus={setStatus} userEmail={userEmail}></ShowInfo>}
+            {showInfo && <ShowInfo showInfo={showInfo} setStatus={setStatus} userEmail={userEmail}></ShowInfo>}
 
         </div>
     </>;

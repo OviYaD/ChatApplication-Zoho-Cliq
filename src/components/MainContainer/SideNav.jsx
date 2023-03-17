@@ -29,12 +29,12 @@ export default function SideNav({ setActiveMenu, activeMenu, setWindow }) {
                             <TagOutlinedIcon style={{ fontSize: "20px" }}></TagOutlinedIcon>
                             <div className="mod-name ellips">Channels</div>
                         </div>
-                        <div id="lhs_history" className="lhs-nav-item" purpose="showHistorysTab">
+                        <div id="lhs_history" className={`lhs-nav-item  ${activeMenu === "history" && "active"}`} purpose="showHistorysTab" onClick={() => { setActiveMenu("history"); setWindow("history") }} >
                             <div className="zcf-history mod-icn"></div>
                             <HistoryOutlinedIcon style={{ fontSize: "23px" }}></HistoryOutlinedIcon>
                             <div className="mod-name ellips">History</div>
                         </div>
-                        <div id="lhs_files" className="lhs-nav-item  " purpose="showFilesTab">
+                        {/* <div id="lhs_files" className="lhs-nav-item  " purpose="showFilesTab">
                             <div className="zcf-fileicon mod-icn"></div>
                             <InsertDriveFileOutlinedIcon style={{ fontSize: "20px" }}></InsertDriveFileOutlinedIcon>
                             <div className="mod-name ellips">Files</div>
@@ -58,18 +58,13 @@ export default function SideNav({ setActiveMenu, activeMenu, setWindow }) {
                             <div className="zcf-applet mod-icn"></div>
                             <WidgetsOutlinedIcon style={{ fontSize: "20px" }}></WidgetsOutlinedIcon>
                             <div className="mod-name ellips">Widgets</div>
-                        </div>
+                        </div> */}
                         <div id="lhs_people" className={`lhs-nav-item ${activeMenu === "Org" && "active"}`} onClick={() => { setActiveMenu("Org"); setWindow("Org") }} purpose="showMyOrgTab">
                             <div className="zcf-org-icon mod-icn"></div>
                             <CorporateFareOutlinedIcon style={{ fontSize: "20px" }}></CorporateFareOutlinedIcon>
                             <div className="mod-name ellips">Org</div>
                         </div>
-                        {/* <div className="ps-scrollbar-x-rail" style={{ left: "0px", bottom: "3px" }}>
-                                <div className="ps-scrollbar-x" tabIndex="0" style={{ left: "0px", width: "0px" }}></div>
-                              </div>
-                              <div className="ps-scrollbar-y-rail" style={{ top: "0px", height: "459px", right: "3px" }}>
-                                <div className="ps-scrollbar-y" tabIndex="-1" style={{ top: "0px", height: "382px" }}></div>
-                              </div> */}
+
                     </div>
                 </div>
             </div>
